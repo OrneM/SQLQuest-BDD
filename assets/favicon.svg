@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="1.5" flood-color="#00f0ff" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+  <!-- Background transparent -->
+  
+  <!-- Crossed Pixel Master Sword -->
+  <g filter="url(#glow)">
+    <!-- Blade -->
+    <path d="M12 52 L52 12 L56 16 L16 56 Z" fill="#00f0ff" />
+    <path d="M14 50 L50 14 L52 16 L16 52 Z" fill="#ffffff" />
+    <!-- Tip -->
+    <polygon points="52,12 58,10 56,16" fill="#ffffff" />
+    <!-- Crossguard (Gold) -->
+    <rect x="10" y="44" width="12" height="4" transform="rotate(-45 16 46)" fill="#ffd700" stroke="#000" stroke-width="0.8"/>
+    <!-- Pommel -->
+    <circle cx="9" cy="55" r="3" fill="#ffd700" stroke="#000" stroke-width="0.8"/>
+  </g>
+
+  <!-- Database Cylinder Stack (Pixel 8-bit) -->
+  <g filter="url(#glow)">
+    <!-- Layer 3 (Bottom) -->
+    <ellipse cx="36" cy="45" rx="16" ry="6" fill="#0c1020" stroke="#00ff66" stroke-width="2.5"/>
+    <path d="M20 40 Q36 46 52 40 L52 45 Q36 51 20 45 Z" fill="#152038" stroke="#00ff66" stroke-width="2"/>
+    <ellipse cx="36" cy="40" rx="16" ry="6" fill="#1b2848" stroke="#00ff66" stroke-width="2"/>
+    
+    <!-- Layer 2 (Middle) -->
+    <path d="M20 31 Q36 37 52 31 L52 36 Q36 42 20 36 Z" fill="#152038" stroke="#00f0ff" stroke-width="2"/>
+    <ellipse cx="36" cy="31" rx="16" ry="6" fill="#1f3258" stroke="#00f0ff" stroke-width="2"/>
+    
+    <!-- Layer 1 (Top) -->
+    <path d="M20 22 Q36 28 52 22 L52 27 Q36 33 20 27 Z" fill="#182645" stroke="#ffd700" stroke-width="2"/>
+    <ellipse cx="36" cy="22" rx="16" ry="6" fill="#2a3f70" stroke="#ffd700" stroke-width="2.5"/>
+    
+    <!-- Server LED activity blips -->
+    <circle cx="28" cy="24" r="1.5" fill="#39ff14"/>
+    <circle cx="34" cy="24" r="1.5" fill="#00f0ff"/>
+    <circle cx="28" cy="33" r="1.5" fill="#39ff14"/>
+    <circle cx="34" cy="33" r="1.5" fill="#ffd700"/>
+    <circle cx="28" cy="42" r="1.5" fill="#39ff14"/>
+  </g>
+</svg>
