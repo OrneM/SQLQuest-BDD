@@ -1,7 +1,6 @@
 /* =========================================================
-   RETRO 8-BIT CORE DESIGN SYSTEM - BASES DE DATOS I (V3)
-   Optimized for Mobile, Tablets & Desktop:
-   Touch-Friendly, Horizontal Swipe Tabs, Non-Overflowing Forms
+   RETRO 8-BIT CORE DESIGN SYSTEM - BASES DE DATOS I (V4)
+   Spacious, Elegant, Uncompressed Layout with Stable Buttons & Crisp Contrast
    ========================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
@@ -10,26 +9,25 @@
   /* Neon Palette */
   --bg-dark: #0b0d17;
   --bg-card: #131728;
-  --bg-card-alt: #1a2035;
-  --bg-card-hover: #222944;
+  --bg-card-alt: #1a2038;
+  --bg-card-hover: #232b4b;
   --border-color: #384268;
   --border-pixel-outer: #000000;
-  --border-pixel-inner: #384268;
   
   --neon-green: #39ff14;
-  --neon-green-glow: rgba(57, 255, 20, 0.35);
+  --neon-green-glow: rgba(57, 255, 20, 0.4);
   --neon-cyan: #00f0ff;
-  --neon-cyan-glow: rgba(0, 240, 255, 0.35);
+  --neon-cyan-glow: rgba(0, 240, 255, 0.4);
   --neon-magenta: #ff007f;
-  --neon-magenta-glow: rgba(255, 0, 127, 0.35);
+  --neon-magenta-glow: rgba(255, 0, 127, 0.4);
   --neon-yellow: #ffd700;
-  --neon-yellow-glow: rgba(255, 215, 0, 0.35);
+  --neon-yellow-glow: rgba(255, 215, 0, 0.4);
   --neon-red: #ff334b;
-  --neon-red-glow: rgba(255, 51, 75, 0.35);
+  --neon-red-glow: rgba(255, 51, 75, 0.4);
   --neon-blue: #3b82f6;
 
-  /* Text Colors */
-  --text-main: #f1f5f9;
+  /* High Legibility Colors */
+  --text-main: #ffffff;
   --text-body: #e2e8f0;
   --text-muted: #94a3b8;
   --text-highlight: #38bdf8;
@@ -40,10 +38,7 @@
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Pixel borders & shadows */
-  --pixel-shadow: 3px 3px 0px #000;
-  --pixel-border-gold: 2px solid var(--neon-yellow);
-  --pixel-border-cyan: 2px solid var(--neon-cyan);
-  --pixel-border-green: 2px solid var(--neon-green);
+  --pixel-shadow: 4px 4px 0px #000;
 }
 
 /* Reset & Box Sizing */
@@ -59,8 +54,8 @@ html, body {
   background-color: var(--bg-dark);
   color: var(--text-body);
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 1.7;
   overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -76,10 +71,10 @@ html, body {
   pointer-events: none;
   z-index: 9999;
   background: 
-    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%),
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.15) 50%),
     linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.008), rgba(0, 0, 255, 0.015));
   background-size: 100% 4px, 6px 100%;
-  opacity: 0.35;
+  opacity: 0.25;
   transition: opacity 0.2s ease;
 }
 
@@ -96,7 +91,7 @@ html, body {
   height: 100vh;
   pointer-events: none;
   z-index: 9998;
-  box-shadow: inset 0 0 80px rgba(0, 0, 0, 0.7);
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
   transition: opacity 0.2s ease;
 }
 
@@ -106,10 +101,10 @@ html, body {
 
 /* App Master Layout */
 #app-container {
-  max-width: 1360px;
+  max-width: 1320px;
   width: 100%;
   margin: 0 auto;
-  padding: 12px 14px 60px 14px;
+  padding: 24px 28px 70px 28px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -122,41 +117,41 @@ html, body {
    ========================================================= */
 .retro-hud {
   background: var(--bg-card);
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   box-shadow: 
-    0 0 0 2px #000,
-    0 0 0 4px #384268,
+    0 0 0 3px #000,
+    0 0 0 6px #384268,
     var(--pixel-shadow);
-  padding: 12px 14px;
-  margin-bottom: 16px;
+  padding: 16px 22px;
+  margin-bottom: 24px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  background-image: radial-gradient(circle at 10% 20%, rgba(26, 32, 53, 0.9) 0%, transparent 80%);
+  gap: 16px;
+  background-image: radial-gradient(circle at 10% 20%, rgba(26, 32, 53, 0.95) 0%, transparent 80%);
 }
 
 .hud-title-zone {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .hud-game-logo {
   font-family: var(--font-pixel);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--neon-yellow);
-  text-shadow: 2px 2px 0px #000, 0 0 6px var(--neon-yellow-glow);
+  text-shadow: 2px 2px 0px #000, 0 0 8px var(--neon-yellow-glow);
   letter-spacing: 0.5px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   line-height: 1.4;
 }
 
 .hud-game-logo .sword-icon {
-  font-size: 18px;
+  font-size: 20px;
   animation: pulse-sword 2.5s infinite ease-in-out;
   display: inline-block;
   flex-shrink: 0;
@@ -170,29 +165,29 @@ html, body {
 .hud-stats-zone {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   flex-wrap: wrap;
 }
 
 .hud-stat-box {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   background: #000;
-  border: 1px solid var(--border-color);
-  padding: 5px 8px;
-  box-shadow: 1px 1px 0px rgba(0,0,0,0.6);
+  border: 2px solid var(--border-color);
+  padding: 6px 12px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.6);
 }
 
 .hud-label {
   font-family: var(--font-pixel);
-  font-size: 8.5px;
+  font-size: 10px;
   color: var(--text-muted);
 }
 
 .hud-val {
   font-family: var(--font-pixel);
-  font-size: 10.5px;
+  font-size: 12px;
   color: #fff;
 }
 
@@ -207,11 +202,11 @@ html, body {
 
 .hud-hearts {
   display: flex;
-  gap: 3px;
+  gap: 4px;
 }
 
 .hud-heart {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--neon-red);
   filter: drop-shadow(0 0 4px var(--neon-red-glow));
 }
@@ -224,43 +219,45 @@ html, body {
 .hud-controls-zone {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
-/* Retro Buttons */
+/* Retro Buttons - Stable (No Margins Collapse on Hover) */
 .btn-retro {
   background: var(--bg-card-alt);
   color: var(--text-main);
   border: 2px solid #fff;
   box-shadow: 
     0 0 0 2px #000,
-    2px 2px 0px #000;
+    3px 3px 0px #000;
   font-family: var(--font-pixel);
-  font-size: 9px;
-  padding: 8px 12px;
+  font-size: 10.5px;
+  padding: 11px 16px;
   cursor: pointer;
   text-transform: uppercase;
-  transition: all 0.1s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 8px;
   outline: none;
   user-select: none;
-  line-height: 1.3;
+  line-height: 1.4;
+  position: relative;
 }
 
 .btn-retro:hover {
-  transform: translate(-1px, -1px);
+  background: #273154;
+  border-color: var(--neon-cyan);
   box-shadow: 
     0 0 0 2px #000,
-    4px 4px 0px #000;
-  background: #252e4d;
+    3px 3px 0px #000,
+    0 0 8px var(--neon-cyan-glow);
 }
 
 .btn-retro:active {
-  transform: translate(1px, 1px);
+  background: #1e2642;
   box-shadow: 
     0 0 0 2px #000,
     1px 1px 0px #000;
@@ -272,12 +269,20 @@ html, body {
   color: var(--neon-green);
   text-shadow: 0 0 4px var(--neon-green-glow);
 }
+.btn-retro.btn-green:hover {
+  background: #17632b;
+  box-shadow: 0 0 0 2px #000, 3px 3px 0px #000, 0 0 10px var(--neon-green-glow);
+}
 
 .btn-retro.btn-cyan {
   background: #0a3a4c;
   border-color: var(--neon-cyan);
   color: var(--neon-cyan);
   text-shadow: 0 0 4px var(--neon-cyan-glow);
+}
+.btn-retro.btn-cyan:hover {
+  background: #115975;
+  box-shadow: 0 0 0 2px #000, 3px 3px 0px #000, 0 0 10px var(--neon-cyan-glow);
 }
 
 .btn-retro.btn-gold {
@@ -286,12 +291,20 @@ html, body {
   color: var(--neon-yellow);
   text-shadow: 0 0 4px var(--neon-yellow-glow);
 }
+.btn-retro.btn-gold:hover {
+  background: #6e5a0b;
+  box-shadow: 0 0 0 2px #000, 3px 3px 0px #000, 0 0 10px var(--neon-yellow-glow);
+}
 
 .btn-retro.btn-red {
   background: #4a0d18;
   border-color: var(--neon-red);
   color: var(--neon-red);
   text-shadow: 0 0 4px var(--neon-red-glow);
+}
+.btn-retro.btn-red:hover {
+  background: #6e1324;
+  box-shadow: 0 0 0 2px #000, 3px 3px 0px #000, 0 0 10px var(--neon-red-glow);
 }
 
 .btn-retro.btn-magenta {
@@ -300,98 +313,99 @@ html, body {
   color: var(--neon-magenta);
   text-shadow: 0 0 4px var(--neon-magenta-glow);
 }
+.btn-retro.btn-magenta:hover {
+  background: #6b0f40;
+  box-shadow: 0 0 0 2px #000, 3px 3px 0px #000, 0 0 10px var(--neon-magenta-glow);
+}
 
 /* =========================================================
-   NAVIGATION TABS (Horizontally Swipeable on Mobile)
+   NAVIGATION TABS - Stable, Non-Clipping Layout
    ========================================================= */
 .retro-tabs {
   display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-  border-bottom: 2px solid #384268;
-  padding-bottom: 10px;
-  overflow-x: auto;
-  flex-wrap: nowrap;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: thin;
+  gap: 12px;
+  margin-bottom: 24px;
+  border-bottom: 3px solid #384268;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
 }
 
 .tab-btn {
   background: #0f1220;
   color: var(--text-muted);
   border: 2px solid #282f4c;
-  padding: 9px 13px;
+  padding: 12px 18px;
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 10.5px;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 6px;
-  transition: all 0.15s ease;
+  gap: 8px;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
   text-transform: uppercase;
   white-space: nowrap;
-  flex-shrink: 0;
+  box-shadow: 0 0 0 2px #000;
 }
 
 .tab-btn:hover {
   color: #fff;
   border-color: var(--neon-cyan);
   background: #192038;
+  box-shadow: 0 0 0 2px #000, 0 0 8px var(--neon-cyan-glow);
 }
 
 .tab-btn.active {
-  background: var(--bg-card);
+  background: #1c223a;
   color: var(--neon-yellow);
   border-color: var(--neon-yellow);
-  box-shadow: 0 0 8px var(--neon-yellow-glow);
-  transform: translateY(-2px);
+  box-shadow: 0 0 0 2px #000, 0 0 12px var(--neon-yellow-glow);
 }
 
 .tab-btn .badge-pill {
   background: var(--neon-red);
   color: #fff;
-  font-size: 8px;
-  padding: 2px 5px;
+  font-size: 9px;
+  padding: 3px 7px;
   border-radius: 2px;
 }
 
 /* =========================================================
-   RETRO CONTAINER / BOX CARDS
+   RETRO CONTAINER / BOX CARDS - Spacious & Solid
    ========================================================= */
 .retro-box {
   background: var(--bg-card);
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   box-shadow: 
-    0 0 0 2px #000,
-    0 0 0 4px #384268,
+    0 0 0 3px #000,
+    0 0 0 6px #384268,
     var(--pixel-shadow);
-  padding: 16px;
+  padding: 28px 32px;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   width: 100%;
   max-width: 100%;
 }
 
 .retro-box-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   border-bottom: 2px dashed var(--border-color);
-  padding-bottom: 12px;
-  margin-bottom: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 22px;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
 .retro-box-title {
   font-family: var(--font-pixel);
-  font-size: 11px;
+  font-size: 13.5px;
   color: var(--neon-cyan);
-  text-shadow: 0 0 6px var(--neon-cyan-glow);
+  text-shadow: 0 0 8px var(--neon-cyan-glow);
   display: flex;
   align-items: center;
-  gap: 8px;
-  line-height: 1.4;
+  gap: 10px;
+  line-height: 1.5;
   word-break: break-word;
 }
 
@@ -407,51 +421,59 @@ html, body {
   50% { opacity: 0; }
 }
 
-/* Visual Illustration Banners */
+/* Visual Illustration Banners - Generous Aspect Ratio */
 .module-visual-banner {
   width: 100%;
-  max-height: 200px;
+  max-height: 380px;
+  aspect-ratio: 16 / 8;
   object-fit: cover;
-  border: 2px solid #000;
-  box-shadow: 0 0 0 2px var(--neon-cyan), var(--pixel-shadow);
-  margin-bottom: 16px;
+  object-position: center;
+  border: 3px solid #000;
+  box-shadow: 0 0 0 3px var(--neon-cyan), var(--pixel-shadow);
+  margin-bottom: 24px;
   display: block;
 }
 
 /* Feature Grid Cards */
 .quest-features-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
-  margin: 16px 0;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin: 22px 0;
 }
 
 .quest-feature-card {
   background: #0c0f1d;
-  border: 1px solid #283050;
-  padding: 12px 14px;
+  border: 2px solid #283050;
+  padding: 16px 18px;
   display: flex;
   align-items: flex-start;
-  gap: 10px;
+  gap: 14px;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.quest-feature-card:hover {
+  border-color: var(--neon-cyan);
+  background: #13182e;
 }
 
 .quest-feature-icon {
-  font-size: 22px;
+  font-size: 26px;
   flex-shrink: 0;
 }
 
 .quest-feature-info h4 {
   font-family: var(--font-pixel);
-  font-size: 9.5px;
+  font-size: 11px;
   color: var(--neon-yellow);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   line-height: 1.4;
 }
 
 .quest-feature-info p {
-  font-size: 13px;
+  font-size: 14.5px;
   color: #cbd5e1;
-  line-height: 1.45;
+  line-height: 1.5;
 }
 
 /* Tab Content Visibility */
@@ -466,8 +488,8 @@ html, body {
 }
 
 @keyframes fadeInRetro {
-  0% { opacity: 0; transform: translateY(3px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
 /* Modals */
@@ -482,7 +504,7 @@ html, body {
   align-items: center;
   justify-content: center;
   z-index: 10000;
-  padding: 14px;
+  padding: 20px;
 }
 
 .retro-modal-backdrop.active {
@@ -491,55 +513,54 @@ html, body {
 
 .retro-modal-window {
   background: var(--bg-card);
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   box-shadow: 
-    0 0 0 2px #000,
-    0 0 0 5px #ff007f,
-    6px 6px 0px #000;
-  max-width: 580px;
+    0 0 0 3px #000,
+    0 0 0 6px #ff007f,
+    10px 10px 0px #000;
+  max-width: 640px;
   width: 100%;
-  padding: 20px;
+  padding: 30px;
   position: relative;
   text-align: center;
-  animation: modalPop 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
 
-@keyframes modalPop {
-  0% { transform: scale(0.9); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* Mobile Media Queries */
+/* Mobile adjustments strictly confined to <= 640px */
 @media (max-width: 640px) {
   #app-container {
-    padding: 8px 8px 50px 8px;
+    padding: 10px 10px 60px 10px;
   }
   .retro-hud {
-    padding: 10px;
-    gap: 10px;
+    padding: 12px 14px;
+    gap: 12px;
   }
   .hud-game-logo {
-    font-size: 10px;
+    font-size: 11px;
   }
   .hud-stats-zone {
     width: 100%;
     justify-content: space-between;
   }
-  .hud-stat-box {
-    padding: 4px 6px;
-  }
   .hud-controls-zone {
     width: 100%;
     justify-content: flex-end;
   }
-  .btn-retro {
-    font-size: 8px;
-    padding: 7px 10px;
+  .retro-tabs {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 8px;
+    gap: 8px;
+  }
+  .tab-btn {
+    font-size: 9.5px;
+    padding: 9px 12px;
   }
   .retro-box {
-    padding: 12px 10px;
+    padding: 18px 16px;
   }
   .module-visual-banner {
-    max-height: 150px;
+    max-height: 220px;
+    aspect-ratio: 16 / 9;
   }
 }

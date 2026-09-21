@@ -1,26 +1,29 @@
 /* =========================================================
-   GRIMOIRE OF DATABASE KNOWLEDGE CSS (V2 - Ultra Legible)
+   GRIMOIRE OF DATABASE KNOWLEDGE CSS (V4)
+   Spacious, Elegant Cards & High Legibility
    ========================================================= */
 
 .grimoire-container {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 26px;
+  width: 100%;
 }
 
 .grimoire-intro-banner {
   background: #151a30;
-  border-left: 5px solid var(--neon-yellow);
-  padding: 18px 22px;
-  font-size: 15.5px;
-  line-height: 1.7;
+  border-left: 6px solid var(--neon-yellow);
+  padding: 20px 24px;
+  font-size: 16px;
+  line-height: 1.75;
   color: #f1f5f9;
 }
 
 .grimoire-classes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 24px;
+  width: 100%;
 }
 
 .class-card {
@@ -29,17 +32,16 @@
   box-shadow: 
     0 0 0 2px #000,
     var(--pixel-shadow);
-  padding: 20px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
-  transition: all 0.2s ease;
+  gap: 16px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .class-card:hover {
   border-color: var(--neon-cyan);
-  transform: translateY(-3px);
-  box-shadow: 0 0 12px var(--neon-cyan-glow);
+  box-shadow: 0 0 0 2px #000, 0 0 14px var(--neon-cyan-glow);
 }
 
 .class-card-header {
@@ -47,27 +49,27 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 2px dashed #283256;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 
 .class-badge {
   background: #000;
   color: var(--neon-yellow);
   border: 1px solid var(--neon-yellow);
-  padding: 4px 10px;
+  padding: 5px 12px;
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .class-unit-tag {
   color: var(--neon-magenta);
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 10px;
 }
 
 .class-title {
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   color: #fff;
   line-height: 1.5;
@@ -75,21 +77,21 @@
 
 .class-topics-list {
   font-family: var(--font-body);
-  font-size: 14.5px;
+  font-size: 15px;
   color: #cbd5e1;
-  line-height: 1.65;
-  padding-left: 18px;
+  line-height: 1.7;
+  padding-left: 20px;
 }
 
 .class-topics-list li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .class-key-takeaway {
   background: #070d18;
   border-left: 4px solid var(--neon-green);
-  padding: 12px 16px;
-  font-size: 13.5px;
+  padding: 14px 18px;
+  font-size: 14px;
   color: #86efac;
-  line-height: 1.6;
+  line-height: 1.65;
 }

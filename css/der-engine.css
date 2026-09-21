@@ -1,12 +1,13 @@
 /* =========================================================
-   LIVE DER DIAGRAM ENGINE CSS (V3 - Mobile Optimized)
+   LIVE DER DIAGRAM ENGINE CSS (V4)
+   Spacious Split-Screen & High-Resolution SVG Viewport
    ========================================================= */
 
 .der-workspace {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  min-height: 480px;
+  gap: 22px;
+  min-height: 520px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -21,7 +22,7 @@
 .der-editor-col {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 14px;
   width: 100%;
   box-sizing: border-box;
 }
@@ -29,7 +30,7 @@
 .der-toolbar {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
   width: 100%;
   box-sizing: border-box;
@@ -37,14 +38,13 @@
 
 .der-toolbar .presets-select {
   flex-grow: 1;
-  width: 100%;
   max-width: 100%;
   box-sizing: border-box;
 }
 
 .der-textarea-container {
   background: #000;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   box-shadow: 
     0 0 0 2px #000,
     0 0 0 4px #2b3456,
@@ -60,25 +60,25 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  height: 320px;
+  height: 360px;
   background: #04060c;
   color: #93c5fd;
   border: none;
-  padding: 12px 14px;
+  padding: 16px 18px;
   font-family: var(--font-mono);
-  font-size: 13.5px;
-  line-height: 1.5;
+  font-size: 14.5px;
+  line-height: 1.6;
   resize: vertical;
   outline: none;
 }
 
 .der-syntax-helper {
   background: #0d1226;
-  border: 1px dashed #2d375e;
-  padding: 10px 14px;
-  font-size: 12.5px;
+  border: 2px dashed #2d375e;
+  padding: 14px 18px;
+  font-size: 14px;
   color: #cbd5e1;
-  line-height: 1.6;
+  line-height: 1.7;
   width: 100%;
   box-sizing: border-box;
 }
@@ -86,20 +86,20 @@
 .der-syntax-helper code {
   color: var(--neon-yellow);
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 13px;
   background: #050711;
-  padding: 2px 5px;
+  padding: 3px 6px;
   border: 1px solid #333d66;
 }
 
 /* Right Panel: Live SVG Previewer with 8-Bit Aesthetics */
 .der-preview-col {
   background: #070914;
-  border: 2px solid var(--neon-cyan);
+  border: 3px solid var(--neon-cyan);
   box-shadow: 
     0 0 0 2px #000,
     0 0 15px var(--neon-cyan-glow);
-  padding: 14px;
+  padding: 18px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -112,29 +112,29 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px dashed #202c4e;
-  padding-bottom: 10px;
-  margin-bottom: 12px;
+  border-bottom: 2px dashed #202c4e;
+  padding-bottom: 12px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .der-preview-title {
   font-family: var(--font-pixel);
-  font-size: 9.5px;
+  font-size: 11px;
   color: var(--neon-cyan);
 }
 
 .der-canvas-viewport {
   flex-grow: 1;
-  min-height: 320px;
+  min-height: 360px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: auto;
   background: radial-gradient(circle at center, #0e1428 0%, #060812 100%);
-  border: 1px solid #1c2648;
-  padding: 10px;
+  border: 2px solid #1c2648;
+  padding: 14px;
   width: 100%;
   box-sizing: border-box;
   -webkit-overflow-scrolling: touch;

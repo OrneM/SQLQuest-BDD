@@ -1,11 +1,12 @@
 /* =========================================================
-   SQL LAB SANDBOX & DML B-TREE ANIMATION CSS (V3 - Mobile Fixed)
+   SQL LAB SANDBOX & DML B-TREE ANIMATION CSS (V4)
+   Spacious Desktop Layout + Non-Overflowing Mobile Dropdowns
    ========================================================= */
 
 .sql-lab-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 22px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -14,20 +15,20 @@
 /* Preset Exercises Selector Bar */
 .presets-toolbar {
   display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: 8px;
+  align-items: center;
+  gap: 14px;
   background: #090c18;
   border: 2px solid var(--border-color);
-  padding: 10px 12px;
+  padding: 14px 18px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
+  flex-wrap: wrap;
 }
 
 .presets-label {
   font-family: var(--font-pixel);
-  font-size: 9.5px;
+  font-size: 10.5px;
   color: var(--neon-yellow);
   line-height: 1.4;
 }
@@ -36,17 +37,15 @@
   background: #14182a;
   color: #f1f5f9;
   border: 2px solid var(--neon-cyan);
-  padding: 9px 12px;
+  padding: 10px 14px;
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 15px;
   font-weight: 500;
   outline: none;
   cursor: pointer;
-  width: 100%;
+  flex-grow: 1;
   max-width: 100%;
   box-sizing: border-box;
-  text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .presets-select option {
@@ -57,11 +56,11 @@
 /* Exercise Goal Banner */
 .exercise-goal-box {
   background: #0d1a2d;
-  border-left: 4px solid var(--neon-cyan);
-  padding: 12px 14px;
+  border-left: 5px solid var(--neon-cyan);
+  padding: 16px 20px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
@@ -69,22 +68,22 @@
 
 .exercise-goal-title {
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 11px;
   color: var(--neon-cyan);
   line-height: 1.4;
 }
 
 .exercise-goal-desc {
   font-family: var(--font-body);
-  font-size: 13.5px;
+  font-size: 15px;
   color: #e2e8f0;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* SQL Editor Box */
 .sql-editor-wrapper {
   background: #000;
-  border: 2px solid #fff;
+  border: 3px solid #fff;
   box-shadow: 
     0 0 0 2px #000,
     0 0 0 4px #2b3456,
@@ -99,17 +98,17 @@
 .sql-editor-header {
   background: #151a2e;
   border-bottom: 2px solid #2b3456;
-  padding: 8px 12px;
+  padding: 12px 18px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .sql-terminal-badge {
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 10px;
   color: var(--neon-green);
   display: flex;
   align-items: center;
@@ -125,7 +124,7 @@
 .sql-editor-actions {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 10px;
   flex-wrap: wrap;
 }
 
@@ -133,29 +132,29 @@
   width: 100%;
   max-width: 100%;
   box-sizing: border-box;
-  height: 130px;
+  height: 150px;
   background: #05060b;
   color: #93c5fd;
   border: none;
-  padding: 12px 14px;
+  padding: 16px 20px;
   font-family: var(--font-mono);
-  font-size: 14px;
-  line-height: 1.5;
+  font-size: 15px;
+  line-height: 1.6;
   resize: vertical;
   outline: none;
 }
 
 .sql-textarea:focus {
   background: #020307;
-  box-shadow: inset 0 0 10px rgba(0, 240, 255, 0.12);
+  box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.12);
 }
 
 /* Output Console & Results Table */
 .sql-results-panel {
   background: #090c1a;
-  border: 1px solid var(--border-color);
-  padding: 14px;
-  min-height: 100px;
+  border: 2px solid var(--border-color);
+  padding: 18px 22px;
+  min-height: 120px;
   position: relative;
   width: 100%;
   max-width: 100%;
@@ -166,13 +165,13 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 8px;
-  margin-bottom: 12px;
-  border-bottom: 1px dashed #232b47;
-  font-size: 12.5px;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px dashed #232b47;
+  font-size: 14px;
   color: var(--text-muted);
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 8px;
 }
 
 .sql-status-ok {
@@ -186,7 +185,7 @@
 }
 
 .sql-table-container {
-  max-height: 280px;
+  max-height: 320px;
   overflow-x: auto;
   overflow-y: auto;
   width: 100%;
@@ -195,31 +194,31 @@
 
 .retro-table {
   width: 100%;
-  min-width: 320px;
+  min-width: 380px;
   border-collapse: collapse;
   font-family: var(--font-mono);
-  font-size: 13px;
+  font-size: 14px;
   text-align: left;
 }
 
 .retro-table th {
   background: #14182e;
   color: var(--neon-yellow);
-  border: 1px solid #2e375e;
-  padding: 8px 10px;
+  border: 2px solid #2e375e;
+  padding: 10px 14px;
   text-transform: uppercase;
   position: sticky;
   top: 0;
   z-index: 2;
   font-family: var(--font-pixel);
-  font-size: 8.5px;
+  font-size: 9.5px;
   letter-spacing: 0.5px;
   white-space: nowrap;
 }
 
 .retro-table td {
   border: 1px solid #1f2642;
-  padding: 8px 10px;
+  padding: 10px 14px;
   color: #f1f5f9;
 }
 
@@ -232,41 +231,41 @@
   color: #fff;
 }
 
-/* Schema Visualizer & Tables Preview */
+/* Schema Visualizer */
 .schema-quick-view {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 12px;
-  margin-top: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .schema-table-card {
   background: #0c0f1e;
-  border: 1px solid #283254;
-  padding: 12px;
+  border: 2px solid #283254;
+  padding: 16px;
   width: 100%;
   box-sizing: border-box;
 }
 
 .schema-table-header {
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 10.5px;
   color: var(--neon-cyan);
-  border-bottom: 1px solid #283254;
-  padding-bottom: 6px;
-  margin-bottom: 8px;
+  border-bottom: 2px solid #283254;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
 }
 
 .schema-table-cols {
   font-family: var(--font-mono);
-  font-size: 12.5px;
+  font-size: 13.5px;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
 .schema-col-item {
@@ -284,21 +283,19 @@
   color: var(--neon-magenta);
 }
 
-/* =========================================================
-   ANIMACIÓN "COSTO DML": SACUDIDA DE ÁRBOL B-TREE & HOJAS
-   ========================================================= */
+/* DML Alert */
 .dml-cost-alert-container {
   position: fixed;
-  bottom: 16px;
-  right: 16px;
+  bottom: 24px;
+  right: 24px;
   background: #150a22;
-  border: 2px solid var(--neon-red);
+  border: 3px solid var(--neon-red);
   box-shadow: 
-    0 0 0 2px #000,
-    0 0 20px var(--neon-red-glow);
-  padding: 14px 16px;
+    0 0 0 3px #000,
+    0 0 25px var(--neon-red-glow);
+  padding: 18px 22px;
   z-index: 10001;
-  max-width: 420px;
+  max-width: 460px;
   display: none;
   animation: slideInDML 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
 }
@@ -308,24 +305,24 @@
 }
 
 @keyframes slideInDML {
-  from { transform: translateY(100%); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
 }
 
 .dml-tree-animation-stage {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 16px;
 }
 
 .btree-pixel-visual {
-  width: 52px;
-  height: 52px;
+  width: 60px;
+  height: 60px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 34px;
+  font-size: 40px;
   flex-shrink: 0;
 }
 
@@ -353,7 +350,7 @@
 
 .falling-leaf {
   position: absolute;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--neon-yellow);
   animation: leafFallAnim 1.2s ease-in forwards;
 }
@@ -364,7 +361,7 @@
     opacity: 1;
   }
   100% {
-    transform: translateY(40px) translateX(var(--drift, 12px)) rotate(180deg);
+    transform: translateY(45px) translateX(var(--drift, 15px)) rotate(180deg);
     opacity: 0;
   }
 }
@@ -375,20 +372,24 @@
 
 .dml-alert-title {
   font-family: var(--font-pixel);
-  font-size: 9.5px;
+  font-size: 11px;
   color: var(--neon-red);
-  margin-bottom: 4px;
+  margin-bottom: 6px;
   text-shadow: 0 0 6px var(--neon-red-glow);
 }
 
 .dml-alert-desc {
   font-family: var(--font-body);
-  font-size: 12px;
+  font-size: 13.5px;
   color: #f8fafc;
-  line-height: 1.45;
+  line-height: 1.55;
 }
 
 @media (max-width: 640px) {
+  .presets-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
   .dml-cost-alert-container {
     left: 10px;
     right: 10px;
