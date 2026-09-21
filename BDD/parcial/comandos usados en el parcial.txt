@@ -1,0 +1,42 @@
+SELECT id_departamento, COUNT(*) AS total_empleados
+FROM empleados
+GROUP BY id_departamento;
+**************************
+SELECT E.nombre, D.nombre_departamento
+FROM Empleados E
+INNER JOIN Departamentos D
+ON E.id_departamento = D.id_departamento;
+**************************
+DROP TABLE Proyectos;
+**************************
+Pregunta 19:
+Respuesta marcada: 
+SELECT * 
+FROM Empleados 
+WHERE salario BETWEEN 45000 AND 55000; 
+| Tipo: Correcta
+Cita literal: "SELECT nombre FROM empleados WHERE salario BETWEEN 50000 AND 60000;" — Clase 04, DQL, pág. real 3.
+Estado: Validada
+****************************************
+SELECT *
+FROM Empleados
+WHERE salario BETWEEN 45000 AND 55000;
+***
+SELECT nombre, salario 
+FROM Empleados 
+WHERE salario BETWEEN 45000 AND 55000;
+***************************************
+Pregunta 21:
+Respuesta marcada: ORDER BY | Tipo: Correcta
+Cita literal: "ORDER BY: Presenta el resultado ordenado por las columnas indicadas. El orden puede expresarse con ASC (ascendente) o DESC (descendente)." — Clase 04, DQL, pág. real 4.
+Estado: Validada
+******************************
+SELECT DISTINCT id_departamento
+FROM Empleados;
+
+
+
+
+
+
+

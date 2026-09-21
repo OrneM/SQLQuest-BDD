@@ -1,0 +1,556 @@
+/* =========================================================
+   RETRO 8-BIT CORE DESIGN SYSTEM - BASES DE DATOS I (V2)
+   Optimized for Long Study Sessions: High-Legibility Body Typography,
+   Rich Pixel-Art Illustrations, Subtle CRT & Eye-Friendly Contrast
+   ========================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* Neon Palette */
+  --bg-dark: #0b0d17;
+  --bg-card: #131728;
+  --bg-card-alt: #1a2035;
+  --bg-card-hover: #222944;
+  --border-color: #384268;
+  --border-pixel-outer: #000000;
+  --border-pixel-inner: #384268;
+  
+  --neon-green: #39ff14;
+  --neon-green-glow: rgba(57, 255, 20, 0.35);
+  --neon-cyan: #00f0ff;
+  --neon-cyan-glow: rgba(0, 240, 255, 0.35);
+  --neon-magenta: #ff007f;
+  --neon-magenta-glow: rgba(255, 0, 127, 0.35);
+  --neon-yellow: #ffd700;
+  --neon-yellow-glow: rgba(255, 215, 0, 0.35);
+  --neon-red: #ff334b;
+  --neon-red-glow: rgba(255, 51, 75, 0.35);
+  --neon-blue: #3b82f6;
+
+  /* Text Colors - High Contrast & Eye Friendly for Long Reading */
+  --text-main: #f1f5f9;
+  --text-body: #e2e8f0;
+  --text-muted: #94a3b8;
+  --text-highlight: #38bdf8;
+
+  /* Typography: Pixel for Retro Headers, Outfit for Clear Reading */
+  --font-pixel: 'Press Start 2P', monospace, cursive;
+  --font-body: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Pixel borders & shadows */
+  --pixel-shadow: 4px 4px 0px #000;
+  --pixel-border-gold: 3px solid var(--neon-yellow);
+  --pixel-border-cyan: 3px solid var(--neon-cyan);
+  --pixel-border-green: 3px solid var(--neon-green);
+}
+
+/* Reset & Box Sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--bg-dark);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* CRT Screen Scanline Overlay Effect - Ultra subtle to prevent eye strain */
+.crt-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: 
+    linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.18) 50%),
+    linear-gradient(90deg, rgba(255, 0, 0, 0.015), rgba(0, 255, 0, 0.008), rgba(0, 0, 255, 0.015));
+  background-size: 100% 4px, 6px 100%;
+  opacity: 0.35;
+  transition: opacity 0.2s ease;
+}
+
+.crt-overlay.disabled {
+  display: none !important;
+}
+
+/* Sutil vignette */
+.crt-vignette {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9998;
+  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.7);
+  transition: opacity 0.2s ease;
+}
+
+.crt-vignette.disabled {
+  display: none !important;
+}
+
+/* App Master Layout */
+#app-container {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 16px 20px 60px 20px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+}
+
+/* =========================================================
+   RETRO HUD (Heads-Up Display)
+   ========================================================= */
+.retro-hud {
+  background: var(--bg-card);
+  border: 3px solid #fff;
+  box-shadow: 
+    0 0 0 3px #000,
+    0 0 0 6px #384268,
+    var(--pixel-shadow);
+  padding: 12px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background-image: radial-gradient(circle at 10% 20%, rgba(26, 32, 53, 0.9) 0%, transparent 80%);
+}
+
+.hud-title-zone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hud-game-logo {
+  font-family: var(--font-pixel);
+  font-size: 14px;
+  color: var(--neon-yellow);
+  text-shadow: 2px 2px 0px #000, 0 0 8px var(--neon-yellow-glow);
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.hud-game-logo .sword-icon {
+  font-size: 20px;
+  animation: pulse-sword 2.5s infinite ease-in-out;
+  display: inline-block;
+}
+
+@keyframes pulse-sword {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-3px) rotate(8deg); }
+}
+
+.hud-stats-zone {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.hud-stat-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #000;
+  border: 2px solid var(--border-color);
+  padding: 6px 12px;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.6);
+}
+
+.hud-label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.hud-val {
+  font-family: var(--font-pixel);
+  font-size: 12px;
+  color: #fff;
+}
+
+.hud-val.xp {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan-glow);
+}
+
+.hud-val.streak {
+  color: var(--neon-yellow);
+}
+
+.hud-hearts {
+  display: flex;
+  gap: 5px;
+}
+
+.hud-heart {
+  font-size: 15px;
+  color: var(--neon-red);
+  filter: drop-shadow(0 0 4px var(--neon-red-glow));
+  transition: transform 0.2s ease;
+}
+
+.hud-heart.empty {
+  color: #444;
+  filter: none;
+}
+
+.hud-controls-zone {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Retro Buttons */
+.btn-retro {
+  background: var(--bg-card-alt);
+  color: var(--text-main);
+  border: 2px solid #fff;
+  box-shadow: 
+    0 0 0 2px #000,
+    3px 3px 0px #000;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  padding: 9px 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: all 0.12s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  outline: none;
+  user-select: none;
+}
+
+.btn-retro:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 
+    0 0 0 2px #000,
+    5px 5px 0px #000;
+  background: #252e4d;
+}
+
+.btn-retro:active {
+  transform: translate(1px, 1px);
+  box-shadow: 
+    0 0 0 2px #000,
+    1px 1px 0px #000;
+}
+
+.btn-retro.btn-green {
+  background: #0f401b;
+  border-color: var(--neon-green);
+  color: var(--neon-green);
+  text-shadow: 0 0 4px var(--neon-green-glow);
+}
+.btn-retro.btn-green:hover {
+  background: #17632b;
+}
+
+.btn-retro.btn-cyan {
+  background: #0a3a4c;
+  border-color: var(--neon-cyan);
+  color: var(--neon-cyan);
+  text-shadow: 0 0 4px var(--neon-cyan-glow);
+}
+.btn-retro.btn-cyan:hover {
+  background: #115975;
+}
+
+.btn-retro.btn-gold {
+  background: #4a3d07;
+  border-color: var(--neon-yellow);
+  color: var(--neon-yellow);
+  text-shadow: 0 0 4px var(--neon-yellow-glow);
+}
+.btn-retro.btn-gold:hover {
+  background: #6e5a0b;
+}
+
+.btn-retro.btn-red {
+  background: #4a0d18;
+  border-color: var(--neon-red);
+  color: var(--neon-red);
+  text-shadow: 0 0 4px var(--neon-red-glow);
+}
+.btn-retro.btn-red:hover {
+  background: #6e1324;
+}
+
+.btn-retro.btn-magenta {
+  background: #480a2b;
+  border-color: var(--neon-magenta);
+  color: var(--neon-magenta);
+  text-shadow: 0 0 4px var(--neon-magenta-glow);
+}
+.btn-retro.btn-magenta:hover {
+  background: #6b0f40;
+}
+
+/* =========================================================
+   NAVIGATION TABS (Retro Quest Menu)
+   ========================================================= */
+.retro-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  border-bottom: 3px solid #384268;
+  padding-bottom: 12px;
+}
+
+.tab-btn {
+  background: #0f1220;
+  color: var(--text-muted);
+  border: 2px solid #282f4c;
+  padding: 10px 15px;
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s ease;
+  text-transform: uppercase;
+}
+
+.tab-btn:hover {
+  color: #fff;
+  border-color: var(--neon-cyan);
+  background: #192038;
+}
+
+.tab-btn.active {
+  background: var(--bg-card);
+  color: var(--neon-yellow);
+  border-color: var(--neon-yellow);
+  box-shadow: 0 0 8px var(--neon-yellow-glow);
+  transform: translateY(-2px);
+}
+
+.tab-btn .badge-pill {
+  background: var(--neon-red);
+  color: #fff;
+  font-size: 9px;
+  padding: 2px 6px;
+  border-radius: 2px;
+}
+
+/* =========================================================
+   RETRO DIALOG BOX / CONTAINER CARDS
+   ========================================================= */
+.retro-box {
+  background: var(--bg-card);
+  border: 3px solid #fff;
+  box-shadow: 
+    0 0 0 3px #000,
+    0 0 0 6px #384268,
+    var(--pixel-shadow);
+  padding: 24px;
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.retro-box-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px dashed var(--border-color);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.retro-box-title {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan-glow);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.retro-box-title::before {
+  content: '▶';
+  color: var(--neon-yellow);
+  animation: blink-cursor 1s steps(2, start) infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* Visual Illustration Banners */
+.module-visual-banner {
+  width: 100%;
+  max-height: 240px;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 0 0 0 2px var(--neon-cyan), var(--pixel-shadow);
+  margin-bottom: 20px;
+  display: block;
+}
+
+/* Feature Grid Cards */
+.quest-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.quest-feature-card {
+  background: #0c0f1d;
+  border: 2px solid #283050;
+  padding: 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+
+.quest-feature-card:hover {
+  border-color: var(--neon-cyan);
+  background: #141a30;
+  transform: translateY(-2px);
+}
+
+.quest-feature-icon {
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.quest-feature-info h4 {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--neon-yellow);
+  margin-bottom: 6px;
+}
+
+.quest-feature-info p {
+  font-size: 13.5px;
+  color: #cbd5e1;
+  line-height: 1.5;
+}
+
+/* Tab Content Visibility */
+.tab-content {
+  display: none;
+  animation: fadeInRetro 0.25s ease;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeInRetro {
+  0% { opacity: 0; transform: translateY(4px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Modals */
+.retro-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.88);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 20px;
+}
+
+.retro-modal-backdrop.active {
+  display: flex;
+}
+
+.retro-modal-window {
+  background: var(--bg-card);
+  border: 3px solid #fff;
+  box-shadow: 
+    0 0 0 3px #000,
+    0 0 0 6px #ff007f,
+    10px 10px 0px #000;
+  max-width: 650px;
+  width: 100%;
+  padding: 28px;
+  position: relative;
+  text-align: center;
+  animation: modalPop 0.2s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+@keyframes modalPop {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Scrollbars */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000;
+  border: 1px solid #222;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #384268;
+  border: 1px solid #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--neon-cyan);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  .retro-hud {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .hud-stats-zone {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .tab-btn {
+    font-size: 9px;
+    padding: 8px 10px;
+  }
+}

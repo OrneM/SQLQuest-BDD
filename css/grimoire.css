@@ -1,0 +1,95 @@
+/* =========================================================
+   GRIMOIRE OF DATABASE KNOWLEDGE CSS (V2 - Ultra Legible)
+   ========================================================= */
+
+.grimoire-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.grimoire-intro-banner {
+  background: #151a30;
+  border-left: 5px solid var(--neon-yellow);
+  padding: 18px 22px;
+  font-size: 15.5px;
+  line-height: 1.7;
+  color: #f1f5f9;
+}
+
+.grimoire-classes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+.class-card {
+  background: #0d1122;
+  border: 2px solid #283256;
+  box-shadow: 
+    0 0 0 2px #000,
+    var(--pixel-shadow);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.2s ease;
+}
+
+.class-card:hover {
+  border-color: var(--neon-cyan);
+  transform: translateY(-3px);
+  box-shadow: 0 0 12px var(--neon-cyan-glow);
+}
+
+.class-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px dashed #283256;
+  padding-bottom: 10px;
+}
+
+.class-badge {
+  background: #000;
+  color: var(--neon-yellow);
+  border: 1px solid var(--neon-yellow);
+  padding: 4px 10px;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+.class-unit-tag {
+  color: var(--neon-magenta);
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+.class-title {
+  font-family: var(--font-body);
+  font-size: 17px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.5;
+}
+
+.class-topics-list {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: #cbd5e1;
+  line-height: 1.65;
+  padding-left: 18px;
+}
+
+.class-topics-list li {
+  margin-bottom: 8px;
+}
+
+.class-key-takeaway {
+  background: #070d18;
+  border-left: 4px solid var(--neon-green);
+  padding: 12px 16px;
+  font-size: 13.5px;
+  color: #86efac;
+  line-height: 1.6;
+}

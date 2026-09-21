@@ -1,0 +1,6 @@
+.DS_Store
+parcial_dump.txt
+.vercel
+node_modules
+.env
+.env.local

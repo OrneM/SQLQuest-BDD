@@ -1,0 +1,356 @@
+/* =========================================================
+   SQL LAB SANDBOX & DML B-TREE ANIMATION CSS (V2)
+   ========================================================= */
+
+.sql-lab-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Preset Exercises Selector Bar */
+.presets-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #090c18;
+  border: 2px solid var(--border-color);
+  padding: 12px 16px;
+  flex-wrap: wrap;
+}
+
+.presets-label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-yellow);
+}
+
+.presets-select {
+  background: #14182a;
+  color: #f1f5f9;
+  border: 2px solid var(--neon-cyan);
+  padding: 9px 14px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  outline: none;
+  cursor: pointer;
+  flex-grow: 1;
+}
+
+.presets-select option {
+  background: #0f1220;
+  color: #fff;
+}
+
+/* Exercise Goal Banner */
+.exercise-goal-box {
+  background: #0d1a2d;
+  border-left: 5px solid var(--neon-cyan);
+  padding: 14px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.exercise-goal-title {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--neon-cyan);
+}
+
+.exercise-goal-desc {
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  color: #e2e8f0;
+  line-height: 1.6;
+}
+
+/* SQL Editor Box */
+.sql-editor-wrapper {
+  background: #000;
+  border: 3px solid #fff;
+  box-shadow: 
+    0 0 0 2px #000,
+    0 0 0 4px #2b3456,
+    var(--pixel-shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.sql-editor-header {
+  background: #151a2e;
+  border-bottom: 2px solid #2b3456;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.sql-terminal-badge {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-green);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sql-terminal-badge::before {
+  content: '●';
+  color: var(--neon-green);
+  text-shadow: 0 0 6px var(--neon-green-glow);
+}
+
+.sql-editor-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.sql-textarea {
+  width: 100%;
+  height: 140px;
+  background: #05060b;
+  color: #93c5fd;
+  border: none;
+  padding: 14px 18px;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  line-height: 1.6;
+  resize: vertical;
+  outline: none;
+}
+
+.sql-textarea:focus {
+  background: #020307;
+  box-shadow: inset 0 0 12px rgba(0, 240, 255, 0.12);
+}
+
+/* Output Console & Results Table */
+.sql-results-panel {
+  background: #090c1a;
+  border: 2px solid var(--border-color);
+  padding: 18px;
+  min-height: 120px;
+  position: relative;
+}
+
+.sql-status-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 10px;
+  margin-bottom: 14px;
+  border-bottom: 2px dashed #232b47;
+  font-size: 13.5px;
+  color: var(--text-muted);
+}
+
+.sql-status-ok {
+  color: var(--neon-green);
+  font-weight: 500;
+}
+
+.sql-status-err {
+  color: var(--neon-red);
+  font-weight: 500;
+}
+
+.sql-table-container {
+  max-height: 320px;
+  overflow-x: auto;
+  overflow-y: auto;
+}
+
+.retro-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  text-align: left;
+}
+
+.retro-table th {
+  background: #14182e;
+  color: var(--neon-yellow);
+  border: 2px solid #2e375e;
+  padding: 10px 14px;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  font-family: var(--font-pixel);
+  font-size: 9.5px;
+  letter-spacing: 0.5px;
+}
+
+.retro-table td {
+  border: 1px solid #1f2642;
+  padding: 10px 14px;
+  color: #f1f5f9;
+}
+
+.retro-table tr:nth-child(even) {
+  background: #0c0f1e;
+}
+
+.retro-table tr:hover {
+  background: #18203c;
+  color: #fff;
+}
+
+/* Schema Visualizer & Tables Preview */
+.schema-quick-view {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 14px;
+}
+
+.schema-table-card {
+  background: #0c0f1e;
+  border: 2px solid #283254;
+  padding: 14px;
+}
+
+.schema-table-header {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-cyan);
+  border-bottom: 2px solid #283254;
+  padding-bottom: 8px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.schema-table-cols {
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.schema-col-item {
+  display: flex;
+  justify-content: space-between;
+  color: #cbd5e1;
+}
+
+.schema-col-item .pk {
+  color: var(--neon-yellow);
+  font-weight: bold;
+}
+
+.schema-col-item .fk {
+  color: var(--neon-magenta);
+}
+
+/* =========================================================
+   ANIMACIÓN "COSTO DML": SACUDIDA DE ÁRBOL B-TREE & HOJAS
+   ========================================================= */
+.dml-cost-alert-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #150a22;
+  border: 3px solid var(--neon-red);
+  box-shadow: 
+    0 0 0 3px #000,
+    0 0 25px var(--neon-red-glow);
+  padding: 18px 22px;
+  z-index: 10001;
+  max-width: 460px;
+  display: none;
+  animation: slideInDML 0.3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+}
+
+.dml-cost-alert-container.active {
+  display: block;
+}
+
+@keyframes slideInDML {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.dml-tree-animation-stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.btree-pixel-visual {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+}
+
+.btree-pixel-visual.shaking {
+  animation: btreeShake 0.4s infinite;
+}
+
+@keyframes btreeShake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  20% { transform: translate(-3px, 0px) rotate(-3deg); }
+  40% { transform: translate(3px, -2px) rotate(3deg); }
+  60% { transform: translate(-3px, 1px) rotate(-2deg); }
+  80% { transform: translate(2px, 1px) rotate(2deg); }
+  100% { transform: translate(1px, -1px) rotate(0deg); }
+}
+
+.falling-particles-zone {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+}
+
+.falling-leaf {
+  position: absolute;
+  font-size: 14px;
+  color: var(--neon-yellow);
+  animation: leafFallAnim 1.2s ease-in forwards;
+}
+
+@keyframes leafFallAnim {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(45px) translateX(var(--drift, 15px)) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+.dml-alert-text-content {
+  flex-grow: 1;
+}
+
+.dml-alert-title {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--neon-red);
+  margin-bottom: 6px;
+  text-shadow: 0 0 6px var(--neon-red-glow);
+}
+
+.dml-alert-desc {
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: #f8fafc;
+  line-height: 1.55;
+}

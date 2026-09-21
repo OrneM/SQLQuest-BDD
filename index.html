@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SQL Quest: Bases de Datos I (Edición 8-Bit Retro)</title>
+  <meta name="description" content="Plataforma de estudio gamificada e interactiva de Bases de Datos con motor SQL en memoria, estética 8-bit retro, ilustraciones pixel art, simulacro de examen contrarreloj y diagramas DER en vivo.">
+
+  <!-- Retro Stylesheets -->
+  <link rel="stylesheet" href="css/retro-core.css">
+  <link rel="stylesheet" href="css/time-attack.css">
+  <link rel="stylesheet" href="css/sql-lab.css">
+  <link rel="stylesheet" href="css/der-engine.css">
+  <link rel="stylesheet" href="css/grimoire.css">
+
+  <!-- External Libraries (CDN) -->
+  <!-- sql.js (SQLite WebAssembly in-memory database) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.12.0/sql-wasm.js"></script>
+  <!-- Mermaid.js (DER diagram generator) -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <!-- CRT Scanlines & Vignette Optical Filters (Can be toggled in HUD) -->
+  <div class="crt-overlay" id="crt-overlay-layer"></div>
+  <div class="crt-vignette" id="crt-vignette-layer"></div>
+
+  <div id="app-container">
+    <!-- =========================================================
+         RETRO HUD (Heads-Up Display)
+         ========================================================= -->
+    <header class="retro-hud">
+      <div class="hud-title-zone">
+        <h1 class="hud-game-logo">
+          <span class="sword-icon">🗡️</span>
+          <span>SQL QUEST: BDD 8-BIT</span>
+        </h1>
+      </div>
+
+      <div class="hud-stats-zone">
+        <div class="hud-stat-box">
+          <span class="hud-label">VIDAS:</span>
+          <div class="hud-hearts" id="hud-hearts-container">
+            <span class="hud-heart">❤️</span>
+            <span class="hud-heart">❤️</span>
+            <span class="hud-heart">❤️</span>
+          </div>
+        </div>
+
+        <div class="hud-stat-box">
+          <span class="hud-label">XP:</span>
+          <span class="hud-val xp" id="hud-xp-val">0</span>
+        </div>
+
+        <div class="hud-stat-box">
+          <span class="hud-label">RACHA:</span>
+          <span class="hud-val streak" id="hud-streak-val">🔥 0x</span>
+        </div>
+      </div>
+
+      <div class="hud-controls-zone">
+        <button class="btn-retro" id="toggle-crt-btn" title="Activar/Desactivar líneas CRT para lectura descansada">
+          <span id="crt-status-icon">📺 CRT: SUAVE</span>
+        </button>
+        <button class="btn-retro btn-green" id="toggle-sound-btn" title="Activar/Desactivar Sonido Chiptune">
+          <span id="sound-status-icon">🔊 AUDIO ON</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- =========================================================
+         NAVIGATION MENU (Retro Quest Tabs)
+         ========================================================= -->
+    <nav class="retro-tabs">
+      <button class="tab-btn active" data-tab="tab-time-attack">
+        <span>⏳ TIME ATTACK (EXAMEN)</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-boss-fight">
+        <span>💀 REVANCHA / BOSS FIGHT</span>
+        <span class="badge-pill" id="boss-badge-count" style="display: none;">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-sql-lab">
+        <span>💻 SQL LAB (EN MEMORIA)</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-der-engine">
+        <span>📊 DIAGRAMAS DER EN VIVO</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-grimoire">
+        <span>📜 GRIMORIO DE CLASES</span>
+      </button>
+    </nav>
+
+    <!-- =========================================================
+         TAB 1: TIME ATTACK (Simulacro de Examen Oficial)
+         ========================================================= -->
+    <main id="tab-time-attack" class="tab-content active">
+      <!-- Welcome / Intro Screen -->
+      <section id="exam-welcome-box" class="retro-box">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">SIMULACRO DE EXAMEN: BASES DE DATOS I</h2>
+          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">⏱️ LÍMITE: 45:00 MIN</span>
+        </div>
+
+        <!-- Pixel Art Hero Illustration Banner -->
+        <img src="assets/hero_banner.jpg" alt="Dungeon Quest Banner" class="module-visual-banner">
+
+        <p style="font-size: 16px; color: #f1f5f9; margin-bottom: 16px; font-weight: 500;">
+          ¡Bienvenido/a, aventurero/a del modelo relacional! Estás a punto de iniciar el simulacro oficial de <strong>Primer Parcial de Bases de Datos</strong> con preguntas reales, feedback didáctico y mecánicas de gamificación.
+        </p>
+
+        <!-- Visual Feature Cards -->
+        <div class="quest-features-grid">
+          <div class="quest-feature-card">
+            <div class="quest-feature-icon">⚔️</div>
+            <div class="quest-feature-info">
+              <h4>25 Desafíos Reales</h4>
+              <p>Preguntas de opción múltiple, completar sentencias SQL, DDL/DML y álgebra relacional.</p>
+            </div>
+          </div>
+
+          <div class="quest-feature-card">
+            <div class="quest-feature-icon">❤️</div>
+            <div class="quest-feature-info">
+              <h4>3 Vidas (Corazones)</h4>
+              <p>Cada respuesta incorrecta descuenta un corazón. Si pierdes los tres, será Game Over.</p>
+            </div>
+          </div>
+
+          <div class="quest-feature-card">
+            <div class="quest-feature-icon">🔥</div>
+            <div class="quest-feature-info">
+              <h4>Multiplicador de Racha</h4>
+              <p>Aciertos consecutivos activan la racha de fuego y multiplican tus Puntos de Experiencia (XP).</p>
+            </div>
+          </div>
+
+          <div class="quest-feature-card">
+            <div class="quest-feature-icon">💀</div>
+            <div class="quest-feature-info">
+              <h4>Sistema de Revancha</h4>
+              <p>Los errores se guardan para que puedas enfrentarlos en el modo <em>Boss Fight</em>.</p>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-retro btn-gold" id="start-exam-btn" style="font-size: 12px; padding: 16px 32px; margin-top: 10px;">
+          <span>⚔️ INICIAR TIME ATTACK (45 MINUTOS)</span>
+        </button>
+      </section>
+
+      <!-- Active Exam Screen -->
+      <section id="exam-running-box" style="display: none;">
+        <div class="exam-top-bar">
+          <div class="exam-timer-display" id="exam-timer">⏳ 45:00</div>
+          <div class="exam-progress-info">
+            <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--text-muted);">PROGRESO:</span>
+            <div class="exam-progress-bar-container">
+              <div class="exam-progress-bar-fill" id="exam-progress-fill"></div>
+            </div>
+            <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--neon-yellow);" id="exam-progress-text">1 / 25</span>
+          </div>
+        </div>
+
+        <div class="question-panel" id="question-active-container">
+          <!-- Rendered dynamically by TimeAttackExam -->
+        </div>
+
+        <!-- Feedback Alert Box -->
+        <div class="feedback-box" id="question-feedback-box">
+          <!-- Rendered dynamically -->
+        </div>
+
+        <div class="question-actions" id="exam-action-buttons">
+          <button class="btn-retro btn-cyan" id="exam-validate-btn">
+            <span>✔ VALIDAR RESPUESTA</span>
+          </button>
+          <button class="btn-retro btn-gold" id="exam-next-btn" style="display: none;">
+            <span>SIGUIENTE PREGUNTA ▶</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+    <!-- =========================================================
+         TAB 2: BOSS FIGHT (Repaso Espaciado & Muerte Súbita)
+         ========================================================= -->
+    <section id="tab-boss-fight" class="tab-content">
+      <div class="retro-box">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">GUARIDA DEL BOSS: REPASO ESPACIADO</h2>
+          <span style="color: var(--neon-magenta); font-family: var(--font-pixel); font-size: 10px;">💀 MODO MUERTE SÚBITA</span>
+        </div>
+
+        <!-- No errors screen -->
+        <div id="boss-no-errors-box" class="boss-no-errors-notice">
+          <div class="trophy-icon">🏆</div>
+          <h3 style="font-family: var(--font-pixel); color: var(--neon-yellow); font-size: 16px; margin-bottom: 14px;">¡MAZMORRA PURIFICADA!</h3>
+          <p style="color: #cbd5e1; font-size: 15px; line-height: 1.8; margin-bottom: 24px; max-width: 650px; margin-left: auto; margin-right: auto;">
+            No tienes preguntas falladas registradas localmente. ¡Has dominado todos los conceptos!<br>
+            Si deseas entrenar de todas formas, puedes iniciar una ronda de prueba con el Titán B-Tree.
+          </p>
+          <button class="btn-retro btn-magenta" id="boss-practice-all-btn" style="padding: 14px 24px;">
+            <span>🔥 INICIAR ENTRENAMIENTO CON EL BOSS</span>
+          </button>
+        </div>
+
+        <!-- Arena View with Failed Questions -->
+        <div id="boss-arena-view" style="display: none;">
+          <div id="boss-intro-box" style="text-align: center; padding: 10px;">
+            <img src="assets/boss_battle.jpg" alt="Boss Titan Dragon" class="module-visual-banner" style="max-height: 260px;">
+            <h3 style="font-family: var(--font-pixel); color: var(--neon-magenta); font-size: 15px; margin-bottom: 12px;">¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!</h3>
+            <p style="font-size: 15px; color: #e2e8f0; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">
+              Tienes <strong style="color: var(--neon-yellow);" id="boss-pending-count">0</strong> conceptos pendientes de repaso. Cada respuesta correcta asestará un golpe al Boss y purgará el fallo de tu historial.
+            </p>
+            <button class="btn-retro btn-red" id="start-boss-fight-btn" style="font-size: 12px; padding: 14px 28px;">
+              <span>⚔️ ENFRENTAR AL BOSS AHORA</span>
+            </button>
+          </div>
+
+          <div id="boss-battle-stage" style="display: none;" class="boss-arena">
+            <div class="boss-header">
+              <img src="assets/boss_battle.jpg" alt="Boss Titan Dragon" class="boss-banner-visual">
+              <div class="boss-name">TITÁN DE LAS INCONSISTENCIAS (B-TREE DRAGON)</div>
+              <div class="boss-hp-container">
+                <div class="boss-hp-fill" id="boss-hp-fill"></div>
+                <div class="boss-hp-text" id="boss-hp-text">HP: 100%</div>
+              </div>
+            </div>
+
+            <div class="question-panel" id="boss-question-container">
+              <!-- Dynamically populated -->
+            </div>
+
+            <div class="feedback-box" id="boss-feedback-box"></div>
+
+            <div class="question-actions">
+              <button class="btn-retro btn-red" id="boss-validate-btn">
+                <span>⚔️ ASESTAR GOLPE</span>
+              </button>
+              <button class="btn-retro btn-gold" id="boss-next-btn" style="display: none;">
+                <span>SIGUIENTE ASALTO ▶</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         TAB 3: SQL LAB (Motor SQLite en Memoria con sql.js)
+         ========================================================= -->
+    <section id="tab-sql-lab" class="tab-content">
+      <div class="retro-box sql-lab-container">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">SANDBOX SQL LAB: MOTOR EN MEMORIA (SQLITE WASM)</h2>
+          <span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 10px;">⚡ EJECUCIÓN REAL NATIVA</span>
+        </div>
+
+        <!-- SQL Lab Alchemy Illustration Banner -->
+        <img src="assets/sql_lab.jpg" alt="SQL Lab Alchemy Workshop" class="module-visual-banner" style="max-height: 200px;">
+
+        <!-- Presets Toolbar -->
+        <div class="presets-toolbar">
+          <span class="presets-label">🎯 EJERCICIOS DEL TEMARIO:</span>
+          <select id="sql-preset-select" class="presets-select"></select>
+        </div>
+
+        <!-- Goal Banner -->
+        <div class="exercise-goal-box">
+          <div class="exercise-goal-title" id="exercise-goal-title">Objetivo del Ejercicio</div>
+          <div class="exercise-goal-desc" id="exercise-goal-desc">Selecciona o escribe una consulta SQL para interactuar con la base de datos en memoria.</div>
+        </div>
+
+        <!-- SQL Editor Wrapper -->
+        <div class="sql-editor-wrapper">
+          <div class="sql-editor-header">
+            <span class="sql-terminal-badge">TERMINAL SQL INTERACTIVA</span>
+            <div class="sql-editor-actions">
+              <button class="btn-retro btn-cyan" id="reset-db-btn" title="Genera nuevos salarios y nombres aleatorios">
+                <span>🎲 REINICIAR CON SEMILLA ALEATORIA</span>
+              </button>
+              <button class="btn-retro btn-green" id="run-sql-btn">
+                <span>⚡ EJECUTAR SQL</span>
+              </button>
+            </div>
+          </div>
+          <textarea id="sql-query-editor" class="sql-textarea" spellcheck="false"></textarea>
+        </div>
+
+        <!-- Output Console & Results Table -->
+        <div class="sql-results-panel">
+          <div class="sql-status-bar">
+            <span id="sql-status-message">Inicializando motor SQL...</span>
+          </div>
+          <div class="sql-table-container" id="sql-results-table-container">
+            <span style="color: var(--text-muted); font-size: 14px;">Los resultados de tus consultas aparecerán aquí.</span>
+          </div>
+        </div>
+
+        <!-- Schema Visualizer -->
+        <div>
+          <h3 style="font-family: var(--font-pixel); font-size: 11px; color: var(--neon-cyan); margin-top: 10px; margin-bottom: 8px;">
+            🗂️ ESQUEMA ACTUAL DE TABLAS EN MEMORIA:
+          </h3>
+          <div class="schema-quick-view" id="sql-schema-cards-container">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         TAB 4: LIVE DER DIAGRAM ENGINE (Mermaid.js Split-Screen)
+         ========================================================= -->
+    <section id="tab-der-engine" class="tab-content">
+      <div class="retro-box">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">EDITOR DE DIAGRAMAS ENTIDAD-RELACIÓN (DER) EN VIVO</h2>
+          <span style="color: var(--neon-cyan); font-family: var(--font-pixel); font-size: 10px;">MERMAID.JS + FILTRO 8-BIT</span>
+        </div>
+
+        <div class="der-workspace">
+          <!-- Left Column: Code Editor & Templates -->
+          <div class="der-editor-col">
+            <div class="der-toolbar">
+              <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--neon-yellow);">PLANTILLAS:</span>
+              <select id="der-preset-select" class="presets-select" style="max-width: 250px;">
+                <option value="emp_dept">1. Empleados y Deptos (1:N)</option>
+                <option value="toyota_case">2. Caso Toyota (N:M con Versiones)</option>
+                <option value="ecommerce_full">3. Clientes, Pedidos y Productos</option>
+              </select>
+              <button class="btn-retro btn-cyan" id="der-render-btn">
+                <span>🔄 RENDERIZAR</span>
+              </button>
+            </div>
+
+            <div class="der-textarea-container">
+              <textarea id="der-code-editor" class="der-textarea" spellcheck="false"></textarea>
+            </div>
+
+            <div class="der-syntax-helper">
+              <strong style="color: var(--neon-yellow);">💡 GUÍA RÁPIDA DE CARDINALIDADES MERMAID:</strong><br>
+              <code>||--||</code> : Uno a Uno (1:1) &nbsp;|&nbsp; 
+              <code>||--o{</code> : Uno a Muchos (1:N opcional) &nbsp;|&nbsp; 
+              <code>||--|{</code> : Uno a Muchos (1:N obligatorio) &nbsp;|&nbsp; 
+              <code>}|--|{</code> : Muchos a Muchos (N:M)
+            </div>
+          </div>
+
+          <!-- Right Column: Live Rendered SVG -->
+          <div class="der-preview-col">
+            <div class="der-preview-header">
+              <span class="der-preview-title">DIAGRAMA DER RENDERIZADO</span>
+              <span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 9px;">● EN TIEMPO REAL</span>
+            </div>
+            <div class="der-canvas-viewport" id="der-canvas-render">
+              <!-- Rendered Mermaid SVG -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         TAB 5: GRIMOIRE OF CLASSES (Teoría de Clases 1 a 5)
+         ========================================================= -->
+    <section id="tab-grimoire" class="tab-content">
+      <div class="retro-box grimoire-container">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">GRIMORIO DE BASES DE DATOS I: TEMARIO & CLASES</h2>
+          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">UNIDADES 1 A 4</span>
+        </div>
+
+        <!-- Grimoire Ancient Tome Banner -->
+        <img src="assets/grimoire_tome.jpg" alt="Grimoire of Database Knowledge" class="module-visual-banner" style="max-height: 220px;">
+
+        <div class="grimoire-intro-banner">
+          📖 Compendio pedagógico y conceptual de las 5 clases y 4 unidades temáticas. Utilízalo para consultar definiciones, diferencias de modelos, operaciones DDL/DML e impacto de índices durante tus sesiones de estudio.
+        </div>
+
+        <div class="grimoire-classes-grid" id="grimoire-cards-container">
+          <!-- Dynamically populated from js/grimoire.js -->
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- =========================================================
+       "COSTO DML" FLOATING ALERT (Animación Árbol B-Tree & Hojas)
+       ========================================================= -->
+  <aside class="dml-cost-alert-container" id="dml-cost-alert">
+    <div class="dml-tree-animation-stage">
+      <div class="btree-pixel-visual" id="btree-visual">
+        🌳
+        <div class="falling-particles-zone" id="dml-particles-zone"></div>
+      </div>
+      <div class="dml-alert-text-content">
+        <h4 class="dml-alert-title">¡COSTO DML DETECTADO! 💥</h4>
+        <p class="dml-alert-desc">
+          La operación <strong>INSERT / UPDATE / DELETE</strong> ha forzado una reestructuración de índices. Se están ejecutando divisiones de página (<em>Page Splits</em>) y rebalanceos en los árboles <strong>B-Tree</strong>.
+        </p>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =========================================================
+       MODAL: GAME OVER
+       ========================================================= -->
+  <div class="retro-modal-backdrop" id="modal-game-over">
+    <div class="retro-modal-window">
+      <h2 style="font-family: var(--font-pixel); color: var(--neon-red); font-size: 20px; margin-bottom: 12px; text-shadow: 0 0 10px var(--neon-red-glow);">
+        💀 GAME OVER
+      </h2>
+      <p id="game-over-reason" style="font-size: 15px; color: #fff; margin-bottom: 16px;"></p>
+      <div id="game-over-stats" style="font-size: 14px; color: #cbd5e1; margin-bottom: 24px; line-height: 1.8;"></div>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-retro btn-gold" id="restart-after-gameover-btn">
+          <span>🔄 REINTENTAR EXAMEN</span>
+        </button>
+        <button class="btn-retro btn-red" id="close-game-over-btn">
+          <span>CERRAR</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================
+       MODAL: VICTORY / EXAMEN COMPLETADO
+       ========================================================= -->
+  <div class="retro-modal-backdrop" id="modal-victory">
+    <div class="retro-modal-window" style="box-shadow: 0 0 0 3px #000, 0 0 0 6px var(--neon-green), 10px 10px 0 #000;">
+      <h2 style="font-family: var(--font-pixel); color: var(--neon-green); font-size: 20px; margin-bottom: 12px; text-shadow: 0 0 10px var(--neon-green-glow);">
+        🏆 ¡EXAMEN COMPLETADO!
+      </h2>
+      <div id="victory-stats" style="font-size: 15px; color: #f1f5f9; margin-bottom: 24px; line-height: 1.8;"></div>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <button class="btn-retro btn-green" id="restart-after-victory-btn">
+          <span>⚔️ JUGAR OTRA VEZ</span>
+        </button>
+        <button class="btn-retro btn-cyan" id="close-victory-btn">
+          <span>VOLVER AL MENÚ</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic Scripts -->
+  <script src="js/audio.js"></script>
+  <script src="js/questions-data.js"></script>
+  <script src="js/time-attack.js"></script>
+  <script src="js/boss-fight.js"></script>
+  <script src="js/sql-engine.js"></script>
+  <script src="js/der-engine.js"></script>
+  <script src="js/grimoire.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
