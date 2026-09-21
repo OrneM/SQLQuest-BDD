@@ -1,5 +1,5 @@
 /* =========================================================
-   TIME ATTACK & BOSS FIGHT CSS (V2 - Ultra Legible & Visual)
+   TIME ATTACK & BOSS FIGHT CSS (V3 - Mobile Optimized)
    ========================================================= */
 
 /* Top Exam Status Bar */
@@ -9,18 +9,20 @@
   justify-content: space-between;
   background: #000;
   border: 2px solid var(--neon-cyan);
-  padding: 12px 18px;
-  margin-bottom: 20px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .exam-timer-display {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   font-family: var(--font-pixel);
-  font-size: 15px;
+  font-size: 13px;
   color: var(--neon-green);
   text-shadow: 0 0 8px var(--neon-green-glow);
 }
@@ -39,14 +41,15 @@
 .exam-progress-info {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .exam-progress-bar-container {
-  width: 180px;
-  height: 14px;
+  width: 130px;
+  height: 12px;
   background: #222;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   position: relative;
   overflow: hidden;
 }
@@ -61,28 +64,30 @@
 /* Question Box Container */
 .question-panel {
   background: #0d101e;
-  border: 3px solid var(--border-color);
-  padding: 24px;
-  margin-bottom: 20px;
+  border: 2px solid var(--border-color);
+  padding: 16px;
+  margin-bottom: 16px;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .question-meta {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
 }
 
 .question-topic-badge {
   background: #182038;
   color: var(--neon-cyan);
   border: 1px solid var(--neon-cyan);
-  padding: 4px 10px;
+  padding: 3px 8px;
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 8px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
@@ -91,52 +96,54 @@
   background: #382506;
   color: var(--neon-yellow);
   border: 1px solid var(--neon-yellow);
-  padding: 4px 10px;
+  padding: 3px 8px;
   font-family: var(--font-pixel);
-  font-size: 9px;
+  font-size: 8px;
 }
 
 .question-title {
   font-family: var(--font-body);
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
-  line-height: 1.6;
+  line-height: 1.55;
   color: #fff;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 /* Options Grid / Single Choice */
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 20px;
+  width: 100%;
 }
 
 .option-btn {
   background: #131728;
   border: 2px solid #2d3558;
   color: var(--text-body);
-  padding: 14px 18px;
+  padding: 12px 14px;
   text-align: left;
   font-family: var(--font-body);
-  font-size: 15.5px;
-  line-height: 1.55;
+  font-size: 14px;
+  line-height: 1.5;
   cursor: pointer;
   display: flex;
   align-items: flex-start;
-  gap: 14px;
-  transition: all 0.15s ease;
-  border-radius: 2px;
+  gap: 10px;
+  transition: all 0.12s ease;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .option-btn .opt-letter {
   background: #000;
-  border: 2px solid #555;
+  border: 1px solid #555;
   color: var(--neon-yellow);
   font-family: var(--font-pixel);
-  padding: 4px 8px;
-  font-size: 10px;
+  padding: 3px 6px;
+  font-size: 9px;
   flex-shrink: 0;
   margin-top: 2px;
 }
@@ -144,8 +151,8 @@
 .option-btn:hover:not(:disabled) {
   background: #1c233e;
   border-color: var(--neon-cyan);
-  transform: translateX(4px);
-  box-shadow: -4px 0 0 var(--neon-cyan);
+  transform: translateX(3px);
+  box-shadow: -3px 0 0 var(--neon-cyan);
 }
 
 .option-btn.selected {
@@ -171,13 +178,16 @@
 /* Fill-in SQL & Code Completion Question Types */
 .sql-fill-container {
   background: #060810;
-  border: 2px solid #2a3356;
-  padding: 18px;
-  margin-bottom: 20px;
+  border: 1px solid #2a3356;
+  padding: 14px;
+  margin-bottom: 16px;
   font-family: var(--font-mono);
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1.8;
   color: #bae6fd;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 .sql-fill-input {
@@ -185,12 +195,14 @@
   border: 2px solid var(--neon-cyan);
   color: var(--neon-yellow);
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 13.5px;
   font-weight: bold;
-  padding: 6px 12px;
+  padding: 5px 8px;
   text-transform: uppercase;
   outline: none;
-  min-width: 160px;
+  min-width: 120px;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .sql-fill-input:focus {
@@ -201,40 +213,55 @@
 /* Code Snippet Box with Blanks */
 .code-blank-block {
   background: #05070e;
-  border: 2px solid #252e4d;
-  padding: 18px;
-  margin-bottom: 20px;
+  border: 1px solid #252e4d;
+  padding: 14px;
+  margin-bottom: 16px;
   font-family: var(--font-mono);
-  font-size: 15px;
+  font-size: 13.5px;
   white-space: pre-wrap;
   color: #a5f3fc;
   line-height: 2;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
 /* Matching / Association questions */
 .matching-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 650px) {
+  .matching-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .matching-left, .matching-right {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .matching-card {
   background: #131728;
-  border: 2px solid #2d3558;
-  padding: 14px;
-  font-size: 14.5px;
-  line-height: 1.5;
+  border: 1px solid #2d3558;
+  padding: 10px 12px;
+  font-size: 13.5px;
+  line-height: 1.4;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .matching-card.active {
@@ -248,14 +275,16 @@
   color: var(--neon-green);
 }
 
-/* Feedback Box (Immediately after answering) */
+/* Feedback Box */
 .feedback-box {
   background: #0a1124;
-  border: 3px solid var(--neon-cyan);
-  padding: 20px;
-  margin-top: 20px;
+  border: 2px solid var(--neon-cyan);
+  padding: 16px;
+  margin-top: 16px;
   animation: slideDownFeedback 0.2s ease;
   display: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .feedback-box.active {
@@ -274,11 +303,12 @@
 
 .feedback-header {
   font-family: var(--font-pixel);
-  font-size: 11.5px;
-  margin-bottom: 12px;
+  font-size: 10px;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  line-height: 1.4;
 }
 
 .feedback-header.correct {
@@ -291,21 +321,21 @@
 
 .feedback-explanation {
   font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
   color: #f1f5f9;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .feedback-citation {
-  font-size: 13px;
+  font-size: 12px;
   color: var(--neon-yellow);
   border-top: 1px dashed #444;
-  padding-top: 10px;
+  padding-top: 8px;
 }
 
 @keyframes slideDownFeedback {
-  0% { opacity: 0; transform: translateY(-8px); }
+  0% { opacity: 0; transform: translateY(-6px); }
   100% { opacity: 1; transform: translateY(0); }
 }
 
@@ -314,56 +344,61 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 16px;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 10px;
 }
 
 /* =========================================================
-   BOSS FIGHT (Modo Revancha / Repaso Espaciado)
+   BOSS FIGHT
    ========================================================= */
 .boss-arena {
   background: #090616;
-  border: 3px solid var(--neon-magenta);
-  padding: 24px;
+  border: 2px solid var(--neon-magenta);
+  padding: 16px;
   position: relative;
   overflow: hidden;
   box-shadow: 0 0 15px var(--neon-magenta-glow);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .boss-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 24px;
+  gap: 10px;
+  margin-bottom: 18px;
   position: relative;
   z-index: 2;
+  width: 100%;
 }
 
 .boss-banner-visual {
   width: 100%;
-  max-height: 220px;
+  max-height: 180px;
   object-fit: cover;
-  border: 3px solid #000;
+  border: 2px solid #000;
   box-shadow: 0 0 0 2px var(--neon-magenta), var(--pixel-shadow);
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 
 .boss-name {
   font-family: var(--font-pixel);
-  font-size: 14px;
+  font-size: 11px;
   color: var(--neon-magenta);
-  text-shadow: 0 0 8px var(--neon-magenta-glow);
+  text-shadow: 0 0 6px var(--neon-magenta-glow);
   letter-spacing: 0.5px;
+  text-align: center;
+  line-height: 1.4;
 }
 
 .boss-hp-container {
   width: 100%;
-  max-width: 480px;
-  height: 22px;
+  max-width: 420px;
+  height: 18px;
   background: #000;
-  border: 2px solid #fff;
+  border: 1px solid #fff;
   position: relative;
 }
 
@@ -379,26 +414,20 @@
   position: absolute;
   width: 100%;
   text-align: center;
-  top: 3px;
+  top: 2px;
   font-family: var(--font-pixel);
-  font-size: 10px;
+  font-size: 8.5px;
   color: #fff;
   text-shadow: 1px 1px 0 #000;
 }
 
 .boss-no-errors-notice {
   text-align: center;
-  padding: 40px 20px;
+  padding: 30px 14px;
 }
 
 .boss-no-errors-notice .trophy-icon {
-  font-size: 52px;
+  font-size: 42px;
   color: var(--neon-yellow);
-  margin-bottom: 16px;
-}
-
-@media (max-width: 600px) {
-  .matching-container {
-    grid-template-columns: 1fr;
-  }
+  margin-bottom: 12px;
 }
