@@ -1,9 +1,11 @@
-// Antigravity BDD: Time Attack Module (Simulacro de Examen Oficial)
+// Antigravity BDD: Time Attack Module (Modos Aprendiz & Warrior)
 
 class TimeAttackExam {
   constructor() {
-    this.totalDuration = 45 * 60; // 45 minutes in seconds
+    this.currentMode = 'apprentice'; // 'apprentice' | 'warrior'
+    this.totalDuration = 45 * 60; // 45 minutes in seconds for warrior
     this.remainingSeconds = this.totalDuration;
+    this.elapsedSeconds = 0;
     this.timerInterval = null;
     this.isRunning = false;
 
@@ -39,6 +41,7 @@ class TimeAttackExam {
   bindEvents() {
     if (this.nextBtnEl) {
       this.nextBtnEl.addEventListener('click', () => {
+        if (!this.isRunning) return;
         window.retroAudio.playBlip(500, 0.05);
         this.nextQuestion();
       });
@@ -46,50 +49,108 @@ class TimeAttackExam {
 
     if (this.validateBtnEl) {
       this.validateBtnEl.addEventListener('click', () => {
+        if (!this.isRunning) return;
         this.submitCurrentAnswer();
       });
     }
 
+    // Botones de inicio de modo en la pantalla de bienvenida
+    const startApprenticeBtn = document.getElementById('start-apprentice-btn');
+    if (startApprenticeBtn) {
+      startApprenticeBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(700, 0.08);
+        this.startNewExam('apprentice');
+      });
+    }
+
+    const startWarriorBtn = document.getElementById('start-warrior-btn');
+    if (startWarriorBtn) {
+      startWarriorBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(700, 0.08);
+        this.startNewExam('warrior');
+      });
+    }
+
+    // Legacy or generic start button fallback
     const startBtn = document.getElementById('start-exam-btn');
     if (startBtn) {
       startBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(700, 0.08);
-        this.startNewExam();
+        this.startNewExam('warrior');
       });
     }
 
+    // Modal Game Over Buttons
     const restartGameOverBtn = document.getElementById('restart-after-gameover-btn');
     if (restartGameOverBtn) {
       restartGameOverBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(600, 0.06);
         document.getElementById('modal-game-over').classList.remove('active');
-        this.startNewExam();
+        this.startNewExam(this.currentMode);
       });
     }
 
+    const closeGameOverBtn = document.getElementById('close-game-over-btn');
+    if (closeGameOverBtn) {
+      closeGameOverBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(400, 0.05);
+        document.getElementById('modal-game-over').classList.remove('active');
+        this.returnToModeSelection();
+      });
+    }
+
+    // Modal Victory Buttons
     const restartVictoryBtn = document.getElementById('restart-after-victory-btn');
     if (restartVictoryBtn) {
       restartVictoryBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(600, 0.06);
         document.getElementById('modal-victory').classList.remove('active');
-        this.startNewExam();
+        this.startNewExam(this.currentMode);
+      });
+    }
+
+    const closeVictoryBtn = document.getElementById('close-victory-btn');
+    if (closeVictoryBtn) {
+      closeVictoryBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(400, 0.05);
+        document.getElementById('modal-victory').classList.remove('active');
+        this.returnToModeSelection();
+      });
+    }
+
+    // Exit to mode selection button in running screen
+    const exitExamBtn = document.getElementById('exam-exit-btn');
+    if (exitExamBtn) {
+      exitExamBtn.addEventListener('click', () => {
+        if (confirm('¿Deseas salir del examen actual y regresar al menú de selección de modo?')) {
+          this.returnToModeSelection();
+        }
       });
     }
   }
 
-  startNewExam() {
-    // Pick 25 questions from bank (or all if bank <= 25)
+  startNewExam(mode = 'apprentice') {
+    this.currentMode = mode;
+    
+    // Pick 25 questions from the full bank (shuffled)
     const allQuestions = [...window.QUESTIONS_DATABASE];
-    // Shuffle slightly to give variety while preserving all 25
-    this.questions = allQuestions.slice(0, 25);
+    const shuffled = allQuestions.sort(() => 0.5 - Math.random());
+    this.questions = shuffled.slice(0, 25);
     
     this.currentIndex = 0;
-    this.remainingSeconds = this.totalDuration;
-    this.lives = this.maxLives;
     this.streak = 0;
     this.correctCount = 0;
     this.incorrectCount = 0;
     this.isRunning = true;
+
+    if (this.currentMode === 'apprentice') {
+      this.lives = 999;
+      this.elapsedSeconds = 0;
+    } else {
+      this.maxLives = 3;
+      this.lives = 3;
+      this.remainingSeconds = 45 * 60; // 45 minutes
+    }
 
     // Show exam container, hide welcome screen
     const welcomeBox = document.getElementById('exam-welcome-box');
@@ -102,33 +163,66 @@ class TimeAttackExam {
     this.updateHUD();
   }
 
+  returnToModeSelection() {
+    if (this.timerInterval) clearInterval(this.timerInterval);
+    this.isRunning = false;
+
+    const welcomeBox = document.getElementById('exam-welcome-box');
+    const runningBox = document.getElementById('exam-running-box');
+    if (welcomeBox) welcomeBox.style.display = 'block';
+    if (runningBox) runningBox.style.display = 'none';
+
+    document.getElementById('modal-game-over').classList.remove('active');
+    document.getElementById('modal-victory').classList.remove('active');
+
+    this.updateHUD();
+  }
+
   startTimer() {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.updateTimerDisplay();
 
     this.timerInterval = setInterval(() => {
-      this.remainingSeconds--;
-      this.updateTimerDisplay();
+      if (!this.isRunning) return;
 
-      if (this.remainingSeconds <= 0) {
-        this.remainingSeconds = 0;
-        clearInterval(this.timerInterval);
-        this.triggerGameOver("¡Se acabó el tiempo de 45 minutos!");
+      if (this.currentMode === 'apprentice') {
+        this.elapsedSeconds++;
+        this.updateTimerDisplay();
+      } else {
+        this.remainingSeconds--;
+        this.updateTimerDisplay();
+
+        if (this.remainingSeconds <= 0) {
+          this.remainingSeconds = 0;
+          clearInterval(this.timerInterval);
+          this.triggerGameOver("¡Se acabó el tiempo límite de 45 minutos!");
+        }
       }
     }, 1000);
   }
 
   updateTimerDisplay() {
     if (!this.timerEl) return;
-    const mins = Math.floor(this.remainingSeconds / 60);
-    const secs = this.remainingSeconds % 60;
-    const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-    this.timerEl.textContent = `⏳ ${formatted}`;
 
-    if (this.remainingSeconds < 300) {
-      this.timerEl.classList.add('warning');
-    } else {
+    if (this.currentMode === 'apprentice') {
+      const mins = Math.floor(this.elapsedSeconds / 60);
+      const secs = this.elapsedSeconds % 60;
+      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      this.timerEl.textContent = `⏱️ ${formatted} (MODO APRENDIZ: SIN LÍMITE)`;
       this.timerEl.classList.remove('warning');
+      this.timerEl.style.color = 'var(--neon-green)';
+    } else {
+      const mins = Math.floor(this.remainingSeconds / 60);
+      const secs = this.remainingSeconds % 60;
+      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      this.timerEl.textContent = `⏳ ${formatted} (MODO WARRIOR)`;
+
+      if (this.remainingSeconds < 300) {
+        this.timerEl.classList.add('warning');
+      } else {
+        this.timerEl.classList.remove('warning');
+        this.timerEl.style.color = 'var(--neon-yellow)';
+      }
     }
   }
 
@@ -145,16 +239,22 @@ class TimeAttackExam {
     }
 
     // Hearts / Lives
-    const hearts = document.querySelectorAll('.hud-heart');
-    hearts.forEach((h, idx) => {
-      if (idx < this.lives) {
-        h.classList.remove('empty');
-        h.textContent = '❤️';
+    const heartsContainer = document.getElementById('hud-hearts-container');
+    if (heartsContainer) {
+      if (this.currentMode === 'apprentice') {
+        heartsContainer.innerHTML = `<span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 11px;">❤️ ∞ ILIMITADAS</span>`;
       } else {
-        h.classList.add('empty');
-        h.textContent = '🖤';
+        let heartsHtml = '';
+        for (let i = 0; i < this.maxLives; i++) {
+          if (i < this.lives) {
+            heartsHtml += `<span class="hud-heart">❤️</span>`;
+          } else {
+            heartsHtml += `<span class="hud-heart empty">🖤</span>`;
+          }
+        }
+        heartsContainer.innerHTML = heartsHtml;
       }
-    });
+    }
 
     // Spaced repetition badge in nav
     const failedIds = this.getFailedQuestionIds();
@@ -166,6 +266,8 @@ class TimeAttackExam {
   }
 
   renderCurrentQuestion() {
+    if (!this.isRunning) return;
+
     if (this.currentIndex >= this.questions.length) {
       this.triggerVictory();
       return;
@@ -185,6 +287,7 @@ class TimeAttackExam {
     // Hide feedback and reset button state
     if (this.feedbackBoxEl) {
       this.feedbackBoxEl.classList.remove('active', 'feedback-correct', 'feedback-error');
+      this.feedbackBoxEl.innerHTML = '';
     }
     if (this.nextBtnEl) this.nextBtnEl.style.display = 'none';
     if (this.validateBtnEl) {
@@ -192,13 +295,44 @@ class TimeAttackExam {
       this.validateBtnEl.disabled = false;
     }
 
+    const isApprentice = this.currentMode === 'apprentice';
+
     let html = `
       <div class="question-meta">
-        <span class="question-topic-badge">${q.topic}</span>
-        <span class="question-unit-badge">${q.unit}</span>
+        <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+          <span class="question-topic-badge">${q.topic}</span>
+          <span class="question-unit-badge">${q.unit}</span>
+        </div>
+        <span class="exam-mode-indicator ${isApprentice ? 'mode-apprentice' : 'mode-warrior'}">
+          ${isApprentice ? '🌱 APRENDIZ' : '⚔️ WARRIOR'}
+        </span>
       </div>
+
       <h3 class="question-title">Pregunta ${currentNum}: ${q.question}</h3>
     `;
+
+    // Oracle Hint Section
+    if (isApprentice) {
+      html += `
+        <div class="oracle-hint-container">
+          <button class="btn-retro btn-cyan hint-trigger-btn" id="ask-oracle-hint-btn" type="button">
+            <span>💡 PEDIR PISTA DEL ORÁCULO</span>
+          </button>
+          <div class="oracle-hint-box" id="oracle-hint-box" style="display: none;">
+            <div class="oracle-hint-header">🔮 PISTA DEL ORÁCULO CONCEPTUAL</div>
+            <div class="oracle-hint-body">${q.hint || "Analiza detenidamente la definición teórica y las opciones disponibles."}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      html += `
+        <div class="oracle-hint-container">
+          <button class="btn-retro hint-trigger-btn disabled" disabled type="button" title="Pistas bloqueadas en Modo Warrior">
+            <span>🔒 PISTAS BLOQUEADAS (MODO WARRIOR)</span>
+          </button>
+        </div>
+      `;
+    }
 
     if (q.type === 'single_choice') {
       html += `<div class="options-list" id="current-options-list">`;
@@ -213,7 +347,7 @@ class TimeAttackExam {
       });
       html += `</div>`;
     } else if (q.type === 'fill_in_sql') {
-      const templateHtml = q.template.replace('{INPUT}', `<input type="text" id="sql-fill-user-input" class="sql-fill-input" placeholder="Comando SQL..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />`);
+      const templateHtml = q.template.replace('{INPUT}', `<input type="text" id="sql-fill-user-input" class="sql-fill-input" placeholder="Escribe el comando SQL aquí..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" />`);
       html += `
         <div class="sql-fill-container">
           ${templateHtml}
@@ -242,11 +376,27 @@ class TimeAttackExam {
 
     this.questionContainerEl.innerHTML = html;
 
+    // Bind Hint Button event in apprentice mode
+    if (isApprentice) {
+      const hintBtn = document.getElementById('ask-oracle-hint-btn');
+      const hintBox = document.getElementById('oracle-hint-box');
+      if (hintBtn && hintBox) {
+        hintBtn.addEventListener('click', () => {
+          window.retroAudio.playBlip(750, 0.08);
+          hintBox.style.display = (hintBox.style.display === 'none') ? 'block' : 'none';
+          hintBtn.innerHTML = (hintBox.style.display === 'none') 
+            ? '<span>💡 PEDIR PISTA DEL ORÁCULO</span>' 
+            : '<span>💡 OCULTAR PISTA</span>';
+        });
+      }
+    }
+
     // Bind question interactions
     if (q.type === 'single_choice') {
       const optionBtns = this.questionContainerEl.querySelectorAll('.option-btn');
       optionBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          if (!this.isRunning) return;
           optionBtns.forEach(b => b.classList.remove('selected'));
           btn.classList.add('selected');
           window.retroAudio.playBlip(650, 0.03);
@@ -263,7 +413,7 @@ class TimeAttackExam {
 
     leftCards.forEach(lCard => {
       lCard.addEventListener('click', () => {
-        if (lCard.classList.contains('matched')) return;
+        if (!this.isRunning || lCard.classList.contains('matched')) return;
         leftCards.forEach(c => c.classList.remove('active'));
         lCard.classList.add('active');
         this.selectedMatchLeft = lCard;
@@ -273,7 +423,7 @@ class TimeAttackExam {
 
     rightCards.forEach(rCard => {
       rCard.addEventListener('click', () => {
-        if (rCard.classList.contains('matched') || !this.selectedMatchLeft) return;
+        if (!this.isRunning || rCard.classList.contains('matched') || !this.selectedMatchLeft) return;
         const leftKey = this.selectedMatchLeft.getAttribute('data-key');
         const rightKey = rCard.getAttribute('data-key');
 
@@ -296,13 +446,15 @@ class TimeAttackExam {
   }
 
   submitCurrentAnswer() {
+    if (!this.isRunning) return;
+
     const q = this.questions[this.currentIndex];
     let isCorrect = false;
 
     if (q.type === 'single_choice') {
       const selected = this.questionContainerEl.querySelector('.option-btn.selected');
       if (!selected) {
-        alert('Selecciona una opción antes de validar.');
+        alert('Por favor, selecciona una opción antes de validar.');
         return;
       }
       const selectedIdx = parseInt(selected.getAttribute('data-idx'), 10);
@@ -356,38 +508,72 @@ class TimeAttackExam {
   }
 
   handleAnswerResult(isCorrect, q) {
-    if (this.validateBtnEl) this.validateBtnEl.style.display = 'none';
-    if (this.nextBtnEl) this.nextBtnEl.style.display = 'inline-flex';
-
     if (isCorrect) {
       window.retroAudio.playCorrect();
       this.correctCount++;
       this.streak++;
-      const earnedXp = 100 + (this.streak * 25);
+      const earnedXp = (this.currentMode === 'warrior') 
+        ? 150 + (this.streak * 30)
+        : 100 + (this.streak * 15);
       this.xp += earnedXp;
 
       // Remove from failed questions in localStorage if resolved
       this.removeFailedQuestionId(q.id);
+
+      if (this.validateBtnEl) this.validateBtnEl.style.display = 'none';
+      if (this.nextBtnEl) this.nextBtnEl.style.display = 'inline-flex';
 
       this.showFeedback(true, `¡CORRECTO! +${earnedXp} XP (Racha: ${this.streak}🔥)`, q.explanation, q.citation, q.slideImage);
     } else {
       window.retroAudio.playError();
       this.incorrectCount++;
       this.streak = 0;
-      this.lives--;
 
       // Save to spaced repetition failed questions
       this.addFailedQuestionId(q.id);
 
-      this.showFeedback(false, `¡INCORRECTO! -1 Corazón ❤️`, q.explanation, q.citation, q.slideImage);
+      if (this.currentMode === 'apprentice') {
+        // En modo aprendiz NO hay pérdida de vidas ni Game Over
+        if (this.validateBtnEl) this.validateBtnEl.style.display = 'none';
+        if (this.nextBtnEl) this.nextBtnEl.style.display = 'inline-flex';
 
-      if (this.lives <= 0) {
-        this.lives = 0;
+        this.showFeedback(false, `¡RESPUESTA INCORRECTA! (Modo Aprendiz: Sin pérdida de vidas)`, q.explanation, q.citation, q.slideImage);
+      } else {
+        // En modo warrior SÍ se descuenta vida
+        this.lives--;
         this.updateHUD();
-        setTimeout(() => {
-          this.triggerGameOver("¡Te has quedado sin corazones!");
-        }, 1200);
-        return;
+
+        if (this.lives <= 0) {
+          this.lives = 0;
+          this.isRunning = false;
+          if (this.timerInterval) clearInterval(this.timerInterval);
+
+          // Bloquear completamente la posibilidad de continuar respondiendo o avanzar
+          if (this.validateBtnEl) {
+            this.validateBtnEl.disabled = true;
+            this.validateBtnEl.style.display = 'none';
+          }
+          if (this.nextBtnEl) {
+            this.nextBtnEl.disabled = true;
+            this.nextBtnEl.style.display = 'none';
+          }
+
+          // Deshabilitar todos los controles de la pregunta
+          const allInputs = this.questionContainerEl.querySelectorAll('input, button');
+          allInputs.forEach(el => el.disabled = true);
+
+          this.showFeedback(false, `¡INCORRECTO! -1 Corazón (0 VIDAS RESTANTES)`, q.explanation, q.citation, q.slideImage);
+
+          setTimeout(() => {
+            this.triggerGameOver("¡Te has quedado sin corazones en el Modo Warrior!");
+          }, 800);
+          return;
+        } else {
+          if (this.validateBtnEl) this.validateBtnEl.style.display = 'none';
+          if (this.nextBtnEl) this.nextBtnEl.style.display = 'inline-flex';
+
+          this.showFeedback(false, `¡INCORRECTO! -1 Corazón ❤️ (${this.lives} restantes)`, q.explanation, q.citation, q.slideImage);
+        }
       }
     }
 
@@ -401,16 +587,16 @@ class TimeAttackExam {
     let slideHtml = '';
     if (slideImage) {
       slideHtml = `
-        <div style="margin: 12px 0; border: 2px solid #283256; background: #000; cursor: pointer; position: relative; max-width: 480px;" onclick="window.openInfographicLightbox('${slideImage}', 'Infografía Explicativa', '${explanation.replace(/'/g, "\\'")}')">
+        <div style="margin: 14px 0; border: 2px solid #283256; background: #000; cursor: pointer; position: relative; max-width: 480px;" onclick="window.openInfographicLightbox('${slideImage}', 'Infografía Explicativa', '${explanation.replace(/'/g, "\\'")}')">
           <img src="${slideImage}" alt="Diapositiva Explicativa" style="width: 100%; height: auto; display: block;">
-          <span style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 8px; padding: 2px 6px;">🔍 AMPLIAR INFOGRAFÍA</span>
+          <span style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 8px; padding: 3px 7px;">🔍 AMPLIAR INFOGRAFÍA</span>
         </div>
       `;
     }
 
     this.feedbackBoxEl.innerHTML = `
       <div class="feedback-header ${isCorrect ? 'correct' : 'error'}">
-        ${isCorrect ? '✔ NIVEL SUPERADO' : '✖ RESPUESTA INCORRECTA'} — ${title}
+        ${isCorrect ? '✔ CONCEPTO DOMINADO' : '✖ REPASO REQUERIDO'} — ${title}
       </div>
       <div class="feedback-explanation">${explanation}</div>
       ${slideHtml}
@@ -419,6 +605,7 @@ class TimeAttackExam {
   }
 
   nextQuestion() {
+    if (!this.isRunning) return;
     this.currentIndex++;
     this.renderCurrentQuestion();
   }
@@ -434,9 +621,10 @@ class TimeAttackExam {
     const statsEl = document.getElementById('game-over-stats');
     if (statsEl) {
       statsEl.innerHTML = `
-        <p>Aciertos: ${this.correctCount} / ${this.questions.length}</p>
-        <p>XP Obtenida: ${this.xp}</p>
-        <p>¡Las preguntas falladas fueron enviadas al modo <strong>REVANCHA / BOSS FIGHT</strong>!</p>
+        <p>Modo: <strong style="color: var(--neon-red);">WARRIOR (EXAMEN HARDCORE)</strong></p>
+        <p>Aciertos: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
+        <p>XP Obtenida: <strong>${this.xp}</strong></p>
+        <p style="margin-top: 10px; color: var(--neon-yellow);">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong>!</p>
       `;
     }
 
@@ -453,10 +641,11 @@ class TimeAttackExam {
     const victoryStats = document.getElementById('victory-stats');
     if (victoryStats) {
       victoryStats.innerHTML = `
-        <p style="color: var(--neon-yellow); font-size: 16px;">Calificación: <strong>${grade} / 10</strong></p>
+        <p style="color: var(--neon-yellow); font-size: 16px;">Calificación Final: <strong>${grade} / 10</strong></p>
+        <p>Modo Completado: <strong>${this.currentMode === 'apprentice' ? '🌱 APRENDIZ (SIN ESTRÉS)' : '⚔️ WARRIOR (HARDCORE)'}</strong></p>
         <p>Preguntas Correctas: ${this.correctCount} / ${this.questions.length}</p>
         <p>XP Total Acumulada: ${this.xp}</p>
-        <p>Rango Obtenido: <span style="color: var(--neon-cyan);">⚔️ Caballero del B-Tree</span></p>
+        <p>Rango Obtenido: <span style="color: var(--neon-cyan);">⚔️ Maestro de Bases de Datos</span></p>
       `;
     }
 

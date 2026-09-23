@@ -103,54 +103,68 @@
       <section id="exam-welcome-box" class="retro-box">
         <div class="retro-box-header">
           <h2 class="retro-box-title">SIMULACRO DE EXAMEN: BASES DE DATOS I</h2>
-          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">⏱️ LÍMITE: 45:00 MIN</span>
+          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">🎮 SELECCIONA TU MODO DE JUEGO</span>
         </div>
 
         <!-- Pixel Art Hero Illustration Banner -->
         <img src="assets/hero_banner.jpg" alt="Dungeon Quest Banner" class="module-visual-banner">
 
         <p style="font-size: 16px; color: #f1f5f9; margin-bottom: 16px; font-weight: 500;">
-          ¡Bienvenido/a, aventurero/a del modelo relacional! Estás a punto de iniciar el simulacro oficial de <strong>Primer Parcial de Bases de Datos</strong> con preguntas reales, feedback didáctico y mecánicas de gamificación.
+          ¡Bienvenido/a, aventurero/a del modelo relacional! Elige el estilo de entrenamiento que mejor se adapte a tus necesidades de estudio:
         </p>
 
-        <!-- Visual Feature Cards -->
-        <div class="quest-features-grid">
-          <div class="quest-feature-card">
-            <div class="quest-feature-icon">⚔️</div>
-            <div class="quest-feature-info">
-              <h4>25 Desafíos Reales</h4>
-              <p>Preguntas de opción múltiple, completar sentencias SQL, DDL/DML y álgebra relacional.</p>
+        <!-- Game Mode Selection Cards -->
+        <div class="game-modes-grid">
+          <!-- Modo Aprendiz -->
+          <div class="game-mode-card apprentice">
+            <div>
+              <div class="game-mode-header">
+                <div class="game-mode-icon">🌱</div>
+                <div>
+                  <h3 class="game-mode-title">MODO APRENDIZ</h3>
+                  <span style="color: #a7f3d0; font-size: 12px; font-family: var(--font-mono);">Estudio y Comprensión Conceptual</span>
+                </div>
+              </div>
+              <p class="game-mode-desc">
+                Ideal para aprender y afianzar conceptos a tu propio ritmo, sin presión de tiempo ni castigos por error.
+              </p>
+              <ul class="game-mode-features-list">
+                <li><span class="feat-icon">💚</span> <strong>Vidas Ilimitadas</strong> (No hay Game Over por fallos).</li>
+                <li><span class="feat-icon">⏱️</span> <strong>Tiempo Libre</strong> (Sin cuenta regresiva que te apure).</li>
+                <li><span class="feat-icon">💡</span> <strong>Pistas del Oráculo</strong> disponibles en cada pregunta.</li>
+                <li><span class="feat-icon">📖</span> <strong>Explicaciones e Infografías</strong> oficiales ampliables.</li>
+              </ul>
             </div>
+            <button class="btn-retro btn-green" id="start-apprentice-btn" style="width: 100%; font-size: 11px; padding: 14px 20px;">
+              <span>🌱 INICIAR MODO APRENDIZ</span>
+            </button>
           </div>
 
-          <div class="quest-feature-card">
-            <div class="quest-feature-icon">❤️</div>
-            <div class="quest-feature-info">
-              <h4>3 Vidas (Corazones)</h4>
-              <p>Cada respuesta incorrecta descuenta un corazón. Si pierdes los tres, será Game Over.</p>
+          <!-- Modo Warrior -->
+          <div class="game-mode-card warrior">
+            <div>
+              <div class="game-mode-header">
+                <div class="game-mode-icon">⚔️</div>
+                <div>
+                  <h3 class="game-mode-title">MODO WARRIOR</h3>
+                  <span style="color: #fde68a; font-size: 12px; font-family: var(--font-mono);">Simulacro Oficial de Parcial (Hardcore)</span>
+                </div>
+              </div>
+              <p class="game-mode-desc">
+                Pon a prueba tus conocimientos en condiciones reales de examen universitario contrarreloj.
+              </p>
+              <ul class="game-mode-features-list">
+                <li><span class="feat-icon">❤️</span> <strong>3 Vidas Estrictas</strong> (A los 3 errores es Game Over).</li>
+                <li><span class="feat-icon">⏳</span> <strong>Límite de 45 Minutos</strong> con alarma en el HUD.</li>
+                <li><span class="feat-icon">🔒</span> <strong>Sin Pistas</strong> (Valerte solo con tu espada y memoria).</li>
+                <li><span class="feat-icon">🔥</span> <strong>Multiplicador de Racha</strong> y XP x2.</li>
+              </ul>
             </div>
-          </div>
-
-          <div class="quest-feature-card">
-            <div class="quest-feature-icon">🔥</div>
-            <div class="quest-feature-info">
-              <h4>Multiplicador de Racha</h4>
-              <p>Aciertos consecutivos activan la racha de fuego y multiplican tus Puntos de Experiencia (XP).</p>
-            </div>
-          </div>
-
-          <div class="quest-feature-card">
-            <div class="quest-feature-icon">💀</div>
-            <div class="quest-feature-info">
-              <h4>Sistema de Revancha</h4>
-              <p>Los errores se guardan para que puedas enfrentarlos en el modo <em>Boss Fight</em>.</p>
-            </div>
+            <button class="btn-retro btn-gold" id="start-warrior-btn" style="width: 100%; font-size: 11px; padding: 14px 20px;">
+              <span>⚔️ INICIAR MODO WARRIOR</span>
+            </button>
           </div>
         </div>
-
-        <button class="btn-retro btn-gold" id="start-exam-btn" style="font-size: 12px; padding: 16px 32px; margin-top: 10px;">
-          <span>⚔️ INICIAR TIME ATTACK (45 MINUTOS)</span>
-        </button>
       </section>
 
       <!-- Active Exam Screen -->
@@ -181,6 +195,9 @@
           </button>
           <button class="btn-retro btn-gold" id="exam-next-btn" style="display: none;">
             <span>SIGUIENTE PREGUNTA ▶</span>
+          </button>
+          <button class="btn-retro btn-red" id="exam-exit-btn" type="button" style="margin-left: auto;">
+            <span>🏳️ SALIR AL MENÚ DE MODOS</span>
           </button>
         </div>
       </section>

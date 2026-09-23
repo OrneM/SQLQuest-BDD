@@ -118,6 +118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeGameOverBtn) {
     closeGameOverBtn.addEventListener('click', () => {
       document.getElementById('modal-game-over').classList.remove('active');
+      exam.returnToModeSelection();
     });
   }
 
@@ -125,6 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeVictoryBtn) {
     closeVictoryBtn.addEventListener('click', () => {
       document.getElementById('modal-victory').classList.remove('active');
+      exam.returnToModeSelection();
     });
   }
 

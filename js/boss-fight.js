@@ -123,6 +123,7 @@ class BossFightArena {
 
     if (this.bossFeedbackBoxEl) {
       this.bossFeedbackBoxEl.classList.remove('active', 'feedback-correct', 'feedback-error');
+      this.bossFeedbackBoxEl.innerHTML = '';
     }
     if (this.bossNextBtnEl) this.bossNextBtnEl.style.display = 'none';
     if (this.bossValidateBtnEl) {
@@ -136,6 +137,16 @@ class BossFightArena {
         <span class="question-unit-badge">${q.unit}</span>
       </div>
       <h3 class="question-title">${q.question}</h3>
+      
+      <div class="oracle-hint-container">
+        <button class="btn-retro btn-cyan hint-trigger-btn" id="boss-oracle-hint-btn" type="button">
+          <span>💡 PEDIR PISTA DEL ORÁCULO</span>
+        </button>
+        <div class="oracle-hint-box" id="boss-oracle-hint-box" style="display: none;">
+          <div class="oracle-hint-header">🔮 PISTA DEL ORÁCULO</div>
+          <div class="oracle-hint-body">${q.hint || "Reflexiona sobre los fundamentos teóricos aprendidos en clase."}</div>
+        </div>
+      </div>
     `;
 
     if (q.type === 'single_choice') {
@@ -174,6 +185,19 @@ class BossFightArena {
     }
 
     this.bossQuestionBoxEl.innerHTML = html;
+
+    // Hint toggle
+    const hintBtn = document.getElementById('boss-oracle-hint-btn');
+    const hintBox = document.getElementById('boss-oracle-hint-box');
+    if (hintBtn && hintBox) {
+      hintBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(750, 0.08);
+        hintBox.style.display = (hintBox.style.display === 'none') ? 'block' : 'none';
+        hintBtn.innerHTML = (hintBox.style.display === 'none') 
+          ? '<span>💡 PEDIR PISTA DEL ORÁCULO</span>' 
+          : '<span>💡 OCULTAR PISTA</span>';
+      });
+    }
 
     if (q.type === 'single_choice') {
       const optionBtns = this.bossQuestionBoxEl.querySelectorAll('.option-btn');
@@ -226,7 +250,7 @@ class BossFightArena {
       }
       isCorrect = allMatched;
     } else if (q.type === 'matching') {
-      isCorrect = true; // Auto-pass matching in boss mode if simplified
+      isCorrect = true;
     }
 
     if (this.bossValidateBtnEl) this.bossValidateBtnEl.style.display = 'none';
@@ -237,7 +261,6 @@ class BossFightArena {
       this.bossCurrentHp--;
       this.updateBossHP();
 
-      // Shake the boss sprite
       if (this.bossSpriteEl) {
         this.bossSpriteEl.style.transform = 'scale(0.8) rotate(15deg)';
         setTimeout(() => {
@@ -252,14 +275,14 @@ class BossFightArena {
     } else {
       window.retroAudio.playError();
       this.lives--;
-      this.showFeedback(false, '💥 EL BOSS CONTRAATACA (-1 Vida)', q.explanation, q.citation, q.slideImage);
+      this.showFeedback(false, `💥 EL BOSS CONTRAATACA (${this.lives} Vidas Restantes)`, q.explanation, q.citation, q.slideImage);
 
       if (this.lives <= 0) {
         setTimeout(() => {
-          alert('¡El Boss te ha derrotado en la revancha! Repasa la teoría e inténtalo de nuevo.');
+          alert('¡El Boss te ha derrotado en la revancha! Repasa la teoría en el Grimorio e inténtalo de nuevo.');
           this.isFighting = false;
           this.refreshView();
-        }, 1000);
+        }, 500);
         return;
       }
     }
@@ -272,15 +295,17 @@ class BossFightArena {
     let slideHtml = '';
     if (slideImage) {
       slideHtml = `
-        <div style="margin: 12px 0; border: 2px solid #283256; background: #000; cursor: pointer; position: relative; max-width: 480px;" onclick="window.openInfographicLightbox('${slideImage}', 'Infografía Explicativa', '${explanation.replace(/'/g, "\\'")}')">
+        <div style="margin: 14px 0; border: 2px solid #283256; background: #000; cursor: pointer; position: relative; max-width: 480px;" onclick="window.openInfographicLightbox('${slideImage}', 'Infografía Explicativa', '${explanation.replace(/'/g, "\\'")}')">
           <img src="${slideImage}" alt="Diapositiva Explicativa" style="width: 100%; height: auto; display: block;">
-          <span style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 8px; padding: 2px 6px;">🔍 AMPLIAR INFOGRAFÍA</span>
+          <span style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 8px; padding: 3px 7px;">🔍 AMPLIAR INFOGRAFÍA</span>
         </div>
       `;
     }
 
     this.bossFeedbackBoxEl.innerHTML = `
-      <div class="feedback-header ${isCorrect ? 'correct' : 'error'}">${title}</div>
+      <div class="feedback-header ${isCorrect ? 'correct' : 'error'}">
+        ${isCorrect ? '✔ DAÑO INFLIGIDO' : '✖ FALLASTE EL ATAQUE'} — ${title}
+      </div>
       <div class="feedback-explanation">${explanation}</div>
       ${slideHtml}
       <div class="feedback-citation">📖 Fuente: ${citation}</div>
@@ -292,26 +317,26 @@ class BossFightArena {
     this.renderQuestion();
   }
 
-  removeResolvedId(id) {
-    try {
-      let stored = localStorage.getItem('retro_bdd_failed_ids');
-      let list = stored ? JSON.parse(stored) : [];
-      list = list.filter(item => item !== id);
-      localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(list));
-
-      const badge = document.getElementById('boss-badge-count');
-      if (badge) {
-        badge.textContent = list.length;
-        badge.style.display = list.length > 0 ? 'inline-block' : 'none';
-      }
-    } catch (e) {}
-  }
-
   triggerBossVictory() {
     this.isFighting = false;
     window.retroAudio.playVictory();
-    alert('🏆 ¡FELICITACIONES! Has derrotado al Dragón de Inconsistencias y dominado tus preguntas erróneas.');
+    alert('🎉 ¡HAS DERROTADO AL TITÁN DE LAS INCONSISTENCIAS! Todos los conceptos han sido dominados.');
     this.refreshView();
+  }
+
+  removeResolvedId(id) {
+    try {
+      const stored = localStorage.getItem('retro_bdd_failed_ids');
+      let ids = stored ? JSON.parse(stored) : [];
+      ids = ids.filter(item => item !== id);
+      localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(ids));
+      
+      const badge = document.getElementById('boss-badge-count');
+      if (badge) {
+        badge.textContent = ids.length;
+        badge.style.display = ids.length > 0 ? 'inline-block' : 'none';
+      }
+    } catch (e) {}
   }
 }
 

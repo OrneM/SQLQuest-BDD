@@ -22,13 +22,13 @@
   align-items: center;
   gap: 10px;
   font-family: var(--font-pixel);
-  font-size: 15px;
+  font-size: 13px;
   color: var(--neon-green);
   text-shadow: 0 0 8px var(--neon-green-glow);
 }
 
 .exam-timer-display.warning {
-  color: var(--neon-red);
+  color: var(--neon-red) !important;
   text-shadow: 0 0 8px var(--neon-red-glow);
   animation: timerBlink 0.5s infinite alternate;
 }
@@ -59,6 +59,119 @@
   background: linear-gradient(90deg, var(--neon-cyan), var(--neon-green));
   width: 0%;
   transition: width 0.3s ease;
+}
+
+/* =========================================================
+   GAME MODE SELECTION CARDS (Aprendiz vs Warrior)
+   ========================================================= */
+.game-modes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+  margin: 28px 0 20px 0;
+  width: 100%;
+}
+
+.game-mode-card {
+  background: #0d1122;
+  border: 3px solid #283256;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.game-mode-card:hover {
+  transform: translateY(-3px);
+}
+
+.game-mode-card.apprentice {
+  border-color: #10b981;
+  background: linear-gradient(180deg, #091a14 0%, #0d1522 100%);
+  box-shadow: 0 0 15px rgba(16, 185, 129, 0.25);
+}
+
+.game-mode-card.apprentice:hover {
+  border-color: var(--neon-green);
+  box-shadow: 0 0 25px rgba(57, 255, 20, 0.4);
+}
+
+.game-mode-card.warrior {
+  border-color: #f59e0b;
+  background: linear-gradient(180deg, #1c1407 0%, #150f1f 100%);
+  box-shadow: 0 0 15px rgba(245, 158, 11, 0.25);
+}
+
+.game-mode-card.warrior:hover {
+  border-color: var(--neon-yellow);
+  box-shadow: 0 0 25px rgba(255, 230, 0, 0.4);
+}
+
+.game-mode-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.game-mode-icon {
+  font-size: 32px;
+  background: #000;
+  border: 2px solid #334155;
+  width: 54px;
+  height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.game-mode-title {
+  font-family: var(--font-pixel);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.game-mode-card.apprentice .game-mode-title {
+  color: var(--neon-green);
+  text-shadow: 0 0 8px var(--neon-green-glow);
+}
+
+.game-mode-card.warrior .game-mode-title {
+  color: var(--neon-yellow);
+  text-shadow: 0 0 8px var(--neon-yellow-glow);
+}
+
+.game-mode-desc {
+  font-size: 14.5px;
+  color: #cbd5e1;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+.game-mode-features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 24px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.game-mode-features-list li {
+  font-size: 14px;
+  color: #f1f5f9;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  line-height: 1.5;
+}
+
+.game-mode-features-list li .feat-icon {
+  font-size: 14px;
+  flex-shrink: 0;
 }
 
 /* Question Box Container */
@@ -101,13 +214,75 @@
   font-size: 9.5px;
 }
 
+.exam-mode-indicator {
+  padding: 5px 12px;
+  font-family: var(--font-pixel);
+  font-size: 9.5px;
+  text-transform: uppercase;
+}
+
+.exam-mode-indicator.mode-apprentice {
+  background: #064e3b;
+  color: var(--neon-green);
+  border: 1px solid var(--neon-green);
+  text-shadow: 0 0 6px var(--neon-green-glow);
+}
+
+.exam-mode-indicator.mode-warrior {
+  background: #78350f;
+  color: var(--neon-yellow);
+  border: 1px solid var(--neon-yellow);
+  text-shadow: 0 0 6px var(--neon-yellow-glow);
+}
+
 .question-title {
   font-family: var(--font-body);
   font-size: 19px;
   font-weight: 600;
   line-height: 1.6;
   color: #fff;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
+}
+
+/* Oracle Hint Box */
+.oracle-hint-container {
+  margin-bottom: 22px;
+}
+
+.hint-trigger-btn {
+  font-size: 10px !important;
+  padding: 8px 16px !important;
+}
+
+.hint-trigger-btn.disabled {
+  background: #1f2937 !important;
+  color: #6b7280 !important;
+  border-color: #374151 !important;
+  cursor: not-allowed !important;
+  opacity: 0.7;
+}
+
+.oracle-hint-box {
+  background: #081628;
+  border: 2px dashed var(--neon-cyan);
+  padding: 16px 20px;
+  margin-top: 12px;
+  animation: fadeIn 0.25s ease;
+}
+
+.oracle-hint-header {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-cyan);
+  text-shadow: 0 0 6px var(--neon-cyan-glow);
+  margin-bottom: 8px;
+}
+
+.oracle-hint-body {
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.6;
+  color: #e0f2fe;
 }
 
 /* Options Grid / Single Choice */
@@ -198,86 +373,100 @@
   font-size: 16px;
   font-weight: bold;
   padding: 6px 12px;
-  text-transform: uppercase;
+  margin: 0 6px;
   outline: none;
-  min-width: 150px;
-  max-width: 100%;
-  box-sizing: border-box;
+  min-width: 180px;
 }
 
 .sql-fill-input:focus {
-  border-color: var(--neon-green);
-  box-shadow: 0 0 8px var(--neon-green-glow);
+  border-color: var(--neon-yellow);
+  box-shadow: 0 0 8px var(--neon-yellow-glow);
 }
 
-/* Code Snippet Box with Blanks */
 .code-blank-block {
-  background: #05070e;
-  border: 2px solid #252e4d;
-  padding: 18px 22px;
+  background: #060810;
+  border: 2px solid #2a3356;
+  padding: 20px 24px;
   margin-bottom: 22px;
   font-family: var(--font-mono);
   font-size: 15px;
+  line-height: 2;
+  color: #f8fafc;
   white-space: pre-wrap;
-  color: #a5f3fc;
-  line-height: 2.1;
-  width: 100%;
-  box-sizing: border-box;
+  word-break: break-word;
   overflow-x: auto;
 }
 
-/* Matching / Association questions */
+.blank-input {
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 140px;
+}
+
+/* Matching Question Type */
 .matching-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  margin-bottom: 22px;
+  gap: 24px;
+  margin-bottom: 26px;
   width: 100%;
   box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .matching-container {
+    grid-template-columns: 1fr;
+  }
 }
 
 .matching-left, .matching-right {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  width: 100%;
-  box-sizing: border-box;
+  gap: 12px;
 }
 
 .matching-card {
-  background: #131728;
-  border: 2px solid #2d3558;
+  background: #11162a;
+  border: 2px solid #2e3860;
+  color: #e2e8f0;
   padding: 14px 18px;
+  font-family: var(--font-body);
   font-size: 15px;
   line-height: 1.5;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  box-sizing: border-box;
-  transition: background 0.15s ease, border-color 0.15s ease;
+  transition: all 0.15s ease;
+  user-select: none;
+  border-radius: 2px;
+}
+
+.matching-card:hover:not(.matched) {
+  border-color: var(--neon-cyan);
+  background: #192244;
 }
 
 .matching-card.active {
   border-color: var(--neon-yellow);
-  background: #252c48;
+  background: #282f10;
+  color: #fff;
+  box-shadow: 0 0 10px var(--neon-yellow-glow);
 }
 
 .matching-card.matched {
-  border-color: var(--neon-green);
-  background: #0f361a;
-  color: var(--neon-green);
+  background: #082f1b !important;
+  border-color: var(--neon-green) !important;
+  color: #a7f3d0 !important;
+  cursor: default;
+  opacity: 0.85;
 }
 
 /* Feedback Box */
 .feedback-box {
-  background: #0a1124;
-  border: 3px solid var(--neon-cyan);
-  padding: 22px 26px;
-  margin-top: 22px;
-  animation: slideDownFeedback 0.2s ease;
   display: none;
+  border: 3px solid #333;
+  padding: 22px 26px;
+  margin-bottom: 24px;
+  background: #090c18;
+  animation: fadeIn 0.3s ease;
   width: 100%;
   box-sizing: border-box;
 }
@@ -288,22 +477,19 @@
 
 .feedback-box.feedback-correct {
   border-color: var(--neon-green);
-  background: #061f10;
+  box-shadow: 0 0 15px var(--neon-green-glow);
 }
 
 .feedback-box.feedback-error {
   border-color: var(--neon-red);
-  background: #24080e;
+  box-shadow: 0 0 15px var(--neon-red-glow);
 }
 
 .feedback-header {
   font-family: var(--font-pixel);
   font-size: 12px;
   margin-bottom: 12px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 
 .feedback-header.correct {
@@ -316,36 +502,30 @@
 
 .feedback-explanation {
   font-family: var(--font-body);
-  font-size: 15.5px;
-  line-height: 1.7;
+  font-size: 16px;
   color: #f1f5f9;
-  margin-bottom: 12px;
+  line-height: 1.7;
+  margin-bottom: 14px;
 }
 
 .feedback-citation {
+  font-family: var(--font-mono);
   font-size: 13px;
-  color: var(--neon-yellow);
-  border-top: 1px dashed #444;
+  color: #94a3b8;
+  border-top: 1px dashed #334155;
   padding-top: 10px;
 }
 
-@keyframes slideDownFeedback {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-/* Question Action Footer */
+/* Question Action Buttons */
 .question-actions {
   display: flex;
-  justify-content: space-between;
+  gap: 14px;
   align-items: center;
-  margin-top: 22px;
   flex-wrap: wrap;
-  gap: 12px;
 }
 
 /* =========================================================
-   BOSS FIGHT
+   BOSS FIGHT ARENA STYLES
    ========================================================= */
 .boss-arena {
   background: #090616;
