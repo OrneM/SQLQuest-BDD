@@ -369,7 +369,7 @@ class TimeAttackExam {
       // Remove from failed questions in localStorage if resolved
       this.removeFailedQuestionId(q.id);
 
-      this.showFeedback(true, `¡CORRECTO! +${earnedXp} XP (Racha: ${this.streak}🔥)`, q.explanation, q.citation);
+      this.showFeedback(true, `¡CORRECTO! +${earnedXp} XP (Racha: ${this.streak}🔥)`, q.explanation, q.citation, q.slideImage);
     } else {
       window.retroAudio.playError();
       this.incorrectCount++;
@@ -379,7 +379,7 @@ class TimeAttackExam {
       // Save to spaced repetition failed questions
       this.addFailedQuestionId(q.id);
 
-      this.showFeedback(false, `¡INCORRECTO! -1 Corazón ❤️`, q.explanation, q.citation);
+      this.showFeedback(false, `¡INCORRECTO! -1 Corazón ❤️`, q.explanation, q.citation, q.slideImage);
 
       if (this.lives <= 0) {
         this.lives = 0;
@@ -394,14 +394,26 @@ class TimeAttackExam {
     this.updateHUD();
   }
 
-  showFeedback(isCorrect, title, explanation, citation) {
+  showFeedback(isCorrect, title, explanation, citation, slideImage = null) {
     if (!this.feedbackBoxEl) return;
     this.feedbackBoxEl.className = `feedback-box active ${isCorrect ? 'feedback-correct' : 'feedback-error'}`;
+    
+    let slideHtml = '';
+    if (slideImage) {
+      slideHtml = `
+        <div style="margin: 12px 0; border: 2px solid #283256; background: #000; cursor: pointer; position: relative; max-width: 480px;" onclick="window.openInfographicLightbox('${slideImage}', 'Infografía Explicativa', '${explanation.replace(/'/g, "\\'")}')">
+          <img src="${slideImage}" alt="Diapositiva Explicativa" style="width: 100%; height: auto; display: block;">
+          <span style="position: absolute; bottom: 6px; right: 6px; background: rgba(0,0,0,0.85); color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 8px; padding: 2px 6px;">🔍 AMPLIAR INFOGRAFÍA</span>
+        </div>
+      `;
+    }
+
     this.feedbackBoxEl.innerHTML = `
       <div class="feedback-header ${isCorrect ? 'correct' : 'error'}">
         ${isCorrect ? '✔ NIVEL SUPERADO' : '✖ RESPUESTA INCORRECTA'} — ${title}
       </div>
       <div class="feedback-explanation">${explanation}</div>
+      ${slideHtml}
       <div class="feedback-citation">📖 Fuente: ${citation}</div>
     `;
   }

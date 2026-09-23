@@ -127,4 +127,18 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('modal-victory').classList.remove('active');
     });
   }
+
+  // Close Lightbox modal handler
+  const closeLightboxBtn = document.getElementById('close-lightbox-btn');
+  const lightboxModal = document.getElementById('modal-infographic-lightbox');
+  if (closeLightboxBtn && lightboxModal) {
+    closeLightboxBtn.addEventListener('click', () => {
+      lightboxModal.classList.remove('active');
+    });
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        lightboxModal.classList.remove('active');
+      }
+    });
+  }
 });
