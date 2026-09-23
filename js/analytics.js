@@ -10,7 +10,7 @@ class AnalyticsManager {
     try {
       const stored = localStorage.getItem(this.storageKey);
       if (!stored) {
-        // Seed with realistic baseline initial history so the dashboard looks informative from the start
+        // Seed with realistic baseline initial history so the dashboard looks informative immediately
         const seedData = [
           {
             id: Date.now() - 86400000 * 4,
@@ -196,12 +196,12 @@ class AnalyticsManager {
   }
 
   refreshUI() {
-    this.renderDashboard();
-    this.renderMiniSummary();
+    this.renderDashboard('analytics-dashboard-container', 'evolution-line-chart');
+    this.renderDashboard('analytics-dashboard-container-home', 'evolution-line-chart-home');
   }
 
-  renderDashboard() {
-    const container = document.getElementById('analytics-dashboard-container');
+  renderDashboard(containerId = 'analytics-dashboard-container', canvasId = 'evolution-line-chart') {
+    const container = document.getElementById(containerId);
     if (!container) return;
 
     const stats = this.getCalculatedStats();
@@ -255,7 +255,7 @@ class AnalyticsManager {
               <p class="analytics-header-subtitle">Seguimiento de calificaciones, velocidad de respuesta y curva de aprendizaje.</p>
             </div>
           </div>
-          <button class="btn-retro btn-red" id="analytics-clear-btn" style="font-size: 10px; padding: 10px 16px;">
+          <button class="btn-retro btn-red clear-history-btn" style="font-size: 10px; padding: 10px 16px;">
             <span>🗑️ Limpiar Historial</span>
           </button>
         </div>
@@ -328,7 +328,7 @@ class AnalyticsManager {
               <span style="font-size: 12px; color: var(--neon-cyan); font-family: var(--font-mono);">Escala 0 - 10</span>
             </div>
             <div class="chart-container">
-              <canvas id="evolution-line-chart" class="chart-canvas" width="600" height="220"></canvas>
+              <canvas id="${canvasId}" class="chart-canvas" width="600" height="220"></canvas>
             </div>
           </div>
 
@@ -422,18 +422,18 @@ class AnalyticsManager {
 
     container.innerHTML = html;
 
-    // Bind Clear Button
-    const clearBtn = document.getElementById('analytics-clear-btn');
-    if (clearBtn) {
-      clearBtn.addEventListener('click', () => this.clearHistory());
-    }
+    // Bind Clear Buttons
+    const clearBtns = container.querySelectorAll('.clear-history-btn');
+    clearBtns.forEach(btn => {
+      btn.addEventListener('click', () => this.clearHistory());
+    });
 
     // Draw Chart
-    this.drawChart(stats.attempts);
+    setTimeout(() => this.drawChart(stats.attempts, canvasId), 50);
   }
 
-  drawChart(attempts) {
-    const canvas = document.getElementById('evolution-line-chart');
+  drawChart(attempts, canvasId = 'evolution-line-chart') {
+    const canvas = document.getElementById(canvasId);
     if (!canvas) return;
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
@@ -563,27 +563,6 @@ class AnalyticsManager {
       ctx.fillStyle = '#64748b';
       ctx.fillText(`T${i + 1}`, x, padTop + chartH + 18);
     });
-  }
-
-  renderMiniSummary() {
-    const container = document.getElementById('exam-welcome-mini-stats');
-    if (!container) return;
-
-    const stats = this.getCalculatedStats();
-    container.innerHTML = `
-      <div class="mini-evolution-widget">
-        <div class="mini-widget-title">
-          <span>📈</span>
-          <span>Tu Avance Académico: <strong>${stats.levelText}</strong></span>
-        </div>
-        <div class="mini-widget-stats">
-          <div class="mini-stat-pill">Promedio: <strong>${stats.avgScore}/10</strong></div>
-          <div class="mini-stat-pill">Récord: <strong>${stats.bestScore}/10</strong></div>
-          <div class="mini-stat-pill">Velocidad: <strong>${stats.avgSpeed}</strong></div>
-          <div class="mini-stat-pill">Simulacros: <strong>${stats.totalAttempts}</strong></div>
-        </div>
-      </div>
-    `;
   }
 }
 
