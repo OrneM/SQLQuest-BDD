@@ -120,6 +120,26 @@
         <!-- Mini Evolution Widget -->
         <div id="exam-welcome-mini-stats"></div>
 
+        <!-- Selector de Cantidad de Preguntas (10, 20, 30) -->
+        <div class="exam-length-selector-container">
+          <div class="exam-length-header">
+            <span class="exam-length-icon">🎯</span>
+            <span class="exam-length-title">CANTIDAD DE PREGUNTAS:</span>
+            <span class="exam-length-hint" id="exam-length-hint-text">20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz)</span>
+          </div>
+          <div class="exam-length-buttons" id="exam-length-buttons-group">
+            <button type="button" class="btn-retro length-choice-btn" data-count="10">
+              <span>⚡ 10 PREGUNTAS</span>
+            </button>
+            <button type="button" class="btn-retro length-choice-btn active" data-count="20">
+              <span>⚔️ 20 PREGUNTAS</span>
+            </button>
+            <button type="button" class="btn-retro length-choice-btn" data-count="30">
+              <span>🏆 30 PREGUNTAS</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Game Mode Selection Cards -->
         <div class="game-modes-grid">
           <!-- Modo Aprendiz -->
@@ -143,7 +163,7 @@
               </ul>
             </div>
             <button class="btn-retro btn-green" id="start-apprentice-btn" style="width: 100%; font-size: 11px; padding: 14px 20px;">
-              <span>🌱 INICIAR MODO APRENDIZ</span>
+              <span id="start-apprentice-label">🌱 INICIAR MODO APRENDIZ (20 PREG.)</span>
             </button>
           </div>
 
@@ -162,13 +182,13 @@
               </p>
               <ul class="game-mode-features-list">
                 <li><span class="feat-icon">❤️</span> <strong>3 Vidas Estrictas</strong> (A los 3 errores es Game Over).</li>
-                <li><span class="feat-icon">⏳</span> <strong>Límite de 45 Minutos</strong> con alarma en el HUD.</li>
+                <li id="warrior-time-feature-bullet"><span class="feat-icon">⏳</span> <strong id="warrior-time-text">Límite de 30 Minutos</strong> con alarma en el HUD.</li>
                 <li><span class="feat-icon">🔒</span> <strong>Sin Pistas</strong> (Valerte solo con tu espada y memoria).</li>
                 <li><span class="feat-icon">🔥</span> <strong>Multiplicador de Racha</strong> y XP x2.</li>
               </ul>
             </div>
             <button class="btn-retro btn-gold" id="start-warrior-btn" style="width: 100%; font-size: 11px; padding: 14px 20px;">
-              <span>⚔️ INICIAR MODO WARRIOR</span>
+              <span id="start-warrior-label">⚔️ INICIAR MODO WARRIOR (20 PREG. - 30 MIN)</span>
             </button>
           </div>
         </div>

@@ -1,9 +1,10 @@
-// Antigravity BDD: Time Attack Module (Modos Aprendiz & Warrior)
+// Antigravity BDD: Time Attack Module (Modos Aprendiz & Warrior con Selección de 10, 20 o 30 Preguntas)
 
 class TimeAttackExam {
   constructor() {
     this.currentMode = 'apprentice'; // 'apprentice' | 'warrior'
-    this.totalDuration = 45 * 60; // 45 minutes in seconds for warrior
+    this.selectedQuestionCount = 20; // 10 | 20 | 30
+    this.totalDuration = 30 * 60; // default 30 min for 20 questions
     this.remainingSeconds = this.totalDuration;
     this.elapsedSeconds = 0;
     this.timerInterval = null;
@@ -24,6 +25,7 @@ class TimeAttackExam {
 
     this.initElements();
     this.bindEvents();
+    this.updateLengthSelectorUI();
     this.updateHUD();
   }
 
@@ -39,6 +41,19 @@ class TimeAttackExam {
   }
 
   bindEvents() {
+    // Length choice buttons (10, 20, 30 questions)
+    const lengthBtns = document.querySelectorAll('.length-choice-btn');
+    lengthBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const count = parseInt(btn.getAttribute('data-count'), 10) || 20;
+        this.selectedQuestionCount = count;
+        lengthBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.retroAudio.playBlip(600, 0.04);
+        this.updateLengthSelectorUI();
+      });
+    });
+
     if (this.nextBtnEl) {
       this.nextBtnEl.addEventListener('click', () => {
         if (!this.isRunning) return;
@@ -129,13 +144,47 @@ class TimeAttackExam {
     }
   }
 
+  updateLengthSelectorUI() {
+    const hintEl = document.getElementById('exam-length-hint-text');
+    const warriorTimeText = document.getElementById('warrior-time-text');
+    const apprenticeLabel = document.getElementById('start-apprentice-label');
+    const warriorLabel = document.getElementById('start-warrior-label');
+
+    const count = this.selectedQuestionCount;
+    const minsMap = { 10: 15, 20: 30, 30: 45 };
+    const mins = minsMap[count] || 30;
+
+    if (hintEl) {
+      if (count === 10) {
+        hintEl.textContent = '⚡ 10 Preguntas (15 min en Warrior / Tiempo Libre en Aprendiz)';
+      } else if (count === 20) {
+        hintEl.textContent = '⚔️ 20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz)';
+      } else {
+        hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz)';
+      }
+    }
+
+    if (warriorTimeText) {
+      warriorTimeText.textContent = `Límite de ${mins} Minutos (${count === 10 ? 'Sprint' : (count === 20 ? 'Estándar' : 'Completo')})`;
+    }
+
+    if (apprenticeLabel) {
+      apprenticeLabel.textContent = `🌱 INICIAR MODO APRENDIZ (${count} PREG.)`;
+    }
+
+    if (warriorLabel) {
+      warriorLabel.textContent = `⚔️ INICIAR MODO WARRIOR (${count} PREG. - ${mins} MIN)`;
+    }
+  }
+
   startNewExam(mode = 'apprentice') {
     this.currentMode = mode;
     
-    // Pick 25 questions from the full bank (shuffled)
+    // Pick selectedQuestionCount questions from the full bank (shuffled)
     const allQuestions = [...window.QUESTIONS_DATABASE];
     const shuffled = allQuestions.sort(() => 0.5 - Math.random());
-    this.questions = shuffled.slice(0, 25);
+    const count = Math.min(this.selectedQuestionCount, allQuestions.length);
+    this.questions = shuffled.slice(0, count);
     
     this.currentIndex = 0;
     this.streak = 0;
@@ -146,10 +195,14 @@ class TimeAttackExam {
     if (this.currentMode === 'apprentice') {
       this.lives = 999;
       this.elapsedSeconds = 0;
+      this.totalDuration = 0;
     } else {
       this.maxLives = 3;
       this.lives = 3;
-      this.remainingSeconds = 45 * 60; // 45 minutes
+      const minsMap = { 10: 15, 20: 30, 30: 45 };
+      const mins = minsMap[this.selectedQuestionCount] || 30;
+      this.totalDuration = mins * 60;
+      this.remainingSeconds = this.totalDuration;
     }
 
     // Show exam container, hide welcome screen
@@ -175,6 +228,7 @@ class TimeAttackExam {
     document.getElementById('modal-game-over').classList.remove('active');
     document.getElementById('modal-victory').classList.remove('active');
 
+    this.updateLengthSelectorUI();
     this.updateHUD();
   }
 
@@ -195,7 +249,8 @@ class TimeAttackExam {
         if (this.remainingSeconds <= 0) {
           this.remainingSeconds = 0;
           clearInterval(this.timerInterval);
-          this.triggerGameOver("¡Se acabó el tiempo límite de 45 minutos!");
+          const mins = Math.round(this.totalDuration / 60);
+          this.triggerGameOver(`¡Se acabó el tiempo límite de ${mins} minutos!`);
         }
       }
     }, 1000);
@@ -308,7 +363,7 @@ class TimeAttackExam {
         </span>
       </div>
 
-      <h3 class="question-title">Pregunta ${currentNum}: ${q.question}</h3>
+      <h3 class="question-title">Pregunta ${currentNum} de ${totalNum}: ${q.question}</h3>
     `;
 
     // Oracle Hint Section
@@ -617,7 +672,7 @@ class TimeAttackExam {
 
     const duration = (this.currentMode === 'apprentice') 
       ? this.elapsedSeconds 
-      : Math.max(1, (45 * 60 - this.remainingSeconds));
+      : Math.max(1, (this.totalDuration - this.remainingSeconds));
 
     if (window.analyticsManager) {
       window.analyticsManager.recordAttempt({
@@ -653,7 +708,7 @@ class TimeAttackExam {
 
     const duration = (this.currentMode === 'apprentice') 
       ? this.elapsedSeconds 
-      : Math.max(1, (45 * 60 - this.remainingSeconds));
+      : Math.max(1, (this.totalDuration - this.remainingSeconds));
 
     if (window.analyticsManager) {
       window.analyticsManager.recordAttempt({
@@ -671,8 +726,8 @@ class TimeAttackExam {
       victoryStats.innerHTML = `
         <p style="color: var(--neon-yellow); font-size: 16px;">Calificación Final: <strong>${grade} / 10</strong></p>
         <p>Modo Completado: <strong>${this.currentMode === 'apprentice' ? '🌱 APRENDIZ (SIN ESTRÉS)' : '⚔️ WARRIOR (HARDCORE)'}</strong></p>
-        <p>Preguntas Correctas: ${this.correctCount} / ${this.questions.length}</p>
-        <p>XP Total Acumulada: ${this.xp}</p>
+        <p>Preguntas Correctas: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
+        <p>XP Total Acumulada: <strong>${this.xp}</strong></p>
         <p>Rango Obtenido: <span style="color: var(--neon-cyan);">⚔️ Maestro de Bases de Datos</span></p>
       `;
     }
