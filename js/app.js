@@ -2,11 +2,15 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Initialize Components
+  window.analyticsManager = new window.AnalyticsManager();
   const exam = new window.TimeAttackExam();
   const bossArena = new window.BossFightArena();
   const sqlLab = new window.SqlLabEngine();
   const der = new window.DerEngine();
   const grimoire = new window.GrimoireViewer();
+
+  // Initial render of analytics
+  window.analyticsManager.refreshUI();
 
   // Navigation Tabs Switching
   const tabBtns = document.querySelectorAll('.tab-btn');
@@ -32,6 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
         bossArena.refreshView();
       } else if (targetTabId === 'tab-der-engine') {
         setTimeout(() => der.renderDiagram(), 100);
+      } else if (targetTabId === 'tab-analytics') {
+        setTimeout(() => window.analyticsManager.refreshUI(), 50);
       }
     });
   });

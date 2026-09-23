@@ -615,6 +615,20 @@ class TimeAttackExam {
     this.isRunning = false;
     window.retroAudio.playGameOver();
 
+    const duration = (this.currentMode === 'apprentice') 
+      ? this.elapsedSeconds 
+      : Math.max(1, (45 * 60 - this.remainingSeconds));
+
+    if (window.analyticsManager) {
+      window.analyticsManager.recordAttempt({
+        mode: this.currentMode,
+        correct: this.correctCount,
+        total: this.questions.length,
+        durationSeconds: duration,
+        xpEarned: this.xp
+      });
+    }
+
     const reasonEl = document.getElementById('game-over-reason');
     if (reasonEl) reasonEl.textContent = reason;
 
@@ -624,7 +638,7 @@ class TimeAttackExam {
         <p>Modo: <strong style="color: var(--neon-red);">WARRIOR (EXAMEN HARDCORE)</strong></p>
         <p>Aciertos: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
         <p>XP Obtenida: <strong>${this.xp}</strong></p>
-        <p style="margin-top: 10px; color: var(--neon-yellow);">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong>!</p>
+        <p style="margin-top: 10px; color: var(--neon-yellow);">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong> y tus estadísticas actualizadas!</p>
       `;
     }
 
@@ -636,6 +650,20 @@ class TimeAttackExam {
     if (this.timerInterval) clearInterval(this.timerInterval);
     this.isRunning = false;
     window.retroAudio.playVictory();
+
+    const duration = (this.currentMode === 'apprentice') 
+      ? this.elapsedSeconds 
+      : Math.max(1, (45 * 60 - this.remainingSeconds));
+
+    if (window.analyticsManager) {
+      window.analyticsManager.recordAttempt({
+        mode: this.currentMode,
+        correct: this.correctCount,
+        total: this.questions.length,
+        durationSeconds: duration,
+        xpEarned: this.xp
+      });
+    }
 
     const grade = ((this.correctCount / this.questions.length) * 10).toFixed(1);
     const victoryStats = document.getElementById('victory-stats');
