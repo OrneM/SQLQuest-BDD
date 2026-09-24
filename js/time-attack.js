@@ -151,29 +151,21 @@ class TimeAttackExam {
     const warriorLabel = document.getElementById('start-warrior-label');
 
     const count = this.selectedQuestionCount;
-    const minsMap = { 10: 15, 20: 30, 30: 45, 50: 75, 100: 150 };
-    const mins = minsMap[count] || Math.round(count * 1.5);
+    const minsMap = { 10: 15, 20: 30, 30: 45 };
+    const mins = minsMap[count] || 30;
 
     if (hintEl) {
       if (count === 10) {
         hintEl.textContent = '⚡ 10 Preguntas (15 min en Warrior / Tiempo Libre en Aprendiz)';
       } else if (count === 20) {
         hintEl.textContent = '⚔️ 20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz)';
-      } else if (count === 30) {
-        hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz)';
-      } else if (count === 50) {
-        hintEl.textContent = '🔥 50 Preguntas (75 min en Warrior / Tiempo Libre en Aprendiz)';
       } else {
-        hintEl.textContent = '👑 100 Preguntas - Banco Total UTN (150 min en Warrior / Tiempo Libre en Aprendiz)';
+        hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz)';
       }
     }
 
     if (warriorTimeText) {
-      let label = 'Estándar';
-      if (count === 10) label = 'Sprint';
-      else if (count === 30) label = 'Completo';
-      else if (count === 50) label = 'Gran Reto';
-      else if (count === 100) label = 'Banco Total';
+      const label = count === 10 ? 'Sprint' : (count === 20 ? 'Estándar' : 'Completo');
       warriorTimeText.textContent = `Límite de ${mins} Minutos (${label})`;
     }
 
@@ -186,14 +178,36 @@ class TimeAttackExam {
     }
   }
 
+  // Algoritmo Fisher-Yates para barajado 100% aleatorio e impredecible
+  shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  // Prepara y aleatoriza opciones por sesión para que las respuestas no sean predecibles
+  prepareQuestion(rawQ) {
+    const q = JSON.parse(JSON.stringify(rawQ));
+    if (q.type === 'single_choice' && Array.isArray(q.options)) {
+      const correctOptionText = q.options[q.correctAnswer];
+      const shuffledOptions = this.shuffle(q.options);
+      q.options = shuffledOptions;
+      q.correctAnswer = shuffledOptions.indexOf(correctOptionText);
+    }
+    return q;
+  }
+
   startNewExam(mode = 'apprentice') {
     this.currentMode = mode;
     
-    // Pick selectedQuestionCount questions from the full bank (shuffled)
+    // Seleccionar y barajar aleatoriamente del banco completo combinado
     const allQuestions = [...window.QUESTIONS_DATABASE];
-    const shuffled = allQuestions.sort(() => 0.5 - Math.random());
-    const count = Math.min(this.selectedQuestionCount, allQuestions.length);
-    this.questions = shuffled.slice(0, count);
+    const shuffledPool = this.shuffle(allQuestions);
+    const count = Math.min(this.selectedQuestionCount, shuffledPool.length);
+    this.questions = shuffledPool.slice(0, count).map(q => this.prepareQuestion(q));
     
     this.currentIndex = 0;
     this.streak = 0;
@@ -208,8 +222,8 @@ class TimeAttackExam {
     } else {
       this.maxLives = 3;
       this.lives = 3;
-      const minsMap = { 10: 15, 20: 30, 30: 45, 50: 75, 100: 150 };
-      const mins = minsMap[this.selectedQuestionCount] || Math.round(this.selectedQuestionCount * 1.5);
+      const minsMap = { 10: 15, 20: 30, 30: 45 };
+      const mins = minsMap[this.selectedQuestionCount] || 30;
       this.totalDuration = mins * 60;
       this.remainingSeconds = this.totalDuration;
     }

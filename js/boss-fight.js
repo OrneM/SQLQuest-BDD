@@ -80,12 +80,34 @@ class BossFightArena {
     }
   }
 
+  shuffle(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
+  prepareQuestion(rawQ) {
+    const q = JSON.parse(JSON.stringify(rawQ));
+    if (q.type === 'single_choice' && Array.isArray(q.options)) {
+      const correctOptionText = q.options[q.correctAnswer];
+      const shuffledOptions = this.shuffle(q.options);
+      q.options = shuffledOptions;
+      q.correctAnswer = shuffledOptions.indexOf(correctOptionText);
+    }
+    return q;
+  }
+
   startFight(useAll = false) {
     if (useAll) {
-      this.failedQuestions = [...window.QUESTIONS_DATABASE].sort(() => 0.5 - Math.random()).slice(0, 10);
+      const pool = this.shuffle([...window.QUESTIONS_DATABASE]);
+      this.failedQuestions = pool.slice(0, 10).map(q => this.prepareQuestion(q));
     } else {
       this.loadFailedQuestions();
       if (this.failedQuestions.length === 0) return;
+      this.failedQuestions = this.shuffle(this.failedQuestions).map(q => this.prepareQuestion(q));
     }
 
     this.currentIndex = 0;
