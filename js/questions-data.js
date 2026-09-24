@@ -4,7 +4,7 @@
 const QUESTIONS_DATABASE = [
   {
     id: 1,
-    topic: "Clase 04: Índices y DML",
+    topic: "Clase 04 / 05: Índices y Costo DML",
     unit: "Unidad 4",
     type: "single_choice",
     question: "¿Cómo impactan las operaciones de manipulación de datos (DML) a los índices de una tabla?",
@@ -15,14 +15,14 @@ const QUESTIONS_DATABASE = [
       "Los índices solo afectan el rendimiento de las operaciones de consulta (SELECT), no de las operaciones DML."
     ],
     correctAnswer: 1,
-    explanation: "Cada operación DML (INSERT, UPDATE, DELETE) obliga al motor a reestructurar o balancear los índices asociados en disco (B-Tree page splits y rebalanceos). Por eso, un exceso de índices penaliza severamente la velocidad de escritura.",
-    citation: "Clase 04 - Manipulación de datos e Índices.",
-    slideImage: "assets/clases_infographics/clase4_p14.png",
+    explanation: "Cada operación DML (INSERT, UPDATE, DELETE) obliga al motor a reestructurar o balancear los índices asociados en disco (B-Tree splits y rebalanceos). Todo índice acelera las lecturas (SELECT) pero penaliza la velocidad de escritura (Overhead de Actualización).",
+    citation: "Clase 05 - Optimizando el Acceso: Índices y Overhead de Escritura DML.",
+    slideImage: "assets/clases_infographics/clase5_p13.png",
     hint: "Piensa en qué ocurre físicamente con las páginas del índice al insertar o borrar una fila: ¿el árbol B-Tree permanece inmóvil o debe dividirse (page split) y reordenarse?"
   },
   {
     id: 2,
-    topic: "Clase 03: Modelos de Datos",
+    topic: "Clase 01: Modelo Orientado a Objetos",
     unit: "Unidad 2-3",
     type: "single_choice",
     question: "El modelo de base de datos Orientado a Objetos es eficiente para...",
@@ -34,8 +34,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 3,
     explanation: "El modelo OODBMS maneja punteros directos e identidad de objetos (OID), simplificando y acelerando la navegación de relaciones complejas N-M a través de colecciones sin requerir costosos JOINs relacionales.",
-    citation: "Clase 03 - Modelos Jerárquico, Red y Objetos.",
-    slideImage: "assets/clases_infographics/clase3_p02.png",
+    citation: "Clase 01 - Adaptación a la Complejidad: Paradigma Orientado a Objetos.",
+    slideImage: "assets/clases_infographics/clase1_p10.png",
     hint: "Los objetos en memoria usan punteros directos e identidad de objeto (OID) con colecciones anidadas, evitando las tablas intermedias y los costosos JOINs del modelo relacional."
   },
   {
@@ -51,7 +51,7 @@ const QUESTIONS_DATABASE = [
       { key: "SUM(columna)", value: "Suma de todos los valores de una columna numérica" }
     ],
     explanation: "Las funciones de agregación operan sobre conjuntos de filas: COUNT cuenta registros, AVG calcula promedio aritmético, MAX busca el valor tope y SUM acumula importes.",
-    citation: "Clase 02 - Consultas simples. Funciones de agregación.",
+    citation: "Clase 02 - El Embudo de Agregación: COUNT, SUM, AVG, MIN, MAX.",
     slideImage: "assets/clases_infographics/clase2_p09.png",
     hint: "COUNT cuenta filas totales (incluyendo nulos si usas *), AVG calcula promedios numéricos, MAX busca el valor tope y SUM acumula importes."
   },
@@ -69,13 +69,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "El nivel conceptual (o lógico global) es único e independiente del hardware; describe la estructura completa de la BD, entidades, atributos y relaciones para toda la empresa.",
-    citation: "Clase 01 / 05 - Bases de Datos Relacionales & Arquitectura ANSI/SPARC.",
-    slideImage: "assets/clases_infographics/clase1_p04.png",
+    citation: "Clase 05 - Arquitectura ANSI/SPARC: Nivel Externo, Conceptual e Interno.",
+    slideImage: "assets/clases_infographics/clase5_p02.png",
     hint: "La arquitectura ANSI/SPARC tiene 3 niveles: Externo (vistas de usuario), Conceptual (visión lógica global de la organización) e Interno (almacenamiento físico en bytes y sectores)."
   },
   {
     id: 5,
-    topic: "Clase 01: Introducción y Consistencia",
+    topic: "Clase 01: Inconsistencia y Redundancia",
     unit: "Unidad 1",
     type: "single_choice",
     question: "Las inconsistencias en una base de datos surgen principalmente cuando...",
@@ -87,7 +87,7 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 2,
     explanation: "La inconsistencia es consecuencia directa de la redundancia no controlada: si un dato se almacena en varios sitios y solo se actualiza en uno, los datos entran en contradicción.",
-    citation: "Clase 01 - Introducción a las Bases de Datos / Ventajas del enfoque DBMS.",
+    citation: "Clase 01 - El Fin del Caos Estructural: Redundancia e Inconsistencia.",
     slideImage: "assets/clases_infographics/clase1_p03.png",
     hint: "Si la dirección de un cliente se copia en 4 tablas distintas y se modifica solo en una, la base de datos entra en contradicción o inconsistencia."
   },
@@ -105,8 +105,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 3,
     explanation: "El modelo relacional no permite relaciones N-M directas a nivel de tablas. La tabla asociativa o intermedia descompone la relación N-M en dos relaciones 1-N y garantiza el acceso exacto a cada par de instancias.",
-    citation: "Clase 03 / 05 - Modelo Relacional / Normalización y tablas asociativas.",
-    slideImage: "assets/clases_infographics/clase3_p05.png",
+    citation: "Clase 05 - Desentrañando la Relación Muchos a Muchos (N-M) y Tabla Intermedia.",
+    slideImage: "assets/clases_infographics/clase5_p06.png",
     hint: "En una relación N-M (como Estudiantes y Materias), la tabla intermedia contiene las dos Claves Foráneas (FKs) que vinculan cada par específico de registros."
   },
   {
@@ -120,8 +120,8 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "CREATE DATABASE",
     explanation: "El comando DDL estándar para inicializar un nuevo contenedor de base de datos es `CREATE DATABASE nombre_bd;`.",
-    citation: "Clase 02 / Clase 04 - DDL (Data Definition Language).",
-    slideImage: "assets/clases_infographics/clase2_p03.png",
+    citation: "Clase 02 - Las 4 Familias de Comandos SQL: DDL (CREATE, ALTER, DROP).",
+    slideImage: "assets/clases_infographics/clase2_p04.png",
     hint: "Son dos palabras del sublenguaje DDL: la acción de crear ('CREATE') seguida del tipo de contenedor ('DATABASE')."
   },
   {
@@ -137,13 +137,13 @@ const QUESTIONS_DATABASE = [
       { key: "ORDER BY", value: "Ordena los resultados de una consulta de forma ASC o DESC" }
     ],
     explanation: "WHERE filtra tuplas, ORDER BY clasifica el orden de salida, LIMIT acota la cantidad de filas y OFFSET omite los primeros N registros para paginación.",
-    citation: "Clase 02 y 03 - SQL DQL y Búsquedas Avanzadas.",
+    citation: "Clase 02 - Moldeando el Resultado: ORDER BY y LIMIT / OFFSET.",
     slideImage: "assets/clases_infographics/clase2_p08.png",
     hint: "WHERE filtra registros antes de agrupar, ORDER BY clasifica según columnas, LIMIT pone un techo de filas y OFFSET salta páginas."
   },
   {
     id: 9,
-    topic: "Clase 03: Agrupamiento y Filtros",
+    topic: "Clase 03: Agrupamiento y Filtros (HAVING)",
     unit: "Unidad 2",
     type: "fill_in_sql",
     question: "Si en una query SQL queremos filtrar los grupos basados en una condición sobre una función de agregación, usaremos la cláusula...",
@@ -152,13 +152,13 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "HAVING",
     explanation: "`WHERE` filtra filas individuales *antes* de agrupar; `HAVING` filtra los grupos resultantes *después* de aplicar funciones de agregación como COUNT, AVG o SUM.",
-    citation: "Clase 03 - Consultas avanzadas / GROUP BY y HAVING.",
-    slideImage: "assets/clases_infographics/clase2_p11.png",
+    citation: "Clase 03 - Agrupación y Filtrado Lógico: GROUP BY y HAVING.",
+    slideImage: "assets/clases_infographics/clase3_p08.png",
     hint: "Para filtrar sobre el resultado de una función de agregación (como AVG o COUNT) después de agrupar con GROUP BY, no se usa WHERE sino..."
   },
   {
     id: 10,
-    topic: "Clase 03 / 05: Cardinalidad",
+    topic: "Clase 03 / 05: Cardinalidad y Modalidad",
     unit: "Unidad 3-4",
     type: "single_choice",
     question: "Cuando se describe la cardinalidad de una relación, ¿qué implica la condición 'uno sin cero' (cardinalidad mínima 1)?",
@@ -170,8 +170,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "La cardinalidad mínima 1 ('uno sin cero' o '1..N / 1..1') impone obligatoriedad: cada instancia de la entidad debe estar forzosamente asociada a al menos una instancia de la otra entidad.",
-    citation: "Clase 03 / 05 - Cardinalidad y Modelo Entidad-Relación.",
-    slideImage: "assets/clases_infographics/clase3_p04.png",
+    citation: "Clase 05 - Restricciones de Existencia: Cardinalidad Detallada (Uno a Muchos).",
+    slideImage: "assets/clases_infographics/clase5_p07.png",
     hint: "Cardinalidad mínima 1 significa que no se admite el cero: la participación es obligatoria y el registro vinculado debe existir forzosamente."
   },
   {
@@ -186,13 +186,13 @@ const QUESTIONS_DATABASE = [
       { id: "BLANK_2", expected: "GROUP BY", placeholder: "cláusula" }
     ],
     explanation: "Se utiliza `COUNT(*)` para computar el número de filas de cada partición y `GROUP BY id_departamento` para segmentar los datos por dicha columna.",
-    citation: "Clase 02 y 03 - Agregaciones y agrupamientos.",
-    slideImage: "assets/clases_infographics/clase2_p10.png",
+    citation: "Clase 02 - Patrón de Consulta 4: Extracción de Métricas con GROUP BY.",
+    slideImage: "assets/clases_infographics/clase2_p14.png",
     hint: "El primer espacio requiere la función para contar filas ('COUNT') y el segundo la cláusula de dos palabras para agrupar ('GROUP BY')."
   },
   {
     id: 12,
-    topic: "Clase 04: Lenguaje DML",
+    topic: "Clase 04: Lenguaje DML (UPDATE)",
     unit: "Unidad 4",
     type: "fill_in_sql",
     question: "¿Cuál es el comando DML estándar utilizado para modificar datos existentes en una tabla?",
@@ -201,13 +201,13 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "UPDATE",
     explanation: "`UPDATE` es el comando DML para modificar valores de columnas en registros existentes de una tabla, usualmente filtrados por `WHERE`.",
-    citation: "Clase 04 - Manipulación de datos (DML).",
-    slideImage: "assets/clases_infographics/clase4_p03.png",
+    citation: "Clase 04 - Modificación de Registros Existentes con UPDATE.",
+    slideImage: "assets/clases_infographics/clase4_p09.png",
     hint: "Es el comando DML para modificar registros existentes acompañado de la cláusula SET."
   },
   {
     id: 13,
-    topic: "Clase 01 / 02: Conceptos Fundamentales",
+    topic: "Clase 01 / 05: Elementos de una Tabla",
     unit: "Unidad 1",
     type: "single_choice",
     question: "¿Qué término describe una propiedad o característica específica que distingue a una entidad y posee un conjunto posible de valores (dominio), como la edad o el código de un empleado?",
@@ -219,8 +219,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 1,
     explanation: "Un campo o atributo es una unidad elemental con nombre y tipo de dato que caracteriza a una entidad (ej. 'salario', 'nombre'). La tupla es la fila completa y el dominio es el conjunto de valores válidos.",
-    citation: "Clase 01 / 02 - Conceptos de Bases de Datos.",
-    slideImage: "assets/clases_infographics/clase2_p04.png",
+    citation: "Clase 05 - Elementos de una Tabla: Entidad, Atributo/Campo, Tupla y Dominio.",
+    slideImage: "assets/clases_infographics/clase5_p03.png",
     hint: "Una columna en una tabla modela una característica o propiedad individual de una entidad, también conocida como..."
   },
   {
@@ -237,13 +237,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 2,
     explanation: "El nivel conceptual define qué datos se almacenan (entidades, tipos, longitudes de campos y restricciones) desde una perspectiva lógica global de la organización.",
-    citation: "Clase 05 - Bases de Datos Relacionales / Niveles ANSI/SPARC.",
-    slideImage: "assets/clases_infographics/clase1_p04.png",
+    citation: "Clase 05 - Arquitectura ANSI/SPARC: Niveles Externo, Conceptual e Interno.",
+    slideImage: "assets/clases_infographics/clase5_p02.png",
     hint: "Define la estructura lógica global (entidades, tipos y restricciones de negocio) sin descender a los bytes en disco ni a las vistas parciales de un usuario particular."
   },
   {
     id: 15,
-    topic: "Clase 03: Relaciones y Joins",
+    topic: "Clase 03: Relaciones y Joins (INNER JOIN)",
     unit: "Unidad 3",
     type: "code_completion",
     question: "Obtén el nombre del empleado y el nombre del departamento al que pertenece, solo si existe coincidencia en ambas tablas, usando alias:",
@@ -253,13 +253,13 @@ const QUESTIONS_DATABASE = [
       { id: "BLANK_2", expected: "=", placeholder: "operador" }
     ],
     explanation: "`INNER JOIN` combina registros de ambas tablas únicamente cuando la condición de igualdad (`ON E.id_departamento = D.id_departamento`) se cumple de forma estricta.",
-    citation: "Clase 03 - Consultas SQL Avanzadas / INNER JOIN.",
-    slideImage: "assets/clases_infographics/clase3_p07.png",
+    citation: "Clase 03 - Anatomía de los JOINs (I): INNER JOIN en Profundidad.",
+    slideImage: "assets/clases_infographics/clase3_p10.png",
     hint: "El primer espacio es la cláusula de unión interna ('INNER JOIN') y el segundo es el operador de igualdad ('=')."
   },
   {
     id: 16,
-    topic: "Clase 03: Relaciones 1-N",
+    topic: "Clase 03 / 05: Relaciones 1-N",
     unit: "Unidad 3",
     type: "single_choice",
     question: "¿Cuál de las siguientes afirmaciones describe con precisión una relación uno a muchos (1-N)?",
@@ -271,8 +271,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 3,
     explanation: "En 1-N (ej. Un Departamento tiene Muchos Empleados), un departamento posee múltiples empleados, pero cada empleado pertenece a un único departamento mediante una clave foránea.",
-    citation: "Clase 03 - Relaciones 1-1, 1-N y N-M.",
-    slideImage: "assets/clases_infographics/clase3_p04.png",
+    citation: "Clase 05 - Relaciones Estructurales: Uno a Uno (1-1) y Uno a Muchos (1-N).",
+    slideImage: "assets/clases_infographics/clase5_p05.png",
     hint: "Un departamento puede albergar a muchos empleados, pero cada empleado pertenece a un único departamento."
   },
   {
@@ -289,13 +289,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "OLTP (Online Transaction Processing) se orienta a operaciones del día a día (altas, bajas, transferencias) con transacciones ACID rápidas y de bajo volumen por operación.",
-    citation: "Clase 01 - Introducción a las BD / Sistemas OLTP vs OLAP.",
-    slideImage: "assets/clases_infographics/clase1_p10.png",
+    citation: "Clase 01 - El Dilema Moderno: Operación (OLTP) vs Análisis (OLAP).",
+    slideImage: "assets/clases_infographics/clase1_p11.png",
     hint: "OLTP se enfoca en transacciones del día a día (compras, reservas, transferencias) rápidas y atómicas con alta concurrencia."
   },
   {
     id: 18,
-    topic: "Clase 04: Lenguaje DDL (DROP)",
+    topic: "Clase 04 / 05: Lenguaje DDL (DROP)",
     unit: "Unidad 4",
     type: "fill_in_sql",
     question: "La tabla 'Proyectos' ya no es necesaria y debe ser eliminada por completo de la base de datos. Completa la sentencia SQL:",
@@ -304,13 +304,13 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "DROP",
     explanation: "El comando DDL `DROP TABLE nombre_tabla;` destruye la tabla, sus definiciones y todos sus registros de manera permanente.",
-    citation: "Clase 04 - DDL / DROP TABLE.",
-    slideImage: "assets/clases_infographics/clase4_p04.png",
+    citation: "Clase 05 - Anatomía de la Construcción (DDL): CREATE, ALTER y DROP TABLE.",
+    slideImage: "assets/clases_infographics/clase5_p11.png",
     hint: "La palabra DDL para destruir permanentemente una tabla del catálogo es DROP."
   },
   {
     id: 19,
-    topic: "Clase 02 / 04: Operadores de Rango",
+    topic: "Clase 02: Operadores de Rango (BETWEEN)",
     unit: "Unidad 1-4",
     type: "code_completion",
     question: "Selecciona el nombre y salario de los empleados cuyo salario esté entre 45000 y 55000 (ambos inclusive):",
@@ -320,13 +320,13 @@ const QUESTIONS_DATABASE = [
       { id: "BLANK_2", expected: "AND", placeholder: "conjunción" }
     ],
     explanation: "El operador `BETWEEN min AND max` es inclusivo, equivalente a `(salario >= 45000 AND salario <= 55000)`.",
-    citation: "Clase 02 / 04 - Consultas simples y operadores SQL.",
-    slideImage: "assets/clases_infographics/clase2_p06.png",
+    citation: "Clase 02 - Refinando la Búsqueda: Operadores WHERE (Rangos BETWEEN AND, IN).",
+    slideImage: "assets/clases_infographics/clase2_p07.png",
     hint: "El operador de rango inclusivo en SQL es 'BETWEEN ... AND ...'."
   },
   {
     id: 20,
-    topic: "Clase 04: Tipos de Índices (GIST)",
+    topic: "Clase 04 / 05: Tipos de Índices (GIST)",
     unit: "Unidad 4",
     type: "single_choice",
     question: "¿Cuál es la aplicación principal de un índice de tipo GIST (Generalized Search Tree)?",
@@ -338,8 +338,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 2,
     explanation: "GIST es una estructura de árbol extensible que permite indexar datos multidimensionales, geométricos, espaciales, rangos y colecciones complejas donde B-Tree no aplica.",
-    citation: "Clase 04 - Índices avanzados (B-Tree, GIST, GIN, Hash).",
-    slideImage: "assets/clases_infographics/clase4_p13.png",
+    citation: "Clase 05 - Optimizando el Acceso: Índices (B-Tree, GIN, GiST para datos complejos).",
+    slideImage: "assets/clases_infographics/clase5_p13.png",
     hint: "GIST es un árbol de búsqueda generalizado optimizado para datos multidimensionales, geometrías espaciales (GIS), rangos y texto."
   },
   {
@@ -353,13 +353,13 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "ORDER BY",
     explanation: "`ORDER BY` presenta los registros ordenados por las columnas especificadas, utilizando `ASC` (por defecto) o `DESC`.",
-    citation: "Clase 02 - Consultas simples / DQL.",
+    citation: "Clase 02 - Moldeando el Resultado: ORDER BY (ASC / DESC).",
     slideImage: "assets/clases_infographics/clase2_p08.png",
     hint: "Cláusula de dos palabras para ordenar filas de forma ascendente o descendente."
   },
   {
     id: 22,
-    topic: "Clase 04: Índices B-Tree",
+    topic: "Clase 04 / 05: Índices B-Tree",
     unit: "Unidad 4",
     type: "single_choice",
     question: "¿Qué característica define mejor a un índice de tipo B-Tree?",
@@ -371,13 +371,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 2,
     explanation: "Los árboles B-Tree (Balanced Tree) son la estructura estándar y más extendida en DBMS: mantienen los datos ordenados en nodos y hojas balanceadas con complejidad O(log N).",
-    citation: "Clase 04 - Índices B-Tree / Optimización.",
-    slideImage: "assets/clases_infographics/clase4_p12.png",
+    citation: "Clase 05 - Optimizando el Acceso: Índices (B-Tree el estándar por defecto).",
+    slideImage: "assets/clases_infographics/clase5_p13.png",
     hint: "B-Tree (Balanced Tree) es la estructura por defecto en SQL; mantiene nodos balanceados con costo logarítmico O(log N) para comparaciones y rangos."
   },
   {
     id: 23,
-    topic: "Clase 04: Lenguaje DDL (CREATE)",
+    topic: "Clase 04 / 05: Lenguaje DDL (CREATE TABLE)",
     unit: "Unidad 4",
     type: "fill_in_sql",
     question: "Nombra el comando DDL exacto utilizado para crear una nueva tabla en la base de datos:",
@@ -386,8 +386,8 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "CREATE TABLE",
     explanation: "`CREATE TABLE` es la instrucción de DDL para definir el nombre, columnas, tipos de datos y restricciones de una nueva tabla.",
-    citation: "Clase 04 - DDL / Creación de tablas.",
-    slideImage: "assets/clases_infographics/clase2_p03.png",
+    citation: "Clase 05 - Anatomía de la Construcción (DDL): CREATE TABLE (Esquema Inicial).",
+    slideImage: "assets/clases_infographics/clase5_p11.png",
     hint: "Comando DDL de dos palabras para definir una nueva estructura relacional con sus campos."
   },
   {
@@ -404,13 +404,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 2,
     explanation: "El modelo jerárquico organiza los datos en forma de árbol invertido: cada hijo solo puede tener un único padre (1-N estricto), lo que dificulta modelar relaciones N-M.",
-    citation: "Clase 03 - Modelo Jerárquico y de Red.",
-    slideImage: "assets/clases_infographics/clase3_p02.png",
+    citation: "Clase 03 - Modelo Jerárquico: El Árbol Invertido (Relación 1-N Padre-Hijo).",
+    slideImage: "assets/clases_infographics/clase3_p03.png",
     hint: "En una estructura de árbol jerárquico, cada elemento hijo tiene un único padre apuntándolo directamente."
   },
   {
     id: 25,
-    topic: "Clase 02: Cláusula DISTINCT",
+    topic: "Clase 02 / 03: Cláusula DISTINCT",
     unit: "Unidad 1",
     type: "code_completion",
     question: "Lista los 'id_departamento' únicos (sin valores repetidos) a los que están asignados los empleados:",
@@ -419,13 +419,13 @@ const QUESTIONS_DATABASE = [
       { id: "BLANK_1", expected: "DISTINCT", placeholder: "palabra clave" }
     ],
     explanation: "`SELECT DISTINCT columna` elimina las filas duplicadas del resultado, retornando solo valores únicos.",
-    citation: "Clase 02 - Consultas SQL simples / DISTINCT.",
-    slideImage: "assets/clases_infographics/clase2_p05.png",
+    citation: "Clase 03 - DISTINCT: Eliminando el Ruido (SELECT DISTINCT id_departamento).",
+    slideImage: "assets/clases_infographics/clase3_p12.png",
     hint: "Palabra clave que se antepone a la lista de columnas de un SELECT para descartar filas duplicadas."
   },
   {
     id: 26,
-    topic: "Clase 05: Claves y Restricciones",
+    topic: "Clase 05: Claves y Restricciones (PK vs FK)",
     unit: "Unidad 4",
     type: "single_choice",
     question: "¿Cuál es la diferencia principal entre una Clave Primaria (PK) y una Clave Foránea (FK)?",
@@ -437,13 +437,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "La Primary Key asegura unicidad y no nulidad en la propia tabla, mientras que la Foreign Key establece el vínculo hacia la PK de otra tabla garantizando integridad referencial.",
-    citation: "Clase 05 - Modelo Relacional / Claves primarias y foráneas.",
-    slideImage: "assets/clases_infographics/clase5_p03.png",
+    citation: "Clase 05 - Matriz Estructural de Claves: Primary Key (PK) vs Foreign Key (FK).",
+    slideImage: "assets/clases_infographics/clase5_p08.png",
     hint: "La PK identifica de forma única cada fila en su propia tabla, mientras que la FK apunta a la PK de otra tabla para mantener la integridad referencial."
   },
   {
     id: 27,
-    topic: "Clase 04: Subconsultas",
+    topic: "Clase 04: Subconsultas no Correlacionadas",
     unit: "Unidad 4",
     type: "single_choice",
     question: "En el contexto de SQL, ¿cuándo se evalúa una subconsulta no correlacionada?",
@@ -455,8 +455,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "Una subconsulta no correlacionada es independiente de la consulta exterior: el motor la ejecuta una sola vez al inicio y reemplaza el resultado para filtrar la consulta principal.",
-    citation: "Clase 04 - Subconsultas y optimización.",
-    slideImage: "assets/clases_infographics/clase4_p06.png",
+    citation: "Clase 04 - El Flujo de Ejecución de una Subconsulta en Acción (Paso 1 y Paso 2).",
+    slideImage: "assets/clases_infographics/clase4_p13.png",
     hint: "Al ser independiente de las filas de la consulta exterior, el motor no necesita reevaluarla: la ejecuta una sola vez al inicio."
   },
   {
@@ -473,7 +473,7 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "La independencia física permite cambiar detalles de almacenamiento, rutas de acceso y estructuras físicas de archivos sin afectar el esquema conceptual ni las aplicaciones de usuario.",
-    citation: "Clase 01 - Introducción a las BD / Independencia de Datos.",
+    citation: "Clase 01 - El Escudo de la Independencia de Datos (Física vs Lógica).",
     slideImage: "assets/clases_infographics/clase1_p05.png",
     hint: "Permite cambiar discos, particiones o crear índices físicos sin tener que modificar el código de los programas que consultan la base de datos."
   },
@@ -491,13 +491,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "El motor primero localiza las tablas (FROM/JOIN), filtra filas (WHERE), agrupa (GROUP BY), filtra grupos (HAVING), proyecta columnas y aliases (SELECT), remueve duplicados (DISTINCT), ordena (ORDER BY) y finalmente pagina (LIMIT/OFFSET). ¡Por eso no puedes usar un alias de SELECT en el WHERE!",
-    citation: "Clase 02 - Mastering SQL Queries / Orden de Ejecución.",
-    slideImage: "assets/clases_infographics/clase2_p14.png",
+    citation: "Clase 02 - Síntesis: El Pipeline de Datos SQL (Orden Lógico de Ejecución).",
+    slideImage: "assets/clases_infographics/clase2_p10.png",
     hint: "El motor primero busca de dónde sacar los datos (FROM), filtra las filas individuales (WHERE), luego agrupa (GROUP BY), filtra grupos (HAVING) y recién proyecta el SELECT."
   },
   {
     id: 30,
-    topic: "Clase 05: Acciones Referenciales ON DELETE CASCADE",
+    topic: "Clase 05: Acciones Referenciales (ON DELETE CASCADE)",
     unit: "Unidad 4-5",
     type: "single_choice",
     question: "Si una clave foránea (FK) se define con la regla `ON DELETE CASCADE`, ¿qué ocurre cuando se elimina un registro en la tabla padre referenciada?",
@@ -509,8 +509,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "`ON DELETE CASCADE` propaga la eliminación: al borrar el registro padre (ej. un Cliente), se eliminan automáticamente todos los registros hijos asociados (sus Facturas/Pedidos).",
-    citation: "Clase 05 - Relational Data Architecture / Acciones Referenciales.",
-    slideImage: "assets/clases_infographics/clase5_p05.png",
+    citation: "Clase 05 - Integridad Referencial en Acción (PK -> FK, ON DELETE CASCADE).",
+    slideImage: "assets/clases_infographics/clase5_p09.png",
     hint: "La regla 'CASCADE' propaga la eliminación: al borrar el registro padre (ej. un Cliente), se borran automáticamente todas sus filas hijas (Facturas)."
   },
   {
@@ -525,13 +525,13 @@ const QUESTIONS_DATABASE = [
       { key: "DROP TABLE tabla", value: "DDL: Destruye completamente la estructura, datos, índices y metadatos de la tabla en el catálogo." }
     ],
     explanation: "DELETE es DML fila por fila con posibilidad de filtro y rollback; TRUNCATE es DDL de vaciado ultra-rápido; DROP borra la tabla por completo del diccionario.",
-    citation: "Clase 04 - Data Manipulation and Subqueries / Borrado de Datos.",
-    slideImage: "assets/clases_infographics/clase4_p04.png",
+    citation: "Clase 04 - Eliminación de Registros con DELETE vs DDL.",
+    slideImage: "assets/clases_infographics/clase4_p10.png",
     hint: "DELETE es DML transaccional con WHERE; TRUNCATE es DDL de vaciado instantáneo desasignando páginas; DROP destruye la tabla por completo."
   },
   {
     id: 32,
-    topic: "Clase 05: Formas Normales (1NF, 2NF, 3NF)",
+    topic: "Clase 03 / 05: Formas Normales (1NF, 2NF, 3NF)",
     unit: "Unidad 5",
     type: "single_choice",
     question: "¿Qué condición es indispensable para que una tabla se encuentre en Tercera Forma Normal (3NF)?",
@@ -543,13 +543,13 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "3NF exige estar en 2NF y eliminar dependencias transitivas: los atributos no clave deben depender directa y exclusivamente de la clave primaria, no a través de otro campo no clave.",
-    citation: "Clase 05 - Relational Data Architecture / Normalización 3NF.",
-    slideImage: "assets/clases_infographics/clase5_p09.png",
+    citation: "Clase 03 - Las Fracturas del Modelo: Duplicidad y Dependencias en Datos.",
+    slideImage: "assets/clases_infographics/clase3_p04.png",
     hint: "La Tercera Forma Normal (3NF) exige estar en 2NF y eliminar dependencias transitivas (ningún atributo no clave debe depender de otro atributo no clave)."
   },
   {
     id: 33,
-    topic: "Clase 04: Subconsultas Escalares vs Lista vs Tabla",
+    topic: "Clase 04: Subconsultas Escalares",
     unit: "Unidad 4",
     type: "single_choice",
     question: "¿Qué es una subconsulta escalar (Scalar Subquery) en SQL?",
@@ -561,8 +561,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "Una subconsulta escalar retorna una matriz de 1x1 (un solo valor primitivo, como `(SELECT MAX(precio) FROM Productos)`), permitiendo usar operadores de comparación directos (=, >, <).",
-    citation: "Clase 04 - Subconsultas Escalares y de Conjunto.",
-    slideImage: "assets/clases_infographics/clase4_p07.png",
+    citation: "Clase 04 - ¿Qué Tipo de Datos Devuelve una Subconsulta? (1. Un Único Valor Escalar).",
+    slideImage: "assets/clases_infographics/clase4_p12.png",
     hint: "Un escalar es un valor atómico único (una matriz de 1 fila por 1 columna, como el resultado de MAX(precio))."
   },
   {
@@ -578,8 +578,8 @@ const QUESTIONS_DATABASE = [
       { key: "WAL / Transaction Log", value: "Garantiza durabilidad (D de ACID) registrando cambios antes de persistir en disco." }
     ],
     explanation: "El DBMS se divide entre el Query Processor (Parser, Optimizador, Ejecutor) y el Storage Engine (Buffer Pool, Page Layout, WAL, Disk).",
-    citation: "Clase 01 - Data Systems Architecture / DBMS Internals.",
-    slideImage: "assets/clases_infographics/clase1_p06.png",
+    citation: "Clase 01 - Arquitectura DBMS: Procesador de Consultas y Motor de Almacenamiento.",
+    slideImage: "assets/clases_infographics/clase1_p04.png",
     hint: "El Parser revisa sintaxis; el Optimizador busca el plan más rápido; el Buffer Pool guarda páginas en RAM y el WAL garantiza durabilidad."
   },
   {
@@ -593,13 +593,13 @@ const QUESTIONS_DATABASE = [
     caseInsensitive: true,
     cleanAnswer: "CHECK",
     explanation: "La restricción `CHECK (condición_booleana)` valida que cada fila cumpla con la regla de negocio antes de permitir la inserción o actualización.",
-    citation: "Clase 05 - Domain Integrity & Constraints.",
-    slideImage: "assets/clases_infographics/clase5_p06.png",
+    citation: "Clase 05 - Arsenal de Restricciones (Constraints): NOT NULL, UNIQUE, CHECK.",
+    slideImage: "assets/clases_infographics/clase5_p12.png",
     hint: "Palabra clave de restricción de tabla para validar una expresión booleana sobre los valores de una columna."
   },
   {
     id: 36,
-    topic: "Clase 03: Operaciones de Conjunto (UNION vs UNION ALL)",
+    topic: "Clase 03: Operaciones de Conjunto (Teoría de Conjuntos)",
     unit: "Unidad 3",
     type: "single_choice",
     question: "¿Cuál es la diferencia fundamental entre `UNION` y `UNION ALL` al combinar resultados de dos consultas SQL?",
@@ -611,8 +611,8 @@ const QUESTIONS_DATABASE = [
     ],
     correctAnswer: 0,
     explanation: "`UNION` ejecuta internamente un descarte de duplicados (costoso en CPU/memoria). `UNION ALL` simplemente concatena los conjuntos de resultados sin deduplicar, ofreciendo mayor velocidad.",
-    citation: "Clase 03 - Data Architecture and Querying / Set Operations.",
-    slideImage: "assets/clases_infographics/clase3_p12.png",
+    citation: "Clase 03 - El Salto Relacional: Teoría de Conjuntos (Unión U, Intersección ∩).",
+    slideImage: "assets/clases_infographics/clase3_p07.png",
     hint: "UNION elimina duplicados ordenando o calculando hashes (más lento); UNION ALL simplemente pega todas las filas incluyendo duplicados (mucho más rápido)."
   }
 ];
