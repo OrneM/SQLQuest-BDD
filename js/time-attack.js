@@ -151,21 +151,30 @@ class TimeAttackExam {
     const warriorLabel = document.getElementById('start-warrior-label');
 
     const count = this.selectedQuestionCount;
-    const minsMap = { 10: 15, 20: 30, 30: 45 };
-    const mins = minsMap[count] || 30;
+    const minsMap = { 10: 15, 20: 30, 30: 45, 50: 75, 100: 150 };
+    const mins = minsMap[count] || Math.round(count * 1.5);
 
     if (hintEl) {
       if (count === 10) {
         hintEl.textContent = '⚡ 10 Preguntas (15 min en Warrior / Tiempo Libre en Aprendiz)';
       } else if (count === 20) {
         hintEl.textContent = '⚔️ 20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz)';
-      } else {
+      } else if (count === 30) {
         hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz)';
+      } else if (count === 50) {
+        hintEl.textContent = '🔥 50 Preguntas (75 min en Warrior / Tiempo Libre en Aprendiz)';
+      } else {
+        hintEl.textContent = '👑 100 Preguntas - Banco Total UTN (150 min en Warrior / Tiempo Libre en Aprendiz)';
       }
     }
 
     if (warriorTimeText) {
-      warriorTimeText.textContent = `Límite de ${mins} Minutos (${count === 10 ? 'Sprint' : (count === 20 ? 'Estándar' : 'Completo')})`;
+      let label = 'Estándar';
+      if (count === 10) label = 'Sprint';
+      else if (count === 30) label = 'Completo';
+      else if (count === 50) label = 'Gran Reto';
+      else if (count === 100) label = 'Banco Total';
+      warriorTimeText.textContent = `Límite de ${mins} Minutos (${label})`;
     }
 
     if (apprenticeLabel) {
@@ -199,8 +208,8 @@ class TimeAttackExam {
     } else {
       this.maxLives = 3;
       this.lives = 3;
-      const minsMap = { 10: 15, 20: 30, 30: 45 };
-      const mins = minsMap[this.selectedQuestionCount] || 30;
+      const minsMap = { 10: 15, 20: 30, 30: 45, 50: 75, 100: 150 };
+      const mins = minsMap[this.selectedQuestionCount] || Math.round(this.selectedQuestionCount * 1.5);
       this.totalDuration = mins * 60;
       this.remainingSeconds = this.totalDuration;
     }
