@@ -2488,7 +2488,7 @@ const SQL_LAB_PRESETS = [
     "id": "ex_dml_insert",
     "title": "5. DML INSERT: Contratar Nuevo Desarrollador (¡Costo DML!)",
     "description": "Inserta un nuevo empleado en el departamento de Desarrollo (id 4). ¡Observa el rebalanceo de índices!",
-    "defaultSql": "INSERT INTO Empleados (id_empleado, nombre, apellido, salario, id_departamento)\nVALUES (105, 'Valeria', 'Ríos', 68000.00, 4);",
+    "defaultSql": "INSERT INTO Empleados (id_empleado, nombre, apellido, salario, id_departamento)\nVALUES (107, 'Valeria', 'Ríos', 68000.00, 4);",
     "hint": "Ejecuta el INSERT y observa la animación del árbol B-Tree perdiendo hojas."
   },
   {

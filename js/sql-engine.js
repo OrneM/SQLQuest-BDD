@@ -233,11 +233,16 @@ class SqlLabEngine {
     } catch (err) {
       const duration = (performance.now() - startTime).toFixed(2);
       window.retroAudio.playError();
+      const isUniqueError = err.message && err.message.includes('UNIQUE constraint failed');
+      const errorDetail = isUniqueError 
+        ? `${err.message} — <em>(El ID ya existe en la tabla. Para volver a probar, pulsa "REINICIAR CON SEMILLA ALEATORIA" o cambia el ID por otro número no utilizado como 108 o 109).</em>` 
+        : err.message;
+
       if (this.statusTextEl) {
-        this.statusTextEl.innerHTML = `<span class="sql-status-err">✖ Error de sintaxis o ejecución (${duration} ms): ${err.message}</span>`;
+        this.statusTextEl.innerHTML = `<span class="sql-status-err">✖ Error de ejecución (${duration} ms): ${err.message}</span>`;
       }
       if (this.resultsTableContainer) {
-        this.resultsTableContainer.innerHTML = `<div style="color: var(--neon-red); font-size: 11px; padding: 12px; font-family: var(--font-mono);">ERROR SQL: ${err.message}</div>`;
+        this.resultsTableContainer.innerHTML = `<div style="color: var(--neon-red); font-size: 11px; padding: 12px; font-family: var(--font-mono); line-height: 1.6;">ERROR SQL: ${errorDetail}</div>`;
       }
     }
   }
