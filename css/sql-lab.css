@@ -397,3 +397,80 @@
     max-width: calc(100% - 20px);
   }
 }
+
+/* =========================================================
+   LIGHT MODE / MODO DÍA OVERRIDES FOR SQL LAB
+   ========================================================= */
+body.light-mode .presets-toolbar {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .presets-label {
+  color: #92400e;
+}
+
+body.light-mode .presets-select {
+  background: #ffffff;
+  color: #0f172a;
+  border-color: #2563eb;
+}
+
+body.light-mode .presets-select option {
+  background: #ffffff;
+  color: #0f172a;
+}
+
+body.light-mode .exercise-goal-box {
+  background: #eff6ff;
+  border-left-color: #2563eb;
+}
+
+body.light-mode .exercise-goal-title {
+  color: #1d4ed8;
+}
+
+body.light-mode .exercise-goal-desc {
+  color: #1e293b;
+}
+
+body.light-mode .sql-editor-wrapper {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f172a, 4px 4px 0 #cbd5e1;
+}
+
+body.light-mode .sql-editor-header {
+  background: #f1f5f9;
+  border-bottom-color: #cbd5e1;
+}
+
+body.light-mode .sql-terminal-badge {
+  color: #059669;
+}
+
+body.light-mode .sql-textarea {
+  background: #0f172a;
+  color: #93c5fd;
+}
+
+body.light-mode .sql-results-container {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .sql-results-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .sql-results-table td {
+  color: #1e293b;
+  border-color: #e2e8f0;
+}
+
+body.light-mode .sql-results-table tr:hover {
+  background: #f8fafc;
+}
+

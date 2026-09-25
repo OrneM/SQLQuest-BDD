@@ -146,3 +146,48 @@
   height: auto;
   filter: contrast(110%) brightness(105%) drop-shadow(0 0 6px rgba(0, 240, 255, 0.25));
 }
+
+/* =========================================================
+   LIGHT MODE / MODO DÍA OVERRIDES FOR DER ENGINE
+   ========================================================= */
+body.light-mode .der-syntax-helper {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+body.light-mode .der-syntax-helper code {
+  color: #92400e;
+  background: #fffbeb;
+  border-color: #fde68a;
+}
+
+body.light-mode .der-textarea-container {
+  border-color: #0f172a;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f172a, 4px 4px 0 #cbd5e1;
+}
+
+body.light-mode .der-textarea {
+  background: #0f172a;
+  color: #93c5fd;
+}
+
+body.light-mode .der-preview-col {
+  background: #ffffff;
+  border-color: #0284c7;
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #0f172a, 4px 4px 0 #cbd5e1;
+}
+
+body.light-mode .der-preview-header {
+  border-bottom-color: #e2e8f0;
+}
+
+body.light-mode .der-preview-title {
+  color: #0284c7;
+}
+
+body.light-mode .der-canvas-viewport {
+  background: radial-gradient(circle at center, #ffffff 0%, #f8fafc 100%);
+  border-color: #cbd5e1;
+}
+

@@ -743,3 +743,285 @@
   color: var(--neon-yellow);
   margin-bottom: 16px;
 }
+
+/* =========================================================
+   LIGHT MODE / MODO DÍA OVERRIDES FOR TIME ATTACK & BOSS FIGHT
+   ========================================================= */
+body.light-mode .exam-top-bar {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .exam-timer-display {
+  color: #059669;
+  text-shadow: none;
+}
+
+body.light-mode .exam-progress-bar-container {
+  background: #e2e8f0;
+  border-color: #0f172a;
+}
+
+body.light-mode .exam-length-selector-container {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .exam-length-title {
+  color: #0f172a;
+  text-shadow: none;
+}
+
+body.light-mode .exam-length-hint {
+  color: #64748b;
+}
+
+body.light-mode .length-choice-btn {
+  background: #f8fafc !important;
+  border-color: #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.light-mode .length-choice-btn:hover {
+  background: #f1f5f9 !important;
+  border-color: #0284c7 !important;
+  color: #0f172a !important;
+}
+
+body.light-mode .length-choice-btn.active {
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+  color: #1d4ed8 !important;
+  box-shadow: 3px 3px 0 #0f172a !important;
+}
+
+/* Game Mode Cards (Aprendiz, Warrior, Dungeon) */
+body.light-mode .game-mode-card {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .game-mode-card.apprentice {
+  background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+  border-color: #10b981;
+}
+body.light-mode .game-mode-card.apprentice .game-mode-title {
+  color: #065f46;
+  text-shadow: none;
+}
+
+body.light-mode .game-mode-card.warrior {
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
+  border-color: #f59e0b;
+}
+body.light-mode .game-mode-card.warrior .game-mode-title {
+  color: #92400e;
+  text-shadow: none;
+}
+
+body.light-mode .game-mode-card.dungeon {
+  background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
+  border-color: #a855f7;
+}
+body.light-mode .game-mode-card.dungeon .game-mode-title {
+  color: #6b21a8 !important;
+  text-shadow: none !important;
+}
+
+body.light-mode .dungeon-class-select-box {
+  background: #f3e8ff;
+  border-color: #a855f7;
+}
+
+body.light-mode .dungeon-select-label {
+  color: #581c87;
+}
+
+body.light-mode .dungeon-dropdown {
+  background: #ffffff;
+  color: #3b0764;
+  border-color: #9333ea;
+}
+
+body.light-mode .game-mode-desc {
+  color: #334155;
+}
+
+body.light-mode .game-mode-features-list li {
+  color: #1e293b;
+}
+
+body.light-mode .game-mode-icon {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+/* Running Exam Question Container */
+body.light-mode .question-panel {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .question-title {
+  color: #0f172a;
+}
+
+body.light-mode .question-topic-badge {
+  background: #f0f9ff;
+  color: #0369a1;
+  border-color: #0284c7;
+}
+
+body.light-mode .question-unit-badge {
+  background: #fffbeb;
+  color: #92400e;
+  border-color: #d97706;
+}
+
+body.light-mode .oracle-hint-box {
+  background: #f0fdfa;
+  border-color: #0d9488;
+}
+
+body.light-mode .oracle-hint-header {
+  color: #0f766e;
+  text-shadow: none;
+}
+
+body.light-mode .oracle-hint-body {
+  color: #134e4a;
+}
+
+body.light-mode .hint-trigger-btn.disabled {
+  background: #f1f5f9 !important;
+  color: #94a3b8 !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Options */
+body.light-mode .option-btn {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+body.light-mode .option-btn .opt-letter {
+  background: #ffffff;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+body.light-mode .option-btn:hover:not(:disabled) {
+  background: #eff6ff;
+  border-color: #2563eb;
+  box-shadow: -4px 0 0 #2563eb;
+  color: #0f172a;
+}
+
+body.light-mode .option-btn.selected {
+  background: #dbeafe;
+  border-color: #2563eb;
+  color: #1e3a8a;
+}
+
+body.light-mode .option-btn.correct {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #14532d !important;
+  box-shadow: 0 0 10px rgba(22, 163, 74, 0.3) !important;
+}
+
+body.light-mode .option-btn.incorrect {
+  background: #fee2e2 !important;
+  border-color: #dc2626 !important;
+  color: #7f1d1d !important;
+  box-shadow: 0 0 10px rgba(220, 38, 38, 0.3) !important;
+}
+
+/* SQL Fill & Code Completion */
+body.light-mode .sql-fill-container,
+body.light-mode .code-blank-block {
+  background: #0f172a;
+  border-color: #334155;
+  color: #f8fafc;
+}
+
+body.light-mode .sql-fill-input {
+  background: #1e293b;
+  border-color: #38bdf8;
+  color: #fde047;
+}
+
+/* Matching */
+body.light-mode .matching-card {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+body.light-mode .matching-card:hover:not(.matched) {
+  border-color: #2563eb;
+  background: #eff6ff;
+}
+
+body.light-mode .matching-card.active {
+  border-color: #d97706;
+  background: #fef3c7;
+  color: #92400e;
+  box-shadow: 0 0 8px rgba(217, 119, 6, 0.3);
+}
+
+body.light-mode .matching-card.matched {
+  background: #dcfce7 !important;
+  border-color: #16a34a !important;
+  color: #14532d !important;
+}
+
+/* Feedback Box */
+body.light-mode .feedback-box {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .feedback-box.feedback-correct {
+  background: #f0fdf4;
+  border-color: #16a34a;
+  box-shadow: 0 0 15px rgba(22, 163, 74, 0.2);
+}
+
+body.light-mode .feedback-box.feedback-error {
+  background: #fef2f2;
+  border-color: #dc2626;
+  box-shadow: 0 0 15px rgba(220, 38, 38, 0.2);
+}
+
+body.light-mode .feedback-explanation {
+  color: #1e293b;
+}
+
+body.light-mode .feedback-citation {
+  color: #475569;
+  border-top-color: #cbd5e1;
+}
+
+/* Boss Fight */
+body.light-mode .boss-arena {
+  background: #fdf4ff;
+  border-color: #c026d3;
+  box-shadow: 0 4px 20px rgba(192, 38, 211, 0.15);
+}
+
+body.light-mode .boss-name {
+  color: #86198f;
+  text-shadow: none;
+}
+
+body.light-mode .boss-hp-container {
+  background: #e2e8f0;
+  border-color: #0f172a;
+}
+

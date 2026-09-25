@@ -64,6 +64,40 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSoundUI();
   }
 
+  // Light / Dark Theme Mode Manager
+  const themeToggleBtn = document.getElementById('toggle-theme-btn');
+  const themeIcon = document.getElementById('theme-status-icon');
+  let currentTheme = localStorage.getItem('retro_bdd_theme') || 'dark'; // 'dark' | 'light'
+
+  function applyTheme(theme) {
+    currentTheme = theme;
+    localStorage.setItem('retro_bdd_theme', theme);
+
+    if (theme === 'light') {
+      document.body.classList.add('light-mode');
+      if (themeIcon) themeIcon.textContent = '🌙 MODO NOCHE';
+      if (themeToggleBtn) {
+        themeToggleBtn.className = 'btn-retro btn-purple';
+        themeToggleBtn.title = 'Cambiar a Modo Noche (Oscuro)';
+      }
+    } else {
+      document.body.classList.remove('light-mode');
+      if (themeIcon) themeIcon.textContent = '☀️ MODO DÍA';
+      if (themeToggleBtn) {
+        themeToggleBtn.className = 'btn-retro btn-gold';
+        themeToggleBtn.title = 'Cambiar a Modo Claro (Lectura de Día)';
+      }
+    }
+  }
+
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      window.retroAudio.playBlip(750, 0.05);
+      applyTheme(currentTheme === 'dark' ? 'light' : 'dark');
+    });
+    applyTheme(currentTheme);
+  }
+
   // CRT Scanlines Mode Toggle (Off -> Soft -> Arcade)
   const crtToggleBtn = document.getElementById('toggle-crt-btn');
   const crtIcon = document.getElementById('crt-status-icon');
