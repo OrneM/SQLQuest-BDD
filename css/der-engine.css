@@ -191,3 +191,21 @@ body.light-mode .der-canvas-viewport {
   border-color: #cbd5e1;
 }
 
+.der-toolbar-label {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-yellow);
+}
+body.light-mode .der-toolbar-label {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.der-helper-title {
+  color: var(--neon-yellow);
+}
+body.light-mode .der-helper-title {
+  color: #b45309;
+  font-weight: 700;
+}
+

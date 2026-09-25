@@ -355,9 +355,9 @@ class TimeAttackExam {
     const heartsContainer = document.getElementById('hud-hearts-container');
     if (heartsContainer) {
       if (this.currentMode === 'apprentice') {
-        heartsContainer.innerHTML = `<span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 11px;">❤️ ∞ ILIMITADAS</span>`;
+        heartsContainer.innerHTML = `<span class="hud-lives-apprentice">❤️ ∞ ILIMITADAS</span>`;
       } else if (this.currentMode === 'dungeon') {
-        heartsContainer.innerHTML = `<span style="color: #c084fc; font-family: var(--font-pixel); font-size: 11px;">🏰 ∞ MAZMORRA C${this.dungeonClass || this.selectedDungeonClass}</span>`;
+        heartsContainer.innerHTML = `<span class="hud-lives-dungeon">🏰 ∞ MAZMORRA C${this.dungeonClass || this.selectedDungeonClass}</span>`;
       } else {
         let heartsHtml = '';
         for (let i = 0; i < this.maxLives; i++) {
@@ -765,10 +765,10 @@ class TimeAttackExam {
         ? 'WARRIOR (EXAMEN HARDCORE)' 
         : (this.currentMode === 'dungeon' ? `DUNGEON (CLASE ${this.dungeonClass})` : 'APRENDIZ');
       statsEl.innerHTML = `
-        <p>Modo: <strong style="color: var(--neon-red);">${modeName}</strong></p>
-        <p>Aciertos: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
-        <p>XP Obtenida: <strong>${this.xp}</strong></p>
-        <p style="margin-top: 10px; color: var(--neon-yellow);">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong> y tus estadísticas actualizadas!</p>
+        <div class="modal-stat-line">Modo: <strong class="stat-highlight-mode-danger">${modeName}</strong></div>
+        <div class="modal-stat-line">Aciertos: <strong>${this.correctCount} / ${this.questions.length}</strong></div>
+        <div class="modal-stat-line">XP Obtenida: <strong class="stat-highlight-xp">+${this.xp} XP</strong></div>
+        <p class="modal-stat-note">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong> y tus estadísticas actualizadas!</p>
       `;
     }
 
@@ -806,11 +806,11 @@ class TimeAttackExam {
       }
 
       victoryStats.innerHTML = `
-        <p style="color: var(--neon-yellow); font-size: 16px;">Calificación Final: <strong>${grade} / 10</strong></p>
-        <p>Modo Completado: <strong>${modeText}</strong></p>
-        <p>Preguntas Correctas: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
-        <p>XP Total Acumulada: <strong>${this.xp}</strong></p>
-        <p>Rango Obtenido: <span style="color: var(--neon-cyan);">⚔️ Maestro de Bases de Datos</span></p>
+        <div class="modal-stat-line grade-line">Calificación Final: <strong class="stat-highlight-grade">${grade} / 10</strong></div>
+        <div class="modal-stat-line">Modo Completado: <strong class="stat-highlight-mode">${modeText}</strong></div>
+        <div class="modal-stat-line">Preguntas Correctas: <strong>${this.correctCount} / ${this.questions.length}</strong></div>
+        <div class="modal-stat-line">XP Total Acumulada: <strong class="stat-highlight-xp">+${this.xp} XP</strong></div>
+        <div class="modal-stat-line">Rango Obtenido: <span class="victory-rank-badge">⚔️ Maestro de Bases de Datos</span></div>
       `;
     }
 

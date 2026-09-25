@@ -272,6 +272,34 @@
   text-shadow: 0 0 8px var(--neon-yellow-glow);
 }
 
+.game-mode-card.dungeon {
+  border-color: #a855f7;
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.2);
+}
+.game-mode-card.dungeon .game-mode-title {
+  color: #d8b4fe;
+  text-shadow: 0 0 8px rgba(192, 132, 252, 0.6);
+}
+.game-mode-card.dungeon .game-mode-icon {
+  border-color: #a855f7;
+}
+
+.game-mode-subtitle {
+  display: block;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  margin-top: 3px;
+}
+.game-mode-subtitle.apprentice {
+  color: #a7f3d0;
+}
+.game-mode-subtitle.warrior {
+  color: #fde68a;
+}
+.game-mode-subtitle.dungeon {
+  color: #d8b4fe;
+}
+
 .game-mode-desc {
   font-size: 14.5px;
   color: #cbd5e1;
@@ -775,25 +803,27 @@ body.light-mode .exam-length-title {
 }
 
 body.light-mode .exam-length-hint {
-  color: #64748b;
+  color: #334155;
+  font-weight: 600;
 }
 
 body.light-mode .length-choice-btn {
-  background: #f8fafc !important;
-  border-color: #cbd5e1 !important;
-  color: #475569 !important;
+  background: #ffffff !important;
+  border-color: #94a3b8 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
 }
 
 body.light-mode .length-choice-btn:hover {
   background: #f1f5f9 !important;
   border-color: #0284c7 !important;
-  color: #0f172a !important;
+  color: #0284c7 !important;
 }
 
 body.light-mode .length-choice-btn.active {
   background: #eff6ff !important;
-  border-color: #2563eb !important;
-  color: #1d4ed8 !important;
+  border-color: #1d4ed8 !important;
+  color: #1e40af !important;
   box-shadow: 3px 3px 0 #0f172a !important;
 }
 
@@ -805,57 +835,104 @@ body.light-mode .game-mode-card {
 
 body.light-mode .game-mode-card.apprentice {
   background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
-  border-color: #10b981;
+  border-color: #059669;
 }
 body.light-mode .game-mode-card.apprentice .game-mode-title {
   color: #065f46;
   text-shadow: none;
 }
+body.light-mode .game-mode-subtitle.apprentice {
+  color: #047857;
+  font-weight: 700;
+}
 
 body.light-mode .game-mode-card.warrior {
   background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
-  border-color: #f59e0b;
+  border-color: #d97706;
 }
 body.light-mode .game-mode-card.warrior .game-mode-title {
   color: #92400e;
   text-shadow: none;
 }
+body.light-mode .game-mode-subtitle.warrior {
+  color: #b45309;
+  font-weight: 700;
+}
 
 body.light-mode .game-mode-card.dungeon {
   background: linear-gradient(180deg, #faf5ff 0%, #ffffff 100%);
-  border-color: #a855f7;
+  border-color: #7e22ce;
 }
 body.light-mode .game-mode-card.dungeon .game-mode-title {
-  color: #6b21a8 !important;
+  color: #581c87 !important;
   text-shadow: none !important;
+}
+body.light-mode .game-mode-subtitle.dungeon {
+  color: #6d28d9;
+  font-weight: 700;
 }
 
 body.light-mode .dungeon-class-select-box {
   background: #f3e8ff;
-  border-color: #a855f7;
+  border-color: #7e22ce;
 }
 
 body.light-mode .dungeon-select-label {
-  color: #581c87;
+  color: #4a044e;
+  font-weight: 700;
 }
 
 body.light-mode .dungeon-dropdown {
   background: #ffffff;
   color: #3b0764;
-  border-color: #9333ea;
+  border-color: #7e22ce;
+  font-weight: 600;
 }
 
 body.light-mode .game-mode-desc {
-  color: #334155;
+  color: #1e293b;
 }
 
 body.light-mode .game-mode-features-list li {
-  color: #1e293b;
+  color: #1e293b !important;
+  font-weight: 500;
+}
+body.light-mode .game-mode-features-list li strong {
+  color: #0f172a !important;
+  font-weight: 700;
 }
 
 body.light-mode .game-mode-icon {
   background: #ffffff;
-  border-color: #cbd5e1;
+  border-color: #94a3b8;
+}
+
+body.light-mode .exam-progress-label {
+  color: #475569;
+  font-weight: 600;
+}
+body.light-mode .exam-progress-count {
+  color: #0f172a;
+  font-weight: 700;
+}
+
+body.light-mode .exam-mode-indicator.mode-apprentice {
+  background: #ecfdf5;
+  color: #065f46;
+  border-color: #059669;
+  text-shadow: none;
+}
+body.light-mode .exam-mode-indicator.mode-warrior {
+  background: #fffbeb;
+  color: #92400e;
+  border-color: #d97706;
+  text-shadow: none;
+}
+body.light-mode .exam-mode-indicator.mode-dungeon {
+  background: #faf5ff;
+  color: #581c87;
+  border-color: #7e22ce;
+  text-shadow: none;
 }
 
 /* Running Exam Question Container */

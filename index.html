@@ -110,13 +110,13 @@
       <section id="exam-welcome-box" class="retro-box">
         <div class="retro-box-header">
           <h2 class="retro-box-title">SIMULACRO DE EXAMEN: BASES DE DATOS I</h2>
-          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">🎮 SELECCIONA TU MODO DE JUEGO</span>
+          <span class="retro-box-header-badge yellow">🎮 SELECCIONA TU MODO DE JUEGO</span>
         </div>
 
         <!-- Pixel Art Hero Illustration Banner -->
         <img src="assets/hero_banner.jpg" alt="Dungeon Quest Banner" class="module-visual-banner">
 
-        <p style="font-size: 16px; color: #f1f5f9; margin-bottom: 16px; font-weight: 500;">
+        <p class="welcome-intro-desc">
           ¡Bienvenido/a, aventurero/a del modelo relacional! Elige el estilo de entrenamiento que mejor se adapte a tus necesidades de estudio:
         </p>
 
@@ -152,7 +152,7 @@
                 <div class="game-mode-icon">🌱</div>
                 <div>
                   <h3 class="game-mode-title">MODO APRENDIZ</h3>
-                  <span style="color: #a7f3d0; font-size: 12px; font-family: var(--font-mono);">Estudio y Comprensión Conceptual</span>
+                  <span class="game-mode-subtitle apprentice">Estudio y Comprensión Conceptual</span>
                 </div>
               </div>
               <p class="game-mode-desc">
@@ -177,7 +177,7 @@
                 <div class="game-mode-icon">⚔️</div>
                 <div>
                   <h3 class="game-mode-title">MODO WARRIOR</h3>
-                  <span style="color: #fde68a; font-size: 12px; font-family: var(--font-mono);">Simulacro Oficial de Parcial (Hardcore)</span>
+                  <span class="game-mode-subtitle warrior">Simulacro Oficial de Parcial (Hardcore)</span>
                 </div>
               </div>
               <p class="game-mode-desc">
@@ -199,10 +199,10 @@
           <div class="game-mode-card dungeon">
             <div>
               <div class="game-mode-header">
-                <div class="game-mode-icon" style="border-color: #a855f7;">🏰</div>
+                <div class="game-mode-icon">🏰</div>
                 <div>
-                  <h3 class="game-mode-title" style="color: #d8b4fe; text-shadow: 0 0 8px rgba(192, 132, 252, 0.6);">MODO DUNGEON</h3>
-                  <span style="color: #c084fc; font-size: 12px; font-family: var(--font-mono);">Entrenamiento Temático por Clase</span>
+                  <h3 class="game-mode-title">MODO DUNGEON</h3>
+                  <span class="game-mode-subtitle dungeon">Entrenamiento Temático por Clase</span>
                 </div>
               </div>
               <p class="game-mode-desc">
@@ -244,11 +244,11 @@
         <div class="exam-top-bar">
           <div class="exam-timer-display" id="exam-timer">⏳ 45:00</div>
           <div class="exam-progress-info">
-            <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--text-muted);">PROGRESO:</span>
+            <span class="exam-progress-label">PROGRESO:</span>
             <div class="exam-progress-bar-container">
               <div class="exam-progress-bar-fill" id="exam-progress-fill"></div>
             </div>
-            <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--neon-yellow);" id="exam-progress-text">1 / 25</span>
+            <span class="exam-progress-count" id="exam-progress-text">1 / 25</span>
           </div>
         </div>
 
@@ -282,14 +282,14 @@
       <div class="retro-box">
         <div class="retro-box-header">
           <h2 class="retro-box-title">GUARIDA DEL BOSS: REPASO ESPACIADO</h2>
-          <span style="color: var(--neon-magenta); font-family: var(--font-pixel); font-size: 10px;">💀 MODO MUERTE SÚBITA</span>
+          <span class="retro-box-header-badge magenta">💀 MODO MUERTE SÚBITA</span>
         </div>
 
         <!-- No errors screen -->
         <div id="boss-no-errors-box" class="boss-no-errors-notice">
           <div class="trophy-icon">🏆</div>
-          <h3 style="font-family: var(--font-pixel); color: var(--neon-yellow); font-size: 16px; margin-bottom: 14px;">¡MAZMORRA PURIFICADA!</h3>
-          <p style="color: #cbd5e1; font-size: 15px; line-height: 1.8; margin-bottom: 24px; max-width: 650px; margin-left: auto; margin-right: auto;">
+          <h3 class="boss-purified-title">¡MAZMORRA PURIFICADA!</h3>
+          <p class="boss-purified-desc">
             No tienes preguntas falladas registradas localmente. ¡Has dominado todos los conceptos!<br>
             Si deseas entrenar de todas formas, puedes iniciar una ronda de prueba con el Titán B-Tree.
           </p>
@@ -302,9 +302,9 @@
         <div id="boss-arena-view" style="display: none;">
           <div id="boss-intro-box" style="text-align: center; padding: 10px;">
             <img src="assets/boss_battle.jpg" alt="Boss Titan Dragon" class="module-visual-banner" style="max-height: 260px;">
-            <h3 style="font-family: var(--font-pixel); color: var(--neon-magenta); font-size: 15px; margin-bottom: 12px;">¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!</h3>
-            <p style="font-size: 15px; color: #e2e8f0; margin-bottom: 24px; max-width: 700px; margin-left: auto; margin-right: auto;">
-              Tienes <strong style="color: var(--neon-yellow);" id="boss-pending-count">0</strong> conceptos pendientes de repaso. Cada respuesta correcta asestará un golpe al Boss y purgará el fallo de tu historial.
+            <h3 class="boss-challenge-title">¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!</h3>
+            <p class="boss-challenge-desc">
+              Tienes <strong class="boss-pending-count-highlight" id="boss-pending-count">0</strong> conceptos pendientes de repaso. Cada respuesta correcta asestará un golpe al Boss y purgará el fallo de tu historial.
             </p>
             <button class="btn-retro btn-red" id="start-boss-fight-btn" style="font-size: 12px; padding: 14px 28px;">
               <span>⚔️ ENFRENTAR AL BOSS AHORA</span>
@@ -347,7 +347,7 @@
       <div class="retro-box sql-lab-container">
         <div class="retro-box-header">
           <h2 class="retro-box-title">SANDBOX SQL LAB: MOTOR EN MEMORIA (SQLITE WASM)</h2>
-          <span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 10px;">⚡ EJECUCIÓN REAL NATIVA</span>
+          <span class="retro-box-header-badge green">⚡ EJECUCIÓN REAL NATIVA</span>
         </div>
 
         <!-- SQL Lab Alchemy Illustration Banner -->
@@ -387,13 +387,13 @@
             <span id="sql-status-message">Inicializando motor SQL...</span>
           </div>
           <div class="sql-table-container" id="sql-results-table-container">
-            <span style="color: var(--text-muted); font-size: 14px;">Los resultados de tus consultas aparecerán aquí.</span>
+            <span class="sql-placeholder-hint">Los resultados de tus consultas aparecerán aquí.</span>
           </div>
         </div>
 
         <!-- Schema Visualizer -->
         <div>
-          <h3 style="font-family: var(--font-pixel); font-size: 11px; color: var(--neon-cyan); margin-top: 10px; margin-bottom: 8px;">
+          <h3 class="sql-history-title">
             🗂️ ESQUEMA ACTUAL DE TABLAS EN MEMORIA:
           </h3>
           <div class="schema-quick-view" id="sql-schema-cards-container">
@@ -410,14 +410,14 @@
       <div class="retro-box">
         <div class="retro-box-header">
           <h2 class="retro-box-title">EDITOR DE DIAGRAMAS ENTIDAD-RELACIÓN (DER) EN VIVO</h2>
-          <span style="color: var(--neon-cyan); font-family: var(--font-pixel); font-size: 10px;">MERMAID.JS + FILTRO 8-BIT</span>
+          <span class="retro-box-header-badge cyan">MERMAID.JS + FILTRO 8-BIT</span>
         </div>
 
         <div class="der-workspace">
           <!-- Left Column: Code Editor & Templates -->
           <div class="der-editor-col">
             <div class="der-toolbar">
-              <span style="font-family: var(--font-pixel); font-size: 10px; color: var(--neon-yellow);">PLANTILLAS:</span>
+              <span class="der-toolbar-label">PLANTILLAS:</span>
               <select id="der-preset-select" class="presets-select" style="max-width: 250px;">
                 <option value="emp_dept">1. Empleados y Deptos (1:N)</option>
                 <option value="toyota_case">2. Caso Toyota (N:M con Versiones)</option>
@@ -433,7 +433,7 @@
             </div>
 
             <div class="der-syntax-helper">
-              <strong style="color: var(--neon-yellow);">💡 GUÍA RÁPIDA DE CARDINALIDADES MERMAID:</strong><br>
+              <strong class="der-helper-title">💡 GUÍA RÁPIDA DE CARDINALIDADES MERMAID:</strong><br>
               <code>||--||</code> : Uno a Uno (1:1) &nbsp;|&nbsp; 
               <code>||--o{</code> : Uno a Muchos (1:N opcional) &nbsp;|&nbsp; 
               <code>||--|{</code> : Uno a Muchos (1:N obligatorio) &nbsp;|&nbsp; 
@@ -445,7 +445,7 @@
           <div class="der-preview-col">
             <div class="der-preview-header">
               <span class="der-preview-title">DIAGRAMA DER RENDERIZADO</span>
-              <span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 9px;">● EN TIEMPO REAL</span>
+              <span class="retro-badge-live">● EN TIEMPO REAL</span>
             </div>
             <div class="der-canvas-viewport" id="der-canvas-render">
               <!-- Rendered Mermaid SVG -->
@@ -462,7 +462,7 @@
       <div class="retro-box grimoire-container">
         <div class="retro-box-header">
           <h2 class="retro-box-title">GRIMORIO DE BASES DE DATOS I: TEMARIO & CLASES</h2>
-          <span style="color: var(--neon-yellow); font-family: var(--font-pixel); font-size: 10px;">UNIDADES 1 A 4</span>
+          <span class="retro-box-header-badge yellow">UNIDADES 1 A 4</span>
         </div>
 
         <!-- Grimoire Ancient Tome Banner -->
@@ -510,13 +510,11 @@
        MODAL: GAME OVER
        ========================================================= -->
   <div class="retro-modal-backdrop" id="modal-game-over">
-    <div class="retro-modal-window">
-      <h2 style="font-family: var(--font-pixel); color: var(--neon-red); font-size: 20px; margin-bottom: 12px; text-shadow: 0 0 10px var(--neon-red-glow);">
-        💀 GAME OVER
-      </h2>
-      <p id="game-over-reason" style="font-size: 15px; color: #fff; margin-bottom: 16px;"></p>
-      <div id="game-over-stats" style="font-size: 14px; color: #cbd5e1; margin-bottom: 24px; line-height: 1.8;"></div>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+    <div class="retro-modal-window modal-gameover-window">
+      <h2 class="retro-modal-title title-gameover">💀 GAME OVER</h2>
+      <p id="game-over-reason" class="game-over-reason-text"></p>
+      <div id="game-over-stats" class="modal-stats-container"></div>
+      <div class="modal-buttons-row">
         <button class="btn-retro btn-gold" id="restart-after-gameover-btn">
           <span>🔄 REINTENTAR EXAMEN</span>
         </button>
@@ -531,12 +529,10 @@
        MODAL: VICTORY / EXAMEN COMPLETADO
        ========================================================= -->
   <div class="retro-modal-backdrop" id="modal-victory">
-    <div class="retro-modal-window" style="box-shadow: 0 0 0 3px #000, 0 0 0 6px var(--neon-green), 10px 10px 0 #000;">
-      <h2 style="font-family: var(--font-pixel); color: var(--neon-green); font-size: 20px; margin-bottom: 12px; text-shadow: 0 0 10px var(--neon-green-glow);">
-        🏆 ¡EXAMEN COMPLETADO!
-      </h2>
-      <div id="victory-stats" style="font-size: 15px; color: #f1f5f9; margin-bottom: 24px; line-height: 1.8;"></div>
-      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+    <div class="retro-modal-window modal-victory-window">
+      <h2 class="retro-modal-title title-victory">🏆 ¡EXAMEN COMPLETADO!</h2>
+      <div id="victory-stats" class="modal-stats-container"></div>
+      <div class="modal-buttons-row">
         <button class="btn-retro btn-green" id="restart-after-victory-btn">
           <span>⚔️ JUGAR OTRA VEZ</span>
         </button>
@@ -552,7 +548,7 @@
        ========================================================= -->
   <div class="retro-modal-backdrop" id="modal-infographic-lightbox">
     <div class="lightbox-modal-content">
-      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 2px dashed #283256; padding-bottom: 10px;">
+      <div class="lightbox-header">
         <h3 class="lightbox-title" id="lightbox-title">Infografía de Clase</h3>
         <button class="btn-retro btn-red" id="close-lightbox-btn" style="padding: 6px 12px; font-size: 8.5px;">
           <span>✖ CERRAR</span>

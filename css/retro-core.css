@@ -525,6 +525,162 @@ html, body {
   text-align: center;
 }
 
+/* Modal General & Typography */
+.retro-modal-title {
+  font-family: var(--font-pixel);
+  font-size: 20px;
+  margin-bottom: 14px;
+}
+.retro-modal-title.title-gameover {
+  color: var(--neon-red);
+  text-shadow: 0 0 10px var(--neon-red-glow);
+}
+.retro-modal-title.title-victory {
+  color: var(--neon-green);
+  text-shadow: 0 0 10px var(--neon-green-glow);
+}
+
+.modal-victory-window {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px var(--neon-green), 10px 10px 0 #000;
+}
+.modal-gameover-window {
+  border-color: #fff;
+  box-shadow: 0 0 0 3px #000, 0 0 0 6px var(--neon-red), 10px 10px 0 #000;
+}
+
+.game-over-reason-text {
+  font-size: 15px;
+  color: #fff;
+  margin-bottom: 16px;
+  font-weight: 500;
+}
+
+.modal-stats-container {
+  font-size: 15px;
+  color: #f1f5f9;
+  margin-bottom: 24px;
+  line-height: 1.8;
+}
+
+.modal-stat-line {
+  margin-bottom: 8px;
+  color: #e2e8f0;
+  font-size: 15px;
+}
+.modal-stat-line.grade-line {
+  font-size: 17px;
+}
+.stat-highlight-grade {
+  color: var(--neon-yellow);
+  font-size: 18px;
+}
+.stat-highlight-mode {
+  color: var(--neon-cyan);
+}
+.stat-highlight-mode-danger {
+  color: var(--neon-red);
+}
+.stat-highlight-xp {
+  color: var(--neon-green);
+}
+.victory-rank-badge {
+  color: var(--neon-cyan);
+  font-weight: 700;
+}
+.modal-stat-note {
+  margin-top: 14px;
+  color: var(--neon-yellow);
+  font-size: 13.5px;
+  line-height: 1.6;
+}
+.modal-buttons-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Retro Header Badges */
+.retro-box-header-badge {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+}
+.retro-box-header-badge.yellow {
+  color: var(--neon-yellow);
+}
+.retro-box-header-badge.magenta {
+  color: var(--neon-magenta);
+}
+.retro-box-header-badge.green {
+  color: var(--neon-green);
+}
+.retro-box-header-badge.cyan {
+  color: var(--neon-cyan);
+}
+.retro-badge-live {
+  color: var(--neon-green);
+  font-family: var(--font-pixel);
+  font-size: 9px;
+}
+
+/* Welcome Intro Desc */
+.welcome-intro-desc {
+  font-size: 16px;
+  color: #f1f5f9;
+  margin-bottom: 16px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+/* HUD Lives */
+.hud-lives-apprentice {
+  color: var(--neon-green);
+  font-family: var(--font-pixel);
+  font-size: 11px;
+}
+.hud-lives-dungeon {
+  color: #c084fc;
+  font-family: var(--font-pixel);
+  font-size: 11px;
+}
+
+/* Boss Fight Screen Classes */
+.boss-purified-title {
+  font-family: var(--font-pixel);
+  color: var(--neon-yellow);
+  font-size: 16px;
+  margin-bottom: 14px;
+}
+.boss-purified-desc {
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.8;
+  margin-bottom: 24px;
+  max-width: 650px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.boss-challenge-title {
+  font-family: var(--font-pixel);
+  color: var(--neon-magenta);
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+.boss-challenge-desc {
+  font-size: 15px;
+  color: #e2e8f0;
+  margin-bottom: 24px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+.boss-pending-count-highlight {
+  color: var(--neon-yellow);
+  font-size: 18px;
+}
+
 /* Mobile adjustments strictly confined to <= 640px */
 @media (max-width: 640px) {
   #app-container {
@@ -767,6 +923,113 @@ body.light-mode .retro-modal-window {
   border-color: #0f172a;
   box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #0f172a, 10px 10px 0 rgba(0, 0, 0, 0.2);
   color: #1e293b;
+}
+
+body.light-mode .modal-victory-window {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #059669, 10px 10px 0 rgba(15, 23, 42, 0.25);
+}
+body.light-mode .modal-gameover-window {
+  background: #ffffff;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 6px #dc2626, 10px 10px 0 rgba(15, 23, 42, 0.25);
+}
+body.light-mode .retro-modal-title.title-gameover {
+  color: #b91c1c;
+  text-shadow: none;
+}
+body.light-mode .retro-modal-title.title-victory {
+  color: #047857;
+  text-shadow: none;
+}
+body.light-mode .game-over-reason-text {
+  color: #991b1b;
+  font-weight: 600;
+}
+body.light-mode .modal-stats-container {
+  color: #1e293b;
+}
+body.light-mode .modal-stat-line {
+  color: #1e293b;
+  font-weight: 500;
+}
+body.light-mode .modal-stat-line strong {
+  color: #0f172a;
+  font-weight: 700;
+}
+body.light-mode .stat-highlight-grade {
+  color: #b45309;
+  font-weight: 800;
+}
+body.light-mode .stat-highlight-mode {
+  color: #4338ca;
+}
+body.light-mode .stat-highlight-mode-danger {
+  color: #b91c1c;
+}
+body.light-mode .stat-highlight-xp {
+  color: #047857;
+}
+body.light-mode .victory-rank-badge {
+  color: #0284c7;
+}
+body.light-mode .modal-stat-note {
+  color: #334155;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  padding: 10px 14px;
+  border-radius: 4px;
+}
+
+body.light-mode .retro-box-header-badge.yellow {
+  color: #b45309;
+  font-weight: bold;
+}
+body.light-mode .retro-box-header-badge.magenta {
+  color: #9d174d;
+  font-weight: bold;
+}
+body.light-mode .retro-box-header-badge.green {
+  color: #047857;
+  font-weight: bold;
+}
+body.light-mode .retro-box-header-badge.cyan {
+  color: #0369a1;
+  font-weight: bold;
+}
+body.light-mode .retro-badge-live {
+  color: #047857;
+  font-weight: bold;
+}
+
+body.light-mode .welcome-intro-desc {
+  color: #1e293b;
+}
+
+body.light-mode .hud-lives-apprentice {
+  color: #047857;
+  font-weight: bold;
+}
+body.light-mode .hud-lives-dungeon {
+  color: #6d28d9;
+  font-weight: bold;
+}
+
+body.light-mode .boss-purified-title {
+  color: #b45309;
+}
+body.light-mode .boss-purified-desc {
+  color: #334155;
+}
+body.light-mode .boss-challenge-title {
+  color: #9d174d;
+}
+body.light-mode .boss-challenge-desc {
+  color: #1e293b;
+}
+body.light-mode .boss-pending-count-highlight {
+  color: #b45309;
 }
 
 body.light-mode .module-visual-banner {

@@ -474,3 +474,23 @@ body.light-mode .sql-results-table tr:hover {
   background: #f8fafc;
 }
 
+.sql-placeholder-hint {
+  color: var(--text-muted);
+  font-size: 14px;
+}
+body.light-mode .sql-placeholder-hint {
+  color: #475569;
+}
+
+.sql-history-title {
+  font-family: var(--font-pixel);
+  font-size: 11px;
+  color: var(--neon-cyan);
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+body.light-mode .sql-history-title {
+  color: #0369a1;
+  font-weight: 700;
+}
+

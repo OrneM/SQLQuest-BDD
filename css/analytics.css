@@ -416,7 +416,8 @@ body.light-mode .metric-card:hover {
 }
 
 body.light-mode .metric-label {
-  color: #64748b;
+  color: #475569;
+  font-weight: 600;
 }
 
 body.light-mode .metric-main-val {
@@ -424,22 +425,23 @@ body.light-mode .metric-main-val {
 }
 
 body.light-mode .metric-main-val.val-gold {
-  color: #d97706;
+  color: #b45309;
   text-shadow: none;
 }
 
 body.light-mode .metric-main-val.val-cyan {
-  color: #0284c7;
+  color: #0369a1;
   text-shadow: none;
 }
 
 body.light-mode .metric-main-val.val-green {
-  color: #059669;
+  color: #047857;
   text-shadow: none;
 }
 
 body.light-mode .metric-footer-text {
-  color: #64748b;
+  color: #475569;
+  font-weight: 500;
 }
 
 body.light-mode .analytics-panel-card {
