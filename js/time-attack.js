@@ -822,7 +822,27 @@ class TimeAttackExam {
   getFailedQuestionIds() {
     try {
       const data = localStorage.getItem('retro_bdd_failed_ids');
-      return data ? JSON.parse(data) : [];
+      const rawIds = data ? JSON.parse(data) : [];
+      if (!Array.isArray(rawIds)) return [];
+
+      const db = window.QUESTIONS_DATABASE || [];
+      const dbMap = new Map();
+      db.forEach(q => dbMap.set(String(q.id), q));
+
+      const validIds = [];
+      const seen = new Set();
+      rawIds.forEach(id => {
+        const strId = String(id);
+        if (dbMap.has(strId) && !seen.has(strId)) {
+          seen.add(strId);
+          validIds.push(dbMap.get(strId).id);
+        }
+      });
+
+      if (validIds.length !== rawIds.length || JSON.stringify(validIds) !== JSON.stringify(rawIds)) {
+        localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(validIds));
+      }
+      return validIds;
     } catch (e) {
       return [];
     }
@@ -830,16 +850,23 @@ class TimeAttackExam {
 
   addFailedQuestionId(id) {
     const list = this.getFailedQuestionIds();
-    if (!list.includes(id)) {
-      list.push(id);
+    const strId = String(id);
+    const db = window.QUESTIONS_DATABASE || [];
+    const qObj = db.find(q => String(q.id) === strId);
+    
+    if (qObj && !list.includes(qObj.id)) {
+      list.push(qObj.id);
       localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(list));
+      this.updateHUD();
     }
   }
 
   removeFailedQuestionId(id) {
     let list = this.getFailedQuestionIds();
-    list = list.filter(item => item !== id);
+    const strId = String(id);
+    list = list.filter(item => String(item) !== strId);
     localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(list));
+    this.updateHUD();
   }
 }
 

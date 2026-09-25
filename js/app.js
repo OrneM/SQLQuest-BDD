@@ -9,8 +9,9 @@ document.addEventListener('DOMContentLoaded', () => {
   const der = new window.DerEngine();
   const grimoire = new window.GrimoireViewer();
 
-  // Initial render of analytics
+  // Initial render of analytics and boss arena state
   window.analyticsManager.refreshUI();
+  bossArena.refreshView();
 
   // Navigation Tabs Switching
   const tabBtns = document.querySelectorAll('.tab-btn');

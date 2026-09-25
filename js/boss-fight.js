@@ -59,10 +59,46 @@ class BossFightArena {
   loadFailedQuestions() {
     try {
       const stored = localStorage.getItem('retro_bdd_failed_ids');
-      const ids = stored ? JSON.parse(stored) : [];
-      this.failedQuestions = window.QUESTIONS_DATABASE.filter(q => ids.includes(q.id));
+      const rawIds = stored ? JSON.parse(stored) : [];
+      if (!Array.isArray(rawIds)) throw new Error('Invalid format');
+
+      const db = window.QUESTIONS_DATABASE || [];
+      const dbMap = new Map();
+      db.forEach(q => dbMap.set(String(q.id), q));
+
+      const validQuestions = [];
+      const validCanonicalIds = [];
+      const seen = new Set();
+
+      rawIds.forEach(id => {
+        const strId = String(id);
+        if (dbMap.has(strId) && !seen.has(strId)) {
+          seen.add(strId);
+          const q = dbMap.get(strId);
+          validQuestions.push(q);
+          validCanonicalIds.push(q.id);
+        }
+      });
+
+      // Sanitize stored IDs if obsolete/stale keys or duplicates were present
+      if (validCanonicalIds.length !== rawIds.length || JSON.stringify(validCanonicalIds) !== JSON.stringify(rawIds)) {
+        localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(validCanonicalIds));
+      }
+
+      this.failedQuestions = validQuestions;
     } catch (e) {
       this.failedQuestions = [];
+    }
+    this.updateBadge();
+    return this.failedQuestions;
+  }
+
+  updateBadge() {
+    const badge = document.getElementById('boss-badge-count');
+    if (badge) {
+      const count = this.failedQuestions ? this.failedQuestions.length : 0;
+      badge.textContent = count;
+      badge.style.display = count > 0 ? 'inline-block' : 'none';
     }
   }
 
@@ -75,9 +111,17 @@ class BossFightArena {
     } else if (!this.isFighting) {
       if (this.noErrorsNoticeEl) this.noErrorsNoticeEl.style.display = 'none';
       if (this.arenaEl) this.arenaEl.style.display = 'block';
+
+      const introEl = document.getElementById('boss-intro-box');
+      if (introEl) introEl.style.display = 'block';
+
+      const stageEl = document.getElementById('boss-battle-stage');
+      if (stageEl) stageEl.style.display = 'none';
+
       const countLabel = document.getElementById('boss-pending-count');
       if (countLabel) countLabel.textContent = this.failedQuestions.length;
     }
+    this.updateBadge();
   }
 
   shuffle(array) {
@@ -349,15 +393,32 @@ class BossFightArena {
   removeResolvedId(id) {
     try {
       const stored = localStorage.getItem('retro_bdd_failed_ids');
-      let ids = stored ? JSON.parse(stored) : [];
-      ids = ids.filter(item => item !== id);
-      localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(ids));
+      const rawIds = stored ? JSON.parse(stored) : [];
+      const strTarget = String(id);
       
-      const badge = document.getElementById('boss-badge-count');
-      if (badge) {
-        badge.textContent = ids.length;
-        badge.style.display = ids.length > 0 ? 'inline-block' : 'none';
+      const db = window.QUESTIONS_DATABASE || [];
+      const dbMap = new Map();
+      db.forEach(q => dbMap.set(String(q.id), q));
+
+      const updatedIds = [];
+      const updatedQuestions = [];
+      const seen = new Set();
+
+      if (Array.isArray(rawIds)) {
+        rawIds.forEach(item => {
+          const strItem = String(item);
+          if (strItem !== strTarget && dbMap.has(strItem) && !seen.has(strItem)) {
+            seen.add(strItem);
+            const q = dbMap.get(strItem);
+            updatedIds.push(q.id);
+            updatedQuestions.push(q);
+          }
+        });
       }
+
+      localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(updatedIds));
+      this.failedQuestions = updatedQuestions;
+      this.updateBadge();
     } catch (e) {}
   }
 }
