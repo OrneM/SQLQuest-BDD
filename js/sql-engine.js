@@ -1,5 +1,74 @@
 // Antigravity BDD: In-Memory SQL Engine (sql.js) & DML B-Tree Animation
 
+window.SQL_LAB_PRESETS = [
+  {
+    id: "dql_basic_all",
+    title: "1. DQL: SELECT básico y proyección de tabla Empleados",
+    description: "Recupera todas las columnas y filas de la tabla Empleados para inspeccionar el conjunto de datos inicial.",
+    defaultSql: "SELECT * FROM Empleados;"
+  },
+  {
+    id: "dql_where_filter",
+    title: "2. DQL: Filtrado con WHERE y ordenamiento ORDER BY",
+    description: "Filtra los empleados con salario superior a 50.000 ordenados de forma descendente por salario.",
+    defaultSql: "SELECT nombre, apellido, salario, id_departamento\nFROM Empleados\nWHERE salario > 50000\nORDER BY salario DESC;"
+  },
+  {
+    id: "dql_like_wildcards",
+    title: "3. DQL: Búsqueda por patrones con LIKE y comodines (%)",
+    description: "Busca empleados cuyo apellido comience con 'P' o contengan una 'a' en su nombre.",
+    defaultSql: "SELECT id_empleado, nombre, apellido, salario\nFROM Empleados\nWHERE apellido LIKE 'P%' OR nombre LIKE '%a%';"
+  },
+  {
+    id: "dql_inner_join",
+    title: "4. DQL / JOIN: INNER JOIN entre Empleados y Departamentos",
+    description: "Combina los registros de ambas tablas mediante la clave foránea id_departamento para mostrar el nombre del sector de cada empleado.",
+    defaultSql: "SELECT \n  e.id_empleado,\n  e.nombre,\n  e.apellido,\n  e.salario,\n  d.nombre_departamento\nFROM Empleados e\nINNER JOIN Departamentos d ON e.id_departamento = d.id_departamento\nORDER BY d.nombre_departamento ASC, e.salario DESC;"
+  },
+  {
+    id: "dql_group_by_avg",
+    title: "5. DQL / Agregación: GROUP BY, COUNT y AVG por Departamento",
+    description: "Calcula la cantidad total de empleados y el salario promedio para cada uno de los departamentos de la empresa.",
+    defaultSql: "SELECT \n  d.nombre_departamento,\n  COUNT(e.id_empleado) AS total_empleados,\n  ROUND(AVG(e.salario), 2) AS salario_promedio,\n  MAX(e.salario) AS salario_maximo\nFROM Departamentos d\nLEFT JOIN Empleados e ON d.id_departamento = e.id_departamento\nGROUP BY d.nombre_departamento;"
+  },
+  {
+    id: "dql_having_filter",
+    title: "6. DQL / Agregación: Cláusula HAVING sobre grupos agregados",
+    description: "Filtra únicamente los departamentos cuyo salario promedio supere los 50.000 (condición post-agrupación).",
+    defaultSql: "SELECT \n  d.nombre_departamento,\n  COUNT(e.id_empleado) AS cant_empleados,\n  ROUND(AVG(e.salario), 2) AS promedio_depto\nFROM Departamentos d\nJOIN Empleados e ON d.id_departamento = e.id_departamento\nGROUP BY d.nombre_departamento\nHAVING AVG(e.salario) > 50000;"
+  },
+  {
+    id: "dml_insert_btree",
+    title: "7. DML: INSERT de nuevo empleado (Observa animación B-Tree)",
+    description: "Inserta un nuevo empleado en la tabla Empleados. Observa cómo el árbol B-Tree del índice primario rebalancea sus nodos.",
+    defaultSql: "INSERT INTO Empleados (id_empleado, nombre, apellido, salario, id_departamento)\nVALUES (107, 'Laura', 'Giménez', 65000.00, 4);\n\n-- Ejecuta luego: SELECT * FROM Empleados WHERE id_empleado = 107;"
+  },
+  {
+    id: "dml_update_bulk",
+    title: "8. DML: UPDATE con aumento porcentual de salario (+15%)",
+    description: "Aplica un aumento salarial del 15% a todos los empleados pertenecientes al departamento de Desarrollo (id 4).",
+    defaultSql: "UPDATE Empleados\nSET salario = ROUND(salario * 1.15, 2)\nWHERE id_departamento = 4;\n\n-- Verifica el cambio ejecutando:\nSELECT * FROM Empleados WHERE id_departamento = 4;"
+  },
+  {
+    id: "dml_delete_row",
+    title: "9. DML: DELETE de registro específico por Clave Primaria",
+    description: "Elimina un empleado de la base de datos por su id_empleado, forzando la liberación de espacio en los bloques de datos.",
+    defaultSql: "DELETE FROM Empleados\nWHERE id_empleado = 105;\n\n-- Verifica la eliminación ejecutando:\nSELECT * FROM Empleados;"
+  },
+  {
+    id: "dql_subquery_where",
+    title: "10. Subconsultas: Empleados con salario superior al promedio",
+    description: "Utiliza una subconsulta escalar en la cláusula WHERE para obtener los empleados que ganan más que el promedio general.",
+    defaultSql: "SELECT nombre, apellido, salario\nFROM Empleados\nWHERE salario > (SELECT AVG(salario) FROM Empleados)\nORDER BY salario DESC;"
+  },
+  {
+    id: "case_toyota_multi_join",
+    title: "11. Caso Toyota: JOIN Modelos, Versiones y Stock en Sucursales",
+    description: "Consulta multi-tabla de la concesionaria: relaciona modelos con sus versiones y el stock disponible por sucursal.",
+    defaultSql: "SELECT \n  m.nombre AS modelo,\n  m.tipo,\n  v.nombre AS version,\n  v.motor,\n  v.precio,\n  s.nombre AS sucursal,\n  s.ciudad,\n  s.stock\nFROM Modelos m\nJOIN Versiones v ON m.id_modelo = v.id_modelo\nJOIN Sucursales s ON v.id_version = s.id_version\nWHERE s.stock > 0\nORDER BY v.precio ASC;"
+  }
+];
+
 class SqlLabEngine {
   constructor() {
     this.db = null;
