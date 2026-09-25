@@ -178,6 +178,65 @@
   box-shadow: 0 0 25px rgba(255, 230, 0, 0.4);
 }
 
+.game-mode-card.dungeon {
+  border-color: #a855f7;
+  background: linear-gradient(180deg, #1b0c2a 0%, #110d22 100%);
+  box-shadow: 0 0 15px rgba(168, 85, 247, 0.25);
+}
+
+.game-mode-card.dungeon:hover {
+  border-color: #c084fc;
+  box-shadow: 0 0 25px rgba(192, 132, 252, 0.45);
+}
+
+.dungeon-class-select-box {
+  margin: 12px 0 14px 0;
+  background: #000;
+  border: 2px solid #a855f7;
+  padding: 10px 12px;
+  border-radius: 4px;
+}
+
+.dungeon-select-label {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 9px;
+  color: #d8b4fe;
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.dungeon-dropdown {
+  width: 100%;
+  background: #110d22;
+  color: #f3e8ff;
+  border: 1px solid #7e22ce;
+  padding: 8px 10px;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dungeon-dropdown:focus {
+  outline: none;
+  border-color: #c084fc;
+  box-shadow: 0 0 8px rgba(192, 132, 252, 0.5);
+}
+
+.btn-purple {
+  background: #6b21a8 !important;
+  border: 2px solid #a855f7 !important;
+  color: #fff !important;
+  box-shadow: 3px 3px 0 #000, 0 0 10px rgba(168, 85, 247, 0.4) !important;
+}
+
+.btn-purple:hover {
+  background: #7e22ce !important;
+  border-color: #c084fc !important;
+  box-shadow: 3px 3px 0 #000, 0 0 16px rgba(168, 85, 247, 0.7) !important;
+}
+
 .game-mode-header {
   display: flex;
   align-items: center;
@@ -302,6 +361,13 @@
   color: var(--neon-yellow);
   border: 1px solid var(--neon-yellow);
   text-shadow: 0 0 6px var(--neon-yellow-glow);
+}
+
+.exam-mode-indicator.mode-dungeon {
+  background: #581c87;
+  color: #e9d5ff;
+  border: 1px solid #c084fc;
+  text-shadow: 0 0 6px rgba(192, 132, 252, 0.7);
 }
 
 .question-title {

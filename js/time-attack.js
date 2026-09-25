@@ -2,7 +2,8 @@
 
 class TimeAttackExam {
   constructor() {
-    this.currentMode = 'apprentice'; // 'apprentice' | 'warrior'
+    this.currentMode = 'apprentice'; // 'apprentice' | 'warrior' | 'dungeon'
+    this.selectedDungeonClass = 5; // 1 | 2 | 3 | 4 | 5
     this.selectedQuestionCount = 20; // 10 | 20 | 30
     this.totalDuration = 30 * 60; // default 30 min for 20 questions
     this.remainingSeconds = this.totalDuration;
@@ -86,6 +87,24 @@ class TimeAttackExam {
       });
     }
 
+    // Selector y Botón de Modo Dungeon (Por Clase)
+    const dungeonSelect = document.getElementById('dungeon-class-selector');
+    if (dungeonSelect) {
+      dungeonSelect.addEventListener('change', (e) => {
+        this.selectedDungeonClass = parseInt(e.target.value, 10) || 5;
+        window.retroAudio.playBlip(650, 0.04);
+        this.updateLengthSelectorUI();
+      });
+    }
+
+    const startDungeonBtn = document.getElementById('start-dungeon-btn');
+    if (startDungeonBtn) {
+      startDungeonBtn.addEventListener('click', () => {
+        window.retroAudio.playBlip(750, 0.08);
+        this.startNewExam('dungeon', this.selectedDungeonClass);
+      });
+    }
+
     // Legacy or generic start button fallback
     const startBtn = document.getElementById('start-exam-btn');
     if (startBtn) {
@@ -101,7 +120,7 @@ class TimeAttackExam {
       restartGameOverBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(600, 0.06);
         document.getElementById('modal-game-over').classList.remove('active');
-        this.startNewExam(this.currentMode);
+        this.startNewExam(this.currentMode, this.dungeonClass);
       });
     }
 
@@ -120,7 +139,7 @@ class TimeAttackExam {
       restartVictoryBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(600, 0.06);
         document.getElementById('modal-victory').classList.remove('active');
-        this.startNewExam(this.currentMode);
+        this.startNewExam(this.currentMode, this.dungeonClass);
       });
     }
 
@@ -149,6 +168,7 @@ class TimeAttackExam {
     const warriorTimeText = document.getElementById('warrior-time-text');
     const apprenticeLabel = document.getElementById('start-apprentice-label');
     const warriorLabel = document.getElementById('start-warrior-label');
+    const dungeonLabel = document.getElementById('start-dungeon-label');
 
     const count = this.selectedQuestionCount;
     const minsMap = { 10: 15, 20: 30, 30: 45 };
@@ -156,11 +176,11 @@ class TimeAttackExam {
 
     if (hintEl) {
       if (count === 10) {
-        hintEl.textContent = '⚡ 10 Preguntas (15 min en Warrior / Tiempo Libre en Aprendiz)';
+        hintEl.textContent = '⚡ 10 Preguntas (15 min en Warrior / Tiempo Libre en Aprendiz & Dungeon)';
       } else if (count === 20) {
-        hintEl.textContent = '⚔️ 20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz)';
+        hintEl.textContent = '⚔️ 20 Preguntas (30 min en Warrior / Tiempo Libre en Aprendiz & Dungeon)';
       } else {
-        hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz)';
+        hintEl.textContent = '🏆 30 Preguntas (45 min en Warrior / Tiempo Libre en Aprendiz & Dungeon)';
       }
     }
 
@@ -175,6 +195,10 @@ class TimeAttackExam {
 
     if (warriorLabel) {
       warriorLabel.textContent = `⚔️ INICIAR MODO WARRIOR (${count} PREG. - ${mins} MIN)`;
+    }
+
+    if (dungeonLabel) {
+      dungeonLabel.textContent = `🏰 ENTRAR A LA MAZMORRA (CLASE ${this.selectedDungeonClass} - ${count} PREG.)`;
     }
   }
 
@@ -200,12 +224,16 @@ class TimeAttackExam {
     return q;
   }
 
-  startNewExam(mode = 'apprentice') {
+  startNewExam(mode = 'apprentice', dungeonClass = 5) {
     this.currentMode = mode;
+    this.dungeonClass = dungeonClass || this.selectedDungeonClass || 5;
     
-    // Seleccionar y barajar aleatoriamente del banco completo combinado
-    const allQuestions = [...window.QUESTIONS_DATABASE];
-    const shuffledPool = this.shuffle(allQuestions);
+    // Seleccionar y barajar aleatoriamente del banco
+    let basePool = [...window.QUESTIONS_DATABASE];
+    if (this.currentMode === 'dungeon') {
+      basePool = basePool.filter(q => q.classNum === this.dungeonClass);
+    }
+    const shuffledPool = this.shuffle(basePool);
     const count = Math.min(this.selectedQuestionCount, shuffledPool.length);
     this.questions = shuffledPool.slice(0, count).map(q => this.prepareQuestion(q));
     
@@ -215,7 +243,7 @@ class TimeAttackExam {
     this.incorrectCount = 0;
     this.isRunning = true;
 
-    if (this.currentMode === 'apprentice') {
+    if (this.currentMode === 'apprentice' || this.currentMode === 'dungeon') {
       this.lives = 999;
       this.elapsedSeconds = 0;
       this.totalDuration = 0;
@@ -262,7 +290,7 @@ class TimeAttackExam {
     this.timerInterval = setInterval(() => {
       if (!this.isRunning) return;
 
-      if (this.currentMode === 'apprentice') {
+      if (this.currentMode === 'apprentice' || this.currentMode === 'dungeon') {
         this.elapsedSeconds++;
         this.updateTimerDisplay();
       } else {
@@ -289,6 +317,13 @@ class TimeAttackExam {
       this.timerEl.textContent = `⏱️ ${formatted} (MODO APRENDIZ: SIN LÍMITE)`;
       this.timerEl.classList.remove('warning');
       this.timerEl.style.color = 'var(--neon-green)';
+    } else if (this.currentMode === 'dungeon') {
+      const mins = Math.floor(this.elapsedSeconds / 60);
+      const secs = this.elapsedSeconds % 60;
+      const formatted = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      this.timerEl.textContent = `🏰 ${formatted} (MODO DUNGEON: CLASE ${this.dungeonClass})`;
+      this.timerEl.classList.remove('warning');
+      this.timerEl.style.color = '#c084fc';
     } else {
       const mins = Math.floor(this.remainingSeconds / 60);
       const secs = this.remainingSeconds % 60;
@@ -321,6 +356,8 @@ class TimeAttackExam {
     if (heartsContainer) {
       if (this.currentMode === 'apprentice') {
         heartsContainer.innerHTML = `<span style="color: var(--neon-green); font-family: var(--font-pixel); font-size: 11px;">❤️ ∞ ILIMITADAS</span>`;
+      } else if (this.currentMode === 'dungeon') {
+        heartsContainer.innerHTML = `<span style="color: #c084fc; font-family: var(--font-pixel); font-size: 11px;">🏰 ∞ MAZMORRA C${this.dungeonClass || this.selectedDungeonClass}</span>`;
       } else {
         let heartsHtml = '';
         for (let i = 0; i < this.maxLives; i++) {
@@ -373,7 +410,16 @@ class TimeAttackExam {
       this.validateBtnEl.disabled = false;
     }
 
-    const isApprentice = this.currentMode === 'apprentice';
+    const isApprenticeOrDungeon = (this.currentMode === 'apprentice' || this.currentMode === 'dungeon');
+    let modeBadgeClass = 'mode-warrior';
+    let modeBadgeLabel = '⚔️ WARRIOR';
+    if (this.currentMode === 'apprentice') {
+      modeBadgeClass = 'mode-apprentice';
+      modeBadgeLabel = '🌱 APRENDIZ';
+    } else if (this.currentMode === 'dungeon') {
+      modeBadgeClass = 'mode-dungeon';
+      modeBadgeLabel = `🏰 DUNGEON CLASE ${this.dungeonClass}`;
+    }
 
     let html = `
       <div class="question-meta">
@@ -381,8 +427,8 @@ class TimeAttackExam {
           <span class="question-topic-badge">${q.topic}</span>
           <span class="question-unit-badge">${q.unit}</span>
         </div>
-        <span class="exam-mode-indicator ${isApprentice ? 'mode-apprentice' : 'mode-warrior'}">
-          ${isApprentice ? '🌱 APRENDIZ' : '⚔️ WARRIOR'}
+        <span class="exam-mode-indicator ${modeBadgeClass}">
+          ${modeBadgeLabel}
         </span>
       </div>
 
@@ -390,7 +436,7 @@ class TimeAttackExam {
     `;
 
     // Oracle Hint Section
-    if (isApprentice) {
+    if (isApprenticeOrDungeon) {
       html += `
         <div class="oracle-hint-container">
           <button class="btn-retro btn-cyan hint-trigger-btn" id="ask-oracle-hint-btn" type="button">
@@ -454,8 +500,8 @@ class TimeAttackExam {
 
     this.questionContainerEl.innerHTML = html;
 
-    // Bind Hint Button event in apprentice mode
-    if (isApprentice) {
+    // Bind Hint Button event in apprentice/dungeon mode
+    if (isApprenticeOrDungeon) {
       const hintBtn = document.getElementById('ask-oracle-hint-btn');
       const hintBox = document.getElementById('oracle-hint-box');
       if (hintBtn && hintBox) {
@@ -592,7 +638,7 @@ class TimeAttackExam {
       this.streak++;
       const earnedXp = (this.currentMode === 'warrior') 
         ? 150 + (this.streak * 30)
-        : 100 + (this.streak * 15);
+        : (this.currentMode === 'dungeon' ? 120 + (this.streak * 20) : 100 + (this.streak * 15));
       this.xp += earnedXp;
 
       // Remove from failed questions in localStorage if resolved
@@ -610,12 +656,15 @@ class TimeAttackExam {
       // Save to spaced repetition failed questions
       this.addFailedQuestionId(q.id);
 
-      if (this.currentMode === 'apprentice') {
-        // En modo aprendiz NO hay pérdida de vidas ni Game Over
+      if (this.currentMode === 'apprentice' || this.currentMode === 'dungeon') {
+        // En modo aprendiz o dungeon NO hay pérdida de vidas ni Game Over
         if (this.validateBtnEl) this.validateBtnEl.style.display = 'none';
         if (this.nextBtnEl) this.nextBtnEl.style.display = 'inline-flex';
 
-        this.showFeedback(false, `¡RESPUESTA INCORRECTA! (Modo Aprendiz: Sin pérdida de vidas)`, q.explanation, q.citation, q.slideImage);
+        const modeMsg = (this.currentMode === 'dungeon') 
+          ? `Modo Dungeon (Clase ${this.dungeonClass})` 
+          : 'Modo Aprendiz';
+        this.showFeedback(false, `¡RESPUESTA INCORRECTA! (${modeMsg}: Sin pérdida de vidas)`, q.explanation, q.citation, q.slideImage);
       } else {
         // En modo warrior SÍ se descuenta vida
         this.lives--;
@@ -693,7 +742,7 @@ class TimeAttackExam {
     this.isRunning = false;
     window.retroAudio.playGameOver();
 
-    const duration = (this.currentMode === 'apprentice') 
+    const duration = (this.currentMode === 'apprentice' || this.currentMode === 'dungeon') 
       ? this.elapsedSeconds 
       : Math.max(1, (this.totalDuration - this.remainingSeconds));
 
@@ -712,8 +761,11 @@ class TimeAttackExam {
 
     const statsEl = document.getElementById('game-over-stats');
     if (statsEl) {
+      const modeName = this.currentMode === 'warrior' 
+        ? 'WARRIOR (EXAMEN HARDCORE)' 
+        : (this.currentMode === 'dungeon' ? `DUNGEON (CLASE ${this.dungeonClass})` : 'APRENDIZ');
       statsEl.innerHTML = `
-        <p>Modo: <strong style="color: var(--neon-red);">WARRIOR (EXAMEN HARDCORE)</strong></p>
+        <p>Modo: <strong style="color: var(--neon-red);">${modeName}</strong></p>
         <p>Aciertos: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
         <p>XP Obtenida: <strong>${this.xp}</strong></p>
         <p style="margin-top: 10px; color: var(--neon-yellow);">¡Los conceptos fallados fueron registrados para el modo <strong>REVANCHA / BOSS FIGHT</strong> y tus estadísticas actualizadas!</p>
@@ -729,7 +781,7 @@ class TimeAttackExam {
     this.isRunning = false;
     window.retroAudio.playVictory();
 
-    const duration = (this.currentMode === 'apprentice') 
+    const duration = (this.currentMode === 'apprentice' || this.currentMode === 'dungeon') 
       ? this.elapsedSeconds 
       : Math.max(1, (this.totalDuration - this.remainingSeconds));
 
@@ -746,9 +798,16 @@ class TimeAttackExam {
     const grade = ((this.correctCount / this.questions.length) * 10).toFixed(1);
     const victoryStats = document.getElementById('victory-stats');
     if (victoryStats) {
+      let modeText = '⚔️ WARRIOR (HARDCORE)';
+      if (this.currentMode === 'apprentice') {
+        modeText = '🌱 APRENDIZ (SIN ESTRÉS)';
+      } else if (this.currentMode === 'dungeon') {
+        modeText = `🏰 DUNGEON (CLASE ${this.dungeonClass} CONQUISTADA)`;
+      }
+
       victoryStats.innerHTML = `
         <p style="color: var(--neon-yellow); font-size: 16px;">Calificación Final: <strong>${grade} / 10</strong></p>
-        <p>Modo Completado: <strong>${this.currentMode === 'apprentice' ? '🌱 APRENDIZ (SIN ESTRÉS)' : '⚔️ WARRIOR (HARDCORE)'}</strong></p>
+        <p>Modo Completado: <strong>${modeText}</strong></p>
         <p>Preguntas Correctas: <strong>${this.correctCount} / ${this.questions.length}</strong></p>
         <p>XP Total Acumulada: <strong>${this.xp}</strong></p>
         <p>Rango Obtenido: <span style="color: var(--neon-cyan);">⚔️ Maestro de Bases de Datos</span></p>

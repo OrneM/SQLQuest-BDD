@@ -191,6 +191,43 @@
               <span id="start-warrior-label">⚔️ INICIAR MODO WARRIOR (20 PREG. - 30 MIN)</span>
             </button>
           </div>
+
+          <!-- Modo Dungeon (Entrenamiento por Clase) -->
+          <div class="game-mode-card dungeon">
+            <div>
+              <div class="game-mode-header">
+                <div class="game-mode-icon" style="border-color: #a855f7;">🏰</div>
+                <div>
+                  <h3 class="game-mode-title" style="color: #d8b4fe; text-shadow: 0 0 8px rgba(192, 132, 252, 0.6);">MODO DUNGEON</h3>
+                  <span style="color: #c084fc; font-size: 12px; font-family: var(--font-mono);">Entrenamiento Temático por Clase</span>
+                </div>
+              </div>
+              <p class="game-mode-desc">
+                Conquista una clase específica a la vez para dominar los temas difíciles sin mezclar contenidos.
+              </p>
+
+              <!-- Selector de Clase / Mazmorra -->
+              <div class="dungeon-class-select-box">
+                <label for="dungeon-class-selector" class="dungeon-select-label">⚔️ ELIGE TU MAZMORRA / CLASE:</label>
+                <select id="dungeon-class-selector" class="retro-select dungeon-dropdown">
+                  <option value="1">🏰 Clase 1: Introducción, SGBD & Arquitectura</option>
+                  <option value="2">🏰 Clase 2: DQL Básico, WHERE, LIKE & ORDER BY</option>
+                  <option value="3">🏰 Clase 3: JOINs, GROUP BY, HAVING & Agregaciones</option>
+                  <option value="4">🏰 Clase 4: DML (INSERT/UPDATE/DELETE) & Subconsultas</option>
+                  <option value="5" selected>🏰 Clase 5: Modelo Relacional, PK/FK & Índices</option>
+                </select>
+              </div>
+
+              <ul class="game-mode-features-list" style="margin-top: 14px;">
+                <li><span class="feat-icon">🎯</span> <strong>100% Focalizado</strong> en la clase elegida.</li>
+                <li><span class="feat-icon">💡</span> <strong>Pistas & Infografías</strong> exclusivas del tema.</li>
+                <li><span class="feat-icon">⏱️</span> <strong>Tiempo Libre</strong> y vidas ilimitadas para aprender.</li>
+              </ul>
+            </div>
+            <button class="btn-retro btn-purple" id="start-dungeon-btn" style="width: 100%; font-size: 11px; padding: 14px 20px;">
+              <span id="start-dungeon-label">🏰 ENTRAR A LA MAZMORRA (CLASE 5)</span>
+            </button>
+          </div>
         </div>
 
         <!-- Embedded Analytics & Evolution Dashboard -->

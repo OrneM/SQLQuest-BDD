@@ -29,7 +29,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Las funciones de agregación operan sobre conjuntos de filas: COUNT cuenta registros, AVG calcula promedio aritmético, MAX busca el valor tope y SUM acumula importes.",
     "citation": "Clase 02 - El Embudo de Agregación: COUNT, SUM, AVG, MIN, MAX.",
     "slideImage": "assets/clases_infographics/clase2_p09.png",
-    "hint": "COUNT cuenta filas totales (incluyendo nulos si usas *), AVG calcula promedios numéricos, MAX busca el valor tope y SUM acumula importes."
+    "hint": "COUNT cuenta filas totales (incluyendo nulos si usas *), AVG calcula promedios numéricos, MAX busca el valor tope y SUM acumula importes.",
+    "classNum": 2
   },
   {
     "id": 2,
@@ -44,7 +45,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comando DDL estándar para inicializar un nuevo contenedor de base de datos es `CREATE DATABASE nombre_bd;`.",
     "citation": "Clase 02 - Las 4 Familias de Comandos SQL: DDL (CREATE, ALTER, DROP).",
     "slideImage": "assets/clases_infographics/clase2_p04.png",
-    "hint": "Son dos palabras del sublenguaje DDL: la acción de crear ('CREATE') seguida del tipo de contenedor ('DATABASE')."
+    "hint": "Son dos palabras del sublenguaje DDL: la acción de crear ('CREATE') seguida del tipo de contenedor ('DATABASE').",
+    "classNum": 2
   },
   {
     "id": 3,
@@ -73,7 +75,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "WHERE filtra tuplas, ORDER BY clasifica el orden de salida, LIMIT acota la cantidad de filas y OFFSET omite los primeros N registros para paginación.",
     "citation": "Clase 02 - Moldeando el Resultado: ORDER BY y LIMIT / OFFSET.",
     "slideImage": "assets/clases_infographics/clase2_p08.png",
-    "hint": "WHERE filtra registros antes de agrupar, ORDER BY clasifica según columnas, LIMIT pone un techo de filas y OFFSET salta páginas."
+    "hint": "WHERE filtra registros antes de agrupar, ORDER BY clasifica según columnas, LIMIT pone un techo de filas y OFFSET salta páginas.",
+    "classNum": 2
   },
   {
     "id": 4,
@@ -88,7 +91,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`WHERE` filtra filas individuales *antes* de agrupar; `HAVING` filtra los grupos resultantes *después* de aplicar funciones de agregación como COUNT, AVG o SUM.",
     "citation": "Clase 03 - Agrupación y Filtrado Lógico: GROUP BY y HAVING.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "Para filtrar sobre el resultado de una función de agregación (como AVG o COUNT) después de agrupar con GROUP BY, no se usa WHERE sino..."
+    "hint": "Para filtrar sobre el resultado de una función de agregación (como AVG o COUNT) después de agrupar con GROUP BY, no se usa WHERE sino...",
+    "classNum": 3
   },
   {
     "id": 5,
@@ -112,7 +116,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Se utiliza `COUNT(*)` para computar el número de filas de cada partición y `GROUP BY id_departamento` para segmentar los datos por dicha columna.",
     "citation": "Clase 02 - Patrón de Consulta 4: Extracción de Métricas con GROUP BY.",
     "slideImage": "assets/clases_infographics/clase2_p14.png",
-    "hint": "El primer espacio requiere la función para contar filas ('COUNT') y el segundo la cláusula de dos palabras para agrupar ('GROUP BY')."
+    "hint": "El primer espacio requiere la función para contar filas ('COUNT') y el segundo la cláusula de dos palabras para agrupar ('GROUP BY').",
+    "classNum": 3
   },
   {
     "id": 6,
@@ -127,7 +132,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`UPDATE` es el comando DML para modificar valores de columnas en registros existentes de una tabla, usualmente filtrados por `WHERE`.",
     "citation": "Clase 04 - Modificación de Registros Existentes con UPDATE.",
     "slideImage": "assets/clases_infographics/clase4_p09.png",
-    "hint": "Es el comando DML para modificar registros existentes acompañado de la cláusula SET."
+    "hint": "Es el comando DML para modificar registros existentes acompañado de la cláusula SET.",
+    "classNum": 4
   },
   {
     "id": 7,
@@ -151,7 +157,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`INNER JOIN` combina registros de ambas tablas únicamente cuando la condición de igualdad (`ON E.id_departamento = D.id_departamento`) se cumple de forma estricta.",
     "citation": "Clase 03 - Anatomía de los JOINs (I): INNER JOIN en Profundidad.",
     "slideImage": "assets/clases_infographics/clase3_p10.png",
-    "hint": "El primer espacio es la cláusula de unión interna ('INNER JOIN') y el segundo es el operador de igualdad ('=')."
+    "hint": "El primer espacio es la cláusula de unión interna ('INNER JOIN') y el segundo es el operador de igualdad ('=').",
+    "classNum": 3
   },
   {
     "id": 8,
@@ -166,7 +173,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comando DDL `DROP TABLE nombre_tabla;` destruye la tabla, sus definiciones y todos sus registros de manera permanente.",
     "citation": "Clase 05 - Anatomía de la Construcción (DDL): CREATE, ALTER y DROP TABLE.",
     "slideImage": "assets/clases_infographics/clase5_p11.png",
-    "hint": "La palabra DDL para destruir permanentemente una tabla del catálogo es DROP."
+    "hint": "La palabra DDL para destruir permanentemente una tabla del catálogo es DROP.",
+    "classNum": 5
   },
   {
     "id": 9,
@@ -190,7 +198,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El operador `BETWEEN min AND max` es inclusivo, equivalente a `(salario >= 45000 AND salario <= 55000)`.",
     "citation": "Clase 02 - Refinando la Búsqueda: Operadores WHERE (Rangos BETWEEN AND, IN).",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "El operador de rango inclusivo en SQL es 'BETWEEN ... AND ...'."
+    "hint": "El operador de rango inclusivo en SQL es 'BETWEEN ... AND ...'.",
+    "classNum": 2
   },
   {
     "id": 10,
@@ -205,7 +214,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`ORDER BY` presenta los registros ordenados por las columnas especificadas, utilizando `ASC` (por defecto) o `DESC`.",
     "citation": "Clase 02 - Moldeando el Resultado: ORDER BY (ASC / DESC).",
     "slideImage": "assets/clases_infographics/clase2_p08.png",
-    "hint": "Cláusula de dos palabras para ordenar filas de forma ascendente o descendente."
+    "hint": "Cláusula de dos palabras para ordenar filas de forma ascendente o descendente.",
+    "classNum": 2
   },
   {
     "id": 11,
@@ -220,7 +230,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`CREATE TABLE` es la instrucción de DDL para definir el nombre, columnas, tipos de datos y restricciones de una nueva tabla.",
     "citation": "Clase 05 - Anatomía de la Construcción (DDL): CREATE TABLE (Esquema Inicial).",
     "slideImage": "assets/clases_infographics/clase5_p11.png",
-    "hint": "Comando DDL de dos palabras para definir una nueva estructura relacional con sus campos."
+    "hint": "Comando DDL de dos palabras para definir una nueva estructura relacional con sus campos.",
+    "classNum": 5
   },
   {
     "id": 12,
@@ -239,7 +250,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`SELECT DISTINCT columna` elimina las filas duplicadas del resultado, retornando solo valores únicos.",
     "citation": "Clase 03 - DISTINCT: Eliminando el Ruido (SELECT DISTINCT id_departamento).",
     "slideImage": "assets/clases_infographics/clase3_p12.png",
-    "hint": "Palabra clave que se antepone a la lista de columnas de un SELECT para descartar filas duplicadas."
+    "hint": "Palabra clave que se antepone a la lista de columnas de un SELECT para descartar filas duplicadas.",
+    "classNum": 3
   },
   {
     "id": 13,
@@ -264,7 +276,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "DELETE es DML fila por fila con posibilidad de filtro y rollback; TRUNCATE es DDL de vaciado ultra-rápido; DROP borra la tabla por completo del diccionario.",
     "citation": "Clase 04 - Eliminación de Registros con DELETE vs DDL.",
     "slideImage": "assets/clases_infographics/clase4_p10.png",
-    "hint": "DELETE es DML transaccional con WHERE; TRUNCATE es DDL de vaciado instantáneo desasignando páginas; DROP destruye la tabla por completo."
+    "hint": "DELETE es DML transaccional con WHERE; TRUNCATE es DDL de vaciado instantáneo desasignando páginas; DROP destruye la tabla por completo.",
+    "classNum": 4
   },
   {
     "id": 14,
@@ -293,7 +306,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El DBMS se divide entre el Query Processor (Parser, Optimizador, Ejecutor) y el Storage Engine (Buffer Pool, Page Layout, WAL, Disk).",
     "citation": "Clase 01 - Arquitectura DBMS: Procesador de Consultas y Motor de Almacenamiento.",
     "slideImage": "assets/clases_infographics/clase1_p04.png",
-    "hint": "El Parser revisa sintaxis; el Optimizador busca el plan más rápido; el Buffer Pool guarda páginas en RAM y el WAL garantiza durabilidad."
+    "hint": "El Parser revisa sintaxis; el Optimizador busca el plan más rápido; el Buffer Pool guarda páginas en RAM y el WAL garantiza durabilidad.",
+    "classNum": 1
   },
   {
     "id": 15,
@@ -308,7 +322,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La restricción `CHECK (condición_booleana)` valida que cada fila cumpla con la regla de negocio antes de permitir la inserción o actualización.",
     "citation": "Clase 05 - Arsenal de Restricciones (Constraints): NOT NULL, UNIQUE, CHECK.",
     "slideImage": "assets/clases_infographics/clase5_p12.png",
-    "hint": "Palabra clave de restricción de tabla para validar una expresión booleana sobre los valores de una columna."
+    "hint": "Palabra clave de restricción de tabla para validar una expresión booleana sobre los valores de una columna.",
+    "classNum": 5
   },
   {
     "id": 16,
@@ -326,7 +341,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Un SGBD / DBMS es un conjunto de programas que permite almacenar, manipular y consultar datos garantizando la reducción de la redundancia no controlada, manteniendo la consistencia, la integridad referencial y la seguridad de los accesos.",
     "citation": "UTN BA - Módulo 1: Introducción a los SGBD / Ventajas del enfoque DBMS.",
     "slideImage": "assets/clases_infographics/clase1_p02.png",
-    "hint": "Un SGBD busca superar las limitaciones de los archivos planos evitando datos duplicados y asegurando coherencia y seguridad global."
+    "hint": "Un SGBD busca superar las limitaciones de los archivos planos evitando datos duplicados y asegurando coherencia y seguridad global.",
+    "classNum": 1
   },
   {
     "id": 17,
@@ -344,7 +360,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El Storage Manager es el componente del SGBD que intermedia entre la estructura física de almacenamiento en disco (búferes, archivos de datos e índices) y las peticiones del procesador de consultas.",
     "citation": "UTN BA - Módulo 1: Componentes del DBMS (Storage Manager vs Query Processor).",
     "slideImage": "assets/clases_infographics/clase1_p04.png",
-    "hint": "Es el puente entre los bloques y páginas de bajo nivel en el disco y las peticiones lógicas del motor de consultas."
+    "hint": "Es el puente entre los bloques y páginas de bajo nivel en el disco y las peticiones lógicas del motor de consultas.",
+    "classNum": 1
   },
   {
     "id": 18,
@@ -362,7 +379,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La independencia física permite cambiar la representación física en disco (creación de índices, organización de archivos) sin que ello obligue a reestructurar el esquema conceptual ni las aplicaciones de los usuarios.",
     "citation": "UTN BA - Módulo 1: El Escudo de la Independencia Física de Datos.",
     "slideImage": "assets/clases_infographics/clase1_p05.png",
-    "hint": "Permite cambiar discos, particiones o estructuras de índices sin tocar el diseño lógico ni el código de las aplicaciones."
+    "hint": "Permite cambiar discos, particiones o estructuras de índices sin tocar el diseño lógico ni el código de las aplicaciones.",
+    "classNum": 1
   },
   {
     "id": 19,
@@ -380,7 +398,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La independencia lógica garantiza que las modificaciones en la estructura conceptual de la base de datos (por ejemplo, agregar una nueva columna o tabla) no afecten a las aplicaciones que no utilizan dichos elementos.",
     "citation": "UTN BA - Módulo 1: Independencia Lógica de Datos en Arquitectura de 3 Niveles.",
     "slideImage": "assets/clases_infographics/clase1_p05.png",
-    "hint": "Permite agregar nuevas tablas o atributos al esquema conceptual sin romper las vistas ni programas existentes que no los usan."
+    "hint": "Permite agregar nuevas tablas o atributos al esquema conceptual sin romper las vistas ni programas existentes que no los usan.",
+    "classNum": 1
   },
   {
     "id": 20,
@@ -398,7 +417,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "OLTP (On-Line Transaction Processing) soporta las operaciones del día a día con transacciones rápidas y atómicas. OLAP (On-Line Analytical Processing) consolida volúmenes de datos históricos para análisis multidimensional estratégico.",
     "citation": "UTN BA - Módulo 1: El Dilema Moderno - Operación (OLTP) vs Análisis (OLAP).",
     "slideImage": "assets/clases_infographics/clase1_p11.png",
-    "hint": "OLTP es operativo (ventas, transferencias en tiempo real); OLAP es analítico (reportes gerenciales e inteligencia de negocios sobre históricos)."
+    "hint": "OLTP es operativo (ventas, transferencias en tiempo real); OLAP es analítico (reportes gerenciales e inteligencia de negocios sobre históricos).",
+    "classNum": 1
   },
   {
     "id": 21,
@@ -416,7 +436,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Las operaciones OLTP se caracterizan por ser de duraciones muy breves (milisegundos), afectando a una o unas pocas filas por transacción (ej. un pago, una reserva) con alta tasa de concurrencia.",
     "citation": "UTN BA - Módulo 1: Transacciones ACID en Sistemas OLTP.",
     "slideImage": "assets/clases_infographics/clase1_p11.png",
-    "hint": "Piensa en el cobro en un cajero automático o una compra online: ocurre en milisegundos y toca muy pocas filas."
+    "hint": "Piensa en el cobro en un cajero automático o una compra online: ocurre en milisegundos y toca muy pocas filas.",
+    "classNum": 1
   },
   {
     "id": 22,
@@ -434,7 +455,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En los sistemas de archivos tradicionales, cada aplicación mantenía sus propios datos. Esto provocaba duplicación (redundancia), inconsistencias si un dato cambiaba en un archivo pero no en otro, y acoplamiento rígido del código.",
     "citation": "UTN BA - Módulo 1: El Fin del Caos Estructural - Archivos vs DBMS.",
     "slideImage": "assets/clases_infographics/clase1_p03.png",
-    "hint": "Cada programa manejaba su propio archivo: si un cliente cambiaba de domicilio, había que actualizarlo en múltiples archivos manuales."
+    "hint": "Cada programa manejaba su propio archivo: si un cliente cambiaba de domicilio, había que actualizarlo en múltiples archivos manuales.",
+    "classNum": 1
   },
   {
     "id": 23,
@@ -452,7 +474,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo jerárquico representa la información mediante un árbol invertido formado por nodos (registros) vinculados en una jerarquía estricta de padre e hijos.",
     "citation": "UTN BA - Módulo 1: Modelo Jerárquico - El Árbol Invertido.",
     "slideImage": "assets/clases_infographics/clase3_p03.png",
-    "hint": "La estructura jerárquica tiene una raíz arriba y se ramifica hacia abajo en forma de árbol invertido."
+    "hint": "La estructura jerárquica tiene una raíz arriba y se ramifica hacia abajo en forma de árbol invertido.",
+    "classNum": 3
   },
   {
     "id": 24,
@@ -470,7 +493,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La regla fundamental de la estructura jerárquica es que un registro hijo debe pertenecer exclusivamente a un solo registro padre (relación 1-N estricta unidireccional).",
     "citation": "UTN BA - Módulo 1: Restricciones de Paternidad en el Modelo Jerárquico.",
     "slideImage": "assets/clases_infographics/clase3_p03.png",
-    "hint": "En un árbol estricto, cada nodo hijo tiene un único enlace que sube hacia su único padre directo."
+    "hint": "En un árbol estricto, cada nodo hijo tiene un único enlace que sube hacia su único padre directo.",
+    "classNum": 3
   },
   {
     "id": 25,
@@ -488,7 +512,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La navegación en el modelo jerárquico es procedimental: el programador debe escribir código explícito para seguir los punteros físicos almacenados en disco de nodo a nodo.",
     "citation": "UTN BA - Módulo 1: Navegación Física mediante Punteros.",
     "slideImage": "assets/clases_infographics/clase3_p02.png",
-    "hint": "Antes de SQL declarativo, los programas debían seguir punteros de memoria y hardware registro por registro."
+    "hint": "Antes de SQL declarativo, los programas debían seguir punteros de memoria y hardware registro por registro.",
+    "classNum": 3
   },
   {
     "id": 26,
@@ -506,7 +531,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo de red define sus relaciones mediante el concepto de 'Set', compuesto por un registro Dueño (Owner) y uno o más registros Miembros (Members).",
     "citation": "UTN BA - Módulo 1: Modelo de Red CODASYL - Sets (Owner / Member).",
     "slideImage": "assets/clases_infographics/clase3_p05.png",
-    "hint": "En CODASYL cada conjunto (Set) tiene un registro propietario ('Owner') y registros miembros ('Members')."
+    "hint": "En CODASYL cada conjunto (Set) tiene un registro propietario ('Owner') y registros miembros ('Members').",
+    "classNum": 3
   },
   {
     "id": 27,
@@ -524,7 +550,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "A diferencia del modelo jerárquico (donde cada hijo tiene un solo padre), el modelo de red permite que un registro sea miembro de múltiples conjuntos, admitiendo relaciones N-M complejas.",
     "citation": "UTN BA - Módulo 1: Ventajas del Modelo de Red sobre el Jerárquico.",
     "slideImage": "assets/clases_infographics/clase3_p05.png",
-    "hint": "Rompe la restricción del árbol: un nodo miembro puede tener múltiples dueños (Owners), formando una red o grafo."
+    "hint": "Rompe la restricción del árbol: un nodo miembro puede tener múltiples dueños (Owners), formando una red o grafo.",
+    "classNum": 3
   },
   {
     "id": 28,
@@ -542,7 +569,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Al depender de cadenas de punteros físicos entrelazados, alterar el esquema implica reestructurar las rutas de navegación en el código fuente de los programas de aplicación.",
     "citation": "UTN BA - Módulo 1: Matriz Diagnóstica - Rigidez en Modelo de Red.",
     "slideImage": "assets/clases_infographics/clase3_p06.png",
-    "hint": "El código dependía de la ubicación física de punteros: cambiar un campo obligaba a reprogramar los accesos."
+    "hint": "El código dependía de la ubicación física de punteros: cambiar un campo obligaba a reprogramar los accesos.",
+    "classNum": 3
   },
   {
     "id": 29,
@@ -560,7 +588,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En el modelo jerárquico clásico no existe el concepto de clave primaria o foránea lógica; la integridad referencial recae totalmente en la lógica del programador, lo que suele derivar en anomalías.",
     "citation": "UTN BA - Módulo 1: Fracturas del Modelo Jerárquico - Integridad Referencial.",
     "slideImage": "assets/clases_infographics/clase3_p04.png",
-    "hint": "Al no existir el concepto de Clave Primaria / Foránea lógica, el motor no puede validar automáticamente la consistencia."
+    "hint": "Al no existir el concepto de Clave Primaria / Foránea lógica, el motor no puede validar automáticamente la consistencia.",
+    "classNum": 3
   },
   {
     "id": 30,
@@ -578,7 +607,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo orientado a objetos aborda las relaciones N-M mediante atributos multivaluados que almacenan colecciones de referencias de objetos, permitiendo acceso directo a elementos relacionados.",
     "citation": "UTN BA - Módulo 1: Paradigma Orientado a Objetos y Colecciones.",
     "slideImage": "assets/clases_infographics/clase1_p10.png",
-    "hint": "Usa identificadores de objeto (OID) y listas o colecciones en memoria para navegar relaciones complejas sin tablas intermedias."
+    "hint": "Usa identificadores de objeto (OID) y listas o colecciones en memoria para navegar relaciones complejas sin tablas intermedias.",
+    "classNum": 1
   },
   {
     "id": 31,
@@ -596,7 +626,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La inconsistencia se produce cuando la redundancia no está controlada: si el domicilio de un cliente se actualiza en una tabla pero no en otra, la base de datos entra en un estado inconsistente.",
     "citation": "UTN BA - Módulo 1: Inconsistencia y Redundancia de Datos.",
     "slideImage": "assets/clases_infographics/clase1_p03.png",
-    "hint": "Ocurre cuando existen múltiples copias de un dato y se modifican de forma despareja, entrando en contradicción."
+    "hint": "Ocurre cuando existen múltiples copias de un dato y se modifican de forma despareja, entrando en contradicción.",
+    "classNum": 1
   },
   {
     "id": 32,
@@ -614,7 +645,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El Query Processor recibe la consulta en lenguaje declarativo (SQL), evalúa múltiples algoritmos posibles de ejecución y selecciona el plan más eficiente.",
     "citation": "UTN BA - Módulo 1: El Cerebro del DBMS - Procesador de Consultas.",
     "slideImage": "assets/clases_infographics/clase1_p04.png",
-    "hint": "Es el 'cerebro' que incluye el parser léxico-sintáctico y el optimizador de costos para generar el Execution Plan."
+    "hint": "Es el 'cerebro' que incluye el parser léxico-sintáctico y el optimizador de costos para generar el Execution Plan.",
+    "classNum": 1
   },
   {
     "id": 33,
@@ -632,7 +664,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Los sistemas OLAP (Data Warehouses / Datamarts) están diseñados para realizar consultas analíticas complejas (sumas, promedios, comparativas anuales) que ayudan a la estrategia corporativa.",
     "citation": "UTN BA - Módulo 1: Ecosistema OLAP y Data Warehousing.",
     "slideImage": "assets/clases_infographics/clase1_p11.png",
-    "hint": "OLAP sirve a la toma de decisiones estratégicas mediante análisis multidimensional de cubos de datos históricos."
+    "hint": "OLAP sirve a la toma de decisiones estratégicas mediante análisis multidimensional de cubos de datos históricos.",
+    "classNum": 1
   },
   {
     "id": 34,
@@ -650,7 +683,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Al desnormalizar o carecer de estructuras relacionales limpias, los mismos datos descriptivos se repiten en miles de registros, multiplicando la necesidad de disco.",
     "citation": "UTN BA - Módulo 1: Impacto de la Redundancia en el Almacenamiento.",
     "slideImage": "assets/clases_infographics/clase3_p04.png",
-    "hint": "Repetir datos no normalizados una y otra vez infla innecesariamente el tamaño de las tablas en disco."
+    "hint": "Repetir datos no normalizados una y otra vez infla innecesariamente el tamaño de las tablas en disco.",
+    "classNum": 3
   },
   {
     "id": 35,
@@ -668,7 +702,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comité ANSI/X3/SPARC (Study Group on Data Base Management Systems) propuso en 1975 la arquitectura de 3 niveles para lograr la independencia de datos.",
     "citation": "UTN BA - Módulo 1: Estandarización ANSI/SPARC (1975).",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Fue propuesto por el comité conjunto ANSI (American National Standards Institute) y SPARC."
+    "hint": "Fue propuesto por el comité conjunto ANSI (American National Standards Institute) y SPARC.",
+    "classNum": 5
   },
   {
     "id": 36,
@@ -686,7 +721,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La arquitectura ANSI/SPARC establece 3 niveles de abstracción: Externo (vistas de usuario), Conceptual (esquema lógico global) e Interno (almacenamiento físico en disco).",
     "citation": "UTN BA - Módulo 2: Arquitectura ANSI/SPARC - Los 3 Niveles.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Los 3 niveles clásicos: Externo (vistas), Conceptual (diseño global) e Interno (almacenamiento en bytes)."
+    "hint": "Los 3 niveles clásicos: Externo (vistas), Conceptual (diseño global) e Interno (almacenamiento en bytes).",
+    "classNum": 5
   },
   {
     "id": 37,
@@ -704,7 +740,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El nivel conceptual es único y proporciona una visión lógica unificada e integrada de toda la organización de la base de datos, libre de detalles de almacenamiento físico.",
     "citation": "UTN BA - Módulo 2: Características del Nivel Conceptual.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Es único para toda la empresa: define entidades, atributos y relaciones sin importar el hardware."
+    "hint": "Es único para toda la empresa: define entidades, atributos y relaciones sin importar el hardware.",
+    "classNum": 5
   },
   {
     "id": 38,
@@ -722,7 +759,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El nivel interno define cómo se guardan físicamente los datos en disco, detallando la representación de registros, tipos de campos, direcciones y estructuras de índices.",
     "citation": "UTN BA - Módulo 2: Nivel Interno y Estructuras Físicas.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Es el nivel más bajo, donde se configuran bloques, páginas de memoria y estructuras de archivo en disco."
+    "hint": "Es el nivel más bajo, donde se configuran bloques, páginas de memoria y estructuras de archivo en disco.",
+    "classNum": 5
   },
   {
     "id": 39,
@@ -740,7 +778,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El nivel externo está compuesto por múltiples esquemas o vistas externas que muestran únicamente la parte relevante de la base de datos que le interesa a un usuario específico.",
     "citation": "UTN BA - Módulo 2: Vistas de Usuario en el Nivel Externo.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "El nivel externo se adapta a cada rol de usuario (ej. Tesorería ve importes, RRHH ve legajos)."
+    "hint": "El nivel externo se adapta a cada rol de usuario (ej. Tesorería ve importes, RRHH ve legajos).",
+    "classNum": 5
   },
   {
     "id": 40,
@@ -758,7 +797,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Este ejemplo de la Clase 5 ilustra cómo la arquitectura ANSI/SPARC desacopla el almacenamiento físico (20 bytes), el modelo conceptual único (Empleado) y las vistas externas (Tesorería vs RRHH).",
     "citation": "UTN BA - Módulo 2: Ejemplo Integral de Arquitectura de 3 Niveles.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "La separación entre almacenamiento de 20 bytes, entidad conceptual y vistas externas de RRHH/Tesorería es el principio central de ANSI/SPARC."
+    "hint": "La separación entre almacenamiento de 20 bytes, entidad conceptual y vistas externas de RRHH/Tesorería es el principio central de ANSI/SPARC.",
+    "classNum": 5
   },
   {
     "id": 41,
@@ -776,7 +816,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El esquema conceptual se declara utilizando el Lenguaje de Definición de Datos (DDL) para especificar tablas, columnas, tipos de datos y restricciones de integridad.",
     "citation": "UTN BA - Módulo 2: Sublenguaje DDL en la Definición de Esquemas.",
     "slideImage": "assets/clases_infographics/clase2_p04.png",
-    "hint": "DDL (Data Definition Language) contiene sentencias como CREATE TABLE para definir la estructura."
+    "hint": "DDL (Data Definition Language) contiene sentencias como CREATE TABLE para definir la estructura.",
+    "classNum": 2
   },
   {
     "id": 42,
@@ -794,7 +835,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La Clave Primaria es el identificador único de cada fila en una tabla relacional; garantiza que no existan tuplas duplicadas y no admite valores nulos (NOT NULL).",
     "citation": "UTN BA - Módulo 2: Matriz Estructural de Claves - Primary Key (PK).",
     "slideImage": "assets/clases_infographics/clase5_p08.png",
-    "hint": "Es el identificador unívoco de cada tupla: no puede repetirse ni ser nulo."
+    "hint": "Es el identificador unívoco de cada tupla: no puede repetirse ni ser nulo.",
+    "classNum": 5
   },
   {
     "id": 43,
@@ -812,7 +854,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La Clave Foránea actúa como puente entre tablas: sus valores deben coincidir con una clave primaria válida en la tabla referenciada o ser nulos.",
     "citation": "UTN BA - Módulo 2: Matriz Estructural de Claves - Foreign Key (FK).",
     "slideImage": "assets/clases_infographics/clase5_p08.png",
-    "hint": "Apunta a la Primary Key de otra tabla para vincular registros y evitar huérfanos."
+    "hint": "Apunta a la Primary Key de otra tabla para vincular registros y evitar huérfanos.",
+    "classNum": 5
   },
   {
     "id": 44,
@@ -830,7 +873,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La integridad referencial asegura la consistencia de las relaciones entre tablas impidiendo que existan claves foráneas 'huérfanas' apuntando a registros inexistentes.",
     "citation": "UTN BA - Módulo 2: Integridad Referencial en Acción.",
     "slideImage": "assets/clases_infographics/clase5_p09.png",
-    "hint": "Garantiza que no existan registros hijos apuntando a un padre que no existe."
+    "hint": "Garantiza que no existan registros hijos apuntando a un padre que no existe.",
+    "classNum": 5
   },
   {
     "id": 45,
@@ -848,7 +892,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Literalmente evaluado en el parcial (Pregunta 10): 'uno sin cero' indica una participación obligatoria (mínimo 1), por lo que el registro relacionado debe existir sí o sí en la tabla de destino.",
     "citation": "UTN BA - Módulo 2: Restricciones de Existencia (Cardinalidad Detallada).",
     "slideImage": "assets/clases_infographics/clase5_p07.png",
-    "hint": "'Uno sin cero' significa que la cota inferior no puede ser 0: la existencia es obligatoria."
+    "hint": "'Uno sin cero' significa que la cota inferior no puede ser 0: la existencia es obligatoria.",
+    "classNum": 5
   },
   {
     "id": 46,
@@ -866,7 +911,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "'Uno con cero' (0 a 1) denota una relación opcional donde la entidad puede estar vinculada a lo sumo con una tupla de la otra tabla, o con ninguna.",
     "citation": "UTN BA - Módulo 2: Restricciones de Existencia - Participación Opcional.",
     "slideImage": "assets/clases_infographics/clase5_p07.png",
-    "hint": "Cero a uno (0..1): la participación es opcional, puede no existir registro asociado."
+    "hint": "Cero a uno (0..1): la participación es opcional, puede no existir registro asociado.",
+    "classNum": 5
   },
   {
     "id": 47,
@@ -884,7 +930,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Las relaciones N-M no se pueden implementar directamente con una FK en una de las tablas originales. Se debe descomponer en dos relaciones 1-N mediante una tabla intermedia o de unión.",
     "citation": "UTN BA - Módulo 2: Desentrañando la Relación Muchos a Muchos (N-M).",
     "slideImage": "assets/clases_infographics/clase5_p06.png",
-    "hint": "Se crea una tabla asociativa/intermedia que contiene las FKs de ambas entidades."
+    "hint": "Se crea una tabla asociativa/intermedia que contiene las FKs de ambas entidades.",
+    "classNum": 5
   },
   {
     "id": 48,
@@ -902,7 +949,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La notación Crow's Foot utiliza una ramificación de tres líneas al final de la línea de relación para indicar que la entidad del lado correspondiente puede tener 'muchos' registros asociados.",
     "citation": "UTN BA - Módulo 2: Notación Crow's Foot en Diagramas Entidad-Relación.",
     "slideImage": "assets/clases_infographics/clase5_p04.png",
-    "hint": "La bifurcación de 3 líneas asemeja la huella de una pata de gallo (Crow's foot)."
+    "hint": "La bifurcación de 3 líneas asemeja la huella de una pata de gallo (Crow's foot).",
+    "classNum": 5
   },
   {
     "id": 49,
@@ -920,7 +968,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "ON DELETE CASCADE propaga automáticamente la eliminación a la tabla hija, borrando los registros vinculados para prevenir registros huérfanos.",
     "citation": "UTN BA - Módulo 2: Reglas Referenciales ON DELETE CASCADE.",
     "slideImage": "assets/clases_infographics/clase5_p09.png",
-    "hint": "La acción en cascada elimina en cadena a los hijos cuando el registro padre desaparece."
+    "hint": "La acción en cascada elimina en cadena a los hijos cuando el registro padre desaparece.",
+    "classNum": 4
   },
   {
     "id": 50,
@@ -938,7 +987,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "ON DELETE SET NULL conserva los registros de la tabla hija pero desvincula la relación asignando el valor NULL a la clave foránea en las filas afectadas.",
     "citation": "UTN BA - Módulo 2: Acciones Referenciales - SET NULL.",
     "slideImage": "assets/clases_infographics/clase5_p09.png",
-    "hint": "No borra la fila hija, sino que pone su FK en NULL para indicar que ya no tiene padre asociado."
+    "hint": "No borra la fila hija, sino que pone su FK en NULL para indicar que ya no tiene padre asociado.",
+    "classNum": 4
   },
   {
     "id": 51,
@@ -956,7 +1006,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "ON DELETE RESTRICT (o NO ACTION) prohíbe la eliminación de la tupla padre mientras permanezca referenciada por al menos un registro en la tabla hija.",
     "citation": "UTN BA - Módulo 2: Acciones Referenciales - RESTRICT.",
     "slideImage": "assets/clases_infographics/clase5_p09.png",
-    "hint": "RESTRICT frena y aborta la transacción arrojando error para proteger la integridad."
+    "hint": "RESTRICT frena y aborta la transacción arrojando error para proteger la integridad.",
+    "classNum": 4
   },
   {
     "id": 52,
@@ -974,7 +1025,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En el modelo relacional formal, el término matemático 'Tupla' se corresponde con una fila o registro dentro de una relación (tabla).",
     "citation": "UTN BA - Módulo 2: Elementos de una Tabla - Tupla / Registro.",
     "slideImage": "assets/clases_infographics/clase5_p03.png",
-    "hint": "En la teoría formal de Codd: Relación = Tabla, Tupla = Fila/Registro, Atributo = Columna."
+    "hint": "En la teoría formal de Codd: Relación = Tabla, Tupla = Fila/Registro, Atributo = Columna.",
+    "classNum": 5
   },
   {
     "id": 53,
@@ -992,7 +1044,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El Dominio especifica el tipo de dato y el rango de valores permitidos para una columna (ej. enteros positivos, cadenas de 10 caracteres).",
     "citation": "UTN BA - Módulo 2: Elementos de una Tabla - Dominio de Atributos.",
     "slideImage": "assets/clases_infographics/clase5_p03.png",
-    "hint": "Es el universo o conjunto de valores válidos y atómicos asignables a un atributo."
+    "hint": "Es el universo o conjunto de valores válidos y atómicos asignables a un atributo.",
+    "classNum": 5
   },
   {
     "id": 54,
@@ -1010,7 +1063,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Una relación es un conjunto matemático de elementos únicos. La presencia obligatoria de la Clave Primaria asegura que cada tupla sea distinguible de las demás.",
     "citation": "UTN BA - Módulo 2: Teoría de Conjuntos y Claves Primarias.",
     "slideImage": "assets/clases_infographics/clase5_p08.png",
-    "hint": "En teoría matemática un conjunto no contiene elementos repetidos; la PK asegura que cada fila sea única."
+    "hint": "En teoría matemática un conjunto no contiene elementos repetidos; la PK asegura que cada fila sea única.",
+    "classNum": 5
   },
   {
     "id": 55,
@@ -1028,7 +1082,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La tabla intermedia transforma la relación N:M en dos relaciones 1:N limpias, almacenando los atributos propios de la relación (como fecha, cantidad y precio del pedido).",
     "citation": "UTN BA - Módulo 2: Tablas de Resolución en Relaciones N-M.",
     "slideImage": "assets/clases_infographics/clase5_p06.png",
-    "hint": "Permite modelar cada intersección Cliente-Producto y almacenar atributos propios (como fecha y cantidad)."
+    "hint": "Permite modelar cada intersección Cliente-Producto y almacenar atributos propios (como fecha y cantidad).",
+    "classNum": 5
   },
   {
     "id": 56,
@@ -1046,7 +1101,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "CREATE TABLE es una sentencia DDL utilizada para definir la estructura física de una nueva tabla relacional en la base de datos.",
     "citation": "UTN BA - Módulo 3: Las 4 Familias de Comandos SQL (DDL).",
     "slideImage": "assets/clases_infographics/clase2_p04.png",
-    "hint": "DDL se encarga de 'definir' estructuras de tablas, esquemas, índices y vistas."
+    "hint": "DDL se encarga de 'definir' estructuras de tablas, esquemas, índices y vistas.",
+    "classNum": 2
   },
   {
     "id": 57,
@@ -1064,7 +1120,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "UPDATE forma parte de DML (Data Manipulation Language), ya que modifica los datos contenidos dentro de los registros existentes sin alterar la estructura de la tabla.",
     "citation": "UTN BA - Módulo 3: Las 4 Familias de Comandos SQL (DML).",
     "slideImage": "assets/clases_infographics/clase2_p04.png",
-    "hint": "DML manipula los registros (filas): INSERT, UPDATE, DELETE."
+    "hint": "DML manipula los registros (filas): INSERT, UPDATE, DELETE.",
+    "classNum": 4
   },
   {
     "id": 58,
@@ -1082,7 +1139,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Literalmente evaluado en el parcial (Pregunta 18): DROP TABLE Proyectos; elimina por completo el objeto tabla del diccionario de datos junto con su contenido.",
     "citation": "UTN BA - Módulo 3: Anatomía DDL - DROP TABLE.",
     "slideImage": "assets/clases_infographics/clase5_p11.png",
-    "hint": "DROP TABLE destruye tanto los datos como la definición del catálogo de forma permanente."
+    "hint": "DROP TABLE destruye tanto los datos como la definición del catálogo de forma permanente.",
+    "classNum": 5
   },
   {
     "id": 59,
@@ -1100,7 +1158,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "ALTER TABLE es la sentencia de DDL diseñada para reestructurar la definición de una tabla existente (ej. agregar un campo, cambiar un tipo de dato).",
     "citation": "UTN BA - Módulo 3: Anatomía DDL - ALTER TABLE.",
     "slideImage": "assets/clases_infographics/clase5_p11.png",
-    "hint": "Para 'alterar' la estructura física de columnas se usa ALTER TABLE."
+    "hint": "Para 'alterar' la estructura física de columnas se usa ALTER TABLE.",
+    "classNum": 5
   },
   {
     "id": 60,
@@ -1118,7 +1177,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "DELETE es una operación DML sobre datos; DROP TABLE es una operación DDL sobre la estructura del objeto en la base de datos.",
     "citation": "UTN BA - Módulo 3: Eliminación de Datos vs Destrucción de Esquemas.",
     "slideImage": "assets/clases_infographics/clase4_p10.png",
-    "hint": "DELETE borra filas dejando la tabla lista para nuevos INSERTs; DROP borra la tabla del catálogo."
+    "hint": "DELETE borra filas dejando la tabla lista para nuevos INSERTs; DROP borra la tabla del catálogo.",
+    "classNum": 4
   },
   {
     "id": 61,
@@ -1136,7 +1196,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La sintaxis correcta es: UPDATE nombre_tabla SET columna1 = nuevo_valor WHERE condicion_filtrado;",
     "citation": "UTN BA - Módulo 3: Sintaxis Principal del UPDATE.",
     "slideImage": "assets/clases_infographics/clase4_p09.png",
-    "hint": "UPDATE tabla SET campo = valor WHERE condicion;"
+    "hint": "UPDATE tabla SET campo = valor WHERE condicion;",
+    "classNum": 4
   },
   {
     "id": 62,
@@ -1154,7 +1215,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Sin una cláusula WHERE que restrinja el alcance, UPDATE o DELETE aplican la modificación o eliminación a la totalidad de las filas de la tabla.",
     "citation": "UTN BA - Módulo 3: La Importancia Vital del WHERE en DML.",
     "slideImage": "assets/clases_infographics/clase4_p09.png",
-    "hint": "Sin WHERE, la operación no tiene filtro y barre todas las filas de la tabla."
+    "hint": "Sin WHERE, la operación no tiene filtro y barre todas las filas de la tabla.",
+    "classNum": 4
   },
   {
     "id": 63,
@@ -1172,7 +1234,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "SELECT DISTINCT evalúa la combinación de los campos solicitados y remueve las filas repetidas, mostrando únicamente valores únicos.",
     "citation": "UTN BA - Módulo 3: DISTINCT - Eliminando el Ruido.",
     "slideImage": "assets/clases_infographics/clase3_p12.png",
-    "hint": "DISTINCT remueve las tuplas duplicadas del conjunto proyectado."
+    "hint": "DISTINCT remueve las tuplas duplicadas del conjunto proyectado.",
+    "classNum": 3
   },
   {
     "id": 64,
@@ -1190,7 +1253,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial (Pregunta 25): recupera los valores únicos de la columna id_departamento, suprimiendo las repeticiones.",
     "citation": "UTN BA - Módulo 3: Consulta SELECT DISTINCT id_departamento.",
     "slideImage": "assets/clases_infographics/clase3_p12.png",
-    "hint": "Devuelve la lista única y sin duplicados de los códigos de departamento presentes en la tabla."
+    "hint": "Devuelve la lista única y sin duplicados de los códigos de departamento presentes en la tabla.",
+    "classNum": 3
   },
   {
     "id": 65,
@@ -1208,7 +1272,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "BETWEEN evalúa 'campo >= min AND campo <= max', incluyendo de forma inclusiva los dos valores límite declarados.",
     "citation": "UTN BA - Módulo 3: Operadores de Rango - BETWEEN AND.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "BETWEEN min AND max es inclusivo: incluye tanto el límite inferior como el superior."
+    "hint": "BETWEEN min AND max es inclusivo: incluye tanto el límite inferior como el superior.",
+    "classNum": 2
   },
   {
     "id": 66,
@@ -1226,7 +1291,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Al ser inclusivo, los empleados que ganen exactamente 45.000 o 55.000 forman parte del conjunto resultante.",
     "citation": "UTN BA - Módulo 3: Inclusividad de Límites en BETWEEN.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "Equivale a salario >= 45000 AND salario <= 55000, por lo que ambos extremos entran."
+    "hint": "Equivale a salario >= 45000 AND salario <= 55000, por lo que ambos extremos entran.",
+    "classNum": 2
   },
   {
     "id": 67,
@@ -1244,7 +1310,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El operador IN permite simplificar múltiples condiciones OR disjuntas (ej. WHERE id_depto IN (2, 3, 5)).",
     "citation": "UTN BA - Módulo 3: Operador de Conjunto Discreto IN.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "Comprueba pertenencia a una lista discreta: `WHERE id IN (10, 20, 30)`."
+    "hint": "Comprueba pertenencia a una lista discreta: `WHERE id IN (10, 20, 30)`.",
+    "classNum": 2
   },
   {
     "id": 68,
@@ -1262,7 +1329,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comodín '_' (underscore) reemplaza a exactamente un único carácter en la posición indicada dentro del patrón.",
     "citation": "UTN BA - Módulo 3: Coincidencia de Patrones con LIKE (_ y %).",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "El guion bajo `_` ocupa exactamente una posición de un único carácter cualquiera."
+    "hint": "El guion bajo `_` ocupa exactamente una posición de un único carácter cualquiera.",
+    "classNum": 2
   },
   {
     "id": 69,
@@ -1280,7 +1348,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comodín '%' sustituye a cualquier cantidad de caracteres (incluyendo la cadena vacía).",
     "citation": "UTN BA - Módulo 3: Comodín de Longitud Variable (%) en LIKE.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "El signo `%` representa una secuencia de 0, 1 o muchos caracteres."
+    "hint": "El signo `%` representa una secuencia de 0, 1 o muchos caracteres.",
+    "classNum": 2
   },
   {
     "id": 70,
@@ -1298,7 +1367,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "'J%' matchea con cualquier cadena cuyo primer carácter sea 'J', sin importar la longitud restante (ej. 'Juan', 'Jose', 'J').",
     "citation": "UTN BA - Módulo 3: Búsquedas Prefijas con LIKE 'J%'.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "Empieza con 'J' y `%` permite que continúe con cualquier texto o nada."
+    "hint": "Empieza con 'J' y `%` permite que continúe con cualquier texto o nada.",
+    "classNum": 2
   },
   {
     "id": 71,
@@ -1316,7 +1386,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "'_' exige un primer carácter cualquiera, 'A' fija la segunda posición y '%' permite cualquier texto posterior.",
     "citation": "UTN BA - Módulo 3: Combinación de Comodines en LIKE.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "Primer carácter cualquiera (`_`), segundo carácter 'A', y luego cualquier cosa (`%`)."
+    "hint": "Primer carácter cualquiera (`_`), segundo carácter 'A', y luego cualquier cosa (`%`).",
+    "classNum": 2
   },
   {
     "id": 72,
@@ -1334,7 +1405,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "ORDER BY es la cláusula DQL para definir el orden en que las filas resultantes deben ser entregadas al usuario.",
     "citation": "UTN BA - Módulo 3: Moldeando el Resultado con ORDER BY.",
     "slideImage": "assets/clases_infographics/clase2_p08.png",
-    "hint": "Cláusula de dos palabras para ordenar los resultados de un SELECT."
+    "hint": "Cláusula de dos palabras para ordenar los resultados de un SELECT.",
+    "classNum": 2
   },
   {
     "id": 73,
@@ -1352,7 +1424,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En SQL, la dirección de ordenamiento por defecto en ORDER BY es siempre ascendente (ASC).",
     "citation": "UTN BA - Módulo 3: Dirección por Defecto ASC en ORDER BY.",
     "slideImage": "assets/clases_infographics/clase2_p08.png",
-    "hint": "Por defecto, SQL ordena de menor a mayor (A a Z, 1 a 9) de forma ascendente."
+    "hint": "Por defecto, SQL ordena de menor a mayor (A a Z, 1 a 9) de forma ascendente.",
+    "classNum": 2
   },
   {
     "id": 74,
@@ -1370,7 +1443,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La palabra clave DESC ordena de forma descendente (de mayor a menor para números, de Z a A para cadenas).",
     "citation": "UTN BA - Módulo 3: Modificador DESC en ORDER BY.",
     "slideImage": "assets/clases_infographics/clase2_p08.png",
-    "hint": "La abreviatura de 'descendente' en SQL es DESC."
+    "hint": "La abreviatura de 'descendente' en SQL es DESC.",
+    "classNum": 2
   },
   {
     "id": 75,
@@ -1388,7 +1462,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El operador = compara la cadena completa de forma literal; LIKE analiza si la cadena encaja con una plantilla dinámica con comodines.",
     "citation": "UTN BA - Módulo 3: Comparación Literal vs Patrones con LIKE.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "`=` busca igualdad estricta carácter por carácter; `LIKE` admite comodines `%` y `_`."
+    "hint": "`=` busca igualdad estricta carácter por carácter; `LIKE` admite comodines `%` y `_`.",
+    "classNum": 2
   },
   {
     "id": 76,
@@ -1406,7 +1481,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El motor evalúa primero el origen de datos (FROM/JOIN), luego filtra filas (WHERE), agrupa (GROUP BY), filtra grupos (HAVING), proyecta columnas y alias (SELECT) y finalmente ordena (ORDER BY).",
     "citation": "UTN BA - Módulo 4: Pipeline de Datos SQL - Orden Lógico de Ejecución.",
     "slideImage": "assets/clases_infographics/clase2_p10.png",
-    "hint": "Primero busca de dónde sacar los datos (FROM), filtra (WHERE), agrupa (GROUP BY), filtra grupos (HAVING), proyecta (SELECT) y ordena (ORDER BY)."
+    "hint": "Primero busca de dónde sacar los datos (FROM), filtra (WHERE), agrupa (GROUP BY), filtra grupos (HAVING), proyecta (SELECT) y ordena (ORDER BY).",
+    "classNum": 2
   },
   {
     "id": 77,
@@ -1424,7 +1500,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Debido al orden lógico de evaluación (FROM -> WHERE -> ... -> SELECT), el alias declarado en SELECT no es reconocido durante la ejecución de WHERE.",
     "citation": "UTN BA - Módulo 4: Orden de Evaluación y Visibilidad de Alias.",
     "slideImage": "assets/clases_infographics/clase2_p10.png",
-    "hint": "El motor procesa el WHERE mucho antes que el SELECT: en ese momento el alias no fue creado aún."
+    "hint": "El motor procesa el WHERE mucho antes que el SELECT: en ese momento el alias no fue creado aún.",
+    "classNum": 2
   },
   {
     "id": 78,
@@ -1442,7 +1519,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "INNER JOIN realiza la intersección de ambas tablas: solo devuelve aquellas filas cuya condición ON sea verdadera en ambos lados.",
     "citation": "UTN BA - Módulo 4: Anatomía de los JOINs - INNER JOIN.",
     "slideImage": "assets/clases_infographics/clase3_p10.png",
-    "hint": "Representa la intersección matemática pura: solo los registros que coinciden en ambas tablas."
+    "hint": "Representa la intersección matemática pura: solo los registros que coinciden en ambas tablas.",
+    "classNum": 3
   },
   {
     "id": 79,
@@ -1460,7 +1538,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "LEFT JOIN preserva la totalidad de los registros de la tabla izquierda (A); si no hay coincidencia en la derecha (B), sus atributos se muestran como NULL.",
     "citation": "UTN BA - Módulo 4: Anatomía de los JOINs - LEFT JOIN.",
     "slideImage": "assets/clases_infographics/clase3_p10.png",
-    "hint": "Conserva todo lo de la izquierda (A) y rellena con NULL las columnas de la derecha (B) que no tengan par."
+    "hint": "Conserva todo lo de la izquierda (A) y rellena con NULL las columnas de la derecha (B) que no tengan par.",
+    "classNum": 3
   },
   {
     "id": 80,
@@ -1478,7 +1557,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "COUNT() es la función de agregación encargada de computar la cantidad de filas o valores no nulos presentes en un conjunto de datos.",
     "citation": "UTN BA - Módulo 4: Funciones de Agregación - COUNT().",
     "slideImage": "assets/clases_infographics/clase2_p09.png",
-    "hint": "La función en inglés para contar elementos es COUNT()."
+    "hint": "La función en inglés para contar elementos es COUNT().",
+    "classNum": 2
   },
   {
     "id": 81,
@@ -1496,7 +1576,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "COUNT(*) evalúa la presencia de filas totales en la tupla; COUNT(columna) ignora las celdas que contienen el valor NULL.",
     "citation": "UTN BA - Módulo 4: COUNT(*) vs COUNT(columna) y Nulos.",
     "slideImage": "assets/clases_infographics/clase2_p09.png",
-    "hint": "COUNT(*) cuenta todas las filas de la tabla; COUNT(columna) saltea los valores NULL."
+    "hint": "COUNT(*) cuenta todas las filas de la tabla; COUNT(columna) saltea los valores NULL.",
+    "classNum": 2
   },
   {
     "id": 82,
@@ -1514,7 +1595,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "AVG() es la función de agregación en SQL para calcular la media o promedio aritmético de los valores no nulos de un atributo.",
     "citation": "UTN BA - Módulo 4: Funciones de Agregación - AVG().",
     "slideImage": "assets/clases_infographics/clase2_p09.png",
-    "hint": "La abreviatura estándar de 'Average' en SQL es AVG()."
+    "hint": "La abreviatura estándar de 'Average' en SQL es AVG().",
+    "classNum": 2
   },
   {
     "id": 83,
@@ -1532,7 +1614,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "GROUP BY colapsa las filas que tienen valores idénticos en los campos indicados para calcular subtotales, promedios o recuentos por categoría.",
     "citation": "UTN BA - Módulo 4: Agrupamiento Lógico con GROUP BY.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "Segmenta las filas en grupos según columnas compartidas para calcular métricas por grupo."
+    "hint": "Segmenta las filas en grupos según columnas compartidas para calcular métricas por grupo.",
+    "classNum": 3
   },
   {
     "id": 84,
@@ -1550,7 +1633,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "WHERE filtra tuplas antes del paso de agregación; HAVING se ejecuta obligatoriamente después de GROUP BY para evaluar agregados (ej. HAVING SUM(ventas) > 100).",
     "citation": "UTN BA - Módulo 4: WHERE vs HAVING - El Momento del Filtro.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "WHERE filtra registros individuales antes del agrupamiento; HAVING filtra los grupos ya agrupados."
+    "hint": "WHERE filtra registros individuales antes del agrupamiento; HAVING filtra los grupos ya agrupados.",
+    "classNum": 3
   },
   {
     "id": 85,
@@ -1568,7 +1652,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Dado que implica una función de agregación (SUM), la condición no puede colocarse en el WHERE y debe especificarse en el HAVING.",
     "citation": "UTN BA - Módulo 4: Filtrado de Grupos con HAVING.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "Cualquier condición que involucre funciones como SUM(), COUNT() o AVG() debe ir en HAVING."
+    "hint": "Cualquier condición que involucre funciones como SUM(), COUNT() o AVG() debe ir en HAVING.",
+    "classNum": 3
   },
   {
     "id": 86,
@@ -1586,7 +1671,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Las funciones de agregación sintetizan grupos de filas y por ende no se pueden evaluar en la fase de filtrado de filas individuales (WHERE).",
     "citation": "UTN BA - Módulo 4: Restricciones de Agregación en la Cláusula WHERE.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "WHERE se ejecuta fila a fila antes de calcular el promedio, por lo que no acepta AVG()."
+    "hint": "WHERE se ejecuta fila a fila antes de calcular el promedio, por lo que no acepta AVG().",
+    "classNum": 3
   },
   {
     "id": 87,
@@ -1604,7 +1690,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Una subconsulta o subquery es una expresión de selección incluida dentro de los paréntesis de una consulta externa para proveer un filtro o conjunto dinámico.",
     "citation": "UTN BA - Módulo 4: La Lógica de Anidación mediante Subconsultas.",
     "slideImage": "assets/clases_infographics/clase4_p11.png",
-    "hint": "Es una sentencia SELECT anidada entre paréntesis dentro de una consulta externa."
+    "hint": "Es una sentencia SELECT anidada entre paréntesis dentro de una consulta externa.",
+    "classNum": 4
   },
   {
     "id": 88,
@@ -1622,7 +1709,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Una subconsulta escalar produce un único dato escalar y puede ser empleada en operadores de comparación relacional simples (=, <, >).",
     "citation": "UTN BA - Módulo 4: Subconsultas Escalares (1 Fila x 1 Columna).",
     "slideImage": "assets/clases_infographics/clase4_p12.png",
-    "hint": "Devuelve una matriz de 1x1 (un único dato atómico)."
+    "hint": "Devuelve una matriz de 1x1 (un único dato atómico).",
+    "classNum": 4
   },
   {
     "id": 89,
@@ -1640,7 +1728,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Al comparar un campo contra un conjunto multievaluado provisto por una subconsulta, se requiere el operador de conjunto IN.",
     "citation": "UTN BA - Módulo 4: Subconsultas de Lista con Operador IN.",
     "slideImage": "assets/clases_infographics/clase4_p12.png",
-    "hint": "Para comparar un valor contra una lista de filas se utiliza el operador de pertenencia IN."
+    "hint": "Para comparar un valor contra una lista de filas se utiliza el operador de pertenencia IN.",
+    "classNum": 4
   },
   {
     "id": 90,
@@ -1658,7 +1747,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Las subconsultas ofrecen alta flexibilidad en SQL y pueden incorporarse en el SELECT, FROM, WHERE y HAVING según la necesidad del cálculo.",
     "citation": "UTN BA - Módulo 4: Flexibilidad y Ubicación de Subconsultas.",
     "slideImage": "assets/clases_infographics/clase4_p11.png",
-    "hint": "Pueden colocarse en el SELECT (escalares), en el FROM (tablas derivadas), en WHERE y en HAVING."
+    "hint": "Pueden colocarse en el SELECT (escalares), en el FROM (tablas derivadas), en WHERE y en HAVING.",
+    "classNum": 4
   },
   {
     "id": 91,
@@ -1676,7 +1766,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La condición de acoplamiento estándar equipara la clave foránea del lado N (e.id_departamento) con la clave primaria del lado 1 (d.id_departamento).",
     "citation": "UTN BA - Módulo 4: Condición de Igualdad ON en JOINs.",
     "slideImage": "assets/clases_infographics/clase3_p10.png",
-    "hint": "Empareja la Foreign Key de Empleados con la Primary Key de Departamentos: `e.id_departamento = d.id_departamento`."
+    "hint": "Empareja la Foreign Key de Empleados con la Primary Key de Departamentos: `e.id_departamento = d.id_departamento`.",
+    "classNum": 3
   },
   {
     "id": 92,
@@ -1694,7 +1785,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Salvo COUNT(*), las funciones de agregación excluyen los valores NULL de la muestra antes de efectuar la suma, promedio o búsqueda de extremos.",
     "citation": "UTN BA - Módulo 4: Manejo de Nulos en Funciones de Agregación.",
     "slideImage": "assets/clases_infographics/clase2_p09.png",
-    "hint": "Las funciones de agregación descartan silenciosamente los valores NULL de sus cálculos."
+    "hint": "Las funciones de agregación descartan silenciosamente los valores NULL de sus cálculos.",
+    "classNum": 2
   },
   {
     "id": 93,
@@ -1712,7 +1804,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Toda columna no agregada en la lista del SELECT debe formar parte obligatoria de la cláusula GROUP BY para evitar ambigüedades.",
     "citation": "UTN BA - Módulo 4: Ambigüedad y Reglas del GROUP BY.",
     "slideImage": "assets/clases_infographics/clase2_p14.png",
-    "hint": "No puedes pedir una columna simple junto a un COUNT(*) sin indicar el GROUP BY correspondiente."
+    "hint": "No puedes pedir una columna simple junto a un COUNT(*) sin indicar el GROUP BY correspondiente.",
+    "classNum": 3
   },
   {
     "id": 94,
@@ -1730,7 +1823,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Los alias proveen identificadores sintácticos breves durante la ejecución de la consulta para referenciar campos unívocamente (ej. e.nombre, d.nombre).",
     "citation": "UTN BA - Módulo 4: Desambiguación con Alias de Tabla.",
     "slideImage": "assets/clases_infographics/clase3_p10.png",
-    "hint": "Permiten escribir consultas más compactas y diferenciar columnas con nombres idénticos (como `e.id` y `d.id`)."
+    "hint": "Permiten escribir consultas más compactas y diferenciar columnas con nombres idénticos (como `e.id` y `d.id`).",
+    "classNum": 3
   },
   {
     "id": 95,
@@ -1748,7 +1842,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Para mantener la consistencia del grupo, el SELECT solo puede proyectar los campos por los cuales se agrupó o agregaciones sobre el resto de las columnas.",
     "citation": "UTN BA - Módulo 4: Proyecciones Permitidas tras Agrupamiento.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "Solo las columnas agrupadas o expresiones envueltas en funciones de agregación (SUM, AVG, etc.) son válidas."
+    "hint": "Solo las columnas agrupadas o expresiones envueltas en funciones de agregación (SUM, AVG, etc.) son válidas.",
+    "classNum": 3
   },
   {
     "id": 96,
@@ -1766,7 +1861,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Un índice es una estructura de acceso rápido (como un árbol B) que permite al motor localizar registros sin realizar un escaneo completo de la tabla.",
     "citation": "UTN BA - Módulo 5: Optimizando el Acceso - Índices de Base de Datos.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Es como el índice temático de un libro: permite ir directo a la página sin leer todo desde el inicio."
+    "hint": "Es como el índice temático de un libro: permite ir directo a la página sin leer todo desde el inicio.",
+    "classNum": 5
   },
   {
     "id": 97,
@@ -1784,7 +1880,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial (Pregunta 2): cada modificación física DML debe reflejarse en los índices de la tabla, generando un costo computacional extra.",
     "citation": "UTN BA - Módulo 5: Overhead de Actualización en Escrituras DML.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Cada INSERT o DELETE obliga al motor a reordenar y balancear las ramas de los índices en disco."
+    "hint": "Cada INSERT o DELETE obliga al motor a reordenar y balancear las ramas de los índices en disco.",
+    "classNum": 4
   },
   {
     "id": 98,
@@ -1802,7 +1899,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Existe un compromiso entre acelerar lecturas y penalizar escrituras. Mantener demasiados índices en tablas con DML intenso ralentiza el sistema.",
     "citation": "UTN BA - Módulo 5: Compromiso Lectura vs Escritura en Indexación.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Muchos índices aceleran los SELECTs pero ralentizan en gran medida cada inserción y modificación."
+    "hint": "Muchos índices aceleran los SELECTs pero ralentizan en gran medida cada inserción y modificación.",
+    "classNum": 5
   },
   {
     "id": 99,
@@ -1820,7 +1918,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "B-Tree es el algoritmo de indexación universal por defecto debido a su excelente desempeño balanceado para búsquedas de igualdad y rango.",
     "citation": "UTN BA - Módulo 5: Árboles B-Tree como Estándar por Defecto.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "B-Tree (Balanced Tree) es la estructura estándar creada por omisión en SQL."
+    "hint": "B-Tree (Balanced Tree) es la estructura estándar creada por omisión en SQL.",
+    "classNum": 5
   },
   {
     "id": 100,
@@ -1838,7 +1937,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "B-Tree destaca cuando la selectividad es alta (valores únicos como DNI, ID), permitiendo descartar ramas enteras del árbol en O(log N).",
     "citation": "UTN BA - Módulo 5: Selectividad y Eficiencia de Búsqueda en B-Tree.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Rinde al máximo en columnas con alta cardinalidad y valores únicos (IDs, documentos, emails)."
+    "hint": "Rinde al máximo en columnas con alta cardinalidad y valores únicos (IDs, documentos, emails).",
+    "classNum": 5
   },
   {
     "id": 101,
@@ -1856,7 +1956,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial (Pregunta 20): GiST es un marco de indexación extensible ideal para estructuras de datos complejas no escalares.",
     "citation": "UTN BA - Módulo 5: Índices GiST para Datos Complejos y Geoespaciales.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "GiST es un árbol de búsqueda generalizado para datos espaciales (GIS), geometrías, rangos y arreglos."
+    "hint": "GiST es un árbol de búsqueda generalizado para datos espaciales (GIS), geometrías, rangos y arreglos.",
+    "classNum": 5
   },
   {
     "id": 102,
@@ -1874,7 +1975,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "GIN es un índice invertido que mapea elementos componentes (palabras, claves JSON) con las filas que los contienen, ideal para búsquedas contenidas.",
     "citation": "UTN BA - Módulo 5: Índices Invertidos GIN para JSONB y Texto Completo.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "GIN es un índice invertido perfecto para buscar palabras en texto completo o claves dentro de JSON/JSONB."
+    "hint": "GIN es un índice invertido perfecto para buscar palabras en texto completo o claves dentro de JSON/JSONB.",
+    "classNum": 5
   },
   {
     "id": 103,
@@ -1892,7 +1994,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Tanto B-Tree como GIN y GiST permiten definir índices compuestos que abarcan dos o más columnas para optimizar filtros combinados.",
     "citation": "UTN BA - Módulo 5: Creación de Índices Compuestos / Multicolumna.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Permiten indexar combinaciones de columnas (ej. `CREATE INDEX ON tabla(apellido, nombre)`)."
+    "hint": "Permiten indexar combinaciones de columnas (ej. `CREATE INDEX ON tabla(apellido, nombre)`).",
+    "classNum": 5
   },
   {
     "id": 104,
@@ -1910,7 +2013,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El Sequential Scan examina cada tupla de la tabla en disco; es eficiente en tablas muy pequeñas pero ineficiente en tablas masivas sin índices.",
     "citation": "UTN BA - Módulo 5: Mecánica del Sequential Scan vs Index Scan.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Recorre cada bloque del disco de principio a fin evaluando la condición fila por fila."
+    "hint": "Recorre cada bloque del disco de principio a fin evaluando la condición fila por fila.",
+    "classNum": 5
   },
   {
     "id": 105,
@@ -1928,7 +2032,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Los índices reducen el número de lecturas de bloques de disco de millones a unas pocas operaciones de punteros.",
     "citation": "UTN BA - Módulo 5: Reducción de Operaciones I/O mediante Índices.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "En lugar de leer millones de bloques en disco, el motor viaja por el árbol directo al bloque exacto."
+    "hint": "En lugar de leer millones de bloques en disco, el motor viaja por el árbol directo al bloque exacto.",
+    "classNum": 5
   },
   {
     "id": 106,
@@ -1946,7 +2051,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial: las arquitecturas OLTP se centran en el soporte de transacciones comerciales inmediatas con alta tasa de operaciones por segundo.",
     "citation": "UTN BA - Examen Parcial: Arquitecturas OLTP.",
     "slideImage": "assets/clases_infographics/clase1_p11.png",
-    "hint": "Transacciones operativas rápidas, frecuentes y atómicas del día a día."
+    "hint": "Transacciones operativas rápidas, frecuentes y atómicas del día a día.",
+    "classNum": 1
   },
   {
     "id": 107,
@@ -1964,7 +2070,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Sin identificadores lógicos unívocos, la coherencia de los punteros depende del código del usuario, generando vulnerabilidad ante anomalías.",
     "citation": "UTN BA - Examen Parcial: Limitaciones del Modelo Jerárquico.",
     "slideImage": "assets/clases_infographics/clase3_p04.png",
-    "hint": "Sin claves primarias lógicas, la integridad referencial no se puede controlar automáticamente."
+    "hint": "Sin claves primarias lógicas, la integridad referencial no se puede controlar automáticamente.",
+    "classNum": 3
   },
   {
     "id": 108,
@@ -1982,7 +2089,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en la Pregunta 18 del parcial: DROP TABLE Proyectos; borra de forma definitiva el objeto y sus datos.",
     "citation": "UTN BA - Examen Parcial: Comando DDL DROP TABLE.",
     "slideImage": "assets/clases_infographics/clase5_p11.png",
-    "hint": "La instrucción DDL estándar para destruir una tabla es DROP TABLE."
+    "hint": "La instrucción DDL estándar para destruir una tabla es DROP TABLE.",
+    "classNum": 5
   },
   {
     "id": 109,
@@ -2000,7 +2108,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en la Pregunta 1 del parcial: el comando UPDATE de DML es el encargado de modificar valores almacenados en las tablas.",
     "citation": "UTN BA - Examen Parcial: Comando DML UPDATE.",
     "slideImage": "assets/clases_infographics/clase4_p09.png",
-    "hint": "El comando DML para modificar datos de registros existentes es UPDATE."
+    "hint": "El comando DML para modificar datos de registros existentes es UPDATE.",
+    "classNum": 4
   },
   {
     "id": 110,
@@ -2018,7 +2127,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La secuencia sintáctica obligatoria en SQL exige ubicar WHERE antes de GROUP BY y HAVING inmediatamente después de GROUP BY.",
     "citation": "UTN BA - Examen Parcial: Estructura Sintáctica del SELECT.",
     "slideImage": "assets/clases_infographics/clase2_p10.png",
-    "hint": "La sintaxis estándar es: SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY."
+    "hint": "La sintaxis estándar es: SELECT ... FROM ... WHERE ... GROUP BY ... HAVING ... ORDER BY.",
+    "classNum": 5
   },
   {
     "id": 111,
@@ -2036,7 +2146,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial: BETWEEN 100 AND 500 abarca exactamente la condición de rango inclusivo '>= 100 AND <= 500'.",
     "citation": "UTN BA - Examen Parcial: Equivalencia de BETWEEN.",
     "slideImage": "assets/clases_infographics/clase2_p07.png",
-    "hint": "El operador de rango inclusivo equivalente a `>= 100 AND <= 500` es `BETWEEN 100 AND 500`."
+    "hint": "El operador de rango inclusivo equivalente a `>= 100 AND <= 500` es `BETWEEN 100 AND 500`.",
+    "classNum": 2
   },
   {
     "id": 112,
@@ -2054,7 +2165,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En una relación 1-N, la clave foránea se ubica siempre en la tabla del lado N (Pedidos), apuntando a la clave primaria de la tabla del lado 1 (Clientes).",
     "citation": "UTN BA - Examen Parcial: Regla de Colocación de Claves Foráneas (1-N).",
     "slideImage": "assets/clases_infographics/clase5_p05.png",
-    "hint": "En una relación 1 a N, la FK siempre se aloja en la tabla del lado 'Muchos' (Pedidos)."
+    "hint": "En una relación 1 a N, la FK siempre se aloja en la tabla del lado 'Muchos' (Pedidos).",
+    "classNum": 5
   },
   {
     "id": 113,
@@ -2072,7 +2184,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial: el esquema conceptual brinda una vista unificada y lógica de todas las entidades y relaciones sin referenciar el soporte físico.",
     "citation": "UTN BA - Examen Parcial: Nivel Conceptual ANSI/SPARC.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Modela la visión lógica unificada de la empresa (entidades y relaciones) independiente del hardware."
+    "hint": "Modela la visión lógica unificada de la empresa (entidades y relaciones) independiente del hardware.",
+    "classNum": 5
   },
   {
     "id": 114,
@@ -2090,7 +2203,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial: la redundancia no controlada es la causa raíz de las inconsistencias cuando la misma información se duplica de forma desorganizada.",
     "citation": "UTN BA - Examen Parcial: Redundancia e Inconsistencia en Archivos Planos.",
     "slideImage": "assets/clases_infographics/clase1_p03.png",
-    "hint": "Tener datos duplicados sin control genera inconsistencias cuando se actualiza un archivo y otro no."
+    "hint": "Tener datos duplicados sin control genera inconsistencias cuando se actualiza un archivo y otro no.",
+    "classNum": 5
   },
   {
     "id": 115,
@@ -2108,7 +2222,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Evaluado en el parcial: la condición sobre la función de agregación COUNT(*) debe incluirse obligatoriamente en la cláusula HAVING posterior al GROUP BY.",
     "citation": "UTN BA - Examen Parcial: GROUP BY y Cláusula HAVING.",
     "slideImage": "assets/clases_infographics/clase3_p08.png",
-    "hint": "Para filtrar después de agrupar por departamento con una condición sobre COUNT(*), se utiliza HAVING."
+    "hint": "Para filtrar después de agrupar por departamento con una condición sobre COUNT(*), se utiliza HAVING.",
+    "classNum": 3
   },
   {
     "id": 116,
@@ -2126,7 +2241,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Cada operación DML (INSERT, UPDATE, DELETE) obliga al motor a reestructurar o balancear los índices asociados en disco (B-Tree splits y rebalanceos). Todo índice acelera las lecturas (SELECT) pero penaliza la velocidad de escritura (Overhead de Actualización).",
     "citation": "Clase 05 - Optimizando el Acceso: Índices y Overhead de Escritura DML.",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "Piensa en qué ocurre físicamente con las páginas del índice al insertar o borrar una fila: ¿el árbol B-Tree permanece inmóvil o debe dividirse (page split) y reordenarse?"
+    "hint": "Piensa en qué ocurre físicamente con las páginas del índice al insertar o borrar una fila: ¿el árbol B-Tree permanece inmóvil o debe dividirse (page split) y reordenarse?",
+    "classNum": 4
   },
   {
     "id": 117,
@@ -2144,7 +2260,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo OODBMS maneja punteros directos e identidad de objetos (OID), simplificando y acelerando la navegación de relaciones complejas N-M a través de colecciones sin requerir costosos JOINs relacionales.",
     "citation": "Clase 01 - Adaptación a la Complejidad: Paradigma Orientado a Objetos.",
     "slideImage": "assets/clases_infographics/clase1_p10.png",
-    "hint": "Los objetos en memoria usan punteros directos e identidad de objeto (OID) con colecciones anidadas, evitando las tablas intermedias y los costosos JOINs del modelo relacional."
+    "hint": "Los objetos en memoria usan punteros directos e identidad de objeto (OID) con colecciones anidadas, evitando las tablas intermedias y los costosos JOINs del modelo relacional.",
+    "classNum": 1
   },
   {
     "id": 118,
@@ -2162,7 +2279,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El nivel conceptual (o lógico global) es único e independiente del hardware; describe la estructura completa de la BD, entidades, atributos y relaciones para toda la empresa.",
     "citation": "Clase 05 - Arquitectura ANSI/SPARC: Nivel Externo, Conceptual e Interno.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "La arquitectura ANSI/SPARC tiene 3 niveles: Externo (vistas de usuario), Conceptual (visión lógica global de la organización) e Interno (almacenamiento físico en bytes y sectores)."
+    "hint": "La arquitectura ANSI/SPARC tiene 3 niveles: Externo (vistas de usuario), Conceptual (visión lógica global de la organización) e Interno (almacenamiento físico en bytes y sectores).",
+    "classNum": 5
   },
   {
     "id": 119,
@@ -2180,7 +2298,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La inconsistencia es consecuencia directa de la redundancia no controlada: si un dato se almacena en varios sitios y solo se actualiza en uno, los datos entran en contradicción.",
     "citation": "Clase 01 - El Fin del Caos Estructural: Redundancia e Inconsistencia.",
     "slideImage": "assets/clases_infographics/clase1_p03.png",
-    "hint": "Si la dirección de un cliente se copia en 4 tablas distintas y se modifica solo en una, la base de datos entra en contradicción o inconsistencia."
+    "hint": "Si la dirección de un cliente se copia en 4 tablas distintas y se modifica solo en una, la base de datos entra en contradicción o inconsistencia.",
+    "classNum": 1
   },
   {
     "id": 120,
@@ -2198,7 +2317,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo relacional no permite relaciones N-M directas a nivel de tablas. La tabla asociativa o intermedia descompone la relación N-M en dos relaciones 1-N y garantiza el acceso exacto a cada par de instancias.",
     "citation": "Clase 05 - Desentrañando la Relación Muchos a Muchos (N-M) y Tabla Intermedia.",
     "slideImage": "assets/clases_infographics/clase5_p06.png",
-    "hint": "En una relación N-M (como Estudiantes y Materias), la tabla intermedia contiene las dos Claves Foráneas (FKs) que vinculan cada par específico de registros."
+    "hint": "En una relación N-M (como Estudiantes y Materias), la tabla intermedia contiene las dos Claves Foráneas (FKs) que vinculan cada par específico de registros.",
+    "classNum": 5
   },
   {
     "id": 121,
@@ -2216,7 +2336,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La cardinalidad mínima 1 ('uno sin cero' o '1..N / 1..1') impone obligatoriedad: cada instancia de la entidad debe estar forzosamente asociada a al menos una instancia de la otra entidad.",
     "citation": "Clase 05 - Restricciones de Existencia: Cardinalidad Detallada (Uno a Muchos).",
     "slideImage": "assets/clases_infographics/clase5_p07.png",
-    "hint": "Cardinalidad mínima 1 significa que no se admite el cero: la participación es obligatoria y el registro vinculado debe existir forzosamente."
+    "hint": "Cardinalidad mínima 1 significa que no se admite el cero: la participación es obligatoria y el registro vinculado debe existir forzosamente.",
+    "classNum": 5
   },
   {
     "id": 122,
@@ -2234,7 +2355,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Un campo o atributo es una unidad elemental con nombre y tipo de dato que caracteriza a una entidad (ej. 'salario', 'nombre'). La tupla es la fila completa y el dominio es el conjunto de valores válidos.",
     "citation": "Clase 05 - Elementos de una Tabla: Entidad, Atributo/Campo, Tupla y Dominio.",
     "slideImage": "assets/clases_infographics/clase5_p03.png",
-    "hint": "Una columna en una tabla modela una característica o propiedad individual de una entidad, también conocida como..."
+    "hint": "Una columna en una tabla modela una característica o propiedad individual de una entidad, también conocida como...",
+    "classNum": 5
   },
   {
     "id": 123,
@@ -2252,7 +2374,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El nivel conceptual define qué datos se almacenan (entidades, tipos, longitudes de campos y restricciones) desde una perspectiva lógica global de la organización.",
     "citation": "Clase 05 - Arquitectura ANSI/SPARC: Niveles Externo, Conceptual e Interno.",
     "slideImage": "assets/clases_infographics/clase5_p02.png",
-    "hint": "Define la estructura lógica global (entidades, tipos y restricciones de negocio) sin descender a los bytes en disco ni a las vistas parciales de un usuario particular."
+    "hint": "Define la estructura lógica global (entidades, tipos y restricciones de negocio) sin descender a los bytes en disco ni a las vistas parciales de un usuario particular.",
+    "classNum": 5
   },
   {
     "id": 124,
@@ -2270,7 +2393,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "En 1-N (ej. Un Departamento tiene Muchos Empleados), un departamento posee múltiples empleados, pero cada empleado pertenece a un único departamento mediante una clave foránea.",
     "citation": "Clase 05 - Relaciones Estructurales: Uno a Uno (1-1) y Uno a Muchos (1-N).",
     "slideImage": "assets/clases_infographics/clase5_p05.png",
-    "hint": "Un departamento puede albergar a muchos empleados, pero cada empleado pertenece a un único departamento."
+    "hint": "Un departamento puede albergar a muchos empleados, pero cada empleado pertenece a un único departamento.",
+    "classNum": 5
   },
   {
     "id": 125,
@@ -2288,7 +2412,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "OLTP (Online Transaction Processing) se orienta a operaciones del día a día (altas, bajas, transferencias) con transacciones ACID rápidas y de bajo volumen por operación.",
     "citation": "Clase 01 - El Dilema Moderno: Operación (OLTP) vs Análisis (OLAP).",
     "slideImage": "assets/clases_infographics/clase1_p11.png",
-    "hint": "OLTP se enfoca en transacciones del día a día (compras, reservas, transferencias) rápidas y atómicas con alta concurrencia."
+    "hint": "OLTP se enfoca en transacciones del día a día (compras, reservas, transferencias) rápidas y atómicas con alta concurrencia.",
+    "classNum": 1
   },
   {
     "id": 126,
@@ -2306,7 +2431,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Los árboles B-Tree (Balanced Tree) son la estructura estándar y más extendida en DBMS: mantienen los datos ordenados en nodos y hojas balanceadas con complejidad O(log N).",
     "citation": "Clase 05 - Optimizando el Acceso: Índices (B-Tree el estándar por defecto).",
     "slideImage": "assets/clases_infographics/clase5_p13.png",
-    "hint": "B-Tree (Balanced Tree) es la estructura por defecto en SQL; mantiene nodos balanceados con costo logarítmico O(log N) para comparaciones y rangos."
+    "hint": "B-Tree (Balanced Tree) es la estructura por defecto en SQL; mantiene nodos balanceados con costo logarítmico O(log N) para comparaciones y rangos.",
+    "classNum": 5
   },
   {
     "id": 127,
@@ -2324,7 +2450,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "El modelo jerárquico organiza los datos en forma de árbol invertido: cada hijo solo puede tener un único padre (1-N estricto), lo que dificulta modelar relaciones N-M.",
     "citation": "Clase 03 - Modelo Jerárquico: El Árbol Invertido (Relación 1-N Padre-Hijo).",
     "slideImage": "assets/clases_infographics/clase3_p03.png",
-    "hint": "En una estructura de árbol jerárquico, cada elemento hijo tiene un único padre apuntándolo directamente."
+    "hint": "En una estructura de árbol jerárquico, cada elemento hijo tiene un único padre apuntándolo directamente.",
+    "classNum": 3
   },
   {
     "id": 128,
@@ -2342,7 +2469,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La Primary Key asegura unicidad y no nulidad en la propia tabla, mientras que la Foreign Key establece el vínculo hacia la PK de otra tabla garantizando integridad referencial.",
     "citation": "Clase 05 - Matriz Estructural de Claves: Primary Key (PK) vs Foreign Key (FK).",
     "slideImage": "assets/clases_infographics/clase5_p08.png",
-    "hint": "La PK identifica de forma única cada fila en su propia tabla, mientras que la FK apunta a la PK de otra tabla para mantener la integridad referencial."
+    "hint": "La PK identifica de forma única cada fila en su propia tabla, mientras que la FK apunta a la PK de otra tabla para mantener la integridad referencial.",
+    "classNum": 5
   },
   {
     "id": 129,
@@ -2360,7 +2488,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Una subconsulta no correlacionada es independiente de la consulta exterior: el motor la ejecuta una sola vez al inicio y reemplaza el resultado para filtrar la consulta principal.",
     "citation": "Clase 04 - El Flujo de Ejecución de una Subconsulta en Acción (Paso 1 y Paso 2).",
     "slideImage": "assets/clases_infographics/clase4_p13.png",
-    "hint": "Al ser independiente de las filas de la consulta exterior, el motor no necesita reevaluarla: la ejecuta una sola vez al inicio."
+    "hint": "Al ser independiente de las filas de la consulta exterior, el motor no necesita reevaluarla: la ejecuta una sola vez al inicio.",
+    "classNum": 4
   },
   {
     "id": 130,
@@ -2378,7 +2507,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "La independencia física permite cambiar detalles de almacenamiento, rutas de acceso y estructuras físicas de archivos sin afectar el esquema conceptual ni las aplicaciones de usuario.",
     "citation": "Clase 01 - El Escudo de la Independencia de Datos (Física vs Lógica).",
     "slideImage": "assets/clases_infographics/clase1_p05.png",
-    "hint": "Permite cambiar discos, particiones o crear índices físicos sin tener que modificar el código de los programas que consultan la base de datos."
+    "hint": "Permite cambiar discos, particiones o crear índices físicos sin tener que modificar el código de los programas que consultan la base de datos.",
+    "classNum": 1
   },
   {
     "id": 131,
@@ -2396,7 +2526,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`ON DELETE CASCADE` propaga la eliminación: al borrar el registro padre (ej. un Cliente), se eliminan automáticamente todos los registros hijos asociados (sus Facturas/Pedidos).",
     "citation": "Clase 05 - Integridad Referencial en Acción (PK -> FK, ON DELETE CASCADE).",
     "slideImage": "assets/clases_infographics/clase5_p09.png",
-    "hint": "La regla 'CASCADE' propaga la eliminación: al borrar el registro padre (ej. un Cliente), se borran automáticamente todas sus filas hijas (Facturas)."
+    "hint": "La regla 'CASCADE' propaga la eliminación: al borrar el registro padre (ej. un Cliente), se borran automáticamente todas sus filas hijas (Facturas).",
+    "classNum": 4
   },
   {
     "id": 132,
@@ -2414,7 +2545,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "3NF exige estar en 2NF y eliminar dependencias transitivas: los atributos no clave deben depender directa y exclusivamente de la clave primaria, no a través de otro campo no clave.",
     "citation": "Clase 03 - Las Fracturas del Modelo: Duplicidad y Dependencias en Datos.",
     "slideImage": "assets/clases_infographics/clase3_p04.png",
-    "hint": "La Tercera Forma Normal (3NF) exige estar en 2NF y eliminar dependencias transitivas (ningún atributo no clave debe depender de otro atributo no clave)."
+    "hint": "La Tercera Forma Normal (3NF) exige estar en 2NF y eliminar dependencias transitivas (ningún atributo no clave debe depender de otro atributo no clave).",
+    "classNum": 3
   },
   {
     "id": 133,
@@ -2432,7 +2564,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "Una subconsulta escalar retorna una matriz de 1x1 (un solo valor primitivo, como `(SELECT MAX(precio) FROM Productos)`), permitiendo usar operadores de comparación directos (=, >, <).",
     "citation": "Clase 04 - ¿Qué Tipo de Datos Devuelve una Subconsulta? (1. Un Único Valor Escalar).",
     "slideImage": "assets/clases_infographics/clase4_p12.png",
-    "hint": "Un escalar es un valor atómico único (una matriz de 1 fila por 1 columna, como el resultado de MAX(precio))."
+    "hint": "Un escalar es un valor atómico único (una matriz de 1 fila por 1 columna, como el resultado de MAX(precio)).",
+    "classNum": 4
   },
   {
     "id": 134,
@@ -2450,7 +2583,8 @@ const QUESTIONS_DATABASE = [
     "explanation": "`UNION` ejecuta internamente un descarte de duplicados (costoso en CPU/memoria). `UNION ALL` simplemente concatena los conjuntos de resultados sin deduplicar, ofreciendo mayor velocidad.",
     "citation": "Clase 03 - El Salto Relacional: Teoría de Conjuntos (Unión U, Intersección ∩).",
     "slideImage": "assets/clases_infographics/clase3_p07.png",
-    "hint": "UNION elimina duplicados ordenando o calculando hashes (más lento); UNION ALL simplemente pega todas las filas incluyendo duplicados (mucho más rápido)."
+    "hint": "UNION elimina duplicados ordenando o calculando hashes (más lento); UNION ALL simplemente pega todas las filas incluyendo duplicados (mucho más rápido).",
+    "classNum": 3
   }
 ];
 
