@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const exam = new window.TimeAttackExam();
   const bossArena = new window.BossFightArena();
   const sqlLab = new window.SqlLabEngine();
+  const sqlSpells = new window.SqlSpellsViewer();
   const der = new window.DerEngine();
   const grimoire = new window.GrimoireViewer();
 

@@ -91,6 +91,9 @@
       <button class="tab-btn" data-tab="tab-sql-lab">
         <span>💻 SQL LAB (EN MEMORIA)</span>
       </button>
+      <button class="tab-btn" data-tab="tab-spells">
+        <span>✨ CONJUROS SQL</span>
+      </button>
       <button class="tab-btn" data-tab="tab-der-engine">
         <span>📊 DIAGRAMAS DER EN VIVO</span>
       </button>
@@ -406,7 +409,80 @@
     </section>
 
     <!-- =========================================================
-         TAB 4: LIVE DER DIAGRAM ENGINE (Mermaid.js Split-Screen)
+         TAB 4: CONJUROS SQL (Diccionario de Comandos & Sintaxis)
+         ========================================================= -->
+    <section id="tab-spells" class="tab-content">
+      <div class="retro-box spells-container">
+        <div class="retro-box-header">
+          <h2 class="retro-box-title">CONJUROS SQL: DICCIONARIO DE COMANDOS & SINTAXIS</h2>
+          <span class="retro-box-header-badge cyan">✨ MANUAL DE MAGIA RELACIONAL</span>
+        </div>
+
+        <!-- Pixel Art SQL Spells Enchanted Tome Illustration Banner -->
+        <img src="assets/sql_spells.jpg" alt="Ancient Spellbook of SQL Runes and Database Incantations" class="module-visual-banner" style="max-height: 240px;">
+
+        <div class="spells-intro-banner">
+          ✨ <strong>Compendio Arcano de Comandos SQL:</strong> Explora y domina cada conjuro del lenguaje relacional clasificado por familias (<strong>DQL</strong>, <strong>DML</strong>, <strong>DDL</strong>, <strong>TCL</strong>, <strong>DCL</strong> y <strong>Restricciones</strong>). Utiliza el buscador en vivo para encontrar comandos al instante, copiar sintaxis oficiales o transferir los ejemplos directamente a la terminal de <strong>SQL Lab</strong>.
+        </div>
+
+        <!-- Search & Filter Controls Toolbar -->
+        <div class="spells-toolbar">
+          <div class="spells-search-box-wrapper">
+            <span class="spells-search-icon">🔍</span>
+            <input 
+              type="text" 
+              id="spells-search-input" 
+              class="spells-search-input" 
+              placeholder="Buscar conjuro por comando, cláusula o concepto... (Ej: JOIN, UPDATE, CASCADE, HAVING, CREATE INDEX, GROUP BY)" 
+              autocomplete="off" 
+              spellcheck="false"
+            />
+            <button type="button" id="spells-clear-search-btn" class="spells-clear-btn" style="display: none;" title="Limpiar búsqueda">
+              ✖
+            </button>
+          </div>
+
+          <!-- Category Filter Pills -->
+          <div class="spells-category-pills-row" id="spells-category-pills">
+            <button type="button" class="spell-category-pill active" data-category="all">
+              <span>✨ TODOS</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="dql">
+              <span>🔍 DQL (CONSULTAS)</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="dml">
+              <span>⚡ DML (MANIPULACIÓN)</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="ddl">
+              <span>🏗️ DDL (DEFINICIÓN)</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="tcl">
+              <span>🔐 TCL (TRANSACCIONES)</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="dcl">
+              <span>🛡️ DCL (PERMISOS)</span>
+            </button>
+            <button type="button" class="spell-category-pill" data-category="constraint">
+              <span>⚓ RESTRICCIONES (CONSTRAINTS)</span>
+            </button>
+          </div>
+
+          <!-- Results info counter row -->
+          <div class="spells-info-row">
+            <span class="spells-active-label" id="spells-active-filter-label">Todos los Conjuros</span>
+            <span class="spells-count-badge" id="spells-count-badge">0 Conjuros</span>
+          </div>
+        </div>
+
+        <!-- Spells Cards Dynamic Container -->
+        <div class="spells-cards-list" id="spells-cards-container">
+          <!-- Dynamically populated from js/spells.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         TAB 5: LIVE DER DIAGRAM ENGINE (Mermaid.js Split-Screen)
          ========================================================= -->
     <section id="tab-der-engine" class="tab-content">
       <div class="retro-box">
@@ -570,6 +646,8 @@
   <script src="js/time-attack.js?v=3.5"></script>
   <script src="js/boss-fight.js?v=3.5"></script>
   <script src="js/sql-engine.js?v=3.5"></script>
+  <script src="js/spells-data.js?v=3.5"></script>
+  <script src="js/spells.js?v=3.5"></script>
   <script src="js/der-engine.js?v=3.5"></script>
   <script src="js/grimoire.js?v=3.5"></script>
   <script src="js/app.js?v=3.5"></script>
