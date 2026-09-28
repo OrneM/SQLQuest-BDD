@@ -228,14 +228,52 @@ class TimeAttackExam {
     this.currentMode = mode;
     this.dungeonClass = dungeonClass || this.selectedDungeonClass || 5;
     
-    // Seleccionar y barajar aleatoriamente del banco
+    // 1. Filtrar pozo según modo
     let basePool = [...window.QUESTIONS_DATABASE];
     if (this.currentMode === 'dungeon') {
       basePool = basePool.filter(q => q.classNum === this.dungeonClass);
     }
-    const shuffledPool = this.shuffle(basePool);
-    const count = Math.min(this.selectedQuestionCount, shuffledPool.length);
-    this.questions = shuffledPool.slice(0, count).map(q => this.prepareQuestion(q));
+
+    // 2. Clasificación jerárquica por capas:
+    // - Nivel 1 (Máxima Prioridad): Preguntas oficiales de Autoevaluación (q.unit contiene 'Autoevaluación')
+    // - Nivel 2 (Prioridad Práctica): Ejercicios interactivos (code_completion, fill_in_sql, matching) y consultas SQL prácticas
+    // - Nivel 3 (Teoría General): Preguntas conceptuales y de arquitectura
+    const isAutoeval = (q) => q.unit && q.unit.toLowerCase().includes('autoevaluación');
+    const isPractical = (q) => !isAutoeval(q) && (
+      ['code_completion', 'fill_in_sql', 'matching'].includes(q.type) ||
+      (q.question && (
+        q.question.includes('SELECT') || 
+        q.question.includes('UPDATE') || 
+        q.question.includes('INSERT') || 
+        q.question.includes('DELETE') || 
+        q.question.includes('GROUP BY') || 
+        q.question.includes('JOIN') ||
+        q.codeSnippet
+      ))
+    );
+    const isTheory = (q) => !isAutoeval(q) && !isPractical(q);
+
+    const autoevalPool = this.shuffle(basePool.filter(isAutoeval));
+    const practicalPool = this.shuffle(basePool.filter(isPractical));
+    const theoryPool = this.shuffle(basePool.filter(isTheory));
+
+    const targetCount = Math.min(this.selectedQuestionCount, basePool.length);
+    let selectedSet = [];
+
+    // En Modo Dungeon (especialmente Clase 3 donde se explaya en ejercicios):
+    // Garantiza primero todas las preguntas de Autoevaluación, luego ejercicios prácticos y finalmente teoría
+    if (this.currentMode === 'dungeon') {
+      const combinedPriority = [...autoevalPool, ...practicalPool, ...theoryPool];
+      selectedSet = combinedPriority.slice(0, targetCount);
+    } else {
+      // En Aprendiz y Warrior: Asegura alta cuota de autoevaluaciones y ejercicios prácticos mezclados
+      const combinedPriority = [...autoevalPool, ...practicalPool, ...theoryPool];
+      selectedSet = combinedPriority.slice(0, targetCount);
+    }
+
+    // Barajado Fisher-Yates final para que el orden de aparición sea 100% aleatorio e impredecible
+    const finalShuffled = this.shuffle(selectedSet);
+    this.questions = finalShuffled.map(q => this.prepareQuestion(q));
     
     this.currentIndex = 0;
     this.streak = 0;
