@@ -1,5 +1,6 @@
-// Antigravity BDD: Unified Question Database (155 Verified Questions - 30+ Per Class)
-// Generated with zero duplicates, verified infographics, and balanced answer options.
+// Antigravity BDD: Unified Question Database (203 Verified Questions)
+// Includes all official syllabus questions and all Autoevaluaciones (Classes 1 to 5).
+// Zero duplicates, verified infographics, and balanced answer options.
 
 const QUESTIONS_DATABASE = [
   {
@@ -593,6 +594,196 @@ const QUESTIONS_DATABASE = [
     "type": "matching"
   },
   {
+    "id": 131,
+    "classNum": 1,
+    "topic": "Concepto de Base de Datos",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Cuál de las siguientes afirmaciones describe mejor el concepto de \"Base de Datos\"?",
+    "options": [
+      "Es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso.",
+      "Es un lenguaje de programación utilizado exclusivamente para diseñar interfaces de usuario.",
+      "Es un dispositivo físico de almacenamiento secundario como un disco rígido o pendrive.",
+      "Es un archivo de texto plano no estructurado que almacena variables de sesión temporales."
+    ],
+    "correctAnswer": 0,
+    "hint": "Una base de datos reúne información estructurada y organizada sobre un dominio concreto para ser aprovechada por aplicaciones.",
+    "explanation": "Una Base de Datos es una colección estructurada y organizada de datos interrelacionados que pertenecen a un mismo contexto, almacenados sistemáticamente para permitir su consulta, actualización y administración eficiente.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase1_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 132,
+    "classNum": 1,
+    "topic": "Modelo Orientado a Objetos vs Relacional",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "En el modelo de base de datos orientado a objetos, ¿cómo se representa la información en comparación con el modelo relacional tradicional?",
+    "options": [
+      "Como objetos que combinan estado (atributos) y comportamiento (métodos), en lugar de tablas con filas y columnas.",
+      "Únicamente a través de documentos JSON anidados sin ningún tipo de esquema.",
+      "Mediante punteros directos en memoria RAM sin persistencia en disco secundario.",
+      "A través de grafos de nodos no dirigidos y aristas ponderadas."
+    ],
+    "correctAnswer": 0,
+    "hint": "En POO los objetos encapsulan tanto datos (propiedades) como operaciones (métodos).",
+    "explanation": "El modelo orientado a objetos representa la información en forma de objetos (integrando datos/atributos y operaciones/métodos), a diferencia del modelo relacional que organiza los datos en relaciones/tablas bidimensionales.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase1_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 133,
+    "classNum": 1,
+    "topic": "Motor de Base de Datos (DBMS Engine)",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Cuál es la función primordial del motor de base de datos (DBMS Engine)?",
+    "options": [
+      "Gestionar el almacenamiento físico, la recuperación, concurrencia, seguridad e integridad de los datos en el almacenamiento secundario.",
+      "Compilar y optimizar código JavaScript del lado del cliente en el navegador.",
+      "Diseñar las hojas de estilo CSS para la visualización de reportes de negocio.",
+      "Reemplazar los controladores de red del sistema operativo host."
+    ],
+    "correctAnswer": 0,
+    "hint": "El motor o DBMS Engine es el corazón del software que gestiona el I/O en disco, bloqueos, transacciones y seguridad.",
+    "explanation": "El motor de base de datos (DBMS Engine) es el componente central del SGBD encargado de interactuar con el sistema de archivos del SO, procesar consultas, controlar la concurrencia, mantener los logs de transacciones y garantizar la integridad y recuperación de datos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase1_p03.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 134,
+    "classNum": 1,
+    "topic": "Redundancia de Datos",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Qué es la \"redundancia de datos\" y por qué se busca minimizarla o controlarla en el diseño relacional?",
+    "options": [
+      "Es la duplicación innecesaria de la misma información en múltiples lugares, lo que puede causar inconsistencias y desperdicio de almacenamiento.",
+      "Es la velocidad de respuesta de una consulta compleja con múltiples agregaciones.",
+      "Es el protocolo de encriptación de datos en tránsito entre el cliente y el servidor.",
+      "Es la capacidad de una base de datos de recuperarse automáticamente ante cortes de energía."
+    ],
+    "correctAnswer": 0,
+    "hint": "Tener el mismo dato repetido en muchos sitios provoca que, si se actualiza en uno y no en otro, haya inconsistencia.",
+    "explanation": "La redundancia ocurre cuando los mismos datos se almacenan repetidamente en distintos lugares del sistema. Si un dato cambia en un lugar pero no en otro, se produce inconsistencia de datos, además de generar sobrecostos de almacenamiento.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase1_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 135,
+    "classNum": 1,
+    "topic": "Independencia Lógica y Física",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Qué significa que un SGBD proporcione \"independencia lógica y física de los datos\"?",
+    "options": [
+      "Permite modificar el esquema lógico (tablas/vistas) o físico (índices/almacenamiento en disco) sin tener que reescribir las aplicaciones que consumen los datos.",
+      "Que la base de datos puede funcionar sin conexión a internet ni energía eléctrica.",
+      "Que el servidor de base de datos no depende de ningún sistema operativo para ejecutarse.",
+      "Que los datos se borran automáticamente cada vez que se reinicia el servidor."
+    ],
+    "correctAnswer": 0,
+    "hint": "La independencia desacopla el cómo se guardan los datos o cómo se organizan de los programas que los consultan.",
+    "explanation": "La independencia de datos permite alterar la estructura física (organización en disco, índices) sin alterar los programas de aplicación (independencia física), y alterar el esquema conceptual sin alterar las vistas externas/programas existentes (independencia lógica).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase1_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 136,
+    "classNum": 1,
+    "topic": "Modelo Jerárquico",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "En el modelo jerárquico de bases de datos, ¿cómo se estructuran y relacionan los registros de información?",
+    "options": [
+      "En una estructura de árbol invertido con relaciones padre-hijo (1 a N), donde cada nodo hijo tiene un único padre.",
+      "En una matriz bidimensional no orientada sin jerarquías.",
+      "Como una red donde cualquier nodo puede tener múltiples padres y múltiples hijos libremente.",
+      "En tablas independientes vinculadas únicamente mediante sentencias DML de inserción."
+    ],
+    "correctAnswer": 0,
+    "hint": "El modelo jerárquico se organiza como un árbol genealógico: cada nodo hijo sólo tiene un único padre.",
+    "explanation": "El modelo jerárquico organiza los datos en una estructura arborescente (árbol) donde cada nodo hijo solo puede tener un único nodo padre (relación 1:N).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase1_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 137,
+    "classNum": 1,
+    "topic": "Tablas en el Modelo Relacional",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "En una base de datos relacional, ¿qué representa una \"tabla\" (o relación)?",
+    "options": [
+      "Una estructura bidimensional compuesta por filas (tuplas o registros) y columnas (campos o atributos).",
+      "Un archivo binario comprimido con extensión .sql que contiene la copia de seguridad.",
+      "Un procedimiento almacenado que se ejecuta automáticamente al insertar datos.",
+      "El espacio de memoria caché que utiliza el motor para almacenar índices temporales."
+    ],
+    "correctAnswer": 0,
+    "hint": "Una tabla es una matriz con filas (entidades individuales) y columnas (atributos descriptivos).",
+    "explanation": "Una tabla o relación es una estructura de datos de dos dimensiones donde las columnas representan atributos homogéneos y las filas representan instancias individuales o tuplas del mundo real modelado.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase1_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 138,
+    "classNum": 1,
+    "topic": "OLTP vs OLAP",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Cuál es la principal diferencia entre un sistema OLTP (Online Transaction Processing) y uno OLAP (Online Analytical Processing)?",
+    "options": [
+      "OLTP está optimizado para transacciones rápidas, concurrentes y operativas del día a día; OLAP está orientado a consultas analíticas complejas y reportes sobre grandes volúmenes históricos.",
+      "OLTP solo admite lectura de datos, mientras que OLAP solo admite inserciones.",
+      "OLTP se utiliza exclusivamente en aplicaciones móviles y OLAP en sistemas operativos de escritorio.",
+      "OLTP no utiliza SQL mientras que OLAP requiere código binario en lenguaje ensamblador."
+    ],
+    "correctAnswer": 0,
+    "hint": "OLTP = Transaccional diario (ej. ventas, pagos). OLAP = Analítico y Business Intelligence (ej. Data Warehouses).",
+    "explanation": "Los sistemas OLTP gestionan operaciones transaccionales frecuentes de lectura/escritura en tiempo real (e.g. compras, transferencias), mientras que OLAP analiza tendencias y consolida datos históricos multidimensionales para la toma de decisiones.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 6)",
+    "slideImage": "assets/clases_infographics/clase1_p06.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 139,
+    "classNum": 1,
+    "topic": "Modelo en Red (Acceso no jerárquico)",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "¿Qué modelo de base de datos permite establecer relaciones muchos a muchos (N:M) de forma directa permitiendo que un nodo hijo tenga múltiples nodos padres mediante registros miembro y conjuntos?",
+    "options": [
+      "El Modelo en Red (Network Model).",
+      "El Modelo Jerárquico estricto.",
+      "El Sistema de Archivos Planos Secuenciales.",
+      "El Modelo de Cinta Magnética."
+    ],
+    "correctAnswer": 0,
+    "hint": "Surgió para superar la limitación del modelo jerárquico de tener un solo padre por nodo.",
+    "explanation": "A diferencia del modelo jerárquico (que limita a 1 padre por hijo), el modelo en red (CODASYL) permite representar relaciones N:M donde un registro miembro puede pertenecer a más de un conjunto (dueño múltiple).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase1_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 140,
+    "classNum": 1,
+    "topic": "Arquitectura ANSI-SPARC",
+    "unit": "Clase 1 - Autoevaluación 1",
+    "question": "Según la arquitectura de 3 niveles ANSI/SPARC de los SGBD, ¿cuál es el nivel más cercano a los usuarios finales que define cómo ven los datos distintas áreas de la empresa?",
+    "options": [
+      "Nivel Externo (o de Vistas).",
+      "Nivel Conceptual (o Lógico Global).",
+      "Nivel Interno (o Físico de Almacenamiento).",
+      "Nivel de Hardware y Firmware."
+    ],
+    "correctAnswer": 0,
+    "hint": "Es el nivel que provee vistas personalizadas adaptadas a cada rol de usuario.",
+    "explanation": "El nivel externo (o de vistas) describe la parte de la base de datos relevante para cada usuario o grupo de usuarios particular, ocultando el resto de los detalles del esquema global conceptual.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase1_p03.png",
+    "type": "single_choice"
+  },
+  {
     "id": 201,
     "classNum": 2,
     "topic": "DQL Básico",
@@ -1171,6 +1362,196 @@ const QUESTIONS_DATABASE = [
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 2, pág. 6",
     "slideImage": "assets/clases_infographics/clase2_p06.png",
     "type": "matching"
+  },
+  {
+    "id": 231,
+    "classNum": 2,
+    "topic": "Filtrado con WHERE",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "Dada la tabla de empleados (id, nombre, id_departamento, salario), ¿qué resultado devuelve la siguiente consulta?\n`SELECT nombre, salario FROM Empleados WHERE id = 103;`",
+    "options": [
+      "Lucía Fernández | 72000",
+      "Ana Gómez | 65000",
+      "Carlos Pérez | 48000",
+      "Sofía Romero | 59000"
+    ],
+    "correctAnswer": 0,
+    "hint": "Busca el registro cuyo identificador unívoco id sea exactamente 103 en la tabla de empleados.",
+    "explanation": "El empleado con id = 103 en la tabla de datos corresponde exactamente a Lucía Fernández con un salario de $72.000.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase2_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 232,
+    "classNum": 2,
+    "topic": "Función de Agregación MIN",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué valor arrojará la consulta `SELECT MIN(salario) AS salario_minimo FROM Empleados;` sobre la tabla de empleados?",
+    "options": [
+      "45000 (correspondiente a Martín Silva)",
+      "48000 (correspondiente a Carlos Pérez)",
+      "53000 (correspondiente a Marcos Torres)",
+      "81000 (correspondiente a Diego López)"
+    ],
+    "correctAnswer": 0,
+    "hint": "MIN() recorre la columna salario y extrae el menor valor numérico presente.",
+    "explanation": "La función agregada MIN() calcula el valor mínimo de la columna salario. El salario más bajo de toda la nómina es 45.000 (Martín Silva).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 8)",
+    "slideImage": "assets/clases_infographics/clase2_p08.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 233,
+    "classNum": 2,
+    "topic": "Filtrado con Operadores Relacionales",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Cuántos empleados cumplen la condición de la siguiente consulta?\n`SELECT * FROM Empleados WHERE salario > 55000;`",
+    "options": [
+      "5 empleados (Ana Gómez: 65k, Lucía Fernández: 72k, Sofía Romero: 59k, Diego López: 81k, Valeria Díaz: 67k)",
+      "3 empleados",
+      "6 empleados",
+      "8 empleados"
+    ],
+    "correctAnswer": 0,
+    "hint": "Cuenta cuántos sueldos superan los 55.000: Ana (65k), Carlos (48k❌), Lucía (72k), Marcos (53k❌), Sofía (59k), Diego (81k), Valeria (67k), Martín (45k❌).",
+    "explanation": "Los empleados con salario estrictamente mayor a 55000 son: Ana (65000), Lucía (72000), Sofía (59000), Diego (81000) y Valeria (67000), dando un total de 5 registros.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase2_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 234,
+    "classNum": 2,
+    "topic": "Filtrado por Clave Foránea",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué empleado devuelve la consulta `SELECT nombre FROM Empleados WHERE id_departamento = 4;`?",
+    "options": [
+      "Diego López",
+      "Lucía Fernández",
+      "Marcos Torres",
+      "Valeria Díaz"
+    ],
+    "correctAnswer": 0,
+    "hint": "El departamento 4 corresponde a Sistemas.",
+    "explanation": "En la tabla Empleados, el único registro que posee id_departamento = 4 (Sistemas) es Diego López (id: 106).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase2_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 235,
+    "classNum": 2,
+    "topic": "Ordenamiento ORDER BY DESC",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "Si ejecutamos `SELECT nombre, salario FROM Empleados ORDER BY salario DESC;`, ¿cuál es el primer empleado que aparece en el resultado?",
+    "options": [
+      "Diego López con 81000",
+      "Lucía Fernández con 72000",
+      "Ana Gómez con 65000",
+      "Martín Silva con 45000"
+    ],
+    "correctAnswer": 0,
+    "hint": "DESC ordena en forma descendente (del valor más alto al más bajo).",
+    "explanation": "ORDER BY salario DESC ordena los salarios de mayor a menor. El mayor salario es 81.000, perteneciente a Diego López.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 6)",
+    "slideImage": "assets/clases_infographics/clase2_p06.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 236,
+    "classNum": 2,
+    "topic": "Ordenamiento Alfabético",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "Al ejecutar `SELECT nombre_departamento FROM Departamentos ORDER BY nombre_departamento ASC;`, ¿cuál será el primer departamento listado?",
+    "options": [
+      "Logística",
+      "Marketing",
+      "Recursos Humanos",
+      "Ventas"
+    ],
+    "correctAnswer": 0,
+    "hint": "Ordena alfabéticamente (A-Z) los nombres: Ventas, Marketing, Logística, Sistemas, Recursos Humanos.",
+    "explanation": "Ordenados alfabéticamente de la A a la Z (ASC): Logística (L), Marketing (M), Recursos Humanos (R), Sistemas (S), Ventas (V). El primero es Logística.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 6)",
+    "slideImage": "assets/clases_infographics/clase2_p06.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 237,
+    "classNum": 2,
+    "topic": "Paginación con LIMIT",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué devolverá la consulta `SELECT nombre FROM Empleados ORDER BY id ASC LIMIT 2;`?",
+    "options": [
+      "Ana Gómez y Carlos Pérez",
+      "Lucía Fernández y Marcos Torres",
+      "Diego López y Valeria Díaz",
+      "Martín Silva y Sofía Romero"
+    ],
+    "correctAnswer": 0,
+    "hint": "Los IDs ordenados ascendente son 101, 102, 103... LIMIT 2 toma únicamente las dos primeras filas.",
+    "explanation": "Los empleados ordenados por id ascendente comienzan con 101 (Ana Gómez) y 102 (Carlos Pérez). LIMIT 2 devuelve solo esos 2 primeros registros.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 7)",
+    "slideImage": "assets/clases_infographics/clase2_p07.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 238,
+    "classNum": 2,
+    "topic": "LIMIT y OFFSET",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué registros devuelve la consulta `SELECT nombre FROM Empleados ORDER BY id ASC LIMIT 2 OFFSET 3;`?",
+    "options": [
+      "Marcos Torres (id 104) y Sofía Romero (id 105)",
+      "Ana Gómez (id 101) y Carlos Pérez (id 102)",
+      "Lucía Fernández (id 103) y Marcos Torres (id 104)",
+      "Diego López (id 106) y Valeria Díaz (id 107)"
+    ],
+    "correctAnswer": 0,
+    "hint": "OFFSET 3 descarta los 3 primeros (101, 102, 103) y LIMIT 2 toma los 2 siguientes (104, 105).",
+    "explanation": "OFFSET 3 saltea los primeros 3 registros (101, 102, 103). A partir del cuarto registro, LIMIT 2 toma los 2 siguientes: 104 (Marcos Torres) y 105 (Sofía Romero).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 7)",
+    "slideImage": "assets/clases_infographics/clase2_p07.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 239,
+    "classNum": 2,
+    "topic": "Función de Agregación COUNT",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué resultado devuelve `SELECT COUNT(*) AS total_empleados FROM Empleados;`?",
+    "options": [
+      "8",
+      "5",
+      "10",
+      "6"
+    ],
+    "correctAnswer": 0,
+    "hint": "Cuenta el número total de filas en la tabla Empleados.",
+    "explanation": "La tabla Empleados cuenta con un total de 8 registros (IDs 101 al 108). COUNT(*) cuenta el total de tuplas de la tabla.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 8)",
+    "slideImage": "assets/clases_infographics/clase2_p08.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 240,
+    "classNum": 2,
+    "topic": "Función AVG con Filtro WHERE",
+    "unit": "Clase 2 - Autoevaluación 2",
+    "question": "¿Qué cálculo realiza la consulta `SELECT AVG(salario) FROM Empleados WHERE id_departamento = 1;`?",
+    "options": [
+      "Calcula el promedio salarial de los empleados del departamento 1 (Ana: 65k, Lucía: 72k, Valeria: 67k) = 68000.",
+      "Calcula el salario máximo de toda la empresa = 81000.",
+      "Suma todos los salarios de la empresa y los divide por 8.",
+      "Calcula el promedio salarial de los departamentos 2, 3 y 4."
+    ],
+    "correctAnswer": 0,
+    "hint": "AVG() promedia solo los salarios que cumplan WHERE id_departamento = 1: (65000 + 72000 + 67000) / 3.",
+    "explanation": "Los empleados con id_departamento = 1 son Ana (65.000), Lucía (72.000) y Valeria (67.000). El promedio es (65000 + 72000 + 67000) / 3 = 204000 / 3 = 68000.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 2 (Diapositiva Clase 2, pág. 8)",
+    "slideImage": "assets/clases_infographics/clase2_p08.png",
+    "type": "single_choice"
   },
   {
     "id": 301,
@@ -1779,6 +2160,177 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice"
   },
   {
+    "id": 331,
+    "classNum": 3,
+    "topic": "GROUP BY con COUNT",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "Si ejecutamos `SELECT id_departamento, COUNT(*) AS cantidad FROM Empleados GROUP BY id_departamento;`, ¿qué cantidad mostrará para el departamento 1?",
+    "options": [
+      "3 (Ana Gómez, Lucía Fernández y Valeria Díaz)",
+      "2",
+      "1",
+      "5"
+    ],
+    "correctAnswer": 0,
+    "hint": "Cuenta cuántos empleados tienen id_departamento = 1 en la tabla.",
+    "explanation": "El departamento 1 (Ventas) cuenta con 3 empleados (Ana, Lucía, Valeria). Al agrupar por id_departamento, el conteo para el grupo 1 es 3.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase3_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 332,
+    "classNum": 3,
+    "topic": "GROUP BY con SUM y ORDER BY",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿Qué departamento encabeza la lista al ejecutar:\n`SELECT id_departamento, SUM(salario) AS total_masa_salarial FROM Empleados GROUP BY id_departamento ORDER BY total_masa_salarial DESC;`?",
+    "options": [
+      "Departamento 1 con una masa salarial de $204.000",
+      "Departamento 2 con $107.000",
+      "Departamento 3 con $98.000",
+      "Departamento 4 con $81.000"
+    ],
+    "correctAnswer": 0,
+    "hint": "Suma los salarios de cada departamento: Depto 1 = 65k+72k+67k = 204k.",
+    "explanation": "La suma de salarios por depto es: Depto 1 = 65k+72k+67k = 204k; Depto 2 = 48k+59k = 107k; Depto 3 = 53k+45k = 98k; Depto 4 = 81k. El mayor es el Depto 1.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase3_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 333,
+    "classNum": 3,
+    "topic": "INNER JOIN con Filtro WHERE",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "Dada la consulta:\n`SELECT e.nombre, d.nombre_departamento FROM Empleados e INNER JOIN Departamentos d ON e.id_departamento = d.id WHERE e.salario > 60000;`\n¿Qué empleados formarán parte del resultado?",
+    "options": [
+      "Ana Gómez (Ventas), Lucía Fernández (Ventas), Diego López (Sistemas) y Valeria Díaz (Ventas)",
+      "Carlos Pérez, Marcos Torres y Martín Silva",
+      "Sofía Romero y Diego López únicamente",
+      "Todos los 8 empleados de la empresa"
+    ],
+    "correctAnswer": 0,
+    "hint": "Filtra a quienes ganan más de 60.000 y combínalos con el nombre de su departamento.",
+    "explanation": "Los empleados con salario > 60.000 son Ana (65k), Lucía (72k), Diego (81k) y Valeria (67k). Al hacer el INNER JOIN con Departamentos, se obtienen sus nombres vinculados a sus departamentos respectivos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase3_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 334,
+    "classNum": 3,
+    "topic": "LEFT JOIN con departamentos sin empleados",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "Si ejecutamos:\n`SELECT d.nombre_departamento, COUNT(e.id) AS total FROM Departamentos d LEFT JOIN Empleados e ON d.id = e.id_departamento GROUP BY d.nombre_departamento;`\n¿Qué valor mostrará para 'Recursos Humanos' (id = 5)?",
+    "options": [
+      "0 (ya que ningún empleado tiene asignado id_departamento = 5)",
+      "1",
+      "NULL",
+      "Error de ejecución"
+    ],
+    "correctAnswer": 0,
+    "hint": "COUNT(columna) ignora los valores NULL generados por la ausencia de filas en la tabla derecha.",
+    "explanation": "El LEFT JOIN preserva todas las filas de la tabla izquierda (Departamentos). Como 'Recursos Humanos' no tiene empleados coincidentes en la tabla derecha, las columnas de e son NULL. Al hacer COUNT(e.id), los valores NULL no se cuentan, resultando en 0.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase3_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 335,
+    "classNum": 3,
+    "topic": "JOIN implícito en cláusula WHERE",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿A qué tipo de JOIN equivale la siguiente sintaxis tradicional?\n`SELECT Empleados.nombre, Departamentos.nombre_departamento FROM Empleados, Departamentos WHERE Empleados.id_departamento = Departamentos.id;`",
+    "options": [
+      "A un INNER JOIN estándar (Theta Join / Equi Join).",
+      "A un FULL OUTER JOIN.",
+      "A un LEFT OUTER JOIN.",
+      "A un CROSS JOIN con producto cartesiano puro sin filtrado."
+    ],
+    "correctAnswer": 0,
+    "hint": "Separar tablas por coma y vincularlas mediante una condición de igualdad en el WHERE es la forma clásica de hacer un INNER JOIN.",
+    "explanation": "La sintaxis de separar tablas por coma en el FROM y especificar la condición de enlace en el WHERE equivale semánticamente a un INNER JOIN según el estándar ANSI SQL-92.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase3_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 336,
+    "classNum": 3,
+    "topic": "Cláusula HAVING",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿Qué departamentos arrojará la consulta:\n`SELECT id_departamento, COUNT(*) FROM Empleados GROUP BY id_departamento HAVING COUNT(*) > 2;`?",
+    "options": [
+      "Únicamente el id_departamento = 1 (con 3 empleados).",
+      "Los id_departamento 1, 2 y 3.",
+      "Todos los departamentos de la base de datos.",
+      "Ninguno, produce un error de compilación."
+    ],
+    "correctAnswer": 0,
+    "hint": "HAVING filtra grupos calculados: sólo el departamento 1 posee más de 2 empleados (tiene 3).",
+    "explanation": "Los conteos por departamento son: Depto 1: 3 empleados; Depto 2: 2 empleados; Depto 3: 2 empleados; Depto 4: 1 empleado. La cláusula HAVING filtra después de agrupar, dejando solo aquellos con COUNT(*) > 2, que es únicamente el departamento 1.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase3_p03.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 337,
+    "classNum": 3,
+    "topic": "Cláusula DISTINCT",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿Qué valores devuelve la consulta `SELECT DISTINCT id_departamento FROM Empleados ORDER BY id_departamento ASC;`?",
+    "options": [
+      "1, 2, 3, 4 (eliminando las repeticiones de los 8 empleados)",
+      "1, 2, 3, 4, 5",
+      "1, 1, 1, 2, 2, 3, 3, 4",
+      "8"
+    ],
+    "correctAnswer": 0,
+    "hint": "DISTINCT remueve los valores repetidos de la columna listada.",
+    "explanation": "DISTINCT suprime los duplicados en el conjunto de resultados. Dado que los empleados pertenecen a los departamentos 1, 2, 3 y 4 (el 5 no tiene empleados), el resultado contiene exactamente 1, 2, 3 y 4.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 1)",
+    "slideImage": "assets/clases_infographics/clase3_p01.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 338,
+    "classNum": 3,
+    "topic": "COUNT con DISTINCT",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿Qué resultado devuelve `SELECT COUNT(DISTINCT id_departamento) AS deptos_con_personal FROM Empleados;`?",
+    "options": [
+      "4",
+      "5",
+      "8",
+      "1"
+    ],
+    "correctAnswer": 0,
+    "hint": "Cuenta cuántos códigos de departamento distintos existen entre todos los empleados.",
+    "explanation": "COUNT(DISTINCT columna) cuenta la cantidad de valores únicos no nulos presentes en dicha columna. Hay 4 departamentos con personal asignado (1, 2, 3 y 4).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 1)",
+    "slideImage": "assets/clases_infographics/clase3_p01.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 339,
+    "classNum": 3,
+    "topic": "Operador BETWEEN y LIMIT",
+    "unit": "Clase 3 - Autoevaluación 3",
+    "question": "¿Qué empleados retornará la consulta:\n`SELECT nombre, salario FROM Empleados WHERE salario BETWEEN 50000 AND 70000 ORDER BY salario ASC LIMIT 3;`?",
+    "options": [
+      "Marcos Torres (53000), Sofía Romero (59000) y Ana Gómez (65000)",
+      "Carlos Pérez (48000), Marcos Torres (53000) y Sofía Romero (59000)",
+      "Lucía Fernández (72000), Valeria Díaz (67000) y Ana Gómez (65000)",
+      "Diego López (81000) únicamente"
+    ],
+    "correctAnswer": 0,
+    "hint": "BETWEEN incluye los extremos [50000, 70000]. Ordena los clasificados de menor a mayor y toma los 3 primeros.",
+    "explanation": "El rango BETWEEN 50000 AND 70000 incluye: Marcos (53k), Sofía (59k), Ana (65k) y Valeria (67k). Ordenados ascendentemente por salario y limitados a 3 registros, obtenemos a Marcos, Sofía y Ana.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 3 (Diapositiva Clase 3, pág. 1)",
+    "slideImage": "assets/clases_infographics/clase3_p01.png",
+    "type": "single_choice"
+  },
+  {
     "id": 401,
     "classNum": 4,
     "topic": "Comandos DML",
@@ -2367,6 +2919,177 @@ const QUESTIONS_DATABASE = [
     "explanation": "El comando UPDATE pertenece al DML (Data Manipulation Language) porque modifica el estado de los datos almacenados en las tuplas existentes sin alterar la estructura del esquema.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 4, pág. 4",
     "slideImage": "assets/clases_infographics/clase4_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 431,
+    "classNum": 4,
+    "topic": "DML - Inserción de Datos",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Qué comando DML se utiliza para insertar una nueva fila en una tabla de una base de datos relacional?",
+    "options": [
+      "INSERT INTO",
+      "UPDATE SET",
+      "ALTER TABLE ADD",
+      "CREATE RECORD"
+    ],
+    "correctAnswer": 0,
+    "hint": "Es la sentencia DML que añade nuevas tuplas especificando columnas y valores.",
+    "explanation": "La sentencia DML estándar para agregar nuevas filas/registros a una tabla existente es INSERT INTO tabla (columnas) VALUES (valores).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase4_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 432,
+    "classNum": 4,
+    "topic": "DML - Modificación con Operaciones Aritméticas",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "Si se desea incrementar un 10% el salario de todos los empleados del departamento 2, ¿cuál es la sentencia SQL adecuada?",
+    "options": [
+      "UPDATE Empleados SET salario = salario * 1.10 WHERE id_departamento = 2;",
+      "ALTER TABLE Empleados MODIFY salario = salario * 1.10 WHERE id_departamento = 2;",
+      "INSERT INTO Empleados (salario) VALUES (salario * 1.10) WHERE id_departamento = 2;",
+      "UPDATE Empleados SET salario = +10% WHERE id_departamento = 2;"
+    ],
+    "correctAnswer": 0,
+    "hint": "Para actualizar valores existentes usamos UPDATE con SET y una expresión matemática multiplicando por 1.10.",
+    "explanation": "La sentencia UPDATE permite modificar valores existentes asignando el resultado de expresiones como salario * 1.10, filtrando por la condición WHERE id_departamento = 2.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase4_p03.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 433,
+    "classNum": 4,
+    "topic": "DML - Eliminación de Registros",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Qué sentencia SQL elimina únicamente al empleado con `id = 108`?",
+    "options": [
+      "DELETE FROM Empleados WHERE id = 108;",
+      "DROP ROW FROM Empleados WHERE id = 108;",
+      "REMOVE FROM Empleados WHERE id = 108;",
+      "TRUNCATE TABLE Empleados WHERE id = 108;"
+    ],
+    "correctAnswer": 0,
+    "hint": "DELETE FROM con una cláusula WHERE que especifique la clave primaria a remover.",
+    "explanation": "DELETE FROM tabla WHERE condición es la sintaxis correcta para eliminar filas específicas. TRUNCATE no admite WHERE y DROP elimina estructuras completas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase4_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 434,
+    "classNum": 4,
+    "topic": "Sintaxis de Inserción Completa",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Cuál es la sintaxis SQL estándar correcta para insertar un nuevo departamento llamado 'Finanzas' con id = 6?",
+    "options": [
+      "INSERT INTO Departamentos (id, nombre_departamento) VALUES (6, 'Finanzas');",
+      "ADD ROW TO Departamentos VALUES (6, 'Finanzas');",
+      "INSERT RECORD (6, 'Finanzas') INTO Departamentos;",
+      "UPDATE Departamentos ADD (6, 'Finanzas');"
+    ],
+    "correctAnswer": 0,
+    "hint": "Estructura: INSERT INTO nombre_tabla (campos) VALUES (datos).",
+    "explanation": "La sintaxis estándar requiere INSERT INTO nombre_tabla (columnas) VALUES (valores_correspondientes);.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase4_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 435,
+    "classNum": 4,
+    "topic": "Riesgo de UPDATE sin WHERE",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Qué ocurre si se ejecuta la sentencia `UPDATE Empleados SET salario = 50000;` sin especificar una cláusula WHERE?",
+    "options": [
+      "El salario de TODOS los empleados de la tabla será actualizado a 50000.",
+      "El motor rechaza la consulta arrojando un error de sintaxis obligatorio.",
+      "Solo se actualiza el primer registro de la tabla.",
+      "Se crea un nuevo empleado con salario 50000."
+    ],
+    "correctAnswer": 0,
+    "hint": "Sin WHERE, la instrucción se propaga a todas las tuplas de la relación.",
+    "explanation": "En SQL, omitir la cláusula WHERE en un comando UPDATE aplica la modificación a todas y cada una de las filas de la tabla de forma generalizada.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase4_p03.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 436,
+    "classNum": 4,
+    "topic": "Actualización Específica por Clave Primaria",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "Si ejecutamos `UPDATE Empleados SET salario = 70000 WHERE id = 101;`, ¿a quién estamos modificando el salario?",
+    "options": [
+      "A Ana Gómez (id = 101).",
+      "A Carlos Pérez (id = 102).",
+      "A todos los empleados que ganen menos de 70000.",
+      "A los empleados del departamento 1."
+    ],
+    "correctAnswer": 0,
+    "hint": "El ID 101 identifica unívocamente a Ana Gómez en la tabla.",
+    "explanation": "El filtro WHERE id = 101 restringe la operación exclusivamente a la tupla cuya Clave Primaria es 101, perteneciente a Ana Gómez.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase4_p03.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 437,
+    "classNum": 4,
+    "topic": "Subconsultas Escalares con Función de Agregación",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Qué devuelve la siguiente subconsulta en la cláusula WHERE?\n`SELECT nombre, salario FROM Empleados WHERE salario > (SELECT AVG(salario) FROM Empleados);`",
+    "options": [
+      "Todos los empleados cuyo salario es estrictamente superior al salario promedio de toda la compañía.",
+      "El empleado que posee el salario más alto de la tabla.",
+      "El promedio salarial de cada departamento por separado.",
+      "Una lista de errores porque no se pueden anidar consultas en el WHERE."
+    ],
+    "correctAnswer": 0,
+    "hint": "La consulta interna calcula el promedio general (AVG) y la externa compara cada salario contra ese número escalar.",
+    "explanation": "La subconsulta (SELECT AVG(salario) FROM Empleados) es una subconsulta escalar que retorna un único valor numérico (el promedio general). El SELECT exterior filtra a quienes ganan más que dicho promedio.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase4_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 438,
+    "classNum": 4,
+    "topic": "Subconsultas de Igualdad",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "En la consulta:\n`SELECT nombre FROM Empleados WHERE id_departamento = (SELECT id FROM Departamentos WHERE nombre_departamento = 'Sistemas');`\n¿Qué empleados se obtendrán?",
+    "options": [
+      "Los empleados que pertenezcan al departamento 'Sistemas' (Diego López).",
+      "Todos los empleados de la empresa excepto los de Sistemas.",
+      "Únicamente el nombre del departamento Sistemas.",
+      "Ninguno porque las subconsultas requieren obligatoriamente el operador IN."
+    ],
+    "correctAnswer": 0,
+    "hint": "La subconsulta resuelve primero el ID de Sistemas (4) y la consulta externa busca empleados con ese ID.",
+    "explanation": "La subconsulta interna devuelve el id correspondiente a 'Sistemas' (4). La consulta externa busca a los empleados con id_departamento = 4 (Diego López).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase4_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 439,
+    "classNum": 4,
+    "topic": "Propósito de las Subconsultas",
+    "unit": "Clase 4 - Autoevaluación 4",
+    "question": "¿Cuál es la principal ventaja de utilizar subconsultas (consultas anidadas) en SQL?",
+    "options": [
+      "Permiten resolver problemas en varios pasos lógicos dinámicos utilizando el resultado de una consulta como filtro o tabla derivada en otra.",
+      "Reemplazan completamente la necesidad de crear índices en la base de datos.",
+      "Impiden que ocurran bloqueos de concurrencia en transacciones concurrentes.",
+      "Convierten automáticamente bases de datos relacionales en bases de datos NoSQL."
+    ],
+    "correctAnswer": 0,
+    "hint": "Permiten calcular valores intermedios dinámicamente sin hardcodear datos fijos.",
+    "explanation": "Las subconsultas permiten componer operaciones complejas de manera modular y dinámica, calculando valores o conjuntos de datos intermedios que condicionan o alimentan la consulta principal.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 4 (Diapositiva Clase 4, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase4_p05.png",
     "type": "single_choice"
   },
   {
@@ -3058,6 +3781,196 @@ const QUESTIONS_DATABASE = [
     "explanation": "La regla de Integridad de Entidad exige que ningún componente de la Clave Primaria de una relación base pueda ser nulo (NULL), ya que una tupla con identificador nulo no podría ser distinguida de las demás.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 5, pág. 4",
     "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 536,
+    "classNum": 5,
+    "topic": "Estructura Relacional - Registros y Tuplas",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "En el modelo relacional, ¿qué representa cada fila en una tabla de base de datos?",
+    "options": [
+      "Un registro (o tupla) que representa una instancia individual de la entidad modelada con valores para cada atributo.",
+      "Un tipo de dato de dominio como INTEGER o VARCHAR.",
+      "Una restricción de integridad referencial.",
+      "Un índice de árbol B+ para optimizar búsquedas en disco."
+    ],
+    "correctAnswer": 0,
+    "hint": "Fila = Registro = Tupla (una instancia específica). Columna = Atributo = Campo.",
+    "explanation": "En la terminología formal del modelo relacional de E.F. Codd, una fila se denomina \"tupla\" o registro y modela una ocurrencia o instancia específica de la entidad.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 2)",
+    "slideImage": "assets/clases_infographics/clase5_p02.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 537,
+    "classNum": 5,
+    "topic": "Clave Primaria (Primary Key)",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Qué características obligatorias definen a una Clave Primaria (PRIMARY KEY) en una tabla relacional?",
+    "options": [
+      "Identifica unívocamente a cada registro en la tabla y no puede contener valores nulos (NOT NULL).",
+      "Debe ser de tipo numérico secuencial autoincremental de forma obligatoria.",
+      "Puede repetirse siempre que pertenezca a diferentes transacciones concurrentes.",
+      "Solo puede aplicarse sobre una única columna, nunca sobre múltiples columnas compuestas."
+    ],
+    "correctAnswer": 0,
+    "hint": "La Clave Primaria debe ser única (no duplicada) y nunca nula (Integridad de Entidad).",
+    "explanation": "Una Clave Primaria (PK) garantiza la unicidad de cada tupla (no duplicados) y la integridad de entidad (ningún componente de la PK puede ser NULL). Puede ser simple o compuesta.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 538,
+    "classNum": 5,
+    "topic": "Restricción UNIQUE vs PRIMARY KEY",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿En qué se diferencia principalmente una restricción UNIQUE de una PRIMARY KEY?",
+    "options": [
+      "Una tabla puede tener múltiples restricciones UNIQUE y éstas permiten valores NULL (según el motor), mientras que solo puede existir una única PRIMARY KEY y no permite NULLs.",
+      "UNIQUE solo funciona en cadenas de texto y PRIMARY KEY solo en números enteros.",
+      "PRIMARY KEY no crea índices automáticos mientras que UNIQUE sí lo hace.",
+      "No existe ninguna diferencia técnica ni sintáctica entre ambas."
+    ],
+    "correctAnswer": 0,
+    "hint": "Una tabla sólo puede tener UNA PK principal, pero puede tener múltiples columnas con restricción UNIQUE.",
+    "explanation": "Cada tabla puede tener solo una PRIMARY KEY (la cual rechaza NULLs). En cambio, puede tener múltiples constraints UNIQUE (e.g. DNI, email), y la mayoría de los motores permiten valores NULL en columnas UNIQUE.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 539,
+    "classNum": 5,
+    "topic": "DDL - Modificación de Estructura",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Qué comando DDL se utiliza para agregar una nueva columna, modificar un tipo de dato o añadir una restricción a una tabla ya existente?",
+    "options": [
+      "ALTER TABLE",
+      "UPDATE TABLE",
+      "MODIFY SCHEMA",
+      "INSERT COLUMN"
+    ],
+    "correctAnswer": 0,
+    "hint": "Para alterar la estructura o definición de la tabla usamos ALTER TABLE.",
+    "explanation": "ALTER TABLE es la sentencia de definición de datos (DDL) que permite alterar la estructura de una tabla existente (añadir/eliminar columnas, cambiar tipos de datos o agregar restricciones como FK o UNIQUE).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase5_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 540,
+    "classNum": 5,
+    "topic": "Clave Foránea (Foreign Key)",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Cuál es el propósito principal de una Clave Foránea (FOREIGN KEY) en una tabla hija?",
+    "options": [
+      "Establecer una relación referencial hacia la clave primaria o candidata de una tabla padre, asegurando que no existan referencias a datos inexistentes.",
+      "Aumentar automáticamente el tamaño del disco cuando la base de datos se llena.",
+      "Encriptar las contraseñas de los usuarios en la base de datos.",
+      "Evitar que los usuarios realicen consultas de tipo SELECT en la tabla."
+    ],
+    "correctAnswer": 0,
+    "hint": "La FK vincula una columna de la tabla hija con la PK de la tabla padre para mantener la integridad.",
+    "explanation": "Una Clave Foránea (FK) vincula los registros de la tabla hija con una clave existente en la tabla padre, garantizando la consistencia y la integridad referencial.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 541,
+    "classNum": 5,
+    "topic": "Integridad Referencial",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Qué previene la regla de Integridad Referencial en una base de datos relacional?",
+    "options": [
+      "La existencia de 'registros huérfanos' (filas hijas que apunten a claves de tablas padre que no existen o fueron eliminadas sin cascada).",
+      "Que se ejecuten más de dos consultas al mismo tiempo en el servidor.",
+      "Que los nombres de las columnas contengan caracteres en minúscula.",
+      "Que se utilicen tipos de datos de fecha en las tablas."
+    ],
+    "correctAnswer": 0,
+    "hint": "Garantiza que ningún hijo apunte a un padre inexistente (registros huérfanos).",
+    "explanation": "La Integridad Referencial asegura que el valor de una clave foránea coincida siempre con un valor válido de clave primaria en la tabla referenciada, impidiendo registros huérfanos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 542,
+    "classNum": 5,
+    "topic": "PRIMARY KEY vs UNIQUE + NOT NULL",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "Si una columna tiene las restricciones UNIQUE y NOT NULL combinadas, ¿por qué igualmente se define explícitamente una PRIMARY KEY?",
+    "options": [
+      "Porque la PRIMARY KEY representa la identidad semántica principal elegida para la tabla y es el destino por defecto de las claves foráneas de otras tablas.",
+      "Porque UNIQUE y NOT NULL no impiden que se inserten valores duplicados.",
+      "Porque los motores relacionales prohíben crear tablas sin la cláusula UNIQUE.",
+      "Porque sin PRIMARY KEY no se pueden ejecutar sentencias SELECT."
+    ],
+    "correctAnswer": 0,
+    "hint": "La PK es el identificador primordial del modelo de datos sobre el que se estructuran las relaciones.",
+    "explanation": "Aunque UNIQUE + NOT NULL garantiza unicidad y ausencia de nulos (clave candidata), la PRIMARY KEY es la clave elegida formalmente como identificador principal de la entidad y referencia estándar para relaciones externas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 543,
+    "classNum": 5,
+    "topic": "ALTER TABLE vs INSERT INTO",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Cuál es la diferencia fundamental entre el comando ALTER TABLE y el comando INSERT INTO?",
+    "options": [
+      "ALTER TABLE es DDL (modifica la estructura/esquema de la tabla) mientras que INSERT INTO es DML (manipula las filas/datos dentro de la tabla).",
+      "ALTER TABLE inserta datos y INSERT INTO modifica las columnas.",
+      "ALTER TABLE solo puede ser ejecutado por el sistema operativo y no por el usuario administrador.",
+      "Ambos comandos hacen exactamente lo mismo en cualquier motor SQL estándar."
+    ],
+    "correctAnswer": 0,
+    "hint": "DDL (Data Definition) modifica estructuras; DML (Data Manipulation) modifica datos dentro de estructuras.",
+    "explanation": "DDL (Data Definition Language como ALTER TABLE) altera el diseño y metadatos de las estructuras, mientras que DML (Data Manipulation Language como INSERT INTO) opera sobre el contenido de datos de dichas estructuras.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 5)",
+    "slideImage": "assets/clases_infographics/clase5_p05.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 544,
+    "classNum": 5,
+    "topic": "Relaciones Muchos a Muchos (N:M)",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "En el modelo relacional, ¿cómo se implementa correctamente una relación de cardinalidad Muchos a Muchos (N:M) entre dos tablas (por ejemplo Estudiantes y Cursos)?",
+    "options": [
+      "Creando una tabla intermedia (tabla asociativa o de unión) que contenga como claves foráneas las claves primarias de ambas tablas.",
+      "Colocando una lista separada por comas de IDs de cursos dentro de un campo de texto en Estudiantes.",
+      "Duplicando la tabla de Cursos dentro de cada registro de Estudiantes.",
+      "No es posible representar relaciones Muchos a Muchos en bases de datos relacionales."
+    ],
+    "correctAnswer": 0,
+    "hint": "Se crea una tabla de unión (junction table) con dos claves foráneas que la conectan con las tablas principales.",
+    "explanation": "Las relaciones N:M se descomponen en dos relaciones 1:N mediante una tabla intermedia asociativa cuya Clave Primaria compuesta suele formarse por las FKs que apuntan a cada una de las tablas relacionadas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 4)",
+    "slideImage": "assets/clases_infographics/clase5_p04.png",
+    "type": "single_choice"
+  },
+  {
+    "id": 545,
+    "classNum": 5,
+    "topic": "Paginación y Control de Registros",
+    "unit": "Clase 5 - Autoevaluación 5",
+    "question": "¿Qué función cumplen las cláusulas LIMIT y OFFSET en consultas SQL para paginación de resultados?",
+    "options": [
+      "LIMIT restringe la cantidad máxima de filas retornadas, y OFFSET especifica cuántas filas saltar antes de comenzar a retornar registros.",
+      "LIMIT define la cantidad máxima de columnas y OFFSET filtra los registros nulos.",
+      "LIMIT ordena ascendentemente y OFFSET ordena descendentemente.",
+      "LIMIT borra registros antiguos y OFFSET crea nuevas tablas temporales."
+    ],
+    "correctAnswer": 0,
+    "hint": "LIMIT fija el tamaño de la página y OFFSET el desplazamiento o salto de registros.",
+    "explanation": "LIMIT N indica retornar como máximo N filas, y OFFSET M indica omitir las primeras M filas del resultado, permitiendo implementar paginación de datos de forma precisa.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 3)",
+    "slideImage": "assets/clases_infographics/clase5_p03.png",
     "type": "single_choice"
   }
 ];
