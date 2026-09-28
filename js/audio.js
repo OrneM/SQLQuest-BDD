@@ -290,7 +290,7 @@ class RetroAudioEngine {
     } catch (e) {}
   }
 
-  // Michi Mágica Meow sound synthesis
+  // Blanca (Cat companion) Meow sound synthesis
   playMeow() {
     if (this.muted) return;
     this.ensureContext();

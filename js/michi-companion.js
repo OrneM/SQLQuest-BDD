@@ -1,5 +1,5 @@
-// Antigravity BDD: Michi Mágica Companion & Motivational Inactivity System
-// Inspired by the user's beloved white cat with magic star wand.
+// Antigravity BDD: Blanca Companion & Motivational Inactivity System
+// Inspired by Blanca, the user's beloved white cat with magic star wand.
 
 class MichiCompanion {
   constructor() {
@@ -24,7 +24,7 @@ class MichiCompanion {
       "🐾 Un paso a la vez: primero el <code>FROM</code>, luego el <code>WHERE</code> y después la victoria.",
       "💡 Si te trabas con alguna consulta, pedile una pista al Oráculo. ¡Estoy acá haciéndote hinchada!",
       "🔮 Mis bigotes mágicos presienten que vas a sacar una notaza en Bases de Datos. ¡Confía en vos!",
-      "🌟 ¡Recordá que <code>WHERE</code> filtra filas y <code>HAVING</code> filtra grupos! Pequeño tip de tu gata mágica.",
+      "🌟 ¡Recordá que <code>WHERE</code> filtra filas y <code>HAVING</code> filtra grupos! Pequeño tip de Blanca.",
       "🐱 ¡Miau! Tómate un sorbito de agua, estira los hombros y seguimos conquistando la mazmorra.",
       "🚀 ¿Sabías que cada query que practicas hoy te acerca a ser una experta en backend y data? ¡Vamos con todo!",
       "✨ <code>INSERT INTO Futuro (exito, sabiduria) VALUES ('GARANTIZADO', 100);</code> ¡Miau!",
@@ -51,7 +51,7 @@ class MichiCompanion {
       <!-- Speech Bubble Dialog Box -->
       <div id="michi-speech-bubble" class="michi-speech-bubble" style="display: none;">
         <div class="michi-bubble-header">
-          <span class="michi-bubble-title">✨ MICHI MÁGICA DICE:</span>
+          <span class="michi-bubble-title">✨ BLANCA DICE:</span>
           <button id="michi-bubble-close" class="michi-bubble-close-btn" type="button" title="Cerrar mensaje">✖</button>
         </div>
         <div id="michi-bubble-text" class="michi-bubble-text"></div>
@@ -59,7 +59,7 @@ class MichiCompanion {
       </div>
 
       <!-- Cat Avatar & Glowing Star Pedestal -->
-      <div id="michi-avatar-btn" class="michi-avatar-wrapper" title="✨ ¡Haz clic en Michi para recibir motivación o un tip SQL!" role="button" tabindex="0">
+      <div id="michi-avatar-btn" class="michi-avatar-wrapper" title="✨ ¡Haz clic en Blanca para recibir motivación o un tip SQL!" role="button" tabindex="0">
         <div class="michi-magic-aura"></div>
         <div class="michi-sparkles-container">
           <span class="michi-star s1">✦</span>
@@ -67,9 +67,9 @@ class MichiCompanion {
           <span class="michi-star s3">✨</span>
           <span class="michi-star s4">✦</span>
         </div>
-        <img src="assets/michi_magic_cutout.png" onerror="this.src='assets/michi_magic.png'" alt="Michi Mágica - Tu compañera de estudio BDD" class="michi-sprite-img" id="michi-sprite">
+        <img src="assets/michi_magic_cutout.png" onerror="this.src='assets/michi_magic.png'" alt="Blanca - Tu compañera de estudio BDD" class="michi-sprite-img" id="michi-sprite">
         <div class="michi-name-badge">
-          <span class="michi-paw">🐾</span> MICHI MÁGICA
+          <span class="michi-paw">🐾</span> BLANCA
         </div>
       </div>
     `;
