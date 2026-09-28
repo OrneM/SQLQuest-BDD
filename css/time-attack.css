@@ -448,6 +448,211 @@
   color: #e0f2fe;
 }
 
+/* =========================================================
+   QUESTION DATASET CONTEXT (Tables & Data Inspector)
+   ========================================================= */
+.question-dataset-context {
+  background: #090e1c;
+  border: 2px solid #28375c;
+  border-left: 4px solid var(--neon-cyan);
+  padding: 16px 20px;
+  margin: 18px 0 24px 0;
+  border-radius: 4px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dataset-context-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #1e293b;
+}
+
+.dataset-context-header .dataset-icon {
+  font-size: 16px;
+}
+
+.dataset-context-header .dataset-title {
+  font-family: var(--font-pixel);
+  font-size: 10px;
+  color: var(--neon-cyan);
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 6px var(--neon-cyan-glow);
+}
+
+.dataset-inspector-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+.dataset-inspector-grid.single-table {
+  grid-template-columns: 1fr;
+}
+
+.dataset-table-card {
+  background: #0d1326;
+  border: 1px solid #1e293b;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dataset-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: #131b33;
+  border-bottom: 1px solid #1e293b;
+}
+
+.table-name-tag {
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #38bdf8;
+}
+
+.table-name-tag code {
+  background: #090e1c;
+  color: var(--neon-yellow);
+  padding: 2px 6px;
+  border-radius: 3px;
+  border: 1px solid #28375c;
+}
+
+.table-rows-tag {
+  font-family: var(--font-pixel);
+  font-size: 8.5px;
+  color: #94a3b8;
+  background: #090e1c;
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.table-responsive-box {
+  width: 100%;
+  overflow-x: auto;
+  padding: 4px;
+}
+
+.dataset-html-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  text-align: left;
+}
+
+.dataset-html-table th {
+  background: #090e1c;
+  color: #94a3b8;
+  padding: 8px 12px;
+  font-weight: 600;
+  border-bottom: 1px solid #28375c;
+  white-space: nowrap;
+}
+
+.dataset-html-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #182038;
+  color: #f1f5f9;
+  white-space: nowrap;
+}
+
+.dataset-html-table tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.dataset-html-table tbody tr:hover {
+  background: rgba(0, 240, 255, 0.06);
+}
+
+.key-badge {
+  display: inline-block;
+  font-size: 9px;
+  padding: 1px 4px;
+  border-radius: 2px;
+  margin-left: 4px;
+  font-weight: 700;
+}
+
+.key-badge.pk {
+  background: #78350f;
+  color: #fde68a;
+  border: 1px solid #d97706;
+}
+
+.key-badge.fk {
+  background: #1e3a8a;
+  color: #93c5fd;
+  border: 1px solid #3b82f6;
+}
+
+/* Light Mode support */
+body.light-mode .question-dataset-context {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  border-left-color: #0284c7;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .dataset-context-header {
+  border-bottom-color: #e2e8f0;
+}
+
+body.light-mode .dataset-context-header .dataset-title {
+  color: #0369a1;
+  text-shadow: none;
+}
+
+body.light-mode .dataset-table-card {
+  background: #ffffff;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .dataset-card-header {
+  background: #f1f5f9;
+  border-bottom-color: #e2e8f0;
+}
+
+body.light-mode .table-name-tag {
+  color: #0f172a;
+}
+
+body.light-mode .table-name-tag code {
+  background: #e2e8f0;
+  color: #0369a1;
+  border-color: #cbd5e1;
+}
+
+body.light-mode .table-rows-tag {
+  background: #e2e8f0;
+  color: #475569;
+}
+
+body.light-mode .dataset-html-table th {
+  background: #f8fafc;
+  color: #475569;
+  border-bottom-color: #cbd5e1;
+}
+
+body.light-mode .dataset-html-table td {
+  border-bottom-color: #f1f5f9;
+  color: #1e293b;
+}
+
+body.light-mode .dataset-html-table tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+body.light-mode .dataset-html-table tbody tr:hover {
+  background: #e0f2fe;
+}
+
 /* Options Grid / Single Choice */
 .options-list {
   display: flex;

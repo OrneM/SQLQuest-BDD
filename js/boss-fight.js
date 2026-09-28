@@ -204,6 +204,18 @@ class BossFightArena {
       </div>
       <h3 class="question-title">${q.question}</h3>
       
+      ${q.contextHtml ? `
+        <div class="question-dataset-context">
+          <div class="dataset-context-header">
+            <span class="dataset-icon">📊</span>
+            <span class="dataset-title">TABLAS Y DATOS DE REFERENCIA (CONTEXTO SQL)</span>
+          </div>
+          <div class="dataset-context-body">
+            ${q.contextHtml}
+          </div>
+        </div>
+      ` : ''}
+      
       <div class="oracle-hint-container">
         <button class="btn-retro btn-cyan hint-trigger-btn" id="boss-oracle-hint-btn" type="button">
           <span>💡 PEDIR PISTA DEL ORÁCULO</span>
