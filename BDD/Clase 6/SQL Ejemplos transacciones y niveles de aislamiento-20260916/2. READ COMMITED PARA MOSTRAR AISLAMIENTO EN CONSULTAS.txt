@@ -1,0 +1,34 @@
+----READ COMMIT PARA MOSTRAR AISLAMIENTO EN CONSULTAS
+
+SHOW transaction_isolation;
+
+DROP TABLE IF EXISTS cuentas;
+
+CREATE TABLE cuentas (
+    id SERIAL PRIMARY KEY,
+    saldo INT
+);
+
+INSERT INTO cuentas (saldo) VALUES (100), (200);
+
+S1:
+BEGIN;
+SELECT SUM(saldo) FROM cuentas;
+
+S2:
+SELECT * FROM cuentas;
+
+S1:
+UPDATE cuentas SET saldo = saldo - 50 WHERE id = 2;
+SELECT SUM(saldo) FROM cuentas;
+
+S2:
+SELECT * FROM cuentas;
+
+
+S1:
+COMMIT;
+
+S2:
+SELECT * FROM cuentas;
+

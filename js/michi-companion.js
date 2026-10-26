@@ -31,8 +31,15 @@ class MichiCompanion {
       "🐾 ¡Hasta los motores más potentes necesitan pausas de caché! Pero acá estoy para recordarte tu grandeza.",
       "⚔️ ¡Tu racha de estudio es más fuerte que cualquier bloqueo de base de datos! ¡Adelante!",
       "🪄 ¡Un toque de mi varita mágica y toda la sintaxis de <code>GROUP BY</code> se vuelve cristalina!",
-      "💖 ¡Estoy muy orgullosa de todo el esfuerzo que le estás poniendo a estudiar! ¡No aflojes!"
+      "💖 ¡Estoy muy orgullosa de todo el esfuerzo que le estás poniendo a estudiar! ¡No aflojes!",
+      "⚡ ¡Tip del 2do Parcial! En <code>MVCC</code> los lectores nunca bloquean a escritores ni los escritores a lectores. ¡Pura magia multiversión!",
+      "📜 'La clave, toda la clave y nada más que la clave, que Codd me ayude'... ¡Así nunca te olvidarás de la 3ra Forma Normal (3FN)!",
+      "🔮 ¿Sabías que <code>EXPLAIN</code> estima el plan teórico, pero <code>EXPLAIN ANALYZE</code> ejecuta la query en serio midiendo tiempos reales?",
+      "🐉 ¡El Leviatán Transaccional del 2do Parcial tiembla cuando usas <code>SAVEPOINT</code> y manejas aislamiento <code>SERIALIZABLE</code>!",
+      "🐱 ¡Ojo con los Triggers! En un trigger <code>BEFORE ROW</code>, retornar <code>NULL</code> cancela la operación de raíz. ¡Zarpazo defensivo!",
+      "✨ En PL/pgSQL, la única orden que cancela la transacción entera es <code>RAISE EXCEPTION</code>. ¡Blanca aprueba tu rigor!"
     ];
+
 
     this.initDOM();
     this.bindEvents();

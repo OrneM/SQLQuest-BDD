@@ -1,16 +1,57 @@
-// Antigravity BDD: Boss Fight / Revancha Module (Repaso Espaciado & Muerte Súbita)
+// Antigravity BDD: Dual Boss Fight / Revancha Module (Repaso Espaciado & Muerte Súbita)
+// Boss 1: Titán de las Inconsistencias (1er Parcial - Clases 1 a 5)
+// Boss 2: Leviatán Transaccional (2do Parcial - Clases 6, 7, 9 y 10)
 
 class BossFightArena {
   constructor() {
+    this.currentBoss = '1'; // '1' | '2'
+    this.bossConfigs = {
+      '1': {
+        id: '1',
+        name: 'TITÁN DE LAS INCONSISTENCIAS (B-TREE DRAGON)',
+        shortName: 'Titán B-Tree',
+        badge: '🐉 1ER PARCIAL',
+        classes: [1, 2, 3, 4, 5],
+        banner: 'assets/boss_battle.jpg',
+        themeClass: 'boss-theme-1',
+        purifiedTitle: '¡MAZMORRA DEL 1ER PARCIAL PURIFICADA!',
+        purifiedDesc: 'No tienes conceptos pendientes de repaso del 1er Parcial (Clases 1 a 5). ¡Has dominado el modelado relacional, DQL y JOINs!',
+        challengeTitle: '¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!',
+        practiceBtnText: '🔥 ENTRENAR CONTRA EL TITÁN (1ER PARCIAL)',
+        startBtnText: '⚔️ ENFRENTAR AL TITÁN AHORA',
+        victoryTitle: '¡HAS DERROTADO AL TITÁN DE LAS INCONSISTENCIAS!',
+        victoryMsg: '🎉 ¡VICTORIA TOTAL EN EL 1ER PARCIAL! Has purificado todos los fallos de Modelado E-R, Álgebra Relacional, DDL/DQL, Agregaciones y Subqueries.'
+      },
+      '2': {
+        id: '2',
+        name: 'LEVIATÁN TRANSACCIONAL (ACID CYBER-HYDRA)',
+        shortName: 'Leviatán Transaccional',
+        badge: '⚡ 2DO PARCIAL',
+        classes: [6, 7, 9, 10],
+        banner: 'assets/boss_battle_2do_parcial.jpg',
+        themeClass: 'boss-theme-2',
+        purifiedTitle: '¡MAZMORRA DEL 2DO PARCIAL PURIFICADA!',
+        purifiedDesc: 'No tienes conceptos pendientes del 2do Parcial (Clases 6, 7, 9 y 10). ¡Concurrencia ACID, Normalización 1FN-5FN, Triggers y EXPLAIN bajo control!',
+        challengeTitle: '¡EL LEVIATÁN TRANSACCIONAL TE DESAFÍA!',
+        practiceBtnText: '⚡ ENTRENAR CONTRA EL LEVIATÁN (2DO PARCIAL)',
+        startBtnText: '⚔️ ENFRENTAR AL LEVIATÁN AHORA',
+        victoryTitle: '¡HAS DERROTADO AL LEVIATÁN TRANSACCIONAL!',
+        victoryMsg: '🎉 ¡VICTORIA TOTAL EN EL 2DO PARCIAL! Has dominado las Transacciones ACID, MVCC, Formas Normales (1FN a 5FN/BCNF), Triggers PL/pgSQL y Optimización EXPLAIN.'
+      }
+    };
+
     this.bossMaxHp = 100;
     this.bossCurrentHp = 100;
     this.failedQuestions = [];
+    this.boss1Failed = [];
+    this.boss2Failed = [];
     this.currentIndex = 0;
     this.lives = 3;
     this.isFighting = false;
 
     this.initElements();
     this.bindEvents();
+    this.selectBoss('1', false);
   }
 
   initElements() {
@@ -23,9 +64,62 @@ class BossFightArena {
     this.bossNextBtnEl = document.getElementById('boss-next-btn');
     this.bossValidateBtnEl = document.getElementById('boss-validate-btn');
     this.bossSpriteEl = document.getElementById('boss-sprite');
+
+    // Dynamic Dual Boss elements
+    this.activeBannerEl = document.getElementById('boss-active-banner');
+    this.stageBannerEl = document.getElementById('boss-stage-banner');
+    this.stageNameEl = document.getElementById('boss-stage-name');
+    this.stageBadgeEl = document.getElementById('boss-stage-badge');
+    this.purifiedTitleEl = document.getElementById('boss-purified-title');
+    this.purifiedDescEl = document.getElementById('boss-purified-desc');
+    this.challengeTitleEl = document.getElementById('boss-challenge-title');
+    this.practiceBtnTextEl = document.getElementById('boss-practice-btn-text');
+    this.startBossBtnTextEl = document.getElementById('start-boss-btn-text');
+    this.battleStageEl = document.getElementById('boss-battle-stage');
+
+    // Selector Cards
+    this.card1El = document.getElementById('boss-card-1');
+    this.card2El = document.getElementById('boss-card-2');
+    this.card1BadgeEl = document.getElementById('boss-card-1-badge');
+    this.card2BadgeEl = document.getElementById('boss-card-2-badge');
   }
 
   bindEvents() {
+    // Boss Card Selectors
+    if (this.card1El) {
+      this.card1El.addEventListener('click', () => {
+        if (this.isFighting) {
+          if (!confirm('Hay una batalla en curso contra el Boss actual. ¿Deseas retirarte para cambiar de Boss?')) return;
+          this.isFighting = false;
+        }
+        window.retroAudio.playBlip(700, 0.05);
+        this.selectBoss('1');
+      });
+    }
+
+    if (this.card2El) {
+      this.card2El.addEventListener('click', () => {
+        if (this.isFighting) {
+          if (!confirm('Hay una batalla en curso contra el Boss actual. ¿Deseas retirarte para cambiar de Boss?')) return;
+          this.isFighting = false;
+        }
+        window.retroAudio.playBlip(850, 0.05);
+        this.selectBoss('2');
+      });
+    }
+
+    const backToHubBtn = document.getElementById('boss-back-to-hub-btn');
+    if (backToHubBtn) {
+      backToHubBtn.addEventListener('click', () => {
+        if (this.isFighting) {
+          if (!confirm('¿Deseas retirarte de la arena de combate? El progreso del asalto actual se pausará.')) return;
+          this.isFighting = false;
+        }
+        window.retroAudio.playBlip(400, 0.05);
+        this.refreshView();
+      });
+    }
+
     const startBossBtn = document.getElementById('start-boss-fight-btn');
     if (startBossBtn) {
       startBossBtn.addEventListener('click', () => {
@@ -38,7 +132,7 @@ class BossFightArena {
     if (startPracticeBtn) {
       startPracticeBtn.addEventListener('click', () => {
         window.retroAudio.playBlip(750, 0.08);
-        this.startFight(true); // Practice mode with random sample
+        this.startFight(true); // Practice mode with questions from selected boss scope
       });
     }
 
@@ -54,6 +148,37 @@ class BossFightArena {
         this.submitBossAnswer();
       });
     }
+  }
+
+  selectBoss(bossId, playFeedback = true) {
+    if (!this.bossConfigs[bossId]) bossId = '1';
+    this.currentBoss = bossId;
+    const cfg = this.bossConfigs[bossId];
+
+    // Update active card styling
+    if (this.card1El && this.card2El) {
+      this.card1El.classList.toggle('active', bossId === '1');
+      this.card2El.classList.toggle('active', bossId === '2');
+    }
+
+    // Update banners and visual texts
+    if (this.activeBannerEl) this.activeBannerEl.src = cfg.banner;
+    if (this.stageBannerEl) this.stageBannerEl.src = cfg.banner;
+    if (this.stageNameEl) this.stageNameEl.textContent = cfg.name;
+    if (this.stageBadgeEl) this.stageBadgeEl.textContent = cfg.badge;
+    if (this.purifiedTitleEl) this.purifiedTitleEl.textContent = cfg.purifiedTitle;
+    if (this.purifiedDescEl) this.purifiedDescEl.textContent = cfg.purifiedDesc;
+    if (this.challengeTitleEl) this.challengeTitleEl.textContent = cfg.challengeTitle;
+    if (this.practiceBtnTextEl) this.practiceBtnTextEl.textContent = cfg.practiceBtnText;
+    if (this.startBossBtnTextEl) this.startBossBtnTextEl.textContent = cfg.startBtnText;
+
+    // Theming class on battle stage
+    if (this.battleStageEl) {
+      this.battleStageEl.classList.remove('boss-theme-1', 'boss-theme-2');
+      this.battleStageEl.classList.add(cfg.themeClass);
+    }
+
+    this.refreshView();
   }
 
   loadFailedQuestions() {
@@ -80,25 +205,49 @@ class BossFightArena {
         }
       });
 
-      // Sanitize stored IDs if obsolete/stale keys or duplicates were present
+      // Sanitize stored IDs if stale keys or duplicates were present
       if (validCanonicalIds.length !== rawIds.length || JSON.stringify(validCanonicalIds) !== JSON.stringify(rawIds)) {
         localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(validCanonicalIds));
       }
 
-      this.failedQuestions = validQuestions;
+      // Partition questions by Boss / Parcial
+      this.boss1Failed = validQuestions.filter(q => q.classNum <= 5);
+      this.boss2Failed = validQuestions.filter(q => [6, 7, 9, 10].includes(q.classNum));
+
+      // Active boss failed list
+      this.failedQuestions = (this.currentBoss === '2') ? this.boss2Failed : this.boss1Failed;
     } catch (e) {
+      this.boss1Failed = [];
+      this.boss2Failed = [];
       this.failedQuestions = [];
     }
+
+    this.updateCardBadges();
     this.updateBadge();
     return this.failedQuestions;
+  }
+
+  updateCardBadges() {
+    const c1 = this.boss1Failed ? this.boss1Failed.length : 0;
+    const c2 = this.boss2Failed ? this.boss2Failed.length : 0;
+
+    if (this.card1BadgeEl) {
+      this.card1BadgeEl.textContent = c1 > 0 ? `${c1} ERRORES PENDIENTES` : `PURIFICADO ✔`;
+      this.card1BadgeEl.className = `boss-card-pending-badge ${c1 > 0 ? 'has-errors' : 'purified'}`;
+    }
+
+    if (this.card2BadgeEl) {
+      this.card2BadgeEl.textContent = c2 > 0 ? `${c2} ERRORES PENDIENTES` : `PURIFICADO ✔`;
+      this.card2BadgeEl.className = `boss-card-pending-badge ${c2 > 0 ? 'has-errors' : 'purified'}`;
+    }
   }
 
   updateBadge() {
     const badge = document.getElementById('boss-badge-count');
     if (badge) {
-      const count = this.failedQuestions ? this.failedQuestions.length : 0;
-      badge.textContent = count;
-      badge.style.display = count > 0 ? 'inline-block' : 'none';
+      const totalCount = (this.boss1Failed ? this.boss1Failed.length : 0) + (this.boss2Failed ? this.boss2Failed.length : 0);
+      badge.textContent = totalCount;
+      badge.style.display = totalCount > 0 ? 'inline-block' : 'none';
     }
   }
 
@@ -145,9 +294,13 @@ class BossFightArena {
   }
 
   startFight(useAll = false) {
+    const cfg = this.bossConfigs[this.currentBoss];
+
     if (useAll) {
-      const pool = this.shuffle([...window.QUESTIONS_DATABASE]);
-      this.failedQuestions = pool.slice(0, 10).map(q => this.prepareQuestion(q));
+      // Practice mode: take random sample strictly from this boss's curriculum
+      const pool = (window.QUESTIONS_DATABASE || []).filter(q => cfg.classes.includes(q.classNum));
+      const shuffledPool = this.shuffle(pool);
+      this.failedQuestions = shuffledPool.slice(0, 10).map(q => this.prepareQuestion(q));
     } else {
       this.loadFailedQuestions();
       if (this.failedQuestions.length === 0) return;
@@ -186,6 +339,7 @@ class BossFightArena {
     }
 
     const q = this.failedQuestions[this.currentIndex];
+    const cfg = this.bossConfigs[this.currentBoss];
 
     if (this.bossFeedbackBoxEl) {
       this.bossFeedbackBoxEl.classList.remove('active', 'feedback-correct', 'feedback-error');
@@ -199,7 +353,7 @@ class BossFightArena {
 
     let html = `
       <div class="question-meta">
-        <span class="question-topic-badge">⚡ REVANCHA: ${q.topic}</span>
+        <span class="question-topic-badge">⚡ ${cfg.badge}: ${q.topic}</span>
         <span class="question-unit-badge">${q.unit}</span>
       </div>
       <h3 class="question-title">${q.question}</h3>
@@ -357,7 +511,7 @@ class BossFightArena {
 
       if (this.lives <= 0) {
         setTimeout(() => {
-          alert('¡El Boss te ha derrotado en la revancha! Repasa la teoría en el Grimorio e inténtalo de nuevo.');
+          alert(`¡El Boss te ha derrotado en la revancha! Repasa la teoría en el Grimorio e inténtalo de nuevo.`);
           this.isFighting = false;
           this.refreshView();
         }, 500);
@@ -398,7 +552,8 @@ class BossFightArena {
   triggerBossVictory() {
     this.isFighting = false;
     window.retroAudio.playVictory();
-    alert('🎉 ¡HAS DERROTADO AL TITÁN DE LAS INCONSISTENCIAS! Todos los conceptos han sido dominados.');
+    const cfg = this.bossConfigs[this.currentBoss];
+    alert(cfg.victoryMsg);
     this.refreshView();
   }
 
@@ -429,7 +584,13 @@ class BossFightArena {
       }
 
       localStorage.setItem('retro_bdd_failed_ids', JSON.stringify(updatedIds));
-      this.failedQuestions = updatedQuestions;
+      
+      // Update local partitions
+      this.boss1Failed = updatedQuestions.filter(q => q.classNum <= 5);
+      this.boss2Failed = updatedQuestions.filter(q => [6, 7, 9, 10].includes(q.classNum));
+      this.failedQuestions = (this.currentBoss === '2') ? this.boss2Failed : this.boss1Failed;
+
+      this.updateCardBadges();
       this.updateBadge();
     } catch (e) {}
   }

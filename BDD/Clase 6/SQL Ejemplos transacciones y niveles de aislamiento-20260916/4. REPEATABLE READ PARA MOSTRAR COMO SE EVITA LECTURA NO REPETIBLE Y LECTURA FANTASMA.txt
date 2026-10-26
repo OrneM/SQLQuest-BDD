@@ -1,0 +1,54 @@
+---REPEATABLE READ PARA MOSTRAR COMO SE EVITA LECTURA NO REPETIBLE Y LECTURA FANTASMA
+
+SHOW transaction_isolation;
+--- SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+DROP TABLE IF EXISTS cuentas;
+
+CREATE TABLE cuentas (
+    id SERIAL PRIMARY KEY,
+    saldo INT
+);
+
+INSERT INTO cuentas (saldo) VALUES (100), (200);
+
+
+------  LECTURA NO REPETIBLE  -----------------
+S1:
+
+BEGIN;
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SELECT saldo FROM cuentas WHERE id = 1;
+
+S2:
+
+UPDATE cuentas SET saldo = saldo + 50 WHERE id = 1;
+
+S1:
+
+SELECT saldo FROM cuentas WHERE id = 1;
+----- y despues
+COMMIT;
+
+S2:
+SELECT saldo FROM cuentas WHERE id = 1;
+
+--------- LECTURA FANTASMA ------------
+S1:
+
+BEGIN;
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+SELECT COUNT(*) FROM cuentas;
+
+S2:
+
+INSERT INTO cuentas (saldo) VALUES (300);
+SELECT COUNT(*) FROM cuentas;
+
+S1:
+
+SELECT COUNT(*) FROM cuentas;
+------- y despues
+COMMIT;
+SELECT COUNT(*) FROM cuentas;
+

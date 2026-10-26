@@ -1,0 +1,46 @@
+---READ COMMITED PARA MOSTRAR LECTURA NO REPETIBLE Y LECTURA FANTASMA
+
+SHOW default_transaction_isolation;
+
+DROP TABLE IF EXISTS cuentas;
+
+CREATE TABLE cuentas (
+    id SERIAL PRIMARY KEY,
+    saldo INT
+);
+
+INSERT INTO cuentas (saldo) VALUES (100), (200);
+
+
+------  LECTURA NO REPETIBLE  -----------------
+S1:
+
+BEGIN;
+SELECT saldo FROM cuentas WHERE id = 1;
+
+S2:
+
+UPDATE cuentas SET saldo = saldo + 50 WHERE id = 1;
+
+S1:
+
+SELECT saldo FROM cuentas WHERE id = 1;
+----- y despues
+COMMIT;
+
+--------- LECTURA FANTASMA ------------
+S1:
+
+BEGIN;
+SELECT COUNT(*) FROM cuentas;
+
+S2:
+
+INSERT INTO cuentas (saldo) VALUES (300);
+
+S1:
+
+SELECT COUNT(*) FROM cuentas;
+------- y despues
+COMMIT;
+

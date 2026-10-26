@@ -1,5 +1,5 @@
 // Banco de Preguntas y Ejercicios Prácticos de Bases de Datos I (UTN BA)
-// Total de preguntas: 203 (Clases 1 a 5, Autoevaluaciones, Ejercicios Prácticos DML/DQL y Modelado)
+// Total de preguntas: 283 (Clases 1 a 10: 1er y 2do Parcial, Autoevaluaciones, Ejercicios Prácticos y Modelos de Examen)
 
 const QUESTIONS_DATABASE = [
   {
@@ -4028,9 +4028,1581 @@ const QUESTIONS_DATABASE = [
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 5 (Diapositiva Clase 5, pág. 3)",
     "slideImage": "assets/clases_infographics/clase5_p03.png",
     "type": "single_choice"
+  },
+  {
+    "id": 601,
+    "classNum": 6,
+    "topic": "Propiedades ACID",
+    "unit": "Clase 6 - Transacciones",
+    "question": "Relacione cada propiedad fundamental de las transacciones (ACID) con la entidad o componente responsable de garantizar su cumplimiento:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Atomicidad",
+        "right": "Componente del sistema de base de datos especializado en la gestión de transacciones."
+      },
+      {
+        "left": "Aislamiento",
+        "right": "Componente del sistema de base de datos denominado control de concurrencia."
+      },
+      {
+        "left": "Consistencia",
+        "right": "Programador de la aplicación que codifica la transacción."
+      },
+      {
+        "left": "Durabilidad",
+        "right": "Gestor de recuperaciones o componente encargado de la integridad del sistema."
+      }
+    ],
+    "hint": "La consistencia depende de la lógica de negocio del programador; el aislamiento del control de concurrencia.",
+    "explanation": "Atomicidad -> Gestor de transacciones (todo o nada). Aislamiento -> Control de concurrencia. Consistencia -> Programador de la aplicación (conservar invariantes de negocio). Durabilidad -> Gestor de recuperación (persistir cambios post-commit ante fallos).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, pág. 4"
+  },
+  {
+    "id": 602,
+    "classNum": 6,
+    "topic": "Comando BEGIN TRANSACTION",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "¿Es verdadero o falso que el comando SQL `BEGIN TRANSACTION` se utiliza para confirmar todas las operaciones realizadas dentro de un bloque de transacción?",
+    "type": "single_choice",
+    "options": [
+      "Falso: `BEGIN TRANSACTION` inicia el bloque transaccional; para confirmarlo se utiliza `COMMIT`.",
+      "Verdadero: Confirma inmediatamente todas las operaciones pendientes en el motor de base de datos.",
+      "Falso: `BEGIN TRANSACTION` solo se usa en bases de datos NoSQL basadas en documentos.",
+      "Verdadero: Es el comando estándar de confirmación atómica en PostgreSQL."
+    ],
+    "correctAnswer": 0,
+    "hint": "BEGIN inicia, COMMIT confirma, ROLLBACK cancela.",
+    "explanation": "El comando `BEGIN TRANSACTION` (o simplemente `BEGIN`) se utiliza para iniciar una transacción. Para confirmar permanentemente los cambios se utiliza `COMMIT`, y para deshacerlos `ROLLBACK`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 16"
+  },
+  {
+    "id": 603,
+    "classNum": 6,
+    "topic": "Nivel de Aislamiento Predeterminado",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "En PostgreSQL, ¿cuál es el nivel de aislamiento de transacciones predeterminado por el motor?",
+    "type": "single_choice",
+    "options": [
+      "Read Committed",
+      "Repeatable Read",
+      "Serializable",
+      "Read Uncommitted"
+    ],
+    "correctAnswer": 0,
+    "hint": "Es el nivel que solo lee datos confirmados al momento de iniciar cada consulta.",
+    "explanation": "En PostgreSQL, el nivel de aislamiento predeterminado es `Read Committed`. En este nivel, una consulta SELECT ve solo los datos confirmados antes de que la consulta individual comience a ejecutarse.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 12"
+  },
+  {
+    "id": 604,
+    "classNum": 6,
+    "topic": "Concurrencia Multiversión (MVCC)",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "¿Es verdadero o falso que el Control de Concurrencia de Múltiples Versiones (MVCC) es un esquema donde cada operación de escritura crea una nueva versión del dato?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Cada modificación crea una nueva tupla versionada con marcas temporales (xmin/xmax), preservando las anteriores.",
+      "Falso: MVCC sobrescribe físicamente el bloque de datos en disco sin generar ninguna versión intermedia.",
+      "Falso: MVCC requiere bloquear toda la tabla en modo exclusivo durante cualquier actualización.",
+      "Verdadero: Pero las versiones solo se almacenan en la memoria RAM del cliente que ejecuta la consulta."
+    ],
+    "correctAnswer": 0,
+    "hint": "Multi-Version Concurrency Control: escribir genera versiones en vez de bloquear lecturas.",
+    "explanation": "En MVCC (Multiversion Concurrency Control), cada operación de escritura crea una nueva versión de la fila en lugar de sobrescribirla inmediatamente, permitiendo que las lecturas continúen viendo versiones consistentes anteriores sin bloquearse.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 6"
+  },
+  {
+    "id": 605,
+    "classNum": 6,
+    "topic": "Fenómenos de Concurrencia: Phantom Read",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "¿Qué fenómeno describe la situación donde una transacción vuelve a ejecutar una consulta de rango y encuentra que el conjunto de filas ha cambiado debido a inserciones o eliminaciones confirmadas por otra transacción?",
+    "type": "single_choice",
+    "options": [
+      "Lectura fantasma (Phantom Read)",
+      "Lectura no repetible (Non-repeatable Read)",
+      "Lectura sucia (Dirty Read)",
+      "Anomalía de serialización (Serialization Anomaly)"
+    ],
+    "correctAnswer": 0,
+    "hint": "Aparecen o desaparecen 'filas fantasma' en un rango de selección.",
+    "explanation": "La 'Lectura Fantasma' (Phantom Read) ocurre cuando una transacción ejecuta una consulta de búsqueda que recupera un conjunto de filas que satisfacen una condición, y al reejecutarla más tarde, el conjunto de filas ha cambiado porque otra transacción confirmó inserciones o borrados de filas que cumplen ese predicado.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 10"
+  },
+  {
+    "id": 606,
+    "classNum": 6,
+    "topic": "Fenómenos de Concurrencia: Non-repeatable Read",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "Si un proceso de reporte mensual (`Transacción A`) lee un cliente y, mientras tanto, otra transacción (`Transacción B`) actualiza el descuento de ese cliente y hace COMMIT, haciendo que al releer el registro el valor sea distinto, ¿qué anomalía ocurrió?",
+    "type": "single_choice",
+    "options": [
+      "Lectura no repetible (Non-repeatable Read)",
+      "Lectura sucia (Dirty Read)",
+      "Lectura fantasma (Phantom Read)",
+      "Deadlock de memoria compartida"
+    ],
+    "correctAnswer": 0,
+    "hint": "El mismo registro puntual cambió su valor entre dos lecturas de la misma transacción.",
+    "explanation": "La Lectura No Repetible (Non-repeatable Read) se produce cuando una transacción vuelve a leer un dato que previamente leyó y descubre que otra transacción ya confirmada ha modificado ese valor.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 10"
+  },
+  {
+    "id": 607,
+    "classNum": 6,
+    "topic": "Ventaja Principal de MVCC",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "¿Cuál es la principal ventaja del modelo MVCC de PostgreSQL en comparación con los sistemas tradicionales basados en bloqueos pesados de dos fases (2PL estricto)?",
+    "type": "single_choice",
+    "options": [
+      "Los bloqueos para leer datos no entran en conflicto con los bloqueos para escribir, permitiendo que la lectura nunca bloquee la escritura y viceversa.",
+      "Reduce a cero el espacio ocupado en disco físico eliminando la necesidad de índices relacionales.",
+      "Garantiza que todas las transacciones se ejecuten obligatoriamente en un único hilo de CPU.",
+      "Elimina para siempre la necesidad de definir claves primarias y foráneas en el esquema."
+    ],
+    "correctAnswer": 0,
+    "hint": "'Readers never block writers, and writers never block readers'.",
+    "explanation": "La mayor ventaja de MVCC es que la lectura de datos nunca bloquea la escritura, y la escritura nunca bloquea la lectura. Las consultas de solo lectura leen una instantánea histórica de datos sin adquirir bloqueos compartidos que frenen a los updates.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 9"
+  },
+  {
+    "id": 608,
+    "classNum": 6,
+    "topic": "Repeatable Read en PostgreSQL",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "¿Es verdadero o falso que el nivel de aislamiento `Repeatable Read` en PostgreSQL es más fuerte que el estándar ANSI SQL, ya que evita también las lecturas fantasma?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: La implementación MVCC de PostgreSQL en Repeatable Read toma una foto al inicio de la transacción y previene las lecturas fantasma.",
+      "Falso: El estándar ANSI SQL prohíbe terminantemente evitar las lecturas fantasma en este nivel.",
+      "Falso: Repeatable Read en PostgreSQL permite lecturas sucias y lecturas fantasma.",
+      "Verdadero: Pero únicamente si la tabla no tiene ninguna clave primaria definida."
+    ],
+    "correctAnswer": 0,
+    "hint": "En el estándar ANSI Repeatable Read puede permitir Phantom Reads, pero PostgreSQL MVCC las previene.",
+    "explanation": "En PostgreSQL, la implementación de `Repeatable Read` es más estricta que la especificación estándar ANSI SQL-92, ya que en PostgreSQL este nivel no permite Lecturas Fantasma (Phantom Reads), congelando la visión de toda la base al momento del inicio de la transacción.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 13"
+  },
+  {
+    "id": 609,
+    "classNum": 6,
+    "topic": "Responsabilidad de la Consistencia",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "Dentro de las propiedades ACID, ¿en quién recae principalmente la responsabilidad de asegurar la Consistencia (Consistency)?",
+    "type": "single_choice",
+    "options": [
+      "En el programador de la aplicación que codifica la lógica de la transacción.",
+      "Exclusivamente en el hardware de la memoria RAM del servidor.",
+      "En el gestor de almacenamiento secundario y el buffer pool.",
+      "En el protocolo de red TCP/IP que transporta los paquetes SQL."
+    ],
+    "correctAnswer": 0,
+    "hint": "El DBMS garantiza atomicidad y aislamiento, pero que el saldo no quede negativo o las reglas de negocio se cumplan es lógica de código.",
+    "explanation": "La responsabilidad de asegurar la consistencia recae en el programador de la aplicación que codifica la transacción. El DBMS asegura que las operaciones se ejecuten atómicamente y aisladas, pero la corrección semántica y reglas del negocio corresponden al código del desarrollador.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 4"
+  },
+  {
+    "id": 610,
+    "classNum": 6,
+    "topic": "Read Committed: Visibilidad de Datos",
+    "unit": "Clase 6 - Autoevaluación 6",
+    "question": "En PostgreSQL, ¿qué datos permite ver una consulta `SELECT` bajo el nivel de aislamiento predeterminado (`Read Committed`)?",
+    "type": "single_choice",
+    "options": [
+      "Los datos confirmados (COMMIT) antes de que la consulta específica comenzara, más los cambios previos hechos dentro de su propia transacción.",
+      "Todos los datos no confirmados por transacciones concurrentes (lecturas sucias).",
+      "Únicamente los datos que existían al momento en que se encendió el servidor de base de datos.",
+      "Modificaciones de transacciones concurrentes incluso si terminaron con un ROLLBACK."
+    ],
+    "correctAnswer": 0,
+    "hint": "Ve una snapshot del momento en que arranca el SELECT particular, más sus propios cambios locales no confirmados.",
+    "explanation": "Bajo `Read Committed`, cada comando SELECT ve una instantánea tomada al momento en que dicho SELECT comienza. Solo ve filas confirmadas antes de ese instante, además de ver los efectos de las sentencias previas ejecutadas dentro de su misma transacción.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 6 & Diapositiva Clase 6, pág. 12"
+  },
+  {
+    "id": 611,
+    "classNum": 6,
+    "topic": "Garantías de Niveles de Aislamiento",
+    "unit": "Clase 6 - Segundo Parcial",
+    "question": "Asocie cada nivel de aislamiento de transacciones con la característica que mejor describe la garantía de consistencia que proporciona:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Repeatable Read",
+        "right": "Asegura que los datos leídos al comienzo de la transacción permanecerán sin cambios durante toda su ejecución, sin importar las actualizaciones concurrentes (en PostgreSQL impide las lecturas fantasma)."
+      },
+      {
+        "left": "Read Committed",
+        "right": "Garantiza que la consulta verá una versión estable de los datos al momento de su inicio, previniendo la lectura de datos no confirmados (dirty reads)."
+      },
+      {
+        "left": "Serializable",
+        "right": "Nivel más riguroso, que tiene como objetivo emular la ejecución secuencial de las transacciones, garantizando que no se manifieste ninguna anomalía de concurrencia."
+      }
+    ],
+    "hint": "Serializable emula la ejecución secuencial estricta; Read Committed evita dirty reads; Repeatable Read congela la instantánea.",
+    "explanation": "Serializable es el nivel más estricto (garantiza equivalencia a ejecución en serie). Repeatable Read congela la lectura al inicio de la transacción. Read Committed previene lecturas sucias evaluando en cada sentencia.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, págs. 11-14"
+  },
+  {
+    "id": 612,
+    "classNum": 6,
+    "topic": "Fenómenos de Concurrencia",
+    "unit": "Clase 6 - Segundo Parcial",
+    "question": "Empareje el nombre del fenómeno o problema de concurrencia con la descripción de lo que ocurre dentro de una transacción:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Lectura no confirmada (Dirty read)",
+        "right": "Lectura de datos temporales que fueron escritos por otra transacción que aún no ha confirmado sus cambios."
+      },
+      {
+        "left": "Lectura no repetible (Non repeatable read)",
+        "right": "Al intentar leer un dato por segunda vez dentro de la misma transacción, se encuentra que otra transacción ya confirmada lo ha modificado."
+      },
+      {
+        "left": "Lectura fantasma (Phantom read)",
+        "right": "Reejecución de una consulta de rango que devuelve un conjunto de filas diferente, debido a la inserción o eliminación confirmada por otra transacción."
+      },
+      {
+        "left": "Anomalía de serialización",
+        "right": "Ocurre cuando dos conexiones modifican los mismos datos secuencialmente, lo que puede resultar en la pérdida de algunas modificaciones (condición de carrera)."
+      }
+    ],
+    "hint": "Dirty read = leer sin commit ajeno; Non-repeatable = valor de una fila cambia; Phantom = cantidad de filas en un rango cambia.",
+    "explanation": "Dirty read: lee datos no confirmados (puede haber rollback). Non-repeatable read: el valor de una tupla cambia entre lecturas. Phantom read: nuevas tuplas insertadas/borradas aparecen en un rango. Anomalía de serialización: resultado incoherente con cualquier orden secuencial.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, pág. 10"
+  },
+  {
+    "id": 613,
+    "classNum": 6,
+    "topic": "Concepto Fundamental de Transacción",
+    "unit": "Clase 6 - Segundo Parcial",
+    "question": "¿Cuál de las siguientes afirmaciones describe de manera más precisa el concepto de una transacción en un sistema de base de datos?",
+    "type": "single_choice",
+    "options": [
+      "Es un conjunto de operaciones que deben ser tratadas como una unidad lógica e indivisible (atómica), garantizando que o bien se completen todas sus acciones, o ninguna de ellas.",
+      "Es una porción del código de la aplicación cuya responsabilidad principal es asegurar la durabilidad de los datos en disco magnético.",
+      "Es un proceso que se encarga de verificar las restricciones de integridad antes de que los datos sean modificados permanentemente.",
+      "Es una secuencia de comandos SQL que solo involucran operaciones de lectura sobre la base de datos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Unidad lógica e indivisible: todo o nada (All-or-Nothing).",
+    "explanation": "Una transacción es una unidad lógica de procesamiento que comprende una o más operaciones de acceso a la base de datos. Posee carácter atómico: se ejecutan exitosamente todas sus operaciones o se descartan todas en caso de error.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, pág. 2"
+  },
+  {
+    "id": 614,
+    "classNum": 6,
+    "topic": "Control de Concurrencia: Objetivo",
+    "unit": "Clase 6 - Segundo Parcial",
+    "question": "Cuando varias transacciones se ejecutan simultáneamente, es necesario el control de concurrencia. ¿Cuál es el principal objetivo de este control?",
+    "type": "single_choice",
+    "options": [
+      "Supervisar y regular la interacción entre las transacciones concurrentes para preservar la consistencia de la base de datos.",
+      "Asegurar que las lecturas no fallen y que las transacciones nunca tengan que esperar, mejorando la velocidad de lectura.",
+      "Distinguir entre transacciones de solo lectura y transacciones de actualización para aplicar bloqueos de manera diferencial.",
+      "Garantizar la propiedad de Durabilidad, asegurando que los cambios persistan después de fallos del sistema."
+    ],
+    "correctAnswer": 0,
+    "hint": "El objetivo central es evitar estados inconsistentes por accesos simultáneos.",
+    "explanation": "El objetivo primordial del control de concurrencia es coordinar los accesos simultáneos a los datos por parte de múltiples transacciones de modo que se preserve la consistencia global del sistema y se eviten interferencias destructivas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, pág. 5"
+  },
+  {
+    "id": 615,
+    "classNum": 6,
+    "topic": "Definición Técnica de Propiedades ACID",
+    "unit": "Clase 6 - Segundo Parcial",
+    "question": "Relacione cada propiedad ACID con su definición técnica principal:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Atomicidad",
+        "right": "Conjunto de operaciones tratadas como una unidad lógica, donde todas se ejecutan o ninguna de ellas."
+      },
+      {
+        "left": "Consistencia",
+        "right": "La ejecución aislada de la transacción conserva la integridad de la base de datos."
+      },
+      {
+        "left": "Aislamiento",
+        "right": "Garantiza que el resultado de la ejecución concurrente de transacciones sea equivalente a la ejecución secuencial de las mismas."
+      },
+      {
+        "left": "Durabilidad",
+        "right": "Los cambios exitosos realizados en la base de datos persisten, incluso si hay fallos en el sistema posteriores."
+      }
+    ],
+    "hint": "A = Todo o nada, C = Estado válido a estado válido, I = Sin interferencias, D = Persistencia garantizada.",
+    "explanation": "Atomicidad (todo o nada), Consistencia (preservar invariantes de integridad), Aislamiento (equivalencia a ejecución serial), Durabilidad (persistencia tras confirmación pese a caídas).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 6, pág. 3"
+  },
+  {
+    "id": 616,
+    "classNum": 6,
+    "topic": "Lectura Sucia (Dirty Read)",
+    "unit": "Clase 6 - Transacciones",
+    "question": "¿En cuál de los siguientes niveles de aislamiento estándar ANSI es posible que ocurra una 'Lectura Sucia' (Dirty Read)?",
+    "type": "single_choice",
+    "options": [
+      "Read Uncommitted exclusivamente.",
+      "Read Committed y Repeatable Read.",
+      "Serializable exclusivamente.",
+      "En ninguno, el estándar ANSI prohíbe las lecturas sucias en todos los niveles."
+    ],
+    "correctAnswer": 0,
+    "hint": "Dirty read solo ocurre si se permite leer transacciones no confirmadas (uncommitted).",
+    "explanation": "Una lectura sucia solo puede manifestarse en el nivel `Read Uncommitted`. En `Read Committed`, `Repeatable Read` y `Serializable`, las lecturas sucias están totalmente impedidas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 15"
+  },
+  {
+    "id": 617,
+    "classNum": 6,
+    "topic": "Comando ROLLBACK",
+    "unit": "Clase 6 - Transacciones",
+    "question": "¿Qué efecto produce la ejecución de un comando `ROLLBACK;` durante una transacción activa?",
+    "type": "single_choice",
+    "options": [
+      "Cancela y deshace todas las operaciones realizadas dentro de la transacción, restaurando el estado previo al BEGIN.",
+      "Confirma los cambios en el disco y cierra la conexión del cliente con el servidor.",
+      "Elimina físicamente los archivos del catálogo de la base de datos.",
+      "Pone en pausa la transacción hasta que el administrador del sistema la autorice manualmente."
+    ],
+    "correctAnswer": 0,
+    "hint": "Deshacer todas las modificaciones desde el BEGIN.",
+    "explanation": "`ROLLBACK` aborta la transacción y revierte cualquier cambio que se haya ejecutado dentro de ese bloque, garantizando la atomicidad frente a errores.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 16"
+  },
+  {
+    "id": 618,
+    "classNum": 6,
+    "topic": "Metadatos MVCC: xmin y xmax",
+    "unit": "Clase 6 - Transacciones",
+    "question": "En el mecanismo MVCC de PostgreSQL, ¿qué representan los campos de sistema ocultos `xmin` y `xmax` presentes en cada tupla?",
+    "type": "single_choice",
+    "options": [
+      "`xmin` almacena el identificador de la transacción que insertó la tupla; `xmax` almacena el ID de la transacción que la actualizó o eliminó.",
+      "`xmin` y `xmax` indican las coordenadas geográficas mínimas y máximas de un índice espacial GiST.",
+      "`xmin` almacena el valor numérico más bajo de la clave primaria; `xmax` el valor más alto.",
+      "`xmin` define la cuota mínima de memoria RAM asignada al proceso; `xmax` el límite de tiempo de espera."
+    ],
+    "correctAnswer": 0,
+    "hint": "xmin = transaction id de creación; xmax = transaction id de borrado/modificación.",
+    "explanation": "PostgreSQL utiliza `xmin` para registrar la transacción creadora y `xmax` para la transacción destructora. Esto permite determinar si la tupla es visible para la instantánea de una consulta sin bloquear el disco.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 9"
+  },
+  {
+    "id": 619,
+    "classNum": 6,
+    "topic": "Savepoints en Transacciones",
+    "unit": "Clase 6 - Transacciones",
+    "question": "¿Cuál es la función del comando `SAVEPOINT nombre;` dentro de una transacción activa en SQL?",
+    "type": "single_choice",
+    "options": [
+      "Establecer un punto de control intermedio que permite realizar un `ROLLBACK TO SAVEPOINT` parcial sin anular toda la transacción.",
+      "Guardar una copia de seguridad comprimida de toda la base de datos en almacenamiento secundario.",
+      "Forzar un commit definitivo de las operaciones anteriores cerrando la transacción actual.",
+      "Crear un nuevo usuario con permisos temporales de lectura."
+    ],
+    "correctAnswer": 0,
+    "hint": "Permite retroceder parcialmente a un punto de guardado sin perder todo el trabajo previo.",
+    "explanation": "Los savepoints permiten definir puntos de restauración intermedios dentro de una transacción. Si ocurre un fallo en una sentencia posterior, se puede ejecutar `ROLLBACK TO SAVEPOINT` para deshacer solo ese fragmento sin abortar toda la transacción.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 16"
+  },
+  {
+    "id": 620,
+    "classNum": 6,
+    "topic": "Actualización Perdida (Lost Update)",
+    "unit": "Clase 6 - Transacciones",
+    "question": "¿En qué consiste la anomalía de concurrencia conocida como 'Actualización Perdida' (Lost Update)?",
+    "type": "single_choice",
+    "options": [
+      "Dos transacciones leen concurrentemente el mismo registro y luego ambas lo modifican, sobrescribiendo la segunda transacción los cambios de la primera sin considerarlos.",
+      "El servidor de base de datos pierde la conexión de red antes de ejecutar el comando BEGIN.",
+      "Una consulta SELECT no encuentra registros porque la tabla está vacía.",
+      "El motor elimina automáticamente registros antiguos para liberar espacio en disco."
+    ],
+    "correctAnswer": 0,
+    "hint": "Sobrescritura ciega donde el cambio de la primera transacción queda pisado y olvidado.",
+    "explanation": "La actualización perdida ocurre cuando dos transacciones leen el mismo estado inicial y luego intentan actualizarlo concurrentemente; la última en hacer COMMIT sobrescribe los cambios de la primera, perdiéndose su actualización.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 5"
+  },
+  {
+    "id": 621,
+    "classNum": 6,
+    "topic": "Sintaxis de Nivel de Aislamiento",
+    "unit": "Clase 6 - Transacciones",
+    "question": "Deseas iniciar una transacción con el máximo nivel de consistencia para evitar cualquier anomalía. Completa la sentencia SQL:",
+    "type": "fill_in_sql",
+    "template": "BEGIN TRANSACTION ISOLATION LEVEL {INPUT};",
+    "expectedAnswer": "SERIALIZABLE",
+    "acceptedAnswers": [
+      "SERIALIZABLE"
+    ],
+    "hint": "El nivel de aislamiento más riguroso (12 letras).",
+    "explanation": "El comando `BEGIN TRANSACTION ISOLATION LEVEL SERIALIZABLE;` inicia una transacción bajo el nivel Serializable, garantizando que el resultado sea idéntico a una ejecución estrictamente secuencial.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 6, pág. 14"
+  },
+  {
+    "id": 622,
+    "classNum": 6,
+    "topic": "Marcas Temporales vs Bloqueo 2 Fases",
+    "unit": "Clase 6 - Transacciones",
+    "question": "En los esquemas de concurrencia multiversión, ¿cuál es una desventaja notable de la ordenación por marcas temporales frente al bloqueo de dos fases?",
+    "type": "single_choice",
+    "options": [
+      "Los conflictos se resuelven abortando y reiniciando transacciones en lugar de hacerlas esperar, y cada lectura actualiza marcas temporales generando más escrituras en disco.",
+      "No permite la ejecución de transacciones de solo lectura bajo ninguna circunstancia.",
+      "Exige que el servidor de base de datos tenga un reloj atómico sincronizado por satélite.",
+      "Impide por completo el uso de índices B-Tree en las tablas consultadas."
+    ],
+    "correctAnswer": 0,
+    "hint": "Marcas temporales generan abortos frecuentes en alta contención en vez de colas de espera.",
+    "explanation": "La ordenación por marcas temporales resuelve conflictos mediante abortos (retrocesos) en vez de esperas, lo que bajo alta contención puede resultar computacionalmente costoso, además de que las lecturas actualizan marcas de tiempo generando accesos adicionales.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Resumen 2do Parcial, pág. 2"
+  },
+  {
+    "id": 701,
+    "classNum": 7,
+    "topic": "Propósito de la Normalización",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que la normalización es un proceso que busca la desorganización de los datos para optimizar la velocidad de acceso en entornos OLAP?",
+    "type": "single_choice",
+    "options": [
+      "Falso: La normalización busca estructurar y organizar el modelo relacional para eliminar redundancias y evitar anomalías.",
+      "Verdadero: La normalización desorganiza intencionalmente las tablas para acelerar consultas analíticas.",
+      "Verdadero: Es una técnica exclusiva de data warehouses que descarta las claves primarias.",
+      "Falso: La normalización solo se aplica al código compilado de los triggers."
+    ],
+    "correctAnswer": 0,
+    "hint": "Normalizar = organizar metódicamente para evitar redundancia e inconsistencias.",
+    "explanation": "La normalización es una secuencia de pasos para diseñar y optimizar un esquema relacional, con el objetivo de erradicar la duplicación innecesaria de datos y prevenir anomalías de inserción, actualización y borrado.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 2"
+  },
+  {
+    "id": 702,
+    "classNum": 7,
+    "topic": "Segunda Forma Normal (2FN)",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que la Segunda Forma Normal (2FN) se enfoca principalmente en eliminar las dependencias transitivas?",
+    "type": "single_choice",
+    "options": [
+      "Falso: La 2FN elimina dependencias funcionales parciales (sobre claves compuestas); la 3FN elimina las transitivas.",
+      "Verdadero: La 2FN se encarga exclusivamente de las dependencias transitivas entre atributos no clave.",
+      "Verdadero: La 2FN y la 3FN son exactamente la misma forma normal con distinto nombre.",
+      "Falso: La 2FN solo se aplica si la tabla tiene más de 10 columnas numéricas."
+    ],
+    "correctAnswer": 0,
+    "hint": "2FN = Dependencias parciales; 3FN = Dependencias transitivas.",
+    "explanation": "La 2FN requiere estar en 1FN y tiene como objetivo eliminar las dependencias funcionales parciales, donde atributos no clave dependen solo de una parte de una clave primaria compuesta. La eliminación de dependencias transitivas es tarea de la 3FN.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 5"
+  },
+  {
+    "id": 703,
+    "classNum": 7,
+    "topic": "Aplicación Práctica de 2FN",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que si una tabla tiene campos como 'Editorial' y 'Dirección' que no dependen de la clave completa del 'Libro', estos campos deberían ser extraídos a nuevas tablas para cumplir con la 2FN?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Los atributos que no dependen de la clave primaria deben separarse en una entidad independiente relacionada.",
+      "Falso: En 2FN todos los atributos deben mantenerse en la misma tabla sin excepción.",
+      "Falso: Solo deben extraerse si contienen números negativos o valores booleanos.",
+      "Verdadero: Pero la tabla resultante no puede tener clave primaria."
+    ],
+    "correctAnswer": 0,
+    "hint": "Separar atributos que dependen parcialmente de la clave para que dependan de su propia entidad.",
+    "explanation": "Para cumplir 2FN (y 3FN), los atributos que describen a una entidad secundaria (como Editorial y Dirección) deben trasladarse a su propia tabla para evitar redundancia en cada libro publicado.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 5"
+  },
+  {
+    "id": 704,
+    "classNum": 7,
+    "topic": "Dependencia Transitiva",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Qué tipo de dependencia se produce cuando un atributo no clave depende funcionalmente de otro atributo que tampoco forma parte de la clave primaria (X -> Y y Y -> Z)?",
+    "type": "single_choice",
+    "options": [
+      "Dependencia transitiva",
+      "Dependencia parcial",
+      "Dependencia cíclica",
+      "Dependencia de valores múltiples"
+    ],
+    "correctAnswer": 0,
+    "hint": "Si A determina a B y B determina a C, entre A y C hay dependencia...",
+    "explanation": "Una dependencia transitiva ocurre cuando un atributo depende de la clave primaria a través de otro atributo no clave (ej: ID_Empleado -> ID_Depto -> Nombre_Depto). La 3FN elimina estas dependencias.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 6"
+  },
+  {
+    "id": 705,
+    "classNum": 7,
+    "topic": "Relaciones Muchos a Muchos en 3FN",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que en la 3FN, las relaciones de Muchos a Muchos (N-M) se resuelven generando una tabla intermedia para evitar la repetición de registros y atributos particulares?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Se descompone la relación N:M creando una tabla asociativa/intermedia que contiene las claves foráneas de ambas tablas.",
+      "Falso: En el modelo relacional está prohibido crear tablas intermedias.",
+      "Falso: Las relaciones N-M se resuelven agregando arrays de cadenas de texto en una sola columna.",
+      "Verdadero: Pero la tabla intermedia no puede almacenar ningún atributo propio."
+    ],
+    "correctAnswer": 0,
+    "hint": "Las relaciones N:M requieren una tabla intermedia con las PKs de ambos lados.",
+    "explanation": "Toda relación N:M entre dos entidades debe resolverse mediante una tabla intermedia (tabla asociativa) que contenga las claves foráneas hacia ambas tablas padre, transformándola en dos relaciones 1:N y eliminando redundancias.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 6"
+  },
+  {
+    "id": 706,
+    "classNum": 7,
+    "topic": "Quinta Forma Normal (5FN) y Dependencias Cíclicas",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "Una 'dependencia cíclica' en el contexto de bases de datos, que la Quinta Forma Normal (5FN) busca eliminar, sucede cuando:",
+    "type": "single_choice",
+    "options": [
+      "La clave primaria de una tabla está compuesta por 3 o más campos, y esos campos están relacionados de a pares entre sí.",
+      "Un campo depende parcialmente de la clave primaria.",
+      "Un campo tiene una dependencia funcional con otro campo no clave.",
+      "Una transacción entra en un bucle infinito de bloqueos consigo misma."
+    ],
+    "correctAnswer": 0,
+    "hint": "Clave compuesta por 3 o más campos con relaciones binarias simétricas de a pares.",
+    "explanation": "La 5FN (Forma Normal de Proyección-Unión) aborda dependencias cíclicas donde una clave primaria compuesta por 3 o más atributos presenta restricciones entre pares de atributos, permitiendo descomponer la tabla en tres proyecciones binarias sin pérdida de información.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 9"
+  },
+  {
+    "id": 707,
+    "classNum": 7,
+    "topic": "Sexta Forma Normal (DKNF)",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que la Sexta Forma Normal / Forma Normal Dominio-Clave (DKNF) es principalmente un proceso de transformación paso a paso algorítmico?",
+    "type": "single_choice",
+    "options": [
+      "Falso: DKNF es un estado conceptual ideal donde todas las restricciones se derivan de dominios y claves, no un algoritmo paso a paso.",
+      "Verdadero: Es un procedimiento matemático de 6 pasos obligatorios en todo motor relacional.",
+      "Verdadero: Reemplaza a la 1FN en sistemas modernos.",
+      "Falso: DKNF solo existe en bases de datos orientadas a grafos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Domain Key Normal Form es un ideal conceptual, no un algoritmo secuencial estándar.",
+    "explanation": "Domain Key Normal Form (DKNF) es un estado conceptual donde cada restricción en la relación es consecuencia lógica de la definición de dominios y claves. No existe un algoritmo práctico paso a paso para alcanzarla en todos los casos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 10"
+  },
+  {
+    "id": 708,
+    "classNum": 7,
+    "topic": "Anomalía de Eliminación",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "Cuando se elimina un registro de una tabla padre provocando la pérdida involuntaria de información complementaria de tablas dependientes, se produce una anomalía de:",
+    "type": "single_choice",
+    "options": [
+      "Eliminación",
+      "Inserción",
+      "Actualización",
+      "Redundancia"
+    ],
+    "correctAnswer": 0,
+    "hint": "Al borrar una entidad se pierde información de otra entidad distinta.",
+    "explanation": "La Anomalía de Eliminación ocurre cuando al borrar una tupla para eliminar un dato determinado, se pierde involuntariamente otra información importante que estaba acoplada en el mismo registro.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 3"
+  },
+  {
+    "id": 709,
+    "classNum": 7,
+    "topic": "Nivel Práctico de Normalización en la Industria",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que un modelo de base de datos relacional de producción generalmente implementa en su totalidad hasta la 6FN / DKNF?",
+    "type": "single_choice",
+    "options": [
+      "Falso: En la práctica, casi todos los sistemas OLTP se normalizan hasta 3FN o BCNF para balancear integridad y rendimiento de JOINs.",
+      "Verdadero: La norma ISO SQL exige implementar obligatoriamente las 6 formas normales.",
+      "Verdadero: Llegar a DKNF siempre triplica la velocidad de todas las consultas SELECT.",
+      "Falso: Solo se normaliza hasta 1FN en sistemas corporativos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Normalizar en exceso multiplica los JOINs y perjudica el rendimiento de lectura.",
+    "explanation": "En la práctica profesional, el estándar de la industria es normalizar hasta 3FN (o BCNF). Formas normales superiores (4FN, 5FN, DKNF) son raras y suelen provocar fragmentación excesiva y penalización en consultas con demasiados JOINs.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 10"
+  },
+  {
+    "id": 710,
+    "classNum": 7,
+    "topic": "Objetivo de la Normalización",
+    "unit": "Clase 7 - Autoevaluación 7",
+    "question": "¿Es verdadero o falso que el objetivo principal de la normalización es maximizar la duplicación de datos para mejorar la velocidad de lectura?",
+    "type": "single_choice",
+    "options": [
+      "Falso: El objetivo de la normalización es exactamente lo opuesto: minimizar la redundancia y evitar anomalías e inconsistencias.",
+      "Verdadero: Cuantas más copias repetidas existan de un campo, mejor normalizada está la base de datos.",
+      "Verdadero: Duplicar datos garantiza la integridad referencial automática.",
+      "Falso: La normalización solo busca comprimir imágenes binarias en formato BLOB."
+    ],
+    "correctAnswer": 0,
+    "hint": "Normalizar busca erradicar la duplicación.",
+    "explanation": "La normalización tiene como propósito reducir al mínimo la redundancia de datos y prevenir anomalías de modificación, inserción y borrado, asegurando que cada dato resida en un único lugar lógico.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 7 & Diapositiva Clase 7, pág. 2"
+  },
+  {
+    "id": 711,
+    "classNum": 7,
+    "topic": "Formas Normales Avanzadas",
+    "unit": "Clase 7 - Segundo Parcial",
+    "question": "Relacione cada Forma Normal avanzada con el concepto que define su objetivo o naturaleza:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Boyce-Codd (BCNF)",
+        "right": "Su objetivo es la separación de todas las claves candidatas que pudieran existir en nuevas tablas para refinar la 3FN, aunque esto puede impactar el rendimiento de las consultas."
+      },
+      {
+        "left": "Cuarta Forma Normal (4FN)",
+        "right": "Transforma los atributos que contienen conjuntos de valores múltiples (no relacionados) en dependencias funcionales, creando múltiples relaciones 1-N o N-M."
+      },
+      {
+        "left": "Quinta Forma Normal (5FN)",
+        "right": "Busca reducir la redundancia y eliminar las dependencias cíclicas que se generan cuando una clave principal compuesta por tres o más campos se relaciona de a pares."
+      },
+      {
+        "left": "Domain Key Normal Form (DKNF)",
+        "right": "Estado conceptual final que describe un modelo totalmente normalizado donde intrínsecamente no se permiten anomalías de inserción, modificación o eliminación de datos."
+      }
+    ],
+    "hint": "BCNF refina 3FN con claves candidatas; 4FN trata dependencias multivaluadas; 5FN dependencias cíclicas; DKNF estado ideal dominio-clave.",
+    "explanation": "BCNF asegura que todo determinante sea superclave. 4FN elimina dependencias multivaluadas no triviales. 5FN resuelve dependencias de proyección-unión cíclicas. DKNF garantiza consistencia total a través de dominios y claves.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 7, págs. 7-10"
+  },
+  {
+    "id": 712,
+    "classNum": 7,
+    "topic": "Tipos de Anomalías",
+    "unit": "Clase 7 - Segundo Parcial",
+    "question": "Relacione cada tipo de anomalía con la descripción del efecto indeseable que busca prevenir la normalización:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Anomalía de Inserción",
+        "right": "Imposibilidad de agregar un registro dependiente (hija) si aún no existe el registro de referencia en su tabla principal (padre)."
+      },
+      {
+        "left": "Anomalía de Eliminación",
+        "right": "Pérdida involuntaria de información válida al remover el registro principal, dejando registros subordinados sin su referencia correspondiente."
+      },
+      {
+        "left": "Anomalía de Actualización",
+        "right": "Riesgo de inconsistencia de datos que obliga a considerar y modificar registros relacionados en múltiples tablas al mismo tiempo."
+      }
+    ],
+    "hint": "Inserción = no poder agregar sin datos extra; Eliminación = borrar un dato y perder otro; Actualización = inconsistencia al modificar.",
+    "explanation": "Las tres anomalías clásicas del diseño desnormalizado son: inserción (no poder registrar datos parciales), borrado (perder información accesoria al borrar la principal) y actualización (inconsistencias por datos duplicados).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 7, pág. 3"
+  },
+  {
+    "id": 713,
+    "classNum": 7,
+    "topic": "Secuencia de Formas Normales (0FN a 3FN)",
+    "unit": "Clase 7 - Segundo Parcial",
+    "question": "Indique la secuencia correcta de problemas de dependencia que deben resolverse para llevar una tabla desde la Forma Normal Cero (0FN) hasta la Tercera Forma Normal (3FN):",
+    "type": "single_choice",
+    "options": [
+      "Primero se eliminan los campos que contienen múltiples valores repetidos (1FN); luego se eliminan las dependencias parciales donde los campos no clave dependen solo de una parte de la clave compuesta (2FN); y finalmente se eliminan las dependencias transitivas entre campos que no son clave (3FN).",
+      "Se asegura la unicidad de los registros (1FN); se eliminan las dependencias funcionales (2FN); y se eliminan las dependencias cíclicas (3FN).",
+      "Se eliminan las dependencias funcionales entre campos no clave (1FN); se separan los datos que dependen de una clave compuesta (2FN); y se eliminan los campos calculados (3FN).",
+      "Primero se eliminan dependencias parciales donde los campos no clave dependen solo de una parte de la clave compuesta (1FN); luego grupos repetidos (2FN); y finalmente se separan claves candidatas (3FN)."
+    ],
+    "correctAnswer": 0,
+    "hint": "1FN: grupos repetidos; 2FN: dependencias parciales; 3FN: dependencias transitivas.",
+    "explanation": "El camino canónico de normalización es: 1FN elimina atributos multivaluados y grupos repetidos; 2FN elimina dependencias funcionales parciales sobre claves compuestas; 3FN elimina dependencias transitivas entre atributos no primos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 7, págs. 4-6"
+  },
+  {
+    "id": 714,
+    "classNum": 7,
+    "topic": "Definición Global de Normalización",
+    "unit": "Clase 7 - Segundo Parcial",
+    "question": "¿Cuál de las siguientes opciones describe de manera más completa tanto la definición como el principal propósito del proceso de normalización en bases de datos relacionales?",
+    "type": "single_choice",
+    "options": [
+      "Es la secuencia de pasos diseñada para optimizar la estructura del modelo, buscando erradicar la duplicación y minimizar la información repetida.",
+      "Es la etapa de diseño físico enfocada en la creación de índices para acelerar la velocidad de consulta en tablas con claves foráneas.",
+      "Es la serie de transformaciones que se aplica para aumentar la velocidad de inserción y modificación de registros, priorizando el rendimiento transaccional.",
+      "Son las reglas de validación implementadas para garantizar que todos los atributos dependan exclusivamente de una clave única."
+    ],
+    "correctAnswer": 0,
+    "hint": "Secuencia de pasos para optimizar la estructura del modelo erradicando redundancia.",
+    "explanation": "La normalización es una secuencia formal de pasos para optimizar la estructura del esquema relacional, con el propósito fundamental de eliminar redundancias innecesarias y anomalías de actualización.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial & Diapositiva Clase 7, pág. 2"
+  },
+  {
+    "id": 715,
+    "classNum": 7,
+    "topic": "Primera Forma Normal (1FN)",
+    "unit": "Clase 7 - Normalización",
+    "question": "¿Qué requisito exige formalmente la Primera Forma Normal (1FN) sobre los atributos de una relación?",
+    "type": "single_choice",
+    "options": [
+      "Que todos los dominios de los atributos sean atómicos (valores indivisibles) y que no existan grupos repetitivos de columnas ni arrays.",
+      "Que la tabla posea obligatoriamente al menos dos claves foráneas que apunten a esquemas externos.",
+      "Que todos los atributos de texto se almacenen en mayúsculas sin espacios.",
+      "Que la tabla se encuentre particionada físicamente en múltiples discos rígidos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Valores atómicos indivisibles, sin listas ni campos repetidos.",
+    "explanation": "1FN exige que cada celda de la tabla contenga un único valor atómico indivisible, descartando atributos multivaluados, listas o grupos repetidos de columnas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 7, pág. 4"
+  },
+  {
+    "id": 716,
+    "classNum": 7,
+    "topic": "Diferencia entre 3FN y BCNF",
+    "unit": "Clase 7 - Normalización",
+    "question": "¿Cuál es la diferencia sutil pero fundamental entre la Tercera Forma Normal (3FN) y la Forma Normal de Boyce-Codd (BCNF)?",
+    "type": "single_choice",
+    "options": [
+      "En 3FN, en una dependencia X -> Y, Y puede ser un atributo primo (parte de alguna clave candidata); en BCNF, X debe ser estrictamente una superclave.",
+      "3FN solo se aplica a bases de datos relacionales, mientras que BCNF se aplica exclusivamente a archivos XML.",
+      "3FN permite atributos multivaluados pero BCNF exige campos atómicos.",
+      "BCNF no requiere estar en 1FN ni 2FN, mientras que 3FN sí lo exige."
+    ],
+    "correctAnswer": 0,
+    "hint": "En BCNF, TODO determinante X debe ser superclave sin excepciones para atributos primos.",
+    "explanation": "3FN permite dependencias funcionales X -> Y donde Y sea parte de una clave candidata (atributo primo), aunque X no sea superclave. BCNF elimina esta concesión exigiendo que para toda dependencia no trivial, X sea estrictamente una superclave.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 7, pág. 7"
+  },
+  {
+    "id": 717,
+    "classNum": 7,
+    "topic": "Cuarta Forma Normal (4FN)",
+    "unit": "Clase 7 - Normalización",
+    "question": "¿Qué tipo de anomalía o dependencia busca erradicar la Cuarta Forma Normal (4FN)?",
+    "type": "single_choice",
+    "options": [
+      "Dependencias multivaluadas no triviales (X ->-> Y), donde un atributo determina múltiples valores independientes de otro atributo en la misma tabla.",
+      "Dependencias transitivas entre claves primarias y claves foráneas.",
+      "Errores de redondeo numérico en columnas de tipo FLOAT.",
+      "Inconsistencias causadas por consultas SELECT sin cláusula ORDER BY."
+    ],
+    "correctAnswer": 0,
+    "hint": "4FN trata dependencias multivaluadas (representadas con doble flecha ->->).",
+    "explanation": "La 4FN requiere estar en 3FN o BCNF y tiene como fin eliminar dependencias multivaluadas (MVD: Multi-Valued Dependencies) independientes entre sí, separándolas en tablas distintas para evitar el producto cartesiano de valores repetidos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 7, pág. 8"
+  },
+  {
+    "id": 718,
+    "classNum": 7,
+    "topic": "Descomposición sin Pérdida (Lossless Join)",
+    "unit": "Clase 7 - Normalización",
+    "question": "Al normalizar y descomponer una tabla R en dos relaciones R1 y R2, ¿qué propiedad matemática garantiza que al hacer un NATURAL JOIN entre R1 y R2 se reconstruya exactamente la tabla original sin tuplas espurias?",
+    "type": "single_choice",
+    "options": [
+      "Descomposición de reunión sin pérdida (Lossless-Join Decomposition).",
+      "Replicación asíncrona de almacenamiento secundario.",
+      "Serializabilidad estricta de dos fases.",
+      "Aislamiento de lectura no repetible."
+    ],
+    "correctAnswer": 0,
+    "hint": "Lossless-Join: la intersección de atributos debe ser clave en al menos una de las tablas.",
+    "explanation": "Una descomposición tiene reunión sin pérdida (lossless join) si y solo si la intersección de atributos entre R1 y R2 constituye una superclave de R1 o de R2, impidiendo que aparezcan tuplas falsas (espurias) al unirlas.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 7, pág. 2"
+  },
+  {
+    "id": 719,
+    "classNum": 7,
+    "topic": "Dependencia Funcional: Definición",
+    "unit": "Clase 7 - Normalización",
+    "question": "En una relación R, ¿cuándo se dice formalmente que el conjunto de atributos Y depende funcionalmente de X (X -> Y)?",
+    "type": "single_choice",
+    "options": [
+      "Cuando para cualesquiera dos tuplas t1 y t2 en R, si t1[X] = t2[X], entonces obligatoriamente t1[Y] = t2[Y].",
+      "Cuando el número de columnas de X es exactamente igual al número de filas de Y.",
+      "Cuando X contiene valores numéricos e Y contiene cadenas de texto alfanuméricas.",
+      "Cuando Y es una clave foránea que apunta a una tabla temporal en memoria RAM."
+    ],
+    "correctAnswer": 0,
+    "hint": "A cada valor de X le corresponde un único valor de Y.",
+    "explanation": "La dependencia funcional X -> Y significa que el valor de X determina de forma unívoca el valor de Y; no pueden existir dos filas con el mismo valor en X que tengan valores diferentes en Y.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 7, pág. 2"
+  },
+  {
+    "id": 901,
+    "classNum": 9,
+    "topic": "Ejecución de Triggers (BEFORE / AFTER)",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Es verdadero o falso que los triggers en PostgreSQL pueden ser definidos para ejecutarse antes (`BEFORE`) o inmediatamente después (`AFTER`) de un evento de manipulación de datos?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: PostgreSQL soporta triggers BEFORE (para validaciones o modificaciones previas) y AFTER (para auditoría o efectos secundarios).",
+      "Falso: PostgreSQL solo admite triggers AFTER; los BEFORE están prohibidos por el estándar.",
+      "Falso: Solo pueden ejecutarse a medianoche mediante una tarea cron del sistema operativo.",
+      "Verdadero: Pero únicamente si la tabla posee menos de 1000 filas registradas."
+    ],
+    "correctAnswer": 0,
+    "hint": "BEFORE para interceptar/validar antes de escribir; AFTER para registrar/auditar.",
+    "explanation": "En PostgreSQL, los triggers pueden ejecutarse `BEFORE` (antes de que la fila sea insertada, actualizada o borrada) o `AFTER` (después de confirmarse el cambio en disco).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 9"
+  },
+  {
+    "id": 902,
+    "classNum": 9,
+    "topic": "Instrucción RAISE y Manejo de Excepciones",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Qué nivel de severidad de la instrucción `RAISE` es el único que, por defecto, interrumpe y cancela la ejecución de una función abortando la transacción actual?",
+    "type": "single_choice",
+    "options": [
+      "EXCEPTION",
+      "WARNING",
+      "NOTICE",
+      "LOG"
+    ],
+    "correctAnswer": 0,
+    "hint": "DEBUG, LOG, INFO, NOTICE y WARNING solo emiten mensajes; EXCEPTION detiene y hace rollback.",
+    "explanation": "El comando `RAISE EXCEPTION 'mensaje';` reporta un error y aborta inmediatamente la transacción actual. Los niveles DEBUG, LOG, INFO, NOTICE y WARNING solo envían mensajes informativos sin detener la función.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 6"
+  },
+  {
+    "id": 903,
+    "classNum": 9,
+    "topic": "Recursividad en Triggers",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Es verdadero o falso que un trigger en PostgreSQL puede ejecutar una función que a su vez dispare otro trigger, creando recursividad, y que es responsabilidad del programador evitar bucles infinitos?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Las operaciones DML dentro de un trigger pueden disparar triggers en cascada, siendo vital controlar la condición de parada.",
+      "Falso: El motor de base de datos desactiva permanentemente todos los triggers del servidor ante el primer trigger ejecutado.",
+      "Falso: En SQL está matemáticamente prohibido que un trigger invoque sentencias DML.",
+      "Verdadero: Pero los bucles infinitos no consumen recursos del servidor de datos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Cascadas de triggers: si un trigger hace UPDATE sobre otra tabla, dispara sus triggers.",
+    "explanation": "Un trigger puede disparar operaciones que activen otros triggers (o incluso a sí mismo indirectamente). Es responsabilidad del desarrollador diseñar condiciones (ej. cláusula WHEN o banderas) para evitar ciclos infinitos de disparo.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 8"
+  },
+  {
+    "id": 904,
+    "classNum": 9,
+    "topic": "Reutilización de Lógica mediante Funciones",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Es verdadero o falso que las funciones en PostgreSQL contribuyen a la reutilización al permitir que múltiples aplicaciones clientes interactúen directamente con ellas garantizando un comportamiento homogéneo?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Encapsulan reglas de negocio complejas en el servidor de base de datos, garantizando consistencia sin duplicar código en el backend.",
+      "Falso: Cada lenguaje de frontend debe reescribir la función de forma nativa en su propio código.",
+      "Falso: Las funciones solo pueden invocarse desde la consola de comandos psql de Linux.",
+      "Verdadero: Pero ralentizan 100 veces el motor de base de datos en todos los casos."
+    ],
+    "correctAnswer": 0,
+    "hint": "Encapsular lógica en el motor garantiza que todos los clientes apliquen la misma regla.",
+    "explanation": "Las funciones almacenadas permiten centralizar la lógica de negocio en el motor de base de datos, permitiendo que cualquier aplicación consumidora obtenga el mismo resultado homogéneo sin replicar código.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 2"
+  },
+  {
+    "id": 905,
+    "classNum": 9,
+    "topic": "Triggers BEFORE: Cancelación Silenciosa",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "En un trigger `BEFORE INSERT` o `BEFORE UPDATE` de fila, si una validación no se cumple y se desea anular la operación sobre esa fila sin lanzar una excepción ruidosa, ¿qué valor debe devolver la función?",
+    "type": "single_choice",
+    "options": [
+      "NULL",
+      "FALSE",
+      "0",
+      "Una cadena de texto vacía"
+    ],
+    "correctAnswer": 0,
+    "hint": "Retornar NULL en un trigger BEFORE de fila omite silenciosamente la operación sobre ese registro.",
+    "explanation": "Si una función de trigger `BEFORE` a nivel de fila retorna `NULL`, la operación de inserción, actualización o borrado sobre esa fila en particular es abortada silenciosamente (no se efectúa el cambio para esa fila). Para que proceda, debe retornar `NEW` (en INSERT/UPDATE) u `OLD` (en DELETE).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 10"
+  },
+  {
+    "id": 906,
+    "classNum": 9,
+    "topic": "Cláusula Condicional WHEN en Triggers",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "En la sentencia `CREATE TRIGGER`, ¿qué cláusula permite especificar una condición booleana opcional para que el trigger se active únicamente cuando dicha condición sea verdadera?",
+    "type": "single_choice",
+    "options": [
+      "WHEN",
+      "IF",
+      "WHERE",
+      "CONDITION"
+    ],
+    "correctAnswer": 0,
+    "hint": "CREATE TRIGGER nombre ... FOR EACH ROW WHEN (condicion);",
+    "explanation": "La cláusula `WHEN (condicion)` permite filtrar el disparo del trigger en el motor antes de invocar la función de PL/pgSQL, ahorrando sobrecarga computacional.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 11"
+  },
+  {
+    "id": 907,
+    "classNum": 9,
+    "topic": "Tipos de Retorno de Funciones",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Es verdadero o falso que una función en PostgreSQL siempre debe devolver un tipo de dato escalar primitivo (int, text) y no puede devolver un conjunto de registros o una tabla?",
+    "type": "single_choice",
+    "options": [
+      "Falso: PostgreSQL permite que las funciones retornen `TABLE(...)`, `SETOF tipo` o registros compuestos (`RECORD`).",
+      "Verdadero: Solo los procedimientos almacenados pueden retornar tablas completas.",
+      "Verdadero: SQL estándar prohíbe que las funciones devuelvan más de un número entero.",
+      "Falso: Pero solo si la tabla devuelta contiene una única columna alfanumérica."
+    ],
+    "correctAnswer": 0,
+    "hint": "PostgreSQL admite funciones tabulares con RETURNS TABLE o RETURNS SETOF.",
+    "explanation": "Las funciones en PostgreSQL son sumamente flexibles y pueden retornar tipos escalares, tipos compuestos (`RECORD`), conjuntos de filas (`SETOF`), o tablas completas con columnas definidas (`RETURNS TABLE(...)`).",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Segundo Parcial Oficial"
+  },
+  {
+    "id": 908,
+    "classNum": 9,
+    "topic": "Eventos Soportados por Triggers",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Cuál de las siguientes operaciones de manipulación de datos **NO** es un evento válido para disparar un trigger de tabla en PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "SELECT",
+      "INSERT",
+      "UPDATE",
+      "DELETE"
+    ],
+    "correctAnswer": 0,
+    "hint": "Los triggers estándar interceptan escrituras DML (INSERT, UPDATE, DELETE, TRUNCATE), no lecturas.",
+    "explanation": "Los triggers de tabla en PostgreSQL soportan eventos de manipulación `INSERT`, `UPDATE`, `DELETE` y `TRUNCATE`. Las consultas de lectura `SELECT` no disparan triggers de tabla convencionales.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 9"
+  },
+  {
+    "id": 909,
+    "classNum": 9,
+    "topic": "Palabra Clave %TYPE",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "En la definición de parámetros o variables en PL/pgSQL, ¿qué modificador se utiliza para declarar que una variable debe adoptar automáticamente el mismo tipo de dato de una columna de una tabla existente (ej. `tabla.columna%TYPE`)?",
+    "type": "single_choice",
+    "options": [
+      "%TYPE",
+      "DATA_TYPE",
+      "FIELD_TYPE",
+      "COLUMN_TYPE"
+    ],
+    "correctAnswer": 0,
+    "hint": "Símbolo de porcentaje seguido de TYPE (ej: Empleados.salario%TYPE).",
+    "explanation": "El operador `%TYPE` proporciona el tipo de datos de una variable o columna de tabla. Por ejemplo, `v_salario Empleados.salario%TYPE;` asegura que la variable mantenga siempre el tipo exacto sin importar si la columna cambia de INT a NUMERIC.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Diapositiva Clase 9, pág. 3"
+  },
+  {
+    "id": 910,
+    "classNum": 9,
+    "topic": "Registros Especiales OLD y NEW",
+    "unit": "Clase 9 - Autoevaluación 9",
+    "question": "¿Es verdadero o falso que en un trigger a nivel de sentencia (`FOR EACH STATEMENT`), el registro `OLD` contendrá los datos eliminados cuando el evento sea `DELETE`?",
+    "type": "single_choice",
+    "options": [
+      "Falso: Las variables de registro `OLD` y `NEW` solo están pobladas en triggers a nivel de fila (`FOR EACH ROW`); en statement-level son NULL.",
+      "Verdadero: En statement-level `OLD` contiene un array con todas las tuplas borradas por la consulta.",
+      "Verdadero: `OLD` siempre está disponible independientemente de la granularidad del trigger.",
+      "Falso: `OLD` solo existe en operaciones de tipo INSERT."
+    ],
+    "correctAnswer": 0,
+    "hint": "OLD y NEW solo tienen datos en triggers a nivel de fila (FOR EACH ROW).",
+    "explanation": "En triggers a nivel de sentencia (`FOR EACH STATEMENT`), los registros `NEW` y `OLD` no están definidos (su valor es NULL). Solo están poblados con la tupla individual cuando el trigger se define con `FOR EACH ROW`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 9 & Segundo Parcial Oficial"
+  },
+  {
+    "id": 911,
+    "classNum": 9,
+    "topic": "Sintaxis de Trigger de Auditoría",
+    "unit": "Clase 9 - Segundo Parcial",
+    "question": "Se necesita un trigger llamado `log_insert` que se dispare después de cualquier `INSERT` en la tabla `pedidos`, ejecutándose una sola vez por sentencia. Completa las palabras clave faltantes:",
+    "type": "code_completion",
+    "codeSnippet": "CREATE TRIGGER log_insert\n[b1] INSERT ON pedidos\nFOR EACH [b2]\nEXECUTE PROCEDURE log_operation();",
+    "blanks": [
+      {
+        "id": "b1",
+        "placeholder": "Momento de ejecución (BEFORE/AFTER)",
+        "expected": "AFTER"
+      },
+      {
+        "id": "b2",
+        "placeholder": "Granularidad (ROW/STATEMENT)",
+        "expected": "STATEMENT"
+      }
+    ],
+    "hint": "Se ejecuta después (AFTER) y una sola vez por sentencia (FOR EACH STATEMENT).",
+    "explanation": "La ejecución después del evento de inserción requiere `AFTER`. Para que se ejecute una sola vez por sentencia en lugar de una vez por cada fila afectada, se indica `FOR EACH STATEMENT`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 7)"
+  },
+  {
+    "id": 912,
+    "classNum": 9,
+    "topic": "Función PL/pgSQL con Excepción",
+    "unit": "Clase 9 - Segundo Parcial",
+    "question": "Completa la función `process_order` que debe lanzar una excepción y abortar si la cantidad de un pedido es menor o igual a cero:",
+    "type": "code_completion",
+    "codeSnippet": "CREATE OR REPLACE FUNCTION process_order(quantity integer) RETURNS integer AS $$\nBEGIN\n  IF (quantity <= 0) [b1]\n    RAISE [b2] 'La cantidad debe ser positiva.';\n  ELSE\n    RETURN 1;\n  END IF;\nEND;\n$$ LANGUAGE plpgsql;",
+    "blanks": [
+      {
+        "id": "b1",
+        "placeholder": "Palabra clave tras el IF",
+        "expected": "THEN"
+      },
+      {
+        "id": "b2",
+        "placeholder": "Nivel de interrupción",
+        "expected": "EXCEPTION"
+      }
+    ],
+    "hint": "Estructura condicional IF ... THEN y sentencia RAISE EXCEPTION.",
+    "explanation": "En PL/pgSQL, la estructura condicional se abre con `IF condicion THEN`. Para reportar un error que interrumpa la ejecución y revierta los cambios se utiliza `RAISE EXCEPTION`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 8)"
+  },
+  {
+    "id": 913,
+    "classNum": 9,
+    "topic": "Función SQL Escalar",
+    "unit": "Clase 9 - Segundo Parcial",
+    "question": "Se requiere una función `calcular_iva` que, al recibir un precio (`numeric`), retorne el valor del impuesto (21% del precio). Completa la definición en lenguaje SQL:",
+    "type": "code_completion",
+    "codeSnippet": "CREATE FUNCTION calcular_iva(precio [b1])\nRETURNS numeric [b2] $$\n  SELECT [b3] * 0.21;\n$$ LANGUAGE [b4];",
+    "blanks": [
+      {
+        "id": "b1",
+        "placeholder": "Tipo del parámetro",
+        "expected": "NUMERIC"
+      },
+      {
+        "id": "b2",
+        "placeholder": "Palabra que precede al cuerpo",
+        "expected": "AS"
+      },
+      {
+        "id": "b3",
+        "placeholder": "Referencia al 1er parámetro",
+        "expected": "$1"
+      },
+      {
+        "id": "b4",
+        "placeholder": "Lenguaje declarativo",
+        "expected": "SQL"
+      }
+    ],
+    "hint": "En lenguaje SQL puro, los parámetros posicionales se referencian como $1, $2, etc.",
+    "explanation": "Las funciones en lenguaje SQL definen su cuerpo con `AS $$ ... $$ LANGUAGE SQL;`. Los parámetros posicionales se referencian mediante `$1`, `$2`, etc.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 11)"
+  },
+  {
+    "id": 914,
+    "classNum": 9,
+    "topic": "Trigger BEFORE DELETE con Cancelación",
+    "unit": "Clase 9 - Segundo Parcial",
+    "question": "En el trigger `BEFORE DELETE`, si el campo `is_protected` del registro a eliminar es verdadero, se debe anular la operación. Completa el código con el registro especial y la instrucción de anulación:",
+    "type": "code_completion",
+    "codeSnippet": "CREATE OR REPLACE FUNCTION check_deletion()\nRETURNS trigger AS $$\nBEGIN\n  IF [b1].is_protected = TRUE THEN\n    RAISE EXCEPTION 'Registro protegido, no se puede eliminar.';\n    RETURN [b2];\n  END IF;\n  RETURN [b3];\nEND;\n$$ LANGUAGE plpgsql;",
+    "blanks": [
+      {
+        "id": "b1",
+        "placeholder": "Registro antes de borrar",
+        "expected": "OLD"
+      },
+      {
+        "id": "b2",
+        "placeholder": "Valor de retorno para abortar",
+        "expected": "NULL"
+      },
+      {
+        "id": "b3",
+        "placeholder": "Valor de retorno para permitir borrado",
+        "expected": "OLD"
+      }
+    ],
+    "hint": "En DELETE solo existe OLD. Retornar NULL anula la operación de esa fila.",
+    "explanation": "En un evento DELETE, el registro a eliminar se accede mediante `OLD`. Retornar `NULL` en un trigger BEFORE previene la eliminación de esa tupla, mientras que retornar `OLD` permite que el borrado continúe normalmente.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 19)"
+  },
+  {
+    "id": 915,
+    "classNum": 9,
+    "topic": "Trigger Condicional con Cláusula WHEN",
+    "unit": "Clase 9 - Segundo Parcial",
+    "question": "Se requiere que el trigger `audit_precio` se ejecute solo si el valor del campo `precio` ha cambiado durante la actualización. Completa la cláusula condicional:",
+    "type": "code_completion",
+    "codeSnippet": "CREATE TRIGGER audit_precio\nBEFORE UPDATE ON productos\nFOR EACH ROW\n[b1] ( [b2].precio IS DISTINCT FROM [b3].precio )\nEXECUTE PROCEDURE audit_change();",
+    "blanks": [
+      {
+        "id": "b1",
+        "placeholder": "Cláusula condicional",
+        "expected": "WHEN"
+      },
+      {
+        "id": "b2",
+        "placeholder": "Registro anterior",
+        "expected": "OLD"
+      },
+      {
+        "id": "b3",
+        "placeholder": "Registro nuevo",
+        "expected": "NEW"
+      }
+    ],
+    "hint": "Cláusula WHEN con OLD y NEW comparados mediante IS DISTINCT FROM.",
+    "explanation": "La cláusula `WHEN (OLD.precio IS DISTINCT FROM NEW.precio)` evita que el trigger se dispare innecesariamente si la sentencia UPDATE no alteró el valor de la columna precio.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 20)"
+  },
+  {
+    "id": 916,
+    "classNum": 9,
+    "topic": "Variable Especial TG_OP",
+    "unit": "Clase 9 - Funciones y Triggers",
+    "question": "Dentro del cuerpo de una función de trigger en PostgreSQL (PL/pgSQL), ¿qué valor contiene la variable especial del sistema `TG_OP`?",
+    "type": "single_choice",
+    "options": [
+      "Una cadena de texto con el tipo de operación DML que disparó el trigger: 'INSERT', 'UPDATE', 'DELETE' o 'TRUNCATE'.",
+      "El número entero de filas afectadas por la última consulta SELECT.",
+      "El nombre del usuario del sistema operativo que inició la sesión.",
+      "El tiempo en microsegundos que demoró la compilación de la función."
+    ],
+    "correctAnswer": 0,
+    "hint": "TG_OP = Trigger Operation ('INSERT', 'UPDATE', 'DELETE', etc.).",
+    "explanation": "`TG_OP` es una variable inyectada automáticamente por PostgreSQL que contiene un string ('INSERT', 'UPDATE', 'DELETE' o 'TRUNCATE') indicando la operación que activó el trigger, permitiendo utilizar `IF TG_OP = 'DELETE' THEN ...`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 9, pág. 10"
+  },
+  {
+    "id": 917,
+    "classNum": 9,
+    "topic": "Parámetros IN, OUT e INOUT",
+    "unit": "Clase 9 - Funciones y Triggers",
+    "question": "¿Cuál es la función del modo de parámetro `INOUT` en una función de PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "Permite recibir un valor de entrada del llamador, procesarlo dentro de la función y devolver el valor modificado como parte del resultado.",
+      "Indica que el parámetro solo puede recibir valores NULL de solo lectura.",
+      "Exige que el parámetro sea obligatoriamente una clave foránea de tipo UUID.",
+      "Bloquea la tabla asociada en modo exclusivo mientras la función se ejecuta."
+    ],
+    "correctAnswer": 0,
+    "hint": "INOUT = entrada y salida al mismo tiempo.",
+    "explanation": "El calificador `INOUT` indica que el parámetro actúa simultáneamente como argumento de entrada y como valor de retorno de la función.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 9, pág. 3"
+  },
+  {
+    "id": 918,
+    "classNum": 9,
+    "topic": "Triggers INSTEAD OF",
+    "unit": "Clase 9 - Funciones y Triggers",
+    "question": "¿Sobre qué tipo de objetos de base de datos se definen típicamente los triggers `INSTEAD OF` en PostgreSQL para permitir que admitan sentencias INSERT, UPDATE o DELETE?",
+    "type": "single_choice",
+    "options": [
+      "Sobre Vistas (Views) complejas que de otro modo no serían actualizables directamente.",
+      "Sobre índices B-Tree fragmentados en disco secundario.",
+      "Sobre secuencias numéricas creadas con CREATE SEQUENCE.",
+      "Sobre esquemas de catálogos internos del sistema (pg_catalog)."
+    ],
+    "correctAnswer": 0,
+    "hint": "INSTEAD OF se dispara 'en lugar de' la operación sobre una Vista no actualizable.",
+    "explanation": "Los triggers `INSTEAD OF` solo pueden definirse sobre vistas. Permiten interceptar operaciones de modificación sobre vistas con JOINs o agregaciones complejas y redirigir los cambios manualmente a las tablas subyacentes.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 9, pág. 9"
+  },
+  {
+    "id": 919,
+    "classNum": 9,
+    "topic": "Bloque DECLARE en PL/pgSQL",
+    "unit": "Clase 9 - Funciones y Triggers",
+    "question": "En una función escrita en PL/pgSQL, ¿dónde se deben declarar formalmente las variables locales y qué sección encabeza?",
+    "type": "single_choice",
+    "options": [
+      "En la sección `DECLARE`, ubicada antes del bloque principal `BEGIN ... END;`.",
+      "En cualquier lugar del código mediante la palabra clave `var` de JavaScript.",
+      "Únicamente al final de la función después de la instrucción `$$ LANGUAGE`.",
+      "Dentro de los comentarios de la cabecera entre corchetes angulares."
+    ],
+    "correctAnswer": 0,
+    "hint": "DECLARE precede a BEGIN ... END;",
+    "explanation": "En la estructura de PL/pgSQL, la sección `DECLARE` es opcional y precede al bloque de código ejecutable delimitado por `BEGIN` y `END;`. Allí se especifican los nombres y tipos de las variables locales.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 9, pág. 5"
+  },
+  {
+    "id": 1001,
+    "classNum": 10,
+    "topic": "Definición y Rol de los Índices",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que un índice es una estructura que almacena datos copiados del campo de la tabla sobre el cual se definió, con el objetivo de permitir encontrar algo de forma más eficiente?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Es una estructura auxiliar que indexa los valores de las columnas para acelerar las búsquedas sin recorrer toda la tabla.",
+      "Falso: Un índice reemplaza completamente la tabla física y borra las columnas originales.",
+      "Falso: Los índices solo sirven para almacenar respaldos de seguridad en la nube.",
+      "Verdadero: Pero solo funciona si la consulta no incluye cláusula WHERE."
+    ],
+    "correctAnswer": 0,
+    "hint": "Estructura auxiliar que guarda copias ordenadas de las claves para búsquedas rápidas.",
+    "explanation": "Un índice es una estructura de datos asociada a una tabla que almacena copias de uno o más atributos junto a punteros a las filas originales, permitiendo al motor localizar registros rápidamente sin necesidad de un Sequential Scan.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 2"
+  },
+  {
+    "id": 1002,
+    "classNum": 10,
+    "topic": "Métodos de Join: Merge Join",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que el `Merge Join` es un método de unión muy útil para tablas grandes porque no requiere que la tabla completa se cargue en memoria y evita realizar múltiples recorridos cuadráticos sobre las tablas?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Si ambas tablas están ordenadas por las claves de unión, el motor las recorre sincrónicamente en una sola pasada eficiente.",
+      "Falso: Merge Join requiere obligatoriamente cargar todas las tablas completas en memoria RAM.",
+      "Falso: Merge Join solo se puede aplicar a tablas de menos de 10 registros.",
+      "Verdadero: Pero únicamente si no se utilizan claves foráneas en la relación."
+    ],
+    "correctAnswer": 0,
+    "hint": "Merge Join ordena y recorre en paralelo sincronizado como dos listas ordenadas.",
+    "explanation": "El algoritmo Merge Join ordena ambas tablas por las columnas de enlace (o aprovecha índices ordenados preexistentes) y luego avanza en paralelo sobre ambos flujos. Es sumamente escalable para conjuntos de datos masivos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 15"
+  },
+  {
+    "id": 1003,
+    "classNum": 10,
+    "topic": "Costo DML de los Índices",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que una tabla con muchos índices puede experimentar una degradación en el rendimiento durante operaciones de alta, baja o modificación de registros (INSERT/UPDATE/DELETE)?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Cada operación de escritura obliga al motor a reestructurar y actualizar todos los árboles de índices asociados a la tabla.",
+      "Falso: Los índices aceleran mágicamente tanto las lecturas como todas las escrituras sin ningún costo extra.",
+      "Falso: Los índices solo se actualizan una vez al año cuando se reinicia el servidor.",
+      "Verdadero: Pero solo si los índices son de tipo Hash."
+    ],
+    "correctAnswer": 0,
+    "hint": "Las lecturas se aceleran, pero cada INSERT/UPDATE/DELETE debe actualizar los árboles de índices.",
+    "explanation": "Existe un compromiso de diseño (trade-off): los índices aceleran las consultas SELECT, pero cada INSERT, DELETE y UPDATE sobre columnas indexadas debe mantener actualizadas las estructuras en árbol, agregando sobrecarga de E/S y CPU.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 2"
+  },
+  {
+    "id": 1004,
+    "classNum": 10,
+    "topic": "Tipos de Índices: B-Tree",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Cuál de los siguientes tipos de índices es el predeterminado en PostgreSQL, ideal para columnas con valores únicos o alta cardinalidad y capaz de proveer los datos ordenados?",
+    "type": "single_choice",
+    "options": [
+      "B-Tree",
+      "GIN (Generalized Inverted Index)",
+      "Hash",
+      "GiST (Generalized Search Tree)"
+    ],
+    "correctAnswer": 0,
+    "hint": "Árbol balanceado estándar de PostgreSQL, soporta =, <, <=, >, >= y ORDER BY.",
+    "explanation": "El índice `B-Tree` es el tipo por defecto en casi todos los motores relacionales. Mantiene las claves en un árbol balanceado ordenado, ideal para comparaciones de igualdad, rangos (`BETWEEN`, `<`, `>`) y para satisfacer cláusulas `ORDER BY` sin ordenar en memoria.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 5"
+  },
+  {
+    "id": 1005,
+    "classNum": 10,
+    "topic": "Comando ANALYZE",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Qué comando ayuda al motor de base de datos a recolectar estadísticas sobre la distribución de datos en las tablas, siendo crucial para que el optimizador elija los mejores planes de consulta?",
+    "type": "single_choice",
+    "options": [
+      "ANALYZE",
+      "EXPLAIN",
+      "CHECKDB",
+      "REINDEX"
+    ],
+    "correctAnswer": 0,
+    "hint": "Recolecta estadísticas de distribución de datos (frecuencia, histogramas) para el catálogo pg_statistic.",
+    "explanation": "El comando `ANALYZE` examina el contenido de las tablas para recopilar estadísticas sobre la distribución de valores en sus columnas. El planificador de consultas utiliza estas estadísticas para estimar costos y elegir el mejor plan de ejecución.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 16"
+  },
+  {
+    "id": 1006,
+    "classNum": 10,
+    "topic": "Influencia en Métodos de Escaneo",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que es posible influir en el planificador de consultas en PostgreSQL mediante la configuración de parámetros como `enable_seqscan = off` para pruebas de optimización?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: Parámetros de sesión como `enable_seqscan`, `enable_indexscan` o `enable_hashjoin` permiten forzar o desalentar métodos específicos para pruebas.",
+      "Falso: El optimizador de PostgreSQL es una caja negra inmodificable donde no se pueden alterar parámetros.",
+      "Falso: `enable_seqscan` es un comando de Linux que no tiene relación con PostgreSQL.",
+      "Verdadero: Pero únicamente desde el usuario anónimo sin privilegios."
+    ],
+    "correctAnswer": 0,
+    "hint": "PostgreSQL permite activar/desactivar heurísticas de escaneo en la sesión con SET enable_...",
+    "explanation": "PostgreSQL cuenta con directivas de configuración como `SET enable_seqscan = off;` que aumentan artificialmente el costo estimado del escaneo secuencial para observar si el motor optaría por usar un índice disponible.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 16"
+  },
+  {
+    "id": 1007,
+    "classNum": 10,
+    "topic": "Comando EXPLAIN",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Cuál de los siguientes comandos de PostgreSQL permite visualizar, evaluar y entender el plan de ejecución que el motor de la base de datos genera para una consulta SQL?",
+    "type": "single_choice",
+    "options": [
+      "EXPLAIN",
+      "ANALYZE",
+      "SHOW PLAN",
+      "VACUUM"
+    ],
+    "correctAnswer": 0,
+    "hint": "EXPLAIN muestra el árbol de nodos de ejecución; EXPLAIN ANALYZE además ejecuta la query midiendo tiempos.",
+    "explanation": "El comando `EXPLAIN [query]` muestra el árbol del plan de ejecución generado por el optimizador, detallando costos estimados, nodos de escaneo (Seq Scan, Index Scan) y métodos de unión elegidos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 10"
+  },
+  {
+    "id": 1008,
+    "classNum": 10,
+    "topic": "Métodos de Join: Hash Join",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Qué método de join construye una tabla hash en memoria con las filas de la relación más pequeña para luego recorrer la otra relación realizando búsquedas de coincidencia en tiempo O(1)?",
+    "type": "single_choice",
+    "options": [
+      "Hash Join",
+      "Merge Join",
+      "Nested Loops Sequential Scan",
+      "Bitmap Index Scan"
+    ],
+    "correctAnswer": 0,
+    "hint": "Crea una estructura hash en memoria temporal.",
+    "explanation": "El `Hash Join` carga la tabla de menor tamaño en una tabla hash en memoria y luego recorre secuencialmente la tabla mayor buscando coincidencias en tiempo casi constante, siendo muy veloz cuando la tabla de hash entra en `work_mem`.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 14"
+  },
+  {
+    "id": 1009,
+    "classNum": 10,
+    "topic": "Naturaleza Declarativa de SQL",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que SQL es un lenguaje declarativo, lo que significa que el desarrollador especifica QUÉ datos desea obtener, delegando en el optimizador del motor el CÓMO acceder a ellos?",
+    "type": "single_choice",
+    "options": [
+      "Verdadero: El programador declara el resultado esperado y el optimizador genera y elige el plan de acceso más económico.",
+      "Falso: SQL es un lenguaje imperativo donde el programador debe escribir manualmente los bucles de punteros en disco.",
+      "Falso: En SQL el motor siempre pregunta al usuario qué algoritmo aplicar en cada fila.",
+      "Verdadero: Pero solo cuando se usan funciones en lenguaje C."
+    ],
+    "correctAnswer": 0,
+    "hint": "Declarativo: decimos QUÉ queremos; el optimizador define CÓMO obtenerlo.",
+    "explanation": "SQL es declarativo: el usuario redacta la consulta expresando el conjunto deseado sin programar los algoritmos de búsqueda ni el orden de lectura de bloques físicos; esa tarea recae exclusivamente en el planificador.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 9"
+  },
+  {
+    "id": 1010,
+    "classNum": 10,
+    "topic": "Nested Loops Index Scan",
+    "unit": "Clase 10 - Autoevaluación 10",
+    "question": "¿Es verdadero o falso que un `Nested Loops Index Scan` es necesariamente una mala opción de rendimiento que el motor de base de datos debe evitar en todas las circunstancias?",
+    "type": "single_choice",
+    "options": [
+      "Falso: Es sumamente eficiente cuando la tabla exterior procesa pocas tuplas y la tabla interior dispone de un índice por la clave de unión.",
+      "Verdadero: Los bucles anidados siempre provocan un consumo del 100% de CPU y cuelgan el servidor.",
+      "Verdadero: Solo se tolera en sistemas embebidos sin memoria disco.",
+      "Falso: Pero únicamente si ambas tablas tienen menos de 3 columnas."
+    ],
+    "correctAnswer": 0,
+    "hint": "Si la tabla externa tiene 5 filas y la interna busca por índice B-tree, es casi instantáneo.",
+    "explanation": "El método Nested Loops con Index Scan es altamente eficiente cuando la relación exterior tiene un número reducido de filas (o fue previamente filtrada) y la relación interior se accede mediante un índice B-Tree puntual.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 10 & Diapositiva Clase 10, pág. 13"
+  },
+  {
+    "id": 1011,
+    "classNum": 10,
+    "topic": "Métodos de Operación de Consulta",
+    "unit": "Clase 10 - Segundo Parcial",
+    "question": "Relacione cada método de operación de consulta con la descripción que mejor se ajusta a su funcionamiento o uso principal:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Index Scan",
+        "right": "Estrategias que utiliza índices, permitiendo al motor acceder directamente solo a los bloques de datos relevantes, mejorando la velocidad de recuperación cuando se aplica un filtro selectivo."
+      },
+      {
+        "left": "Hash Join",
+        "right": "Método de unión que construye una estructura temporal en memoria con los datos de una de las tablas, lo que luego permite realizar comparaciones muy rápidas con los registros de la segunda tabla."
+      },
+      {
+        "left": "Nested Loops",
+        "right": "Técnica de unión que implica comparar las filas de una tabla contra las filas de la otra en iteraciones anidadas. Solo es considerada eficiente si las tablas son de tamaño reducido o si se utiliza la información indexada para reducir las filas a comparar."
+      },
+      {
+        "left": "Sequential Scan",
+        "right": "Método que se selecciona cuando la tabla es muy pequeña o cuando el resultado de la consulta involucra una gran proporción de los datos totales de la misma."
+      },
+      {
+        "left": "Merge Join",
+        "right": "Estrategia de unión utilizada para conjuntos de datos extensos. Requiere que ambas tablas involucradas estén ordenadas (o que se ordenen si no tienen un índice que provea orden) para recorrerlas sincrónicamente y encontrar las filas coincidentes."
+      }
+    ],
+    "hint": "Seq Scan = toda la tabla; Index Scan = punteros por clave; Hash Join = hash en memoria; Merge Join = ordenado síncrono; Nested Loops = iteración anidada.",
+    "explanation": "Sequential Scan es ideal para escaneos masivos (>40%). Index Scan para selectividad alta. Hash Join para tablas que caben en memoria. Merge Join para grandes conjuntos ordenados. Nested Loops para conjuntos reducidos indexados.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 18)"
+  },
+  {
+    "id": 1012,
+    "classNum": 10,
+    "topic": "Tipos de Índices Especializados",
+    "unit": "Clase 10 - Segundo Parcial",
+    "question": "Relaciona cada tipo de índice con su descripción o uso principal, basándote en su funcionalidad:",
+    "type": "matching",
+    "pairs": [
+      {
+        "left": "Generalized Search Tree (GIST)",
+        "right": "Utilizado para la indexación de información espacial, arrays, o datos complejos que no se ajustan al modelo B-Tree."
+      },
+      {
+        "left": "B-Tree",
+        "right": "Estructura ideal para campos que contienen datos que no se repiten y facilita el orden de los resultados."
+      },
+      {
+        "left": "Generalized Inverted Index (GIN)",
+        "right": "Más adecuado para indexar valores compuestos y columnas que presentan una gran cantidad de datos repetidos."
+      }
+    ],
+    "hint": "GiST para geometrías/espacial/arrays; GIN para texto completo, JSON y valores invertidos; B-Tree para orden y unicidad.",
+    "explanation": "B-Tree es el índice clásico ordenado. GIN (Generalized Inverted Index) indexa elementos individuales dentro de contenedores compuestos (Full Text Search, JSONB, arrays). GiST (Generalized Search Tree) sirve para datos multidimensionales y geométricos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 23)"
+  },
+  {
+    "id": 1013,
+    "classNum": 10,
+    "topic": "Función Esencial del Motor en Optimización",
+    "unit": "Clase 10 - Segundo Parcial",
+    "question": "Considerando que SQL es un lenguaje declarativo, ¿cuál es la función esencial del motor de base de datos en la optimización de consultas?",
+    "type": "single_choice",
+    "options": [
+      "Evaluar diversos planes de ejecución para una consulta específica y seleccionar el que tenga el costo estimado más bajo.",
+      "Generar el árbol de ejecución de la consulta, donde la interpretación de los nodos se realiza desde la raíz hacia las hojas (de arriba hacia abajo).",
+      "Utilizar siempre la indexación disponible para garantizar que el acceso a los datos sea lo más rápido posible sin evaluar costos.",
+      "Forzar el uso de índices de forma predeterminada, a menos que se utilicen comandos especiales como SET enable_seqscan."
+    ],
+    "correctAnswer": 0,
+    "hint": "El optimizador genera múltiples planes y escoge el de menor costo estimado (CPU + I/O).",
+    "explanation": "El procesador de consultas evalúa múltiples rutas y métodos de acceso equivalentes, asignándoles un costo estimado en función de las estadísticas de los datos, y selecciona el plan con el menor costo total proyectado.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Segundo Parcial Oficial (Pregunta 24)"
+  },
+  {
+    "id": 1014,
+    "classNum": 10,
+    "topic": "Operación CLUSTER",
+    "unit": "Clase 10 - Índices",
+    "question": "¿En qué consiste la operación `CLUSTER nombre_tabla USING nombre_indice;` en PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "En reordenar físicamente los registros de la tabla en disco de acuerdo con el orden establecido por un índice previamente creado.",
+      "En crear un cluster de servidores distribuidos en la nube para balancear peticiones web.",
+      "En cifrar con clave pública todos los datos del esquema de base de datos.",
+      "En desfragmentar la memoria RAM del sistema operativo anfitrión."
+    ],
+    "correctAnswer": 0,
+    "hint": "CLUSTER reordena físicamente la tabla en disco según el índice.",
+    "explanation": "`CLUSTER` reordena físicamente las filas de la tabla en el almacenamiento secundario según la secuencia de un índice B-Tree, permitiendo que las lecturas por rango sobre ese índice requieran muchos menos accesos a páginas distintas del disco.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 8"
+  },
+  {
+    "id": 1015,
+    "classNum": 10,
+    "topic": "Índices Parciales (Partial Indexes)",
+    "unit": "Clase 10 - Índices",
+    "question": "¿Qué ventaja principal ofrece un Índice Parcial (`CREATE INDEX ... WHERE condicion;`) en PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "Indexa solo un subconjunto de filas que cumplen una condición WHERE, reduciendo el tamaño del índice en disco y el costo de mantenimiento en escrituras.",
+      "Permite crear índices sin necesidad de tener permisos de administrador en el servidor.",
+      "Garantiza que las consultas nunca consuman memoria RAM.",
+      "Convierte la tabla automáticamente en un archivo de solo lectura."
+    ],
+    "correctAnswer": 0,
+    "hint": "Indexa solo las filas relevantes (ej: WHERE activo = true), ahorrando espacio y costo de escritura.",
+    "explanation": "Un índice parcial se construye sobre un subconjunto de filas definido por una cláusula condicional. Esto ahorra valioso espacio en disco y evita el costo de actualizar el índice cuando se modifican filas que no cumplen la condición.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Resumen 2do Parcial, pág. 11"
+  },
+  {
+    "id": 1016,
+    "classNum": 10,
+    "topic": "Cláusula CREATE INDEX CONCURRENTLY",
+    "unit": "Clase 10 - Índices",
+    "question": "¿Cuál es el beneficio de utilizar la cláusula `CONCURRENTLY` al ejecutar `CREATE INDEX CONCURRENTLY ...` en una base de datos en producción?",
+    "type": "single_choice",
+    "options": [
+      "Permite construir el índice sin bloquear las operaciones concurrentes de lectura ni de escritura (INSERT/UPDATE/DELETE) sobre la tabla.",
+      "Reduce el tiempo de creación del índice a cero milisegundos sin consumir CPU.",
+      "Genera dos copias idénticas del índice en servidores remotos distintos.",
+      "Elimina permanentemente todos los registros duplicados de la tabla."
+    ],
+    "correctAnswer": 0,
+    "hint": "CONCURRENTLY no adquiere bloqueo exclusivo sobre la tabla.",
+    "explanation": "Por defecto, `CREATE INDEX` adquiere un bloqueo exclusivo que impide escrituras en la tabla hasta finalizar. `CONCURRENTLY` realiza pasadas adicionales para crear el índice permitiendo que las transacciones continúen escribiendo normalmente.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 3"
+  },
+  {
+    "id": 1017,
+    "classNum": 10,
+    "topic": "EXPLAIN vs EXPLAIN ANALYZE",
+    "unit": "Clase 10 - Optimización",
+    "question": "¿Cuál es la diferencia crucial entre ejecutar `EXPLAIN consulta;` y ejecutar `EXPLAIN ANALYZE consulta;` en PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "`EXPLAIN` solo muestra el plan estimado sin ejecutar la consulta; `EXPLAIN ANALYZE` ejecuta la consulta en tiempo real y muestra los tiempos reales (actual time) y filas reales obtenidas.",
+      "`EXPLAIN` ejecuta la consulta tres veces; `EXPLAIN ANALYZE` solo valida errores de sintaxis en el texto.",
+      "`EXPLAIN ANALYZE` no funciona en PostgreSQL, solo en Microsoft SQL Server.",
+      "`EXPLAIN` modifica los datos de la base de datos, mientras que `EXPLAIN ANALYZE` es de solo lectura."
+    ],
+    "correctAnswer": 0,
+    "hint": "ANALYZE realmente ejecuta la sentencia y mide tiempos reales en milisegundos.",
+    "explanation": "Una sentencia `EXPLAIN` simple genera la estimación del planificador basada en estadísticas. `EXPLAIN ANALYZE` ejecuta realmente la consulta en el motor, descartando la salida de datos pero midiendo el tiempo de reloj exacto y las filas reales por nodo.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 10"
+  },
+  {
+    "id": 1018,
+    "classNum": 10,
+    "topic": "Interpretación de Costos en EXPLAIN",
+    "unit": "Clase 10 - Optimización",
+    "question": "En la salida de un plan de consulta `Seq Scan on Empleados (cost=0.00..18.50 rows=800 width=36)`, ¿qué representan los dos valores numéricos `0.00` y `18.50`?",
+    "type": "single_choice",
+    "options": [
+      "`0.00` es el costo de inicio estimado antes de retornar la primera tupla; `18.50` es el costo total estimado para procesar el nodo completo.",
+      "`0.00` es el costo en dólares y `18.50` es el costo en euros de la consulta en la nube.",
+      "`0.00` es el uso de memoria RAM en megabytes y `18.50` es el uso porcentual de CPU.",
+      "`0.00` indica que no hubo errores y `18.50` es el número de milisegundos que demoró la consulta."
+    ],
+    "correctAnswer": 0,
+    "hint": "cost=costo_arranque..costo_total en unidades arbitrarias de E/S de página.",
+    "explanation": "La tupla `cost=X..Y` expresa el costo estimado en unidades de lectura de página de disco: X es el costo de arranque (startup cost) antes de devolver la primera fila, e Y es el costo total estimado de finalizar el nodo.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 10"
+  },
+  {
+    "id": 1019,
+    "classNum": 10,
+    "topic": "Cuándo NO conviene crear un índice",
+    "unit": "Clase 10 - Índices",
+    "question": "¿En cuál de los siguientes escenarios un índice NO resulta recomendable o el optimizador preferirá un Sequential Scan?",
+    "type": "single_choice",
+    "options": [
+      "En tablas pequeñas (pocas páginas en disco) o en columnas con muy baja selectividad donde la consulta recupera más del 40% de los registros de la tabla.",
+      "En columnas que son claves primarias enteras con valores estrictamente correlativos.",
+      "En tablas con más de 10 millones de filas cuando se busca una única tupla por ID.",
+      "En columnas de tipo VARCHAR indexadas con B-Tree que se consultan con el operador de igualdad."
+    ],
+    "correctAnswer": 0,
+    "hint": "Baja selectividad (>40% de la tabla) o tablas muy pequeñas no justifican el overhead del índice.",
+    "explanation": "Los índices no son convenientes en tablas reducidas (donde leer toda la tabla secuencialmente insume pocos bloques de disco) ni en columnas con baja selectividad (como género o booleanos), donde el optimizador prefiere Sequential Scan ya que recuperar más del 40% por índice implicaría saltos aleatorios de cabezal más costosos.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 11 & Resumen 2do Parcial, pág. 12"
+  },
+  {
+    "id": 1020,
+    "classNum": 10,
+    "topic": "Comando VACUUM",
+    "unit": "Clase 10 - Índices y Optimización",
+    "question": "¿Cuál es el objetivo principal del comando de mantenimiento `VACUUM;` en PostgreSQL?",
+    "type": "single_choice",
+    "options": [
+      "Recuperar y marcar como reutilizable el espacio ocupado por tuplas muertas (actualizadas o eliminadas por MVCC) y actualizar el mapa de visibilidad.",
+      "Eliminar físicamente todas las tablas del esquema que lleven más de 30 días sin usarse.",
+      "Comprimir los logs del sistema operativo en formato tar.gz.",
+      "Cerrar todas las conexiones activas de los usuarios en el servidor."
+    ],
+    "correctAnswer": 0,
+    "hint": "Limpieza de tuplas muertas creadas por el versionado MVCC.",
+    "explanation": "En PostgreSQL MVCC, los DELETE y UPDATE dejan tuplas muertas en disco. El comando `VACUUM` limpia estas tuplas obsoletas para que el espacio en los bloques pueda ser reutilizado por nuevas inserciones sin inflar el tamaño de la base.",
+    "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 10, pág. 16"
   }
 ];
 
+if (typeof window !== "undefined") {
+  window.QUESTIONS_DATABASE = QUESTIONS_DATABASE;
+}
 if (typeof module !== "undefined" && module.exports) {
   module.exports = QUESTIONS_DATABASE;
 }
+

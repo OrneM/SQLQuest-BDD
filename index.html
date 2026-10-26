@@ -147,6 +147,26 @@
           </div>
         </div>
 
+        <!-- Selector de Alcance de Temario (1er Parcial, 2do Parcial, Integral) -->
+        <div class="exam-scope-selector-container">
+          <div class="exam-length-header">
+            <span class="exam-length-icon">📜</span>
+            <span class="exam-length-title">TEMARIO / ALCANCE:</span>
+            <span class="exam-length-hint" id="exam-scope-hint-text">1er Parcial (Clases 1 a 5: Modelo E-R, DQL/DML, JOINs & Subqueries)</span>
+          </div>
+          <div class="exam-scope-buttons" id="exam-scope-buttons-group">
+            <button type="button" class="btn-retro scope-choice-btn active" data-scope="1">
+              <span>🐉 1ER PARCIAL (CLASES 1-5)</span>
+            </button>
+            <button type="button" class="btn-retro scope-choice-btn" data-scope="2">
+              <span>⚡ 2DO PARCIAL (CLASES 6, 7, 9, 10)</span>
+            </button>
+            <button type="button" class="btn-retro scope-choice-btn" data-scope="all">
+              <span>🏆 TODO EL PROGRAMA (INTEGRAL)</span>
+            </button>
+          </div>
+        </div>
+
         <!-- Game Mode Selection Cards -->
         <div class="game-modes-grid">
           <!-- Modo Aprendiz -->
@@ -217,11 +237,19 @@
               <div class="dungeon-class-select-box">
                 <label for="dungeon-class-selector" class="dungeon-select-label">⚔️ ELIGE TU MAZMORRA / CLASE:</label>
                 <select id="dungeon-class-selector" class="retro-select dungeon-dropdown">
-                  <option value="1">🏰 Clase 1: Introducción, SGBD & Arquitectura</option>
-                  <option value="2">🏰 Clase 2: DQL Básico, WHERE, LIKE & ORDER BY</option>
-                  <option value="3">🏰 Clase 3: JOINs, GROUP BY, HAVING & Agregaciones</option>
-                  <option value="4">🏰 Clase 4: DML (INSERT/UPDATE/DELETE) & Subconsultas</option>
-                  <option value="5" selected>🏰 Clase 5: Modelo Relacional, PK/FK & Índices</option>
+                  <optgroup label="── 1ER PARCIAL ──">
+                    <option value="1">🏰 Clase 1: Introducción, SGBD & Arquitectura</option>
+                    <option value="2">🏰 Clase 2: DQL Básico, WHERE, LIKE & ORDER BY</option>
+                    <option value="3">🏰 Clase 3: JOINs, GROUP BY, HAVING & Agregaciones</option>
+                    <option value="4">🏰 Clase 4: DML (INSERT/UPDATE/DELETE) & Subconsultas</option>
+                    <option value="5">🏰 Clase 5: Modelo Relacional, PK/FK & Índices</option>
+                  </optgroup>
+                  <optgroup label="── 2DO PARCIAL ──">
+                    <option value="6" selected>⚡ Clase 6: Transacciones, ACID, Aislamiento & MVCC</option>
+                    <option value="7">⚡ Clase 7: Normalización (1FN a 5FN, BCNF) & Anomalías</option>
+                    <option value="9">⚡ Clase 9: Funciones PL/pgSQL & Triggers (BEFORE/AFTER)</option>
+                    <option value="10">⚡ Clase 10: Índices (B-Tree/Hash/GiST/GIN) & EXPLAIN</option>
+                  </optgroup>
                 </select>
               </div>
 
@@ -289,38 +317,92 @@
           <span class="retro-box-header-badge magenta">💀 MODO MUERTE SÚBITA</span>
         </div>
 
-        <!-- Pixel Art Boss Dragon Illustration Banner -->
-        <img src="assets/boss_battle.jpg" alt="Boss Titan B-Tree Dragon" class="module-visual-banner" style="max-height: 260px;">
+        <!-- Boss Selection Hub (Elige contra qué Boss luchar) -->
+        <div class="boss-selection-hub">
+          <div class="boss-hub-header">
+            <span class="boss-hub-title">⚔️ ELIGE TU ARCHIRRIVAL:</span>
+            <span style="font-family: var(--font-body); font-size: 13px; color: #94a3b8;">
+              Selecciona el Boss según el parcial que quieras purificar o entrenar.
+            </span>
+          </div>
+
+          <div class="boss-cards-grid">
+            <!-- Boss 1 Card: 1er Parcial -->
+            <div class="boss-card active" data-boss="1" id="boss-card-1">
+              <span class="boss-card-tag">🐉 1ER PARCIAL</span>
+              <span class="boss-card-active-pill">ACTIVO</span>
+              <div class="boss-card-img-wrapper">
+                <img src="assets/boss_battle.jpg" alt="Boss 1: Titán de las Inconsistencias" class="boss-card-img">
+              </div>
+              <h3 class="boss-card-name">TITÁN DE LAS INCONSISTENCIAS</h3>
+              <p class="boss-card-syllabus">
+                <strong>Clases 1 a 5:</strong> Modelado E-R, Álgebra Relacional, SQL DDL/DQL, Funciones de Agregación, JOINs y Subconsultas.
+              </p>
+              <div class="boss-card-footer">
+                <span class="boss-card-pending-badge" id="boss-card-1-badge">0 ERRORES PENDIENTES</span>
+                <span style="font-family: var(--font-pixel); font-size: 8px; color: var(--neon-yellow);">⚔️ SELECCIONAR</span>
+              </div>
+            </div>
+
+            <!-- Boss 2 Card: 2do Parcial -->
+            <div class="boss-card" data-boss="2" id="boss-card-2">
+              <span class="boss-card-tag">⚡ 2DO PARCIAL</span>
+              <span class="boss-card-active-pill">ACTIVO</span>
+              <div class="boss-card-img-wrapper">
+                <img src="assets/boss_battle_2do_parcial.jpg" alt="Boss 2: Leviatán Transaccional" class="boss-card-img">
+              </div>
+              <h3 class="boss-card-name">LEVIATÁN TRANSACCIONAL</h3>
+              <p class="boss-card-syllabus">
+                <strong>Clases 6, 7, 9 y 10:</strong> Transacciones ACID, MVCC & Aislamiento, Formas Normales (1FN a 5FN, BCNF), Triggers PL/pgSQL y Optimización EXPLAIN.
+              </p>
+              <div class="boss-card-footer">
+                <span class="boss-card-pending-badge" id="boss-card-2-badge">0 ERRORES PENDIENTES</span>
+                <span style="font-family: var(--font-pixel); font-size: 8px; color: var(--neon-cyan);">⚡ SELECCIONAR</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pixel Art Boss Illustration Banner -->
+        <img id="boss-active-banner" src="assets/boss_battle.jpg" alt="Boss Illustration Banner" class="module-visual-banner" style="max-height: 260px;">
 
         <!-- No errors screen -->
         <div id="boss-no-errors-box" class="boss-no-errors-notice">
           <div class="trophy-icon">🏆</div>
-          <h3 class="boss-purified-title">¡MAZMORRA PURIFICADA!</h3>
-          <p class="boss-purified-desc">
-            No tienes preguntas falladas registradas localmente. ¡Has dominado todos los conceptos!<br>
-            Si deseas entrenar de todas formas, puedes iniciar una ronda de prueba con el Titán B-Tree.
+          <h3 class="boss-purified-title" id="boss-purified-title">¡MAZMORRA PURIFICADA!</h3>
+          <p class="boss-purified-desc" id="boss-purified-desc">
+            No tienes preguntas falladas registradas para este Boss. ¡Has dominado todos los conceptos!<br>
+            Si deseas entrenar de todas formas, puedes iniciar una ronda de prueba con 10 preguntas del temario de este Boss.
           </p>
           <button class="btn-retro btn-magenta" id="boss-practice-all-btn" style="padding: 14px 24px;">
-            <span>🔥 INICIAR ENTRENAMIENTO CON EL BOSS</span>
+            <span id="boss-practice-btn-text">🔥 INICIAR ENTRENAMIENTO CON EL BOSS</span>
           </button>
         </div>
 
         <!-- Arena View with Failed Questions -->
         <div id="boss-arena-view" style="display: none;">
           <div id="boss-intro-box" style="text-align: center; padding: 10px;">
-            <h3 class="boss-challenge-title">¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!</h3>
-            <p class="boss-challenge-desc">
-              Tienes <strong class="boss-pending-count-highlight" id="boss-pending-count">0</strong> conceptos pendientes de repaso. Cada respuesta correcta asestará un golpe al Boss y purgará el fallo de tu historial.
+            <h3 class="boss-challenge-title" id="boss-challenge-title">¡EL TITÁN DE LAS INCONSISTENCIAS TE DESAFÍA!</h3>
+            <p class="boss-challenge-desc" id="boss-challenge-desc">
+              Tienes <strong class="boss-pending-count-highlight" id="boss-pending-count">0</strong> conceptos pendientes de repaso en este parcial. Cada respuesta correcta asestará un golpe al Boss y purgará el fallo de tu historial.
             </p>
-            <button class="btn-retro btn-red" id="start-boss-fight-btn" style="font-size: 12px; padding: 14px 28px;">
-              <span>⚔️ ENFRENTAR AL BOSS AHORA</span>
-            </button>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <button class="btn-retro btn-red" id="start-boss-fight-btn" style="font-size: 12px; padding: 14px 28px;">
+                <span id="start-boss-btn-text">⚔️ ENFRENTAR AL BOSS AHORA</span>
+              </button>
+            </div>
           </div>
 
-          <div id="boss-battle-stage" style="display: none;" class="boss-arena">
+          <div id="boss-battle-stage" style="display: none;" class="boss-arena boss-theme-1">
             <div class="boss-header">
-              <img src="assets/boss_battle.jpg" alt="Boss Titan Dragon" class="boss-banner-visual">
-              <div class="boss-name">TITÁN DE LAS INCONSISTENCIAS (B-TREE DRAGON)</div>
+              <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                <button type="button" class="btn-retro btn-cyan" id="boss-back-to-hub-btn" style="padding: 6px 12px; font-size: 8px;">
+                  <span>↩ SALIR DE LA ARENA</span>
+                </button>
+                <span class="boss-card-tag" id="boss-stage-badge">🐉 1ER PARCIAL</span>
+              </div>
+              <img id="boss-stage-banner" src="assets/boss_battle.jpg" alt="Boss Arena Banner" class="boss-banner-visual">
+              <div class="boss-name" id="boss-stage-name">TITÁN DE LAS INCONSISTENCIAS (B-TREE DRAGON)</div>
               <div class="boss-hp-container">
                 <div class="boss-hp-fill" id="boss-hp-fill"></div>
                 <div class="boss-hp-text" id="boss-hp-text">HP: 100%</div>
@@ -641,17 +723,17 @@
   </div>
 
   <!-- Application Logic Scripts -->
-  <script src="js/audio.js?v=3.5"></script>
-  <script src="js/questions-data.js?v=3.5"></script>
-  <script src="js/analytics.js?v=3.5"></script>
-  <script src="js/time-attack.js?v=3.5"></script>
-  <script src="js/boss-fight.js?v=3.5"></script>
-  <script src="js/sql-engine.js?v=3.5"></script>
-  <script src="js/spells-data.js?v=3.5"></script>
-  <script src="js/spells.js?v=3.5"></script>
-  <script src="js/der-engine.js?v=3.5"></script>
-  <script src="js/grimoire.js?v=3.5"></script>
-  <script src="js/michi-companion.js?v=3.5"></script>
-  <script src="js/app.js?v=3.5"></script>
+  <script src="js/audio.js?v=4.0"></script>
+  <script src="js/questions-data.js?v=4.0"></script>
+  <script src="js/analytics.js?v=4.0"></script>
+  <script src="js/time-attack.js?v=4.0"></script>
+  <script src="js/boss-fight.js?v=4.0"></script>
+  <script src="js/sql-engine.js?v=4.0"></script>
+  <script src="js/spells-data.js?v=4.0"></script>
+  <script src="js/spells.js?v=4.0"></script>
+  <script src="js/der-engine.js?v=4.0"></script>
+  <script src="js/grimoire.js?v=4.0"></script>
+  <script src="js/michi-companion.js?v=4.0"></script>
+  <script src="js/app.js?v=4.0"></script>
 </body>
 </html>

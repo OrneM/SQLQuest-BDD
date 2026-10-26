@@ -406,6 +406,265 @@ LIMIT 10 OFFSET 0;
       }
     ],
     takeaway: "💡 Clave de Examen: La PK no admite NULL y es única. La FK impone Integridad Referencial. El orden de filtrado es: WHERE (filas) -> GROUP BY -> HAVING (grupos) -> ORDER BY."
+  },
+  {
+    id: "clase6",
+    unit: "Unidad 6 - 2do Parcial",
+    badge: "Clase 06",
+    title: "Transacciones, ACID, Aislamiento & MVCC",
+    pdfFile: "BDD/Clase 6/BDD_Clase_6_Transacciones_1.pdf",
+    summary: "Propiedades ACID, planificación de transacciones, recuperación ante fallos, niveles de aislamiento estándar (Read Committed, Repeatable Read, Serializable) y arquitectura multiversión MVCC de PostgreSQL.",
+    slides: [],
+    sections: [
+      {
+        subtitle: "1. Propiedades ACID y Componentes del DBMS",
+        content: `Una transacción es una unidad lógica e indivisible de procesamiento que debe preservar cuatro propiedades esenciales:
+        <ul class="grimoire-bullets">
+          <li><strong>Atomicidad (All-or-Nothing):</strong> Se ejecutan todas las operaciones o no se aplica ninguna. Responsable: <em>Gestor de Recuperación (Recovery Manager)</em> mediante logs en disco (Write-Ahead Logging / WAL).</li>
+          <li><strong>Consistencia:</strong> La ejecución de la transacción lleva a la base de datos de un estado válido a otro estado válido, respetando todas las reglas e invariantes de integridad. Responsable: <em>El Usuario / Desarrollador</em> y el motor de constraints (PK, FK, CHECK).</li>
+          <li><strong>Aislamiento (Isolation):</strong> Los efectos intermedios de una transacción no son visibles para transacciones concurrentes. Responsable: <em>Gestor de Concurrencia (Scheduler / Planificador)</em> mediante mecanismos de bloqueo y MVCC.</li>
+          <li><strong>Durabilidad:</strong> Una vez confirmado el <code>COMMIT</code>, los cambios persisten en disco incluso ante fallos catastróficos del sistema operativo o hardware. Responsable: <em>Gestor de Recuperación (WAL Log)</em>.</li>
+        </ul>`
+      },
+      {
+        subtitle: "2. Niveles de Aislamiento SQL-92 y Fenómenos Anómalos",
+        content: `El estándar SQL define cuatro niveles de aislamiento para balancear rendimiento y protección contra anomalías de concurrencia:
+        <table class="grimoire-summary-table">
+          <thead>
+            <tr>
+              <th>Nivel de Aislamiento</th>
+              <th>Lectura Sucia (Dirty Read)</th>
+              <th>Lectura No Repetible</th>
+              <th>Lectura Fantasma (Phantom)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Read Uncommitted</strong></td>
+              <td>Posible</td>
+              <td>Posible</td>
+              <td>Posible</td>
+            </tr>
+            <tr>
+              <td><strong>Read Committed</strong> (Default en Postgres)</td>
+              <td>✔ Evitada</td>
+              <td>Posible</td>
+              <td>Posible</td>
+            </tr>
+            <tr>
+              <td><strong>Repeatable Read</strong></td>
+              <td>✔ Evitada</td>
+              <td>✔ Evitada</td>
+              <td>✔ Evitada en Postgres (MVCC)</td>
+            </tr>
+            <tr>
+              <td><strong>Serializable</strong></td>
+              <td>✔ Evitada</td>
+              <td>✔ Evitada</td>
+              <td>✔ Evitada (SSI estricto)</td>
+            </tr>
+          </tbody>
+        </table>
+        <ul class="grimoire-bullets" style="margin-top: 12px;">
+          <li><strong>Lectura Sucia:</strong> Una transacción lee datos modificados por otra transacción que todavía no hizo COMMIT y que luego hace ROLLBACK.</li>
+          <li><strong>Lectura No Repetible:</strong> Una transacción lee una misma fila dos veces y obtiene valores diferentes porque otra transacción modificó y confirmó dicha fila en el medio.</li>
+          <li><strong>Lectura Fantasma:</strong> Una transacción reejecuta una consulta con un rango (ej. <code>WHERE salario > 5000</code>) y descubre nuevas filas insertadas y confirmadas por otra transacción.</li>
+        </ul>`
+      },
+      {
+        subtitle: "3. El Motor MVCC (Multi-Version Concurrency Control)",
+        content: `PostgreSQL implementa <strong>MVCC</strong> en lugar de bloqueos de lectura puros:
+        <ul class="grimoire-bullets">
+          <li><strong>Regla de oro:</strong> <em>Los lectores nunca bloquean a los escritores, y los escritores nunca bloquean a los lectores.</em></li>
+          <li>Cada tupla en disco almacena metadatos ocultos: <code>xmin</code> (ID de transacción que insertó la fila) y <code>xmax</code> (ID de transacción que borró o actualizó la fila).</li>
+          <li>Cuando se ejecuta un <code>UPDATE</code>, PostgreSQL no sobreescribe la fila: inserta una nueva versión con nuevo <code>xmin</code> y marca la versión anterior con <code>xmax</code>.</li>
+          <li>Las tuplas viejas quedan como 'muertas' (dead tuples) hasta que el proceso <code>VACUUM</code> las recolecta y libera el espacio.</li>
+        </ul>`
+      },
+      {
+        subtitle: "4. Comandos de Control de Transacciones",
+        content: `
+        <div class="code-blank-block" style="font-size: 13px; line-height: 1.8;">
+BEGIN; -- Inicia la transacción (o START TRANSACTION)<br>
+UPDATE cuentas SET saldo = saldo - 500 WHERE id = 1;<br>
+SAVEPOINT paso_intermedio; -- Punto de control parcial<br>
+UPDATE cuentas SET saldo = saldo + 500 WHERE id = 2;<br>
+-- Si falla algo acá:<br>
+-- ROLLBACK TO SAVEPOINT paso_intermedio;<br>
+COMMIT; -- Aplica todos los cambios de forma duradera
+        </div>`
+      }
+    ],
+    takeaway: "💡 Clave de 2do Parcial: Atomicidad y Durabilidad las garantiza el Gestor de Recuperación (WAL). En PostgreSQL, el nivel por defecto es Read Committed y con MVCC (xmin/xmax) los lectores y escritores no se bloquean."
+  },
+  {
+    id: "clase7",
+    unit: "Unidad 7 - 2do Parcial",
+    badge: "Clase 07",
+    title: "Normalización de Bases de Datos (1FN a 5FN & BCNF)",
+    pdfFile: "BDD/Clase 7/BDD_Clase_7_Normalizacion_1.pdf",
+    summary: "Eliminación de redundancias y anomalías de actualización mediante la aplicación progresiva de Formas Normales: 1FN (atomicidad), 2FN (dependencias parciales), 3FN (dependencias transitivas), BCNF, 4FN (multivaluadas) y 5FN (proyección/unión).",
+    slides: [],
+    sections: [
+      {
+        subtitle: "1. ¿Por qué normalizar? Las Tres Anomalías Clásicas",
+        content: `Una base de datos no normalizada sufre de redundancia extrema y tres anomalías destructivas:
+        <ul class="grimoire-bullets">
+          <li><strong>Anomalía de Inserción:</strong> No se puede registrar información de una entidad independiente sin inventar o requerir obligatoriamente datos de otra (ej. no poder registrar un nuevo curso si aún no tiene alumnos inscriptos cuando el legajo es parte de la PK).</li>
+          <li><strong>Anomalía de Modificación (Actualización):</strong> Al cambiar un dato repetido (ej. el nombre de un departamento), hay que actualizar cientos de filas; si alguna queda sin cambiar, la base queda en estado inconsistente.</li>
+          <li><strong>Anomalía de Eliminación:</strong> Al dar de baja un registro (ej. el último alumno de una materia), se pierde involuntariamente toda la información de la materia en sí.</li>
+        </ul>`
+      },
+      {
+        subtitle: "2. Las Formas Normales Paso a Paso",
+        content: `
+        <ul class="grimoire-bullets">
+          <li><strong>1FN (Primera Forma Normal):</strong> Todos los atributos deben contener valores <em>atómicos</em> (indivisibles; nada de listas, arrays o campos multivalor separados por comas) y la tabla debe poseer una Clave Primaria definida sin filas repetidas.</li>
+          <li><strong>2FN (Segunda Forma Normal):</strong> Cumple 1FN y <em>ningún atributo no clave depende parcialmente de una clave primaria compuesta</em>. Toda columna no clave debe depender de la totalidad de la PK. (Si la PK es simple de un solo campo, automáticamente está en 2FN si ya está en 1FN).</li>
+          <li><strong>3FN (Tercera Forma Normal):</strong> Cumple 2FN y <em>no existen dependencias funcionales transitivas</em> entre atributos no clave (es decir, X -> Y -> Z, donde Z depende de Y y no directamente de la PK). <em>'La clave, toda la clave y nada más que la clave'</em>.</li>
+          <li><strong>BCNF (Forma Normal de Boyce-Codd):</strong> Versión estricta de 3FN. Requiere que para <em>toda</em> dependencia funcional no trivial X -> Y, el determinante X sea obligatoriamente una <strong>superclave</strong>. Resuelve casos donde existen múltiples claves candidatas compuestas superpuestas.</li>
+          <li><strong>4FN (Cuarta Forma Normal):</strong> Cumple BCNF y <em>no contiene dependencias multivaluadas independientes (MVD)</em>. Si una entidad tiene dos atributos multivaluados independientes entre sí (ej. un empleado con múltiples teléfonos y múltiples idiomas), deben separarse en tablas independientes para evitar productos cartesianos de repetición.</li>
+          <li><strong>5FN (Quinta Forma Normal / PJNF):</strong> Proyección y Unión (Project-Join). Aplica a relaciones ternarias o cíclicas que no pueden descomponerse en 2 tablas sin pérdida de información, pero sí en 3 o más proyecciones cuya unión natural reconstruye la tabla original.</li>
+          <li><strong>DKNF / 6FN (Dominio/Clave):</strong> Ideal conceptual donde toda restricción es consecuencia lógica de claves y dominios.</li>
+        </ul>`
+      },
+      {
+        subtitle: "3. Principio de Descomposición Sin Pérdida (Lossless Join)",
+        content: `Al normalizar descomponiendo una tabla R en R1 y R2, la descomposición es <strong>sin pérdida</strong> si y solo si la intersección de sus atributos contiene una superclave de al menos una de las tablas hijas:
+        <div class="code-blank-block" style="font-size: 13px; line-height: 1.6;">
+(R1 ∩ R2) → R1 &nbsp;&nbsp;o&nbsp;&nbsp; (R1 ∩ R2) → R2
+        </div>`
+      }
+    ],
+    takeaway: "💡 Clave de 2do Parcial: 2FN quita dependencias parciales (aplica solo con PK compuesta). 3FN quita dependencias transitivas entre no claves. BCNF exige que TODO determinante sea superclave. 4FN elimina dependencias multivaluadas y 5FN dependencias de combinación cíclica."
+  },
+  {
+    id: "clase9",
+    unit: "Unidad 9 - 2do Parcial",
+    badge: "Clase 09",
+    title: "Programación en el Motor: Funciones & Triggers (PL/pgSQL)",
+    pdfFile: "BDD/Clase 9/BDD_Clase_9_Triggers_1.pdf",
+    summary: "Lógica procedimental en el servidor con PL/pgSQL: definición de funciones, bloques DECLARE-BEGIN-END, variables %TYPE, parámetros IN/OUT, y triggers BEFORE/AFTER a nivel de fila y sentencia con variables OLD y NEW.",
+    slides: [],
+    sections: [
+      {
+        subtitle: "1. Arquitectura de Funciones en PL/pgSQL",
+        content: `PL/pgSQL añade estructuras de control (IF, LOOP, variables) al lenguaje SQL:
+        <div class="code-blank-block" style="font-size: 12.5px; line-height: 1.7;">
+CREATE OR REPLACE FUNCTION fn_calcular_descuento(p_cliente_id INT, OUT p_total NUMERIC)<br>
+RETURNS NUMERIC AS $$<br>
+DECLARE<br>
+&nbsp;&nbsp;v_saldo clientes.saldo%TYPE; -- Hereda el tipo exacto de la columna<br>
+BEGIN<br>
+&nbsp;&nbsp;SELECT saldo INTO v_saldo FROM clientes WHERE id = p_cliente_id;<br>
+&nbsp;&nbsp;IF v_saldo > 10000 THEN<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p_total := v_saldo * 0.90;<br>
+&nbsp;&nbsp;ELSE<br>
+&nbsp;&nbsp;&nbsp;&nbsp;p_total := v_saldo;<br>
+&nbsp;&nbsp;END IF;<br>
+END;<br>
+$$ LANGUAGE plpgsql;
+        </div>`
+      },
+      {
+        subtitle: "2. Disparadores (Triggers): Momentos y Alcances",
+        content: `Un trigger se dispara automáticamente en respuesta a un evento DML (<code>INSERT</code>, <code>UPDATE</code>, <code>DELETE</code>, <code>TRUNCATE</code>):
+        <ul class="grimoire-bullets">
+          <li><strong>BEFORE (Antes):</strong> Se ejecuta antes de que la operación toque el disco. Es el momento ideal para <em>validar datos, sanitizar valores o modificar la tupla <code>NEW</code></em>. Si un trigger <code>BEFORE FOR EACH ROW</code> retorna <code>NULL</code>, la inserción/actualización de esa fila se cancela silenciosamente.</li>
+          <li><strong>AFTER (Después):</strong> Se ejecuta luego de escribir la modificación en disco. Es ideal para <em>auditoría, logs o sincronización con otras tablas dependientes</em>. Su valor de retorno es ignorado.</li>
+          <li><strong>FOR EACH ROW:</strong> Se ejecuta una vez por cada fila afectada por la consulta. Dispone de las variables de registro <code>OLD</code> y <code>NEW</code>.</li>
+          <li><strong>FOR EACH STATEMENT:</strong> Se ejecuta una única vez por instrucción SQL completa (por defecto), sin importar si modificó 0, 1 o 10.000 filas. <em>NO tiene acceso a OLD ni NEW fila por fila</em>.</li>
+        </ul>`
+      },
+      {
+        subtitle: "3. La Tabla Maestra de Variables Especiales en Triggers",
+        content: `
+        <table class="grimoire-summary-table">
+          <thead>
+            <tr>
+              <th>Evento DML</th>
+              <th>Variable <code>OLD</code></th>
+              <th>Variable <code>NEW</code></th>
+              <th>Acción en BEFORE ROW para abortar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>INSERT</strong></td>
+              <td><code>NULL</code> (no existía fila previa)</td>
+              <td>Valores a insertar</td>
+              <td><code>RETURN NULL;</code> cancela la fila</td>
+            </tr>
+            <tr>
+              <td><strong>UPDATE</strong></td>
+              <td>Valores antes del cambio</td>
+              <td>Valores nuevos a guardar</td>
+              <td><code>RETURN NULL;</code> cancela el cambio</td>
+            </tr>
+            <tr>
+              <td><strong>DELETE</strong></td>
+              <td>Valores de la fila a borrar</td>
+              <td><code>NULL</code> (no habrá nueva fila)</td>
+              <td><code>RETURN NULL;</code> impide el borrado</td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top: 12px; font-size: 13.5px; color: #cbd5e1;">
+          <strong>Excepciones y Rollback:</strong> Si deseas abortar <em>toda la transacción</em> con un mensaje de error y provocar un ROLLBACK total, utiliza <code>RAISE EXCEPTION 'Mensaje de error';</code>.
+        </p>`
+      }
+    ],
+    takeaway: "💡 Clave de 2do Parcial: En INSERT solo hay NEW; en DELETE solo hay OLD; en UPDATE están ambos. BEFORE ROW puede alterar NEW o retornar NULL para abortar la fila. RAISE EXCEPTION aborta la transacción entera. FOR EACH STATEMENT se ejecuta una sola vez por query."
+  },
+  {
+    id: "clase10",
+    unit: "Unidad 10 - 2do Parcial",
+    badge: "Clase 10",
+    title: "Optimización de Consultas, Índices & Planes de Ejecución",
+    pdfFile: "BDD/Clase 10/BDD_Clase_10_Optimizacion_Consultas_Indices.pdf",
+    summary: "Arquitectura interna de índices en PostgreSQL (B-Tree, Hash, GiST, GIN), el Optimizador Basado en Costos (CBO), comandos EXPLAIN y EXPLAIN ANALYZE, métodos de escaneo y algoritmos de Join.",
+    slides: [],
+    sections: [
+      {
+        subtitle: "1. Tipos de Índices en PostgreSQL",
+        content: `Un índice es una estructura auxiliar en disco que acelera la búsqueda a costa de mayor uso de espacio y sobrecarga en operaciones de escritura (INSERT/UPDATE/DELETE):
+        <ul class="grimoire-bullets">
+          <li><strong>B-Tree (Por Defecto):</strong> Árbol balanceado autobalanceable. Ideal para operadores de igualdad y orden de rango: <code>&lt;</code>, <code>&lt;=</code>, <code>=</code>, <code>&gt;=</code>, <code>&gt;</code>, <code>BETWEEN</code>, y ordenamiento con <code>ORDER BY</code>.</li>
+          <li><strong>Hash:</strong> Basado en tablas hash en memoria/disco. Solo optimiza comparaciones de igualdad estricta (<code>=</code>). No sirve para búsquedas de rango ni ordenamientos.</li>
+          <li><strong>GiST (Generalized Search Tree):</strong> Estructuras en árbol para tipos de datos complejos: datos geoespaciales (PostGIS), rangos y búsqueda de texto libre.</li>
+          <li><strong>GIN (Generalized Inverted Index):</strong> Índice invertido. Diseñado para columnas que contienen múltiples valores por fila, como documentos <code>JSONB</code>, arrays y full-text search (tsvector).</li>
+          <li><strong>Índices Parciales:</strong> Creados con cláusula <code>WHERE</code> (ej. <code>CREATE INDEX idx_pedidos_pendientes ON pedidos(fecha) WHERE estado = 'PENDIENTE';</code>). Ahorran memoria al indexar solo filas de alta consulta.</li>
+        </ul>`
+      },
+      {
+        subtitle: "2. EXPLAIN vs EXPLAIN ANALYZE",
+        content: `
+        <ul class="grimoire-bullets">
+          <li><strong><code>EXPLAIN &lt;query&gt;;</code>:</strong> Muestra el plan de ejecución <strong>teórico</strong> calculado por el Optimizador Basado en Costos (CBO). <em>NO ejecuta la consulta en la base de datos</em>. Muestra <code>cost=inicio..total rows=N width=M</code>.</li>
+          <li><strong><code>EXPLAIN ANALYZE &lt;query&gt;;</code>:</strong> <strong>EJECUTA</strong> la consulta en tiempo real midiendo el tiempo de CPU/reloj exacto (<code>actual time=inicio..total rows=N loops=L</code>) y uso real de buffers de memoria.</li>
+        </ul>`
+      },
+      {
+        subtitle: "3. Métodos de Escaneo de Tablas (Scan Methods)",
+        content: `
+        <ul class="grimoire-bullets">
+          <li><strong>Seq Scan (Sequential Scan):</strong> Lee secuencialmente todas las páginas de disco de la tabla. Es el método más eficiente cuando la consulta recupera un porcentaje alto de la tabla (>20-30%) o cuando la tabla es muy pequeña.</li>
+          <li><strong>Index Scan:</strong> Recorre el índice para encontrar los punteros de tuplas (TID) y accede al disco fila por fila. Rápido para consultas muy selectivas (pocos registros).</li>
+          <li><strong>Bitmap Index Scan + Bitmap Heap Scan:</strong> Recorre el índice y construye en memoria un mapa de bits indicando qué páginas de disco contienen tuplas válidas. Luego lee las páginas físicas en orden secuencial evitando accesos aleatorios al disco.</li>
+        </ul>`
+      },
+      {
+        subtitle: "4. Algoritmos de Join y Mantenimiento",
+        content: `
+        <ul class="grimoire-bullets">
+          <li><strong>Nested Loop:</strong> Por cada fila de la tabla externa, escanea la tabla interna (ideal si la interna tiene índice y la externa pocas filas).</li>
+          <li><strong>Hash Join:</strong> Carga la tabla más pequeña en una tabla hash en memoria y escanea la tabla grande una sola vez comparando hashes.</li>
+          <li><strong>Merge Join:</strong> Requiere que ambas tablas estén ordenadas por la clave del join y las combina en una pasada lineal.</li>
+          <li><strong>Mantenimiento:</strong> <code>ANALYZE</code> actualiza las estadísticas de distribución de datos (almacenadas en <code>pg_statistic</code>). <code>VACUUM</code> recupera el espacio ocupado por tuplas muertas producto del MVCC.</li>
+        </ul>`
+      }
+    ],
+    takeaway: "💡 Clave de 2do Parcial: EXPLAIN solo calcula costos estimados; EXPLAIN ANALYZE ejecuta la consulta midiendo tiempos reales. B-Tree es el índice predeterminado. Un índice con WHERE es un Índice Parcial. GIN es para JSONB/arrays. ANALYZE renueva estadísticas y VACUUM limpia tuplas de MVCC."
   }
 ];
 

@@ -3,8 +3,9 @@
 class TimeAttackExam {
   constructor() {
     this.currentMode = 'apprentice'; // 'apprentice' | 'warrior' | 'dungeon'
-    this.selectedDungeonClass = 5; // 1 | 2 | 3 | 4 | 5
+    this.selectedDungeonClass = 6; // 1 to 10
     this.selectedQuestionCount = 20; // 10 | 20 | 30
+    this.selectedParcialScope = '1'; // '1' | '2' | 'all'
     this.totalDuration = 30 * 60; // default 30 min for 20 questions
     this.remainingSeconds = this.totalDuration;
     this.elapsedSeconds = 0;
@@ -27,6 +28,7 @@ class TimeAttackExam {
     this.initElements();
     this.bindEvents();
     this.updateLengthSelectorUI();
+    this.updateScopeSelectorUI();
     this.updateHUD();
   }
 
@@ -52,6 +54,19 @@ class TimeAttackExam {
         btn.classList.add('active');
         window.retroAudio.playBlip(600, 0.04);
         this.updateLengthSelectorUI();
+      });
+    });
+
+    // Scope choice buttons (1er Parcial, 2do Parcial, Integral)
+    const scopeBtns = document.querySelectorAll('.scope-choice-btn');
+    scopeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const scope = btn.getAttribute('data-scope') || '1';
+        this.selectedParcialScope = scope;
+        scopeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        window.retroAudio.playBlip(620, 0.04);
+        this.updateScopeSelectorUI();
       });
     });
 
@@ -202,6 +217,19 @@ class TimeAttackExam {
     }
   }
 
+  updateScopeSelectorUI() {
+    const hintEl = document.getElementById('exam-scope-hint-text');
+    if (!hintEl) return;
+
+    if (this.selectedParcialScope === '1') {
+      hintEl.textContent = '🐉 1er Parcial (Clases 1 a 5: Modelo E-R, DQL/DML, JOINs & Subqueries)';
+    } else if (this.selectedParcialScope === '2') {
+      hintEl.textContent = '⚡ 2do Parcial (Clases 6, 7, 9, 10: ACID, MVCC, Formas Normales, Triggers & EXPLAIN)';
+    } else {
+      hintEl.textContent = '🏆 Todo el Programa (Integral: Clases 1 a 10 con Autoevaluaciones)';
+    }
+  }
+
   // Algoritmo Fisher-Yates para barajado 100% aleatorio e impredecible
   shuffle(array) {
     const arr = [...array];
@@ -224,14 +252,20 @@ class TimeAttackExam {
     return q;
   }
 
-  startNewExam(mode = 'apprentice', dungeonClass = 5) {
+  startNewExam(mode = 'apprentice', dungeonClass = 6) {
     this.currentMode = mode;
-    this.dungeonClass = dungeonClass || this.selectedDungeonClass || 5;
+    this.dungeonClass = dungeonClass || this.selectedDungeonClass || 6;
     
-    // 1. Filtrar pozo según modo
+    // 1. Filtrar pozo según modo y alcance de temario
     let basePool = [...window.QUESTIONS_DATABASE];
     if (this.currentMode === 'dungeon') {
       basePool = basePool.filter(q => q.classNum === this.dungeonClass);
+    } else {
+      if (this.selectedParcialScope === '1') {
+        basePool = basePool.filter(q => q.classNum <= 5);
+      } else if (this.selectedParcialScope === '2') {
+        basePool = basePool.filter(q => [6, 7, 9, 10].includes(q.classNum));
+      }
     }
 
     // 2. Clasificación jerárquica por capas:
