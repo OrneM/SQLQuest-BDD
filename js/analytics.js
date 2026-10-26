@@ -195,6 +195,94 @@ class AnalyticsManager {
     };
   }
 
+  getClassMasteryData() {
+    const classDefs = [
+      // 1er Parcial
+      { classNum: 1, name: 'Clase 1: Arquitectura, SGBD & ANSI/SPARC', parcial: '1', defaultPct: 92, gradient: 'linear-gradient(90deg, #10b981, #34d399)' },
+      { classNum: 2, name: 'Clase 2: Consultas SQL, WHERE & DQL', parcial: '1', defaultPct: 88, gradient: 'linear-gradient(90deg, #06b6d4, #38bdf8)' },
+      { classNum: 3, name: 'Clase 3: Modelos, JOINs & Agregaciones', parcial: '1', defaultPct: 84, gradient: 'linear-gradient(90deg, #3b82f6, #818cf8)' },
+      { classNum: 4, name: 'Clase 4: DML, Subqueries & B-Tree', parcial: '1', defaultPct: 78, gradient: 'linear-gradient(90deg, #f59e0b, #fbbf24)' },
+      { classNum: 5, name: 'Clase 5: Modelo Relacional, PK/FK & DER', parcial: '1', defaultPct: 86, gradient: 'linear-gradient(90deg, #8b5cf6, #c084fc)' },
+      // 2do Parcial
+      { classNum: 6, name: 'Clase 6: Transacciones, ACID & MVCC', parcial: '2', defaultPct: 85, gradient: 'linear-gradient(90deg, #00f3ff, #38bdf8)' },
+      { classNum: 7, name: 'Clase 7: Normalización (1FN-5FN & BCNF)', parcial: '2', defaultPct: 82, gradient: 'linear-gradient(90deg, #a855f7, #ec4899)' },
+      { classNum: 9, name: 'Clase 9: Funciones & Triggers PL/pgSQL', parcial: '2', defaultPct: 80, gradient: 'linear-gradient(90deg, #f43f5e, #fb7185)' },
+      { classNum: 10, name: 'Clase 10: Índices (GiST/GIN) & EXPLAIN', parcial: '2', defaultPct: 88, gradient: 'linear-gradient(90deg, #14b8a6, #2dd4bf)' }
+    ];
+
+    let failedIds = [];
+    try {
+      const stored = localStorage.getItem('retro_bdd_failed_ids');
+      if (stored) failedIds = JSON.parse(stored);
+    } catch (e) {}
+
+    const db = window.QUESTIONS_DATABASE || [];
+    const qMap = new Map();
+    db.forEach(q => qMap.set(String(q.id), q));
+
+    return classDefs.map(c => {
+      const totalInDb = db.filter(q => q.classNum === c.classNum).length;
+      const failedInClass = failedIds.filter(id => qMap.get(String(id))?.classNum === c.classNum).length;
+      
+      let pct = c.defaultPct;
+      if (totalInDb > 0 && failedInClass > 0) {
+        const penalty = Math.min(55, Math.round((failedInClass / totalInDb) * 100));
+        pct = Math.max(25, c.defaultPct - penalty);
+      } else if (failedInClass === 0 && failedIds.length > 0) {
+        pct = Math.min(100, c.defaultPct + 4);
+      }
+
+      return {
+        ...c,
+        totalInDb,
+        failedInClass,
+        pct
+      };
+    });
+  }
+
+  renderMasteryItemsHTML(filter = 'all') {
+    const data = this.getClassMasteryData();
+    let html = '';
+
+    const p1Classes = data.filter(c => c.parcial === '1');
+    const p2Classes = data.filter(c => c.parcial === '2');
+
+    const renderItem = (c) => `
+      <div class="mastery-item" data-parcial="${c.parcial}">
+        <div class="mastery-header">
+          <div class="mastery-name">
+            <span class="mastery-class-badge p${c.parcial}">${c.parcial === '1' ? '1P' : '2P'}</span>
+            <span>${c.name}</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            ${c.failedInClass > 0 ? `<span style="font-family: var(--font-pixel); font-size: 7px; color: #f87171; background: rgba(239,68,68,0.15); padding: 2px 5px; border: 1px solid #ef4444;">${c.failedInClass} PENDIENTES</span>` : ''}
+            <span class="mastery-pct">${c.pct}%</span>
+          </div>
+        </div>
+        <div class="mastery-bar-track">
+          <div class="mastery-bar-fill" style="width: ${c.pct}%; background: ${c.gradient};"></div>
+        </div>
+      </div>
+    `;
+
+    if (filter === 'all' || filter === '1') {
+      if (filter === 'all') {
+        html += `<div class="mastery-group-title parcial-1"><span>🐉 1ER PARCIAL (CLASES 1 A 5)</span><span>5 Clases</span></div>`;
+      }
+      p1Classes.forEach(c => { html += renderItem(c); });
+    }
+
+    if (filter === 'all' || filter === '2') {
+      if (filter === 'all') {
+        html += `<div class="mastery-group-title parcial-2" style="margin-top: 14px;"><span>⚡ 2DO PARCIAL (CLASES 6, 7, 9 Y 10)</span><span>4 Clases</span></div>`;
+      }
+      p2Classes.forEach(c => { html += renderItem(c); });
+    }
+
+    return html;
+  }
+
   refreshUI() {
     this.renderDashboard('analytics-dashboard-container', 'evolution-line-chart');
     this.renderDashboard('analytics-dashboard-container-home', 'evolution-line-chart-home');
@@ -336,58 +424,18 @@ class AnalyticsManager {
           <div class="analytics-panel-box">
             <div class="panel-title-bar">
               <h3 class="panel-title">📚 Dominio por Clase</h3>
-              <span style="font-size: 12px; color: var(--neon-yellow);">5 Unidades</span>
+              <span style="font-size: 11px; color: var(--neon-yellow); font-family: var(--font-pixel);">9 CLASES REGISTRADAS</span>
             </div>
-            <div class="mastery-bars-list">
-              <div class="mastery-item">
-                <div class="mastery-header">
-                  <span class="mastery-name">Clase 1: Arquitectura & ANSI/SPARC</span>
-                  <span class="mastery-pct">92%</span>
-                </div>
-                <div class="mastery-bar-track">
-                  <div class="mastery-bar-fill" style="width: 92%; background: linear-gradient(90deg, #10b981, #34d399);"></div>
-                </div>
-              </div>
 
-              <div class="mastery-item">
-                <div class="mastery-header">
-                  <span class="mastery-name">Clase 2: Consultas SQL & DQL</span>
-                  <span class="mastery-pct">88%</span>
-                </div>
-                <div class="mastery-bar-track">
-                  <div class="mastery-bar-fill" style="width: 88%; background: linear-gradient(90deg, #06b6d4, #38bdf8);"></div>
-                </div>
-              </div>
+            <!-- Filter Tabs -->
+            <div class="mastery-filter-tabs">
+              <button type="button" class="mastery-filter-btn active" data-filter="all">TODAS (9)</button>
+              <button type="button" class="mastery-filter-btn" data-filter="1">🐉 1ER PARCIAL (5)</button>
+              <button type="button" class="mastery-filter-btn" data-filter="2">⚡ 2DO PARCIAL (4)</button>
+            </div>
 
-              <div class="mastery-item">
-                <div class="mastery-header">
-                  <span class="mastery-name">Clase 3: Modelos, DER & JOINs</span>
-                  <span class="mastery-pct">84%</span>
-                </div>
-                <div class="mastery-bar-track">
-                  <div class="mastery-bar-fill" style="width: 84%; background: linear-gradient(90deg, #3b82f6, #818cf8);"></div>
-                </div>
-              </div>
-
-              <div class="mastery-item">
-                <div class="mastery-header">
-                  <span class="mastery-name">Clase 4: DML, Índices & Subqueries</span>
-                  <span class="mastery-pct">78%</span>
-                </div>
-                <div class="mastery-bar-track">
-                  <div class="mastery-bar-fill" style="width: 78%; background: linear-gradient(90deg, #f59e0b, #fbbf24);"></div>
-                </div>
-              </div>
-
-              <div class="mastery-item">
-                <div class="mastery-header">
-                  <span class="mastery-name">Clase 5: Relacional, FK & Normalización</span>
-                  <span class="mastery-pct">86%</span>
-                </div>
-                <div class="mastery-bar-track">
-                  <div class="mastery-bar-fill" style="width: 86%; background: linear-gradient(90deg, #8b5cf6, #c084fc);"></div>
-                </div>
-              </div>
+            <div class="mastery-bars-list" id="mastery-list-${containerId}">
+              ${this.renderMasteryItemsHTML('all')}
             </div>
           </div>
         </div>
@@ -426,6 +474,21 @@ class AnalyticsManager {
     const clearBtns = container.querySelectorAll('.clear-history-btn');
     clearBtns.forEach(btn => {
       btn.addEventListener('click', () => this.clearHistory());
+    });
+
+    // Bind Mastery Filter Tabs
+    const filterBtns = container.querySelectorAll('.mastery-filter-btn');
+    const masteryList = container.querySelector(`#mastery-list-${containerId}`);
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.getAttribute('data-filter') || 'all';
+        if (masteryList) {
+          masteryList.innerHTML = this.renderMasteryItemsHTML(filter);
+        }
+        if (window.retroAudio) window.retroAudio.playBlip(650, 0.03);
+      });
     });
 
     // Draw Chart
