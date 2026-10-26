@@ -4103,10 +4103,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el Control de Concurrencia de Múltiples Versiones (MVCC) es un esquema donde cada operación de escritura crea una nueva versión del dato?",
     "type": "single_choice",
     "options": [
-      "Falso: Su objetivo principal es asegurar la consistencia y el aislamiento ante accesos simultáneos a los datos.",
-      "Verdadero: El control de concurrencia está diseñado exclusivamente para evitar que ocurran fallos físicos de hardware.",
-      "Falso: La concurrencia solo es necesaria cuando el motor ejecuta transacciones bancarias en horario nocturno por lotes.",
-      "Verdadero: Garantiza que ninguna transacción pueda ejecutarse si existe otra conexión activa en el servidor relacional."
+      "Verdadero: Cada modificación o escritura genera una nueva versión de la tupla con marcas de transacción, permitiendo lecturas concurrentes sin bloqueos.",
+      "Falso: Los motores con MVCC siempre sobrescriben físicamente el mismo bloque de datos y resguardan las lecturas en tablas temporales en disco.",
+      "Falso: La creación de nuevas versiones físicas solo ocurre si la base de datos se configura explícitamente en modo de recuperación ante desastres.",
+      "Verdadero: Aunque este mecanismo solo se activa de forma obligatoria cuando se ejecutan sentencias DDL de modificación de estructura de tablas."
     ],
     "correctAnswer": 0,
     "hint": "Multi-Version Concurrency Control: escribir genera versiones en vez de bloquear lecturas.",
@@ -4139,10 +4139,10 @@ const QUESTIONS_DATABASE = [
     "question": "Si un proceso de reporte mensual (`Transacción A`) lee un cliente y, mientras tanto, otra transacción (`Transacción B`) actualiza el descuento de ese cliente y hace COMMIT, haciendo que al releer el registro el valor sea distinto, ¿qué anomalía ocurrió?",
     "type": "single_choice",
     "options": [
-      "Falso: Gracias a MVCC, las lecturas no bloquean escrituras y las escrituras no bloquean lecturas en PostgreSQL.",
-      "Verdadero: Toda transacción de lectura adquiere bloqueos exclusivos de tabla que impiden cualquier escritura.",
-      "Falso: Pero únicamente si la transacción de reporte se ejecuta con el rol de superusuario administrador.",
-      "Verdadero: Porque el estándar ANSI SQL prohíbe modificaciones concurrentes durante la generación de reportes."
+      "Lectura No Repetible (Non-repeatable Read): T1 lee un mismo registro dos veces y obtiene datos distintos porque T2 modificó y confirmó el valor entremedio.",
+      "Lectura Sucia (Dirty Read): T1 lee un dato temporal modificado por T2 que posteriormente es cancelado mediante una operación de ROLLBACK en el motor.",
+      "Lectura Fantasma (Phantom Read): T1 reejecuta una consulta de rango y encuentra nuevas tuplas completas insertadas y confirmadas por T2 en la tabla.",
+      "Actualización Perdida (Lost Update): Dos transacciones leen el mismo dato y la segunda sobrescribe los cambios de la primera sin considerar su valor."
     ],
     "correctAnswer": 0,
     "hint": "El mismo registro puntual cambió su valor entre dos lecturas de la misma transacción.",
@@ -4175,10 +4175,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el nivel de aislamiento `Repeatable Read` en PostgreSQL es más fuerte que el estándar ANSI SQL, ya que evita también las lecturas fantasma?",
     "type": "single_choice",
     "options": [
-      "Falso: En PostgreSQL, el nivel Repeatable Read implementa MVCC estricto y previene lecturas sucias, no repetibles y fantasmas.",
-      "Verdadero: El estándar SQL 92 define que Repeatable Read tolera siempre la aparición de registros fantasma en el resultado.",
-      "Falso: Las lecturas fantasma solo pueden manifestarse cuando las consultas se ejecutan sobre índices espaciales de tipo GiST.",
-      "Verdadero: Porque para eliminar lecturas fantasma se requiere obligatoriamente reiniciar la conexión cliente al servidor."
+      "Verdadero: En PostgreSQL 'Repeatable Read' previene lecturas fantasma mediante snapshots de MVCC, superando el mínimo requerido por la norma ANSI SQL.",
+      "Falso: El estándar ANSI SQL prohíbe taxativamente que cualquier motor relacional prevenga lecturas fantasma antes del nivel Serializable.",
+      "Falso: En PostgreSQL las lecturas fantasma solo pueden prevenirse ejecutando bloqueos manuales de tabla completa con LOCK TABLE en modo exclusivo.",
+      "Verdadero: Aunque dicha protección solo se aplica si la transacción no realiza ninguna operación de lectura sobre tablas con claves foráneas."
     ],
     "correctAnswer": 0,
     "hint": "En el estándar ANSI Repeatable Read puede permitir Phantom Reads, pero PostgreSQL MVCC las previene.",
@@ -4420,10 +4420,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿En qué consiste la anomalía de concurrencia conocida como 'Actualización Perdida' (Lost Update)?",
     "type": "single_choice",
     "options": [
-      "Una transacción lee datos no confirmados por otra transacción concurrente; si la segunda hace ROLLBACK, los datos leídos habrán sido ficticios.",
-      "Una transacción reejecuta una consulta agregada y obtiene un valor de suma distinto porque otra transacción confirmó pagos en el intervalo.",
-      "Dos conexiones cliente intentan insertar la misma clave primaria en una tabla y el motor interrumpe una de ellas arrojando un error de unicidad.",
-      "El optimizador de consultas selecciona un escaneo secuencial en lugar de un índice B-Tree debido a estadísticas desactualizadas en el catálogo."
+      "Dos transacciones leen el mismo registro simultáneamente y la última en confirmar sobrescribe los cambios de la primera, anulando su modificación.",
+      "Una transacción lee datos modificados por otra transacción concurrente que todavía no ha confirmado y luego realiza un ROLLBACK de sus operaciones.",
+      "Una transacción reejecuta una consulta sobre un rango de filas y descubre nuevos registros insertados por otra sesión que ya hizo COMMIT en el sistema.",
+      "El motor de base de datos interrumpe una transacción activa por superar el tiempo máximo de espera de bloqueos compartidos en memoria volátil."
     ],
     "correctAnswer": 0,
     "hint": "Sobrescritura ciega donde el cambio de la primera transacción queda pisado y olvidado.",
@@ -4454,10 +4454,10 @@ const QUESTIONS_DATABASE = [
     "question": "En los esquemas de concurrencia multiversión, ¿cuál es una desventaja notable de la ordenación por marcas temporales frente al bloqueo de dos fases?",
     "type": "single_choice",
     "options": [
-      "Múltiples versiones físicas simultáneas de una misma tupla generadas por actualizaciones (tuplas muertas pendientes de limpieza por VACUUM).",
-      "Fragmentos de memoria RAM asignados por el sistema operativo que quedan inaccesibles tras un fallo intempestivo en el controlador de red.",
-      "Punteros de índices B-Tree corruptos que dirigen a bloques de datos desasignados tras un reinicio forzado del servidor de base de datos.",
-      "Copias de respaldo temporales que se replican en nodos secundarios y se descartan automáticamente al completar la ventana nocturna."
+      "Resuelve conflictos abortando y reiniciando transacciones en lugar de hacerlas esperar, generando un alto costo de rollbacks bajo alta contención.",
+      "Requiere que todas las transacciones soliciten bloqueos exclusivos de tabla completa antes de leer, deteniendo todas las consultas concurrentes.",
+      "Inhabilita por completo la creación de índices B-Tree en las tablas del esquema, obligando al optimizador a realizar barridos secuenciales.",
+      "Provoca interbloqueos cíclicos (deadlocks) irreversibles de forma obligatoria cada vez que dos transacciones leen el mismo bloque de datos."
     ],
     "correctAnswer": 0,
     "hint": "Marcas temporales generan abortos frecuentes en alta contención en vez de colas de espera.",
@@ -4490,10 +4490,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que la Segunda Forma Normal (2FN) se enfoca principalmente en eliminar las dependencias transitivas?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Si la clave primaria es simple (un solo atributo), automáticamente no pueden existir dependencias parciales de la clave.",
-      "Falso: Toda tabla con clave simple debe descomponerse obligatoriamente para cumplir con la Segunda Forma Normal en el esquema.",
-      "Falso: La 2FN solo puede alcanzarse si la tabla contiene al menos dos claves foráneas que referencien a esquemas externos.",
-      "Verdadero: Pero solo si todos los atributos descriptivos de la relación son de tipo numérico entero autoincremental."
+      "Falso: La 2FN busca eliminar las dependencias funcionales parciales de la clave compuesta; la eliminación de dependencias transitivas compete a la 3FN.",
+      "Verdadero: La 2FN define formalmente que ningún atributo no clave puede depender de otro atributo no clave dentro del mismo esquema relacional.",
+      "Verdadero: Porque tanto las dependencias parciales como las transitivas se resuelven de forma idéntica en una sola fase de descomposición lógica.",
+      "Falso: La Segunda Forma Normal se encarga exclusivamente de convertir atributos multivaluados en listas de valores separados por comas fijas."
     ],
     "correctAnswer": 0,
     "hint": "2FN = Dependencias parciales; 3FN = Dependencias transitivas.",
@@ -4508,10 +4508,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que si una tabla tiene campos como 'Editorial' y 'Dirección' que no dependen de la clave completa del 'Libro', estos campos deberían ser extraídos a nuevas tablas para cumplir con la 2FN?",
     "type": "single_choice",
     "options": [
-      "Falso: La 3FN exige que no existan dependencias transitivas entre atributos no clave, independientemente de que no haya cálculos.",
-      "Verdadero: Si una tabla no incluye fórmulas aritméticas ni campos calculados, se considera normalizada en 3FN de forma automática.",
-      "Falso: La Tercera Forma Normal solo es aplicable cuando la base de datos se implementa sobre motores no relacionales en memoria.",
-      "Verdadero: Porque los atributos no calculados siempre dependen de manera directa y funcional de la clave primaria principal."
+      "Verdadero: Los atributos descriptivos de entidades secundarias deben aislarse en tablas propias con su propia clave para evitar redundancias.",
+      "Falso: La teoría relacional exige mantener todos los atributos descriptivos en una única tabla maestra para maximizar el rendimiento de disco.",
+      "Falso: La normalización solo permite extraer atributos cuando la clave primaria está conformada por tres o más columnas numéricas continuas.",
+      "Verdadero: Pero únicamente si la tabla original carece por completo de restricciones de clave foránea hacia otros esquemas de la base de datos."
     ],
     "correctAnswer": 0,
     "hint": "Separar atributos que dependen parcialmente de la clave para que dependan de su propia entidad.",
@@ -4544,10 +4544,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que en la 3FN, las relaciones de Muchos a Muchos (N-M) se resuelven generando una tabla intermedia para evitar la repetición de registros y atributos particulares?",
     "type": "single_choice",
     "options": [
-      "Falso: La 3FN solo requiere que los atributos no clave no dependan transitivamente de la PK; BCNF exige que todo determinante sea superclave.",
-      "Verdadero: Toda relación que alcanza el estado de Tercera Forma Normal cumple de manera obligatoria con los requisitos de BCNF.",
-      "Falso: La 3FN es un concepto del modelo jerárquico mientras que la Forma Normal de Boyce-Codd pertenece al modelo orientado a grafos.",
-      "Verdadero: Porque en la teoría relacional no existen diferencias formales entre los postulados de 3FN y las reglas de Boyce-Codd."
+      "Verdadero: Toda relación N:M se resuelve con una tabla asociativa intermedia con claves foráneas hacia ambas entidades, transformándola en dos 1:N.",
+      "Falso: En 3FN las relaciones N:M se resuelven obligatoriamente duplicando todas las columnas de ambas entidades dentro de una única tabla maestra.",
+      "Falso: El modelo relacional permite crear arrays multivaluados ilimitados en una columna sin necesidad de generar nuevas tablas intermedias.",
+      "Verdadero: Aunque dicha tabla intermedia solo puede contener atributos de auditoría y tiene estrictamente prohibido definir una clave primaria."
     ],
     "correctAnswer": 0,
     "hint": "Las relaciones N:M requieren una tabla intermedia con las PKs de ambos lados.",
@@ -4580,10 +4580,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que la Sexta Forma Normal / Forma Normal Dominio-Clave (DKNF) es principalmente un proceso de transformación paso a paso algorítmico?",
     "type": "single_choice",
     "options": [
-      "Verdadero: 6FN/DKNF representa un estado teórico donde todas las restricciones derivan directamente de dominios y claves, sin anomalías.",
-      "Falso: La Sexta Forma Normal es un formato obsoleto que ya no es reconocido por los comités de estandarización relacional modernos.",
-      "Falso: 6FN exige que todas las tablas del esquema corporativo contengan una única columna de tipo texto sin clave primaria.",
-      "Verdadero: Pero únicamente si la totalidad de las relaciones del esquema se almacenan en particiones de estado sólido de solo lectura."
+      "Falso: DKNF es un modelo teórico ideal donde toda restricción deriva de claves y dominios; no existe un algoritmo general paso a paso para alcanzarla.",
+      "Verdadero: Existe un procedimiento mecánico algorítmico estándar en ANSI SQL que convierte automáticamente cualquier esquema en DKNF en un paso.",
+      "Verdadero: Porque la DKNF es simplemente un alias formal utilizado en la bibliografía moderna para denominar a la Primera Forma Normal estricta.",
+      "Falso: La Forma Normal Dominio-Clave prohíbe de manera absoluta el uso de restricciones CHECK y dominios de datos definidos por el usuario."
     ],
     "correctAnswer": 0,
     "hint": "Domain Key Normal Form es un ideal conceptual, no un algoritmo secuencial estándar.",
@@ -4616,10 +4616,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que un modelo de base de datos relacional de producción generalmente implementa en su totalidad hasta la 6FN / DKNF?",
     "type": "single_choice",
     "options": [
-      "Verdadero: La desnormalización controlada reduce las operaciones JOIN en consultas frecuentes a costa de mayor redundancia física.",
-      "Falso: La desnormalización está estrictamente prohibida por el estándar ANSI SQL y bloquea la creación de tablas en el motor.",
-      "Falso: Normalizar hasta la 5ta Forma Normal garantiza de forma universal los mejores tiempos de respuesta en todas las consultas.",
-      "Verdadero: Pero solo en sistemas operacionales bancarios OLTP con alta frecuencia de transacciones unitarias concurrentes."
+      "Falso: En la práctica profesional se normaliza comúnmente hasta 3FN o BCNF; formas superiores suelen provocar una fragmentación excesiva de tablas.",
+      "Verdadero: Todos los sistemas transaccionales empresariales modernos exigen certificar formalmente 6FN antes de su puesta en producción en disco.",
+      "Verdadero: Porque alcanzar DKNF garantiza de forma automática tiempos de respuesta de consulta de cero milisegundos en cualquier motor relacional.",
+      "Falso: Los motores relacionales comerciales tienen técnicamente bloqueada la creación de esquemas que superen la Primera Forma Normal (1FN)."
     ],
     "correctAnswer": 0,
     "hint": "Normalizar en exceso multiplica los JOINs y perjudica el rendimiento de lectura.",
@@ -4634,10 +4634,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el objetivo principal de la normalización es maximizar la duplicación de datos para mejorar la velocidad de lectura?",
     "type": "single_choice",
     "options": [
-      "Falso: La desnormalización controlada sacrifica espacio y pureza teórica para reducir operaciones JOIN costosas y agilizar lecturas analíticas.",
-      "Verdadero: El objetivo primordial de desnormalizar es alcanzar la perfección teórica del modelo mediante descomposiciones sucesivas.",
-      "Falso: La desnormalización se utiliza exclusivamente para convertir bases de datos relacionales en sistemas de ficheros planos binarios.",
-      "Verdadero: Porque al desnormalizar se eliminan por completo las claves foráneas y las restricciones de dominio del catálogo corporativo."
+      "Falso: El objetivo de la normalización es minimizar la redundancia de datos y prevenir anomalías de actualización, inserción y borrado en tablas.",
+      "Verdadero: El principio fundamental de normalizar es duplicar columnas informativas en todas las tablas para prescindir de la operación de JOIN.",
+      "Verdadero: Porque la redundancia masiva de datos asegura la integridad referencial y simplifica la escritura de sentencias transaccionales.",
+      "Falso: La normalización solo busca comprimir el tamaño de los tipos de datos numéricos y no interviene sobre la distribución de los atributos."
     ],
     "correctAnswer": 0,
     "hint": "Normalizar busca erradicar la duplicación.",
@@ -4832,10 +4832,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que los triggers en PostgreSQL pueden ser definidos para ejecutarse antes (`BEFORE`) o inmediatamente después (`AFTER`) de un evento de manipulación de datos?",
     "type": "single_choice",
     "options": [
-      "Falso: Un trigger ejecuta automáticamente una función de trigger asociada previamente definida con `CREATE FUNCTION ... RETURNS trigger`.",
-      "Verdadero: En PostgreSQL las sentencias SQL del trigger se escriben directamente dentro de la cláusula EXECUTE sin requerir funciones.",
-      "Falso: Los triggers en PostgreSQL solo pueden programarse utilizando el lenguaje de programación compilado C o ensamblador.",
-      "Verdadero: Porque el estándar SQL prohíbe desacoplar el disparador de la función ejecutada en operaciones DML de modificación."
+      "Verdadero: Pueden configurarse para dispararse antes (BEFORE) o después (AFTER) de operaciones DML de modificación (INSERT, UPDATE, DELETE).",
+      "Falso: En PostgreSQL la arquitectura del motor solo autoriza la ejecución de disparadores de forma posterior (AFTER) a la confirmación de la tupla.",
+      "Falso: Los disparadores BEFORE solo están permitidos sobre vistas analíticas y se encuentran estrictamente prohibidos sobre tablas relacionales físicas.",
+      "Verdadero: Siempre y cuando la tabla cuente con un procedimiento almacenado compilado en lenguaje C registrado en el catálogo del sistema."
     ],
     "correctAnswer": 0,
     "hint": "BEFORE para interceptar/validar antes de escribir; AFTER para registrar/auditar.",
@@ -4868,10 +4868,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que un trigger en PostgreSQL puede ejecutar una función que a su vez dispare otro trigger, creando recursividad, y que es responsabilidad del programador evitar bucles infinitos?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Los triggers BEFORE pueden evaluar y modificar los valores del registro NEW antes de que se escriban definitivamente en la tabla.",
-      "Falso: Los triggers BEFORE son estrictamente de solo lectura y el motor arroja una excepción si intentan asignar valores a NEW.",
-      "Falso: En PostgreSQL los triggers solo pueden configurarse para ejecutarse después (AFTER) de completada la sentencia DML en disco.",
-      "Verdadero: Pero únicamente si la tabla sobre la cual operan se encuentra particionada en esquemas de almacenamiento secundarios."
+      "Verdadero: Las operaciones de un trigger pueden disparar otros triggers en cascada o a sí mismo; el programador debe implementar condiciones de corte.",
+      "Falso: PostgreSQL detecta y bloquea cualquier llamada en cascada entre triggers en tiempo de compilación impidiendo su definición en el esquema.",
+      "Falso: Los disparadores en PostgreSQL operan en espacios de memoria aislados que impiden ejecutar cualquier sentencia DML sobre otras tablas.",
+      "Verdadero: Pero la recursividad solo puede producirse cuando los triggers se ejecutan a nivel de sentencia completa (FOR EACH STATEMENT)."
     ],
     "correctAnswer": 0,
     "hint": "Cascadas de triggers: si un trigger hace UPDATE sobre otra tabla, dispara sus triggers.",
@@ -4886,10 +4886,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que las funciones en PostgreSQL contribuyen a la reutilización al permitir que múltiples aplicaciones clientes interactúen directamente con ellas garantizando un comportamiento homogéneo?",
     "type": "single_choice",
     "options": [
-      "Falso: En PostgreSQL, las funciones pueden ser de solo lectura o ejecutar sentencias de modificación (INSERT, UPDATE, DELETE) y retornar datos.",
-      "Verdadero: Las funciones de base de datos tienen estrictamente prohibido alterar registros para preservar el principio de idempotencia.",
-      "Falso: En PostgreSQL las funciones solo pueden retornar números enteros o valores booleanos, prohibiendo el uso de tipos compuestos.",
-      "Verdadero: Porque para modificar datos se requiere de manera mandatoria la invocación de un procedimiento almacenado con `CALL`."
+      "Verdadero: Centralizan la lógica de negocio en el motor, asegurando que diversas aplicaciones clientes ejecuten exactamente las mismas reglas de datos.",
+      "Falso: Las funciones almacenadas son accesibles exclusivamente por herramientas de administración local y no admiten conexiones cliente externas.",
+      "Falso: Cada aplicación cliente conectada a PostgreSQL debe compilar obligatoriamente su propia copia independiente de las funciones en memoria.",
+      "Verdadero: Aunque para permitir el acceso compartido se requiere otorgar permisos de superusuario del sistema operativo a cada conexión de red."
     ],
     "correctAnswer": 0,
     "hint": "Encapsular lógica en el motor garantiza que todos los clientes apliquen la misma regla.",
@@ -5152,10 +5152,10 @@ const QUESTIONS_DATABASE = [
     "question": "Dentro del cuerpo de una función de trigger en PostgreSQL (PL/pgSQL), ¿qué valor contiene la variable especial del sistema `TG_OP`?",
     "type": "single_choice",
     "options": [
-      "El registro `NEW` representa la fila con los nuevos valores que se van a insertar o actualizar; `OLD` representa la fila con los valores previos a la modificación o borrado.",
-      "El registro `NEW` resguarda las copias de seguridad de la tabla en disco; `OLD` representa los datos desasignados pendientes de purga por el proceso de limpieza VACUUM.",
-      "El registro `NEW` almacena los identificadores de sesión de los clientes de red; `OLD` contiene los privilegios de usuario asignados en el catálogo de seguridad corporativo.",
-      "El registro `NEW` es una variable booleana que indica si ocurrió un error en la transacción; `OLD` es el código numérico de retorno de la última consulta analítica ejecutada."
+      "Una cadena de texto ('INSERT', 'UPDATE', 'DELETE' o 'TRUNCATE') que identifica la operación específica que activó la ejecución del disparador.",
+      "El número entero de filas afectadas por la última instrucción SQL ejecutada dentro de la transacción activa en la sesión cliente actual.",
+      "Un registro especial que resguarda los valores anteriores de las columnas antes de aplicar la modificación solicitada en la sentencia DML.",
+      "El identificador numérico de proceso (PID) asignado por el sistema operativo anfitrión al backend de PostgreSQL que atiende la consulta."
     ],
     "correctAnswer": 0,
     "hint": "TG_OP = Trigger Operation ('INSERT', 'UPDATE', 'DELETE', etc.).",
@@ -5188,10 +5188,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Sobre qué tipo de objetos de base de datos se definen típicamente los triggers `INSTEAD OF` en PostgreSQL para permitir que admitan sentencias INSERT, UPDATE o DELETE?",
     "type": "single_choice",
     "options": [
-      "Tablas relacionales físicas, Vistas tradicionales (utilizando triggers de tipo `INSTEAD OF`) y Vistas Materializadas.",
-      "Procedimientos almacenados en memoria volátil, funciones escalares deterministas e índices auto-balanceados B-Tree.",
-      "Ficheros de configuración del sistema operativo anfitrión, puertos de conexión TCP/IP y sockets de red corporativos.",
-      "Comandos declarativos del lenguaje de definición de datos DDL emitidos desde sesiones cliente anónimas sin privilegios."
+      "Exclusivamente sobre Vistas (Views), permitiendo interceptar operaciones de modificación y redirigir manualmente los cambios a las tablas base.",
+      "Únicamente sobre Tablas Físicas particionadas, para reemplazar la inserción directa por un almacenamiento en búferes de memoria temporal.",
+      "Sobre Índices B-Tree e Índices Hash, para recalcular automáticamente las claves de ordenación tras cada operación de actualización masiva.",
+      "Directamente sobre Procedimientos Almacenados y Funciones Escalares, para interceptar las llamadas del cliente y registrar auditoría de red."
     ],
     "correctAnswer": 0,
     "hint": "INSTEAD OF se dispara 'en lugar de' la operación sobre una Vista no actualizable.",
@@ -5600,9 +5600,11 @@ const QUESTIONS_DATABASE = [
   }
 ];
 
-if (typeof window !== "undefined") {
+// Compatibilidad con navegador web y Node.js (pruebas unitarias)
+if (typeof window !== 'undefined') {
   window.QUESTIONS_DATABASE = QUESTIONS_DATABASE;
 }
-if (typeof module !== "undefined" && module.exports) {
+if (typeof module !== 'undefined' && module.exports) {
   module.exports = QUESTIONS_DATABASE;
 }
+
