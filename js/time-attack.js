@@ -571,13 +571,16 @@ class TimeAttackExam {
       html += `<div class="matching-container" id="matching-stage">`;
       html += `<div class="matching-left">`;
       q.pairs.forEach((p, idx) => {
-        html += `<div class="matching-card" data-side="left" data-key="${p.key}" data-idx="${idx}">${p.key}</div>`;
+        const k = (p.key !== undefined) ? p.key : p.left;
+        html += `<div class="matching-card" data-side="left" data-key="${k}" data-idx="${idx}">${k}</div>`;
       });
       html += `</div><div class="matching-right">`;
       // Shuffle right side
       const shuffled = [...q.pairs].sort(() => 0.5 - Math.random());
       shuffled.forEach((p, idx) => {
-        html += `<div class="matching-card" data-side="right" data-key="${p.key}" data-val="${p.value}">${p.value}</div>`;
+        const k = (p.key !== undefined) ? p.key : p.left;
+        const v = (p.value !== undefined) ? p.value : p.right;
+        html += `<div class="matching-card" data-side="right" data-key="${k}" data-val="${v}">${v}</div>`;
       });
       html += `</div></div>`;
     }
@@ -709,6 +712,10 @@ class TimeAttackExam {
       }
       isCorrect = allMatched;
     } else if (q.type === 'matching') {
+      if (this.matchedPairs.size < q.pairs.length) {
+        alert('Por favor, une todos los pares conceptuales antes de validar la respuesta.');
+        return;
+      }
       isCorrect = (this.matchedPairs.size === q.pairs.length);
     }
 

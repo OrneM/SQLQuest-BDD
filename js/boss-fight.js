@@ -340,6 +340,8 @@ class BossFightArena {
 
     const q = this.failedQuestions[this.currentIndex];
     const cfg = this.bossConfigs[this.currentBoss];
+    this.matchedPairs = new Set();
+    this.selectedMatchLeft = null;
 
     if (this.bossFeedbackBoxEl) {
       this.bossFeedbackBoxEl.classList.remove('active', 'feedback-correct', 'feedback-error');
@@ -406,12 +408,15 @@ class BossFightArena {
       html += `<div class="matching-container" id="boss-matching-stage">`;
       html += `<div class="matching-left">`;
       q.pairs.forEach((p, idx) => {
-        html += `<div class="matching-card" data-side="left" data-key="${p.key}" data-idx="${idx}">${p.key}</div>`;
+        const k = (p.key !== undefined) ? p.key : p.left;
+        html += `<div class="matching-card" data-side="left" data-key="${k}" data-idx="${idx}">${k}</div>`;
       });
       html += `</div><div class="matching-right">`;
       const shuffled = [...q.pairs].sort(() => 0.5 - Math.random());
       shuffled.forEach(p => {
-        html += `<div class="matching-card" data-side="right" data-key="${p.key}" data-val="${p.value}">${p.value}</div>`;
+        const k = (p.key !== undefined) ? p.key : p.left;
+        const v = (p.value !== undefined) ? p.value : p.right;
+        html += `<div class="matching-card" data-side="right" data-key="${k}" data-val="${v}">${v}</div>`;
       });
       html += `</div></div>`;
     }
@@ -440,7 +445,45 @@ class BossFightArena {
           window.retroAudio.playBlip(650, 0.03);
         });
       });
+    } else if (q.type === 'matching') {
+      this.bindBossMatchingEvents();
     }
+  }
+
+  bindBossMatchingEvents() {
+    const leftCards = this.bossQuestionBoxEl.querySelectorAll('.matching-card[data-side="left"]');
+    const rightCards = this.bossQuestionBoxEl.querySelectorAll('.matching-card[data-side="right"]');
+
+    leftCards.forEach(lCard => {
+      lCard.addEventListener('click', () => {
+        if (!this.isFighting || lCard.classList.contains('matched')) return;
+        leftCards.forEach(c => c.classList.remove('active'));
+        lCard.classList.add('active');
+        this.selectedMatchLeft = lCard;
+        window.retroAudio.playBlip(700, 0.03);
+      });
+    });
+
+    rightCards.forEach(rCard => {
+      rCard.addEventListener('click', () => {
+        if (!this.isFighting || rCard.classList.contains('matched') || !this.selectedMatchLeft) return;
+        const leftKey = this.selectedMatchLeft.getAttribute('data-key');
+        const rightKey = rCard.getAttribute('data-key');
+
+        if (leftKey === rightKey) {
+          this.selectedMatchLeft.classList.remove('active');
+          this.selectedMatchLeft.classList.add('matched');
+          rCard.classList.add('matched');
+          this.matchedPairs.add(leftKey);
+          window.retroAudio.playCorrect();
+          this.selectedMatchLeft = null;
+        } else {
+          window.retroAudio.playError();
+          this.selectedMatchLeft.classList.remove('active');
+          this.selectedMatchLeft = null;
+        }
+      });
+    });
   }
 
   submitBossAnswer() {
@@ -482,7 +525,11 @@ class BossFightArena {
       }
       isCorrect = allMatched;
     } else if (q.type === 'matching') {
-      isCorrect = true;
+      if (this.matchedPairs.size < q.pairs.length) {
+        alert('Por favor, une todos los pares conceptuales antes de atacar al Boss.');
+        return;
+      }
+      isCorrect = (this.matchedPairs.size === q.pairs.length);
     }
 
     if (this.bossValidateBtnEl) this.bossValidateBtnEl.style.display = 'none';

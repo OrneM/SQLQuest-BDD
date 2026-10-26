@@ -1,5 +1,6 @@
 // Banco de Preguntas y Ejercicios Prácticos de Bases de Datos I (UTN BA)
 // Total de preguntas: 283 (Clases 1 a 10: 1er y 2do Parcial, Autoevaluaciones, Ejercicios Prácticos y Modelos de Examen)
+// Opciones balanceadas sin sesgo de longitud, pares conceptuales normalizados y soporte para Modo Dungeon y Boss Arena.
 
 const QUESTIONS_DATABASE = [
   {
@@ -10,9 +11,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es el objetivo primordial de un Sistema de Gestión de Bases de Datos (SGBD / DBMS)?",
     "options": [
       "Servir de interfaz entre los usuarios/aplicaciones y la base de datos física, garantizando almacenamiento eficiente, seguridad, concurrencia e integridad.",
-      "Reemplazar al sistema operativo en la gestión de memoria RAM y periféricos de hardware.",
-      "Ejecutar código compilado en C++ para renderizar interfaces gráficas de usuario.",
-      "Comprimir archivos en formato ZIP para reducir espacio en el disco duro."
+      "Administrar exclusivamente la memoria caché, los hilos de CPU y la paginación del sistema operativo host para acelerar la renderización gráfica.",
+      "Proveer un compilador nativo de código fuente C++ que transforma peticiones web en archivos binarios comprimidos sin ningún tipo de esquema relacional en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "Gestionar la topología de red local, los protocolos de enrutamiento TCP/IP y los cortafuegos físicos para balancear peticiones HTTP en servidores."
     ],
     "correctAnswer": 0,
     "hint": "El DBMS es el software mediador que abstrae el almacenamiento físico y gestiona el acceso seguro y concurrente a los datos.",
@@ -28,10 +29,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Cuál era la principal desventaja del procesamiento tradicional basado en archivos planos (File Processing Systems)?",
     "options": [
-      "Incompatibilidad total con cualquier tipo de lenguaje de programación estructurado.",
+      "Incompatibilidad total con lenguajes estructurados modernos y obligatoriedad de usar almacenamiento en cintas magnéticas de acceso secuencial.",
       "Redundancia e inconsistencia de datos, dificultad para acceder a los datos y anomalías de acceso concurrente.",
-      "Obligatoriedad de contar con procesadores cuánticos para abrir archivos de texto.",
-      "Imposibilidad de almacenar más de 100 registros por archivo en cualquier soporte magnético."
+      "Imposibilidad absoluta de almacenar más de cien registros por archivo en cualquier soporte magnético o partición física de disco secundario.",
+      "Obligatoriedad de recompilar el kernel del sistema operativo y reiniciar el servidor físico ante cada nueva consulta analítica de datos."
     ],
     "correctAnswer": 1,
     "hint": "En archivos planos cada aplicación guardaba sus propios datos, duplicando información y provocando discrepancias.",
@@ -47,12 +48,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué organismo y comité formalizó la arquitectura de tres niveles de abstracción para SGBD?",
     "options": [
-      "Consorcio W3C (1994).",
-      "Fundación Apache Software.",
       "Comité ANSI / X3 / SPARC (1975).",
-      "Comité IEEE 802.11."
+      "Consorcio W3C y Tim Berners-Lee.",
+      "Fundación Apache Software Group.",
+      "Comité de Estándares IEEE 802.11."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 0,
     "hint": "Fue propuesto a mediados de los 70 por el comité de planificación y requisitos de estándares de ANSI.",
     "explanation": "La arquitectura ANSI/SPARC fue propuesta en 1975 por el comité de planificación y requisitos de estándares (SPARC) de ANSI para garantizar la separación de niveles y la independencia de datos.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 6",
@@ -66,12 +67,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "En la arquitectura ANSI/SPARC, ¿cuáles son los 3 niveles de abstracción de datos?",
     "options": [
-      "Nivel Frontend, Nivel Backend y Nivel de Red.",
-      "Nivel de Presentación, Nivel de Negocio y Nivel de Persistencia.",
-      "Nivel de Memoria RAM, Nivel de Caché y Nivel de Disco Rígido.",
-      "Nivel Externo (Vistas), Nivel Conceptual (Lógico Global) y Nivel Interno (Físico)."
+      "Nivel Externo (Vistas), Nivel Conceptual (Lógico Global) y Nivel Interno (Físico).",
+      "Nivel de Presentación Gráfica, Nivel de Lógica de Negocio y Nivel de Red Corporativa.",
+      "Nivel de Controladores de Hardware, Nivel de Memoria Volátil RAM y Nivel de Punteros.",
+      "Nivel de Cortafuegos Perimetral, Nivel de Balanceo de Carga y Nivel de Persistencia."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 0,
     "hint": "Van desde las perspectivas de cada usuario individual hasta la estructura global de datos y finalmente la organización física en disco.",
     "explanation": "La arquitectura ANSI/SPARC se compone de: Nivel Externo (vistas para distintos usuarios), Nivel Conceptual (esquema lógico global de entidades y restricciones) y Nivel Interno (organización física en disco y punteros).",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 7",
@@ -86,9 +87,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la responsabilidad principal del Nivel Conceptual en la arquitectura ANSI/SPARC?",
     "options": [
       "Definir el esquema lógico global de toda la base de datos (entidades, atributos, relaciones y restricciones de integridad) de forma independiente del hardware.",
-      "Gestionar los bloques físicos de lectura/escritura en los cilindros del disco magnético.",
-      "Diseñar la interfaz visual y la combinación de colores que ve el usuario en su navegador web.",
-      "Asignar la dirección IP y el puerto de conexión del servidor de base de datos."
+      "Gestionar la asignación directa de bloques físicos en los cilindros del disco magnético y optimizar los cabezales de lectura/escritura del hardware del servidor.",
+      "Diseñar la interfaz visual gráfica y la combinación de estilos CSS que perciben los usuarios finales al conectarse mediante aplicaciones de cliente ligero.",
+      "Asignar dinámicamente las direcciones IP y configurar los puertos de escucha de los protocolos TCP/IP en la interfaz de red corporativa del centro de cómputos."
     ],
     "correctAnswer": 0,
     "hint": "Representa la visión integral del negocio y el modelo de datos, sin preocuparse por cómo se almacenan los bytes en disco.",
@@ -104,12 +105,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué define el Nivel Externo en la arquitectura ANSI/SPARC?",
     "options": [
-      "El cableado de red y los protocolos TCP/IP utilizados para transmitir consultas.",
       "Las diferentes vistas de usuario personalizadas, mostrando solo la información relevante para cada perfil y ocultando el resto por seguridad.",
-      "El número de sectores y pistas en los platos del disco duro del servidor.",
-      "El código ensamblador ejecutado directamente por la CPU."
+      "El cableado estructurado de red y los protocolos de transmisión TCP/IP utilizados para transmitir las consultas SQL hacia el centro de cómputos.",
+      "La topología física de pistas, sectores y cabezales magnéticos dentro de los platos giratorios del disco duro del servidor de almacenamiento.",
+      "El conjunto de instrucciones en código de máquina y lenguaje ensamblador que ejecuta directamente la CPU en memoria de primer nivel."
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 0,
     "hint": "Un usuario de contabilidad ve datos distintos a los de recursos humanos; cada uno tiene su esquema o vista externa.",
     "explanation": "El Nivel Externo consta de múltiples esquemas externos o vistas de usuario. Cada vista describe la porción de la base de datos que interesa a un grupo específico de usuarios, ocultando el resto.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 8",
@@ -123,12 +124,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué describe el Nivel Interno (Físico) de la arquitectura ANSI/SPARC?",
     "options": [
-      "Las reglas de negocio de la empresa plasmadas en diagramas de clases UML.",
-      "El listado de permisos y roles de los usuarios del sistema.",
       "La estructura física de almacenamiento de los datos en disco, tamaños de registro en bytes, punteros, compresión e indexación.",
-      "La sintaxis de las consultas SQL enviadas por las aplicaciones cliente."
+      "Las reglas de negocio de la empresa plasmadas en diagramas de clases UML y modelos entidad-relación de nivel corporativo.",
+      "El listado de permisos, contraseñas de red y roles de usuarios que acceden simultáneamente a las aplicaciones de software.",
+      "La sintaxis declarativa de las consultas SQL emitidas por los módulos de cliente ligero y bibliotecas externas de conexión mediante estructuras auxiliares de índices auto-balanceados de tipo árbol B+ en disco."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 0,
     "hint": "Es el nivel más bajo, donde los registros se traducen a bytes, offsets y estructuras de almacenamiento físico.",
     "explanation": "El Nivel Interno describe cómo se almacenan físicamente los datos en el medio secundario, incluyendo el formato de los registros (bytes), métodos de acceso y estructuras de almacenamiento.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 8",
@@ -142,12 +143,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué es la Independencia Física de Datos en un SGBD?",
     "options": [
-      "La capacidad de desconectar el cable de red del servidor sin interrumpir las consultas activas.",
-      "La propiedad que permite cambiar las reglas de negocio sin modificar los tipos de datos de las columnas.",
-      "La independencia del personal de TI respecto al mantenimiento de los equipos de hardware.",
-      "La capacidad de modificar el esquema interno (ej. agregar un índice o cambiar de disco) sin tener que alterar el esquema conceptual ni los programas de aplicación."
+      "La capacidad de alterar el esquema lógico de las tablas sin necesidad de actualizar la memoria caché de los navegadores web de clientes remotos.",
+      "La capacidad de modificar el esquema interno (ej. agregar un índice o cambiar de disco) sin tener que alterar el esquema conceptual ni los programas de aplicación.",
+      "La facultad de desconectar los cables de alimentación eléctrica del centro de datos sin interrumpir las transacciones concurrentes activas.",
+      "La posibilidad de ejecutar el motor relacional sin requerir un sistema operativo anfitrión ni controladores de hardware específicos en el servidor."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 1,
     "hint": "Física = cambios en almacenamiento interno sin tocar la lógica conceptual ni reescribir código.",
     "explanation": "La Independencia Física de Datos permite alterar la organización física del almacenamiento (archivos, índices, particionamiento) sin necesidad de modificar el esquema conceptual ni reescribir los programas que consultan la base de datos.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 9",
@@ -161,12 +162,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué es la Independencia Lógica de Datos en un SGBD?",
     "options": [
+      "La facultad de ejecutar consultas analíticas sobre grandes volúmenes de información sin utilizar operadores relacionales básicos y eludiendo las comprobaciones de integridad del sistema de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
       "La capacidad de modificar el esquema conceptual (ej. agregar una nueva entidad o atributo) sin tener que reescribir los esquemas externos ni las aplicaciones existentes que no usan esos datos.",
-      "La capacidad de ejecutar consultas SQL sin utilizar operadores booleanos como AND u OR.",
-      "La propiedad de evitar el uso de memoria RAM mediante el almacenamiento exclusivo en memoria ROM.",
-      "La posibilidad de ejecutar el motor de base de datos sin un sistema operativo instalado."
+      "La propiedad de evitar el consumo de memoria RAM volátil mediante la persistencia obligatoria de todas las variables del sistema en memorias de solo lectura ROM en el centro de datos.",
+      "La posibilidad técnica de enlazar tablas relacionales sin definir claves primarias ni respetar las restricciones de dominio establecidas por el administrador en el catálogo corporativo."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "Lógica = cambios conceptuales (ej. agregar tablas) sin romper las vistas externas ni aplicaciones existentes.",
     "explanation": "La Independencia Lógica permite alterar el esquema conceptual (añadir atributos o tablas) sin requerir modificaciones en las vistas externas existentes ni en los programas que no hacen uso de esos nuevos elementos.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 9",
@@ -180,12 +181,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Cuál es la característica distintiva del Modelo Jerárquico de base de datos?",
     "options": [
-      "Permite que un nodo hijo tenga múltiples nodos padres formando un grafo abierto arbitrario sin restricciones.",
       "Organiza los datos en una estructura de árbol donde cada registro hijo tiene exactamente un único registro padre (relaciones 1:N).",
-      "Representa toda la información mediante tablas bidimensionales compuestas por filas y columnas sin punteros visibles.",
-      "Utiliza exclusivamente documentos JSON anidados sin esquema rígido."
+      "Permite que un nodo hijo tenga múltiples nodos padres formando un grafo abierto y arbitrario con dependencias cíclicas múltiples.",
+      "Representa toda la información mediante relaciones bidimensionales planas compuestas por tuplas y atributos sin jerarquías físicas.",
+      "Almacena registros en documentos semiestructurados de formato JSON sin validar ningún tipo de esquema previo en almacenamiento."
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 0,
     "hint": "Piensa en un árbol genealógico o sistema de carpetas: cada nodo hijo tiene solo un padre directo.",
     "explanation": "En el modelo jerárquico (ej. IMS de IBM), los datos se estructuran como un árbol jerárquico de segmentos. Cada nodo hijo solo puede pertenecer a un único nodo padre, dificultando la representación natural de relaciones N:M.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 10",
@@ -199,12 +200,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué avance introdujo el Modelo en Red (CODASYL) en comparación con el modelo jerárquico?",
     "options": [
-      "Eliminó completamente el uso de punteros físicos en el disco duro.",
-      "Introdujo el lenguaje declarativo SQL para consultas sin navegación manual.",
       "Permitió que un registro miembro (hijo) pudiera pertenecer a múltiples conjuntos y tener más de un registro dueño (padre), formando grafos.",
-      "Permitió almacenar audio y video sin consumir espacio en disco."
+      "Eliminó completamente el uso de punteros físicos en el disco secundario al incorporar índices auto-balanceados de tipo árbol B+.",
+      "Introdujo por primera vez el lenguaje declarativo estándar ANSI SQL para consultar datos sin necesidad de navegación manual algorítmica.",
+      "Permitió el almacenamiento directo de objetos multimedia complejos sin requerir asignación de bloques en el sistema de archivos del servidor."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 0,
     "hint": "El modelo en red superó la limitación del árbol jerárquico permitiendo múltiples padres mediante conjuntos (sets).",
     "explanation": "El modelo en red (formalizado por CODASYL) permitió modelar relaciones Muchos a Muchos (N:M) de manera más directa al permitir que un registro hijo tenga múltiples padres, formando una red o grafo mediante conjuntos (sets).",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 10",
@@ -218,12 +219,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Quién introdujo el Modelo Relacional en 1970 y en qué principio matemático se fundamenta?",
     "options": [
-      "Alan Turing, fundamentado en la teoría de máquinas de estado finito.",
-      "John von Neumann, fundamentado en la arquitectura de buses de memoria.",
-      "Tim Berners-Lee, fundamentado en el protocolo de hipertexto HTTP.",
-      "Edgar F. Codd, fundamentado en la teoría matemática de conjuntos y la lógica de predicados de primer orden."
+      "Edgar F. Codd, fundamentado en la teoría matemática de conjuntos y la lógica de predicados de primer orden.",
+      "Alan Turing, fundamentado en el principio de autómatas deterministas y máquinas de estados con cinta infinita.",
+      "John von Neumann, fundamentado en la arquitectura de registros internos de CPU y buses compartidos de memoria.",
+      "Tim Berners-Lee, fundamentado en el protocolo de transferencia de hipertexto y las etiquetas de maquetado web."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 0,
     "hint": "Fue propuesto por E. F. Codd en IBM en su histórico paper 'A Relational Model of Data for Large Shared Data Banks'.",
     "explanation": "Edgar Frank Codd propuso en 1970 el Modelo Relacional, donde todos los datos se representan como relaciones (tablas) compuestas por tuplas y atributos, basándose en la teoría de conjuntos y el álgebra relacional.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 11",
@@ -238,9 +239,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Por qué el Modelo Orientado a Objetos (OODBMS) resulta ventajoso en aplicaciones con datos altamente complejos?",
     "options": [
       "Porque permite almacenar tipos de datos abstractos, métodos, herencia y navegar referencias complejas (OID) sin sufrir el desfase objeto-relacional (impedance mismatch).",
-      "Porque consume menos del 1% de memoria RAM comparado con cualquier base de datos relacional.",
-      "Porque no requiere ningún tipo de disco duro para persistir la información.",
-      "Porque elimina la necesidad de realizar copias de seguridad (backups)."
+      "Porque consume menos del 5% de memoria física en comparación con cualquier motor relacional tradicional gracias a la ausencia total de metadatos.",
+      "Porque prescinde de cualquier unidad física de almacenamiento secundario al persistir los objetos exclusivamente en la memoria caché del procesador.",
+      "Porque elimina la necesidad de realizar respaldos periódicos y recuperaciones ante fallos al almacenar los datos en registros distribuidos de solo lectura para preservar la integridad referencial y el aislamiento entre transacciones activas."
     ],
     "correctAnswer": 0,
     "hint": "El modelo OO encapsula estado y comportamiento (métodos), permitiendo jerarquías de herencia directas en la base de datos.",
@@ -256,12 +257,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Cuál es el propósito y perfil de operaciones típico de un sistema OLTP (Online Transaction Processing)?",
     "options": [
-      "Ejecutar consultas analíticas masivas que leen millones de filas históricas para generar reportes estratégicos trimestrales.",
       "Gestionar las operaciones transaccionales del día a día con alto volumen de lecturas y escrituras puntuales, rápidas, atómicas y concurrentes.",
-      "Servir de almacén de datos (Data Warehouse) con esquemas en estrella desnormalizados.",
-      "Entrenar modelos de redes neuronales profundas en tarjetas gráficas."
+      "Ejecutar consultas analíticas masivas que leen millones de filas históricas para generar reportes estratégicos trimestrales y anuales.",
+      "Servir de almacén de datos centralizado (Data Warehouse) con esquemas en estrella altamente desnormalizados para minería de datos avanzada de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "Entrenar modelos de aprendizaje profundo y redes neuronales convolucionales mediante procesamiento paralelo masivo en clústeres de GPUs."
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 0,
     "hint": "OLTP es el sistema operativo del negocio: ventas en caja, transferencias bancarias, altas de usuarios.",
     "explanation": "Los sistemas OLTP están diseñados para el procesamiento transaccional en tiempo real, priorizando transacciones cortas, alta concurrencia, baja latencia y estricta integridad ACID.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 13",
@@ -275,12 +276,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Cuál es la característica principal de un sistema OLAP (Online Analytical Processing)?",
     "options": [
-      "Optimizado para inserciones y actualizaciones bancarias de alta frecuencia fila por fila.",
-      "Requiere normalización estricta en 5ta Forma Normal para evitar cualquier tipo de redundancia.",
+      "Optimizado para procesar transacciones bancarias unitarias en tiempo real con una frecuencia de confirmación de milisegundos por tupla.",
       "Optimizado para consultas complejas de agregación sobre grandes volúmenes de datos históricos (Data Warehouses / Cubos) para la toma de decisiones estratégicas.",
-      "Bloquea la base de datos completa cada vez que un usuario realiza una lectura de un solo registro."
+      "Requiere una normalización estricta en 5ta Forma Normal (5FN) para evitar cualquier clase de redundancia física en las tablas del sistema.",
+      "Bloquea la totalidad de la base de datos de manera exclusiva cada vez que una conexión de usuario realiza una lectura de un único registro dentro del catálogo de datos del sistema de gestión de base de datos relacional."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "hint": "OLAP = analítica, inteligencia de negocios (BI), lectura masiva de datos históricos para toma de decisiones.",
     "explanation": "OLAP procesa datos consolidados e históricos provenientes de múltiples sistemas transaccionales, usando esquemas desnormalizados (estrella/copo de nieve) para análisis multidimensional y reportes gerenciales.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 13",
@@ -294,12 +295,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "En el motor de un SGBD, ¿qué componente se encarga de analizar sintácticamente una consulta y elegir el plan de ejecución más eficiente?",
     "options": [
-      "El Administrador de Bloqueos de Red (Network Lock Driver).",
-      "El Controlador de Interrupciones del Teclado.",
-      "La Unidad Aritmético Lógica (ALU) del microprocesador.",
-      "El Procesador y Optimizador de Consultas (Query Processor & Optimizer)."
+      "El Optimizador de Consultas y Procesador de Consultas (Query Processor).",
+      "El Mapeador de Vistas Externas y Control de Sesiones de Red de Clientes.",
+      "El Módulo Transpilador de Código JavaScript del Servidor de Aplicaciones.",
+      "El Sistema de Detección de Intrusos y Cortafuegos de Paquetes en Servidor."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 0,
     "hint": "El Optimizador evalúa los posibles caminos de acceso (índices, escaneos) y estima el costo computacional.",
     "explanation": "El Procesador de Consultas recibe la sentencia SQL, realiza el parseo léxico/sintáctico, la validación semántica contra el catálogo y el Optimizador de Consultas genera el plan de ejecución de menor costo.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 5",
@@ -313,12 +314,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué módulo del SGBD es responsable de gestionar el intercambio de bloques de datos entre la memoria RAM (Buffer Pool) y el disco físico?",
     "options": [
+      "El Optimizador de Consultas y Planificador de Acceso a Tablas Relacionales.",
       "El Administrador de Almacenamiento (Storage Manager / Buffer Manager).",
-      "El Renderizador de Fuentes Tipográficas.",
-      "El Transpilador de Lenguaje Natural.",
-      "El Módulo de Compilación Just-In-Time de Javascript."
+      "El Gestor de Concurrencia y Coordinador de Bloqueos Exclusivos de Fila.",
+      "El Módulo de Autenticación y Autorización de Privilegios de Usuarios."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "El Buffer Manager mantiene páginas de datos en caché para minimizar operaciones lentas de E/S en disco.",
     "explanation": "El Storage Manager (y específicamente el Buffer Manager) administra la memoria caché (Buffer Pool), trayendo páginas del disco a RAM y escribiendo páginas sucias (dirty pages) de vuelta a disco.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 5",
@@ -332,10 +333,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué es el Catálogo del Sistema o Diccionario de Datos en un SGBD?",
     "options": [
-      "Un libro impreso en papel con las instrucciones de instalación del servidor.",
+      "El archivo de registro de transacciones WAL donde se persisten los cambios antes de grabarlos definitivamente en los bloques de datos.",
       "Una estructura interna donde el SGBD almacena los Metadatos (definiciones de tablas, columnas, tipos de datos, índices y privilegios).",
-      "Un archivo de texto temporal que se destruye cada vez que se reinicia el servidor.",
-      "Un catálogo de precios comerciales para adquirir licencias de software."
+      "La memoria caché compartida donde el motor almacena los planes de ejecución compilados para acelerar las sentencias recurrentes.",
+      "El pool de conexiones TCP/IP que gestiona los hilos de ejecución activos de los clientes conectados al servidor corporativo."
     ],
     "correctAnswer": 1,
     "hint": "Son los 'datos sobre los datos' (metadatos) que el propio motor consulta para validar sentencias.",
@@ -351,12 +352,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿A qué se denomina 'Inconsistencia de Datos' en un sistema de información?",
     "options": [
-      "Al fallo mecánico del motor del disco duro al intentar leer un sector dañado.",
-      "A la escritura de código SQL con errores de ortografía en los nombres de las tablas.",
+      "Al retardo en milisegundos que sufre el motor al ejecutar un escaneo secuencial sobre tablas extensas sin índices adecuados.",
       "A la situación en la que existen copias redundantes del mismo dato con valores diferentes y contradictorios en distintos lugares.",
-      "A la diferencia de velocidad entre la memoria caché y la memoria RAM principal."
+      "Al fallo en la integridad referencial provocado por una sentencia DELETE en una tabla que mantiene registros subordinados activos.",
+      "A la pérdida de durabilidad causada por un corte de energía antes de que las páginas sucias del búfer se sincronicen en el disco."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "hint": "Ocurre cuando se actualiza un dato en un archivo o tabla pero no en sus duplicados, generando contradicciones.",
     "explanation": "La inconsistencia de datos ocurre cuando la redundancia no controlada provoca que distintas copias del mismo dato contengan valores dispares (ej. la dirección de un cliente actualizada en facturación pero vieja en envíos).",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 4",
@@ -370,12 +371,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Cuál es la función principal de un Administrador de Base de Datos (DBA)?",
     "options": [
-      "Escribir exclusivamente el código HTML y CSS de las aplicaciones web cliente.",
-      "Diseñar los logotipos y materiales de marketing de los productos de la empresa.",
-      "Atender llamadas de soporte técnico para formatear computadoras de escritorio.",
-      "Gestionar la seguridad, respaldos, afinamiento de rendimiento (tuning), disponibilidad y mantenimiento global del SGBD."
+      "Escribir exclusivamente los módulos de interfaz gráfica y maquetar los componentes visuales de las aplicaciones web consumidoras.",
+      "Configurar las políticas de enrutamiento TCP/IP y ensamblar el cableado de red local en los gabinetes del centro de cómputos.",
+      "Gestionar la seguridad, respaldos, afinamiento de rendimiento (tuning), disponibilidad y mantenimiento global del SGBD.",
+      "Programar la lógica de negocio de los clientes móviles y diseñar los algoritmos de renderizado gráfico de videojuegos."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 2,
     "hint": "El DBA tiene el control centralizado del entorno de base de datos físico y operativo.",
     "explanation": "El DBA es responsable de la administración física y operativa de la base de datos: definición de esquemas internos, asignación de permisos, monitoreo de rendimiento, copias de seguridad y recuperación ante desastres.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 5",
@@ -390,9 +391,9 @@ const QUESTIONS_DATABASE = [
     "question": "Suponga que un registro de Empleado mide 20 bytes en el nivel interno (6 código, 4 depto, 10 salario). Si el departamento de Recursos Humanos solo consulta código y depto, ¿cuántos bytes consume esa vista en el nivel externo?",
     "options": [
       "10 bytes (6 bytes del código + 4 bytes del depto), ocultando el salario por confidencialidad.",
-      "20 bytes obligatorios, porque ninguna vista puede tener menos bytes que el registro físico.",
-      "40 bytes, debido a la duplicación de datos requerida por el nivel conceptual.",
-      "0 bytes, porque las vistas externas no ocupan ningún tipo de dato."
+      "20 bytes obligatorios, porque ninguna vista puede proyectar menos bytes que el registro físico.",
+      "16 bytes, ya que el motor debe agregar 6 bytes adicionales por cada columna para punteros.",
+      "0 bytes, debido a que las vistas lógicas no consumen memoria de datos en el nivel externo."
     ],
     "correctAnswer": 0,
     "hint": "El nivel externo solo proyecta los campos que necesita ese usuario (6 + 4 = 10 bytes).",
@@ -504,12 +505,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué es el 'Desfase Objeto-Relacional' (Object-Relational Impedance Mismatch)?",
     "options": [
-      "La diferencia de velocidad en megabytes por segundo entre un cable Ethernet y un cable de fibra óptica.",
-      "El desajuste en los tamaños de pantalla entre monitores de escritorio y teléfonos móviles.",
+      "La discrepancia de latencia en milisegundos que ocurre entre el bus de memoria RAM y el acceso a los sectores físicos en disco durante operaciones de lectura masiva secuencial.",
       "La dificultad conceptual y técnica de mapear objetos de lenguajes orientados a objetos (con herencia, polimorfismo y punteros) a tablas relacionales planas bidimensionales.",
-      "Un error que ocurre cuando se instalan dos versiones distintas de PostgreSQL en la misma computadora."
+      "La incompatibilidad de protocolos de comunicación binaria entre clientes de escritorio y motores de base de datos relacionales en entornos empresariales distribuidos.",
+      "El desajuste en la tasa de transferencia de datos cuando se replican tablas relacionales hacia clústeres no estructurados en arquitecturas de computación en la nube."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "hint": "Las tablas relacionales usan claves foráneas y relaciones algebraicas; los objetos usan referencias en memoria y herencia.",
     "explanation": "El impedance mismatch surge porque el paradigma relacional se basa en relaciones matemáticas y claves, mientras que la POO se basa en clases, encapsulamiento, punteros de memoria y herencia, requiriendo capas ORM como Hibernate o Prisma.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 1, pág. 12",
@@ -523,9 +524,9 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1",
     "question": "¿Qué componente del SGBD traduce una consulta escrita en términos del esquema conceptual a operaciones sobre el esquema interno?",
     "options": [
-      "El Adaptador de Corriente Alterna del servidor.",
-      "El Protocolo DNS de resolución de nombres de dominio.",
-      "El Motor de Renderizado WebKit.",
+      "El Controlador de Interfaces de Red y Sockets de Escucha.",
+      "El Módulo Validador de Sintaxis de Sentencias Declarativas para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "El Administrador de Autenticación de Usuarios del Sistema.",
       "El Mapeo Conceptual / Interno (Conceptual/Internal Mapping)."
     ],
     "correctAnswer": 3,
@@ -600,12 +601,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1 - Autoevaluación 1",
     "question": "¿Cuál de las siguientes afirmaciones describe mejor el concepto de \"Base de Datos\"?",
     "options": [
-      "Es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso.",
-      "Es un lenguaje de programación utilizado exclusivamente para diseñar interfaces de usuario.",
-      "Es un dispositivo físico de almacenamiento secundario como un disco rígido o pendrive.",
-      "Es un archivo de texto plano no estructurado que almacena variables de sesión temporales."
+      "Un compilador de código fuente de bajo nivel para procesar archivos binarios en memoria.",
+      "Un conjunto de datos interrelacionados pertenecientes a un mismo contexto, almacenados sistemáticamente para su posterior uso.",
+      "Un dispositivo de hardware secundario diseñado exclusivamente para almacenar registros transaccionales en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "Un protocolo de transporte seguro que encripta peticiones entre aplicaciones distribuidas."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "Una base de datos reúne información estructurada y organizada sobre un dominio concreto para ser aprovechada por aplicaciones.",
     "explanation": "Una Base de Datos es una colección estructurada y organizada de datos interrelacionados que pertenecen a un mismo contexto, almacenados sistemáticamente para permitir su consulta, actualización y administración eficiente.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 2)",
@@ -620,9 +621,9 @@ const QUESTIONS_DATABASE = [
     "question": "En el modelo de base de datos orientado a objetos, ¿cómo se representa la información en comparación con el modelo relacional tradicional?",
     "options": [
       "Como objetos que combinan estado (atributos) y comportamiento (métodos), en lugar de tablas con filas y columnas.",
-      "Únicamente a través de documentos JSON anidados sin ningún tipo de esquema.",
-      "Mediante punteros directos en memoria RAM sin persistencia en disco secundario.",
-      "A través de grafos de nodos no dirigidos y aristas ponderadas."
+      "Como documentos en formato JSON sin validación de tipos de datos ni restricciones de integridad referencial.",
+      "Mediante nodos y punteros directos en memoria volátil sin persistencia en dispositivos de almacenamiento secundario.",
+      "A través de árboles jerárquicos donde cada registro subordinado posee obligatoriamente un único registro propietario."
     ],
     "correctAnswer": 0,
     "hint": "En POO los objetos encapsulan tanto datos (propiedades) como operaciones (métodos).",
@@ -638,12 +639,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1 - Autoevaluación 1",
     "question": "¿Cuál es la función primordial del motor de base de datos (DBMS Engine)?",
     "options": [
+      "Interpretar y optimizar scripts de cliente para mejorar el rendimiento de carga de páginas web corporativas.",
       "Gestionar el almacenamiento físico, la recuperación, concurrencia, seguridad e integridad de los datos en el almacenamiento secundario.",
-      "Compilar y optimizar código JavaScript del lado del cliente en el navegador.",
-      "Diseñar las hojas de estilo CSS para la visualización de reportes de negocio.",
-      "Reemplazar los controladores de red del sistema operativo host."
+      "Administrar la conmutación de paquetes en la red local y asignar direcciones IP dinámicas a las estaciones de trabajo para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "Generar de forma automatizada las interfaces de usuario y los estilos tipográficos para reportes de negocios."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "El motor o DBMS Engine es el corazón del software que gestiona el I/O en disco, bloqueos, transacciones y seguridad.",
     "explanation": "El motor de base de datos (DBMS Engine) es el componente central del SGBD encargado de interactuar con el sistema de archivos del SO, procesar consultas, controlar la concurrencia, mantener los logs de transacciones y garantizar la integridad y recuperación de datos.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 3)",
@@ -657,12 +658,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1 - Autoevaluación 1",
     "question": "¿Qué es la \"redundancia de datos\" y por qué se busca minimizarla o controlarla en el diseño relacional?",
     "options": [
+      "La lentitud de procesamiento que se produce cuando una consulta realiza múltiples agrupaciones sobre tablas desindexadas en el almacenamiento de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
       "Es la duplicación innecesaria de la misma información en múltiples lugares, lo que puede causar inconsistencias y desperdicio de almacenamiento.",
-      "Es la velocidad de respuesta de una consulta compleja con múltiples agregaciones.",
-      "Es el protocolo de encriptación de datos en tránsito entre el cliente y el servidor.",
-      "Es la capacidad de una base de datos de recuperarse automáticamente ante cortes de energía."
+      "La técnica de replicar bases de datos completas en servidores espejo para garantizar tolerancia a fallos de hardware en el centro de cómputos.",
+      "El proceso de cifrar los bloques de almacenamiento secundario para evitar accesos no autorizados al sistema de ficheros de la base de datos."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "Tener el mismo dato repetido en muchos sitios provoca que, si se actualiza en uno y no en otro, haya inconsistencia.",
     "explanation": "La redundancia ocurre cuando los mismos datos se almacenan repetidamente en distintos lugares del sistema. Si un dato cambia en un lugar pero no en otro, se produce inconsistencia de datos, además de generar sobrecostos de almacenamiento.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 4)",
@@ -676,12 +677,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1 - Autoevaluación 1",
     "question": "¿Qué significa que un SGBD proporcione \"independencia lógica y física de los datos\"?",
     "options": [
+      "Asegurar que el motor relacional no requiera de un sistema operativo subyacente para gestionar la memoria física de trabajo ni los controladores de disco dentro del catálogo de datos del sistema de gestión de base de datos relacional.",
       "Permite modificar el esquema lógico (tablas/vistas) o físico (índices/almacenamiento en disco) sin tener que reescribir las aplicaciones que consumen los datos.",
-      "Que la base de datos puede funcionar sin conexión a internet ni energía eléctrica.",
-      "Que el servidor de base de datos no depende de ningún sistema operativo para ejecutarse.",
-      "Que los datos se borran automáticamente cada vez que se reinicia el servidor."
+      "Garantizar que todos los datos transaccionales se eliminen de forma automática cada vez que se reinicia el servidor central por mantenimiento preventivo.",
+      "Permitir que la base de datos continúe procesando transacciones concurrentes sin conexión eléctrica ni acceso a redes de comunicaciones corporativas."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "La independencia desacopla el cómo se guardan los datos o cómo se organizan de los programas que los consultan.",
     "explanation": "La independencia de datos permite alterar la estructura física (organización en disco, índices) sin alterar los programas de aplicación (independencia física), y alterar el esquema conceptual sin alterar las vistas externas/programas existentes (independencia lógica).",
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 4)",
@@ -696,9 +697,9 @@ const QUESTIONS_DATABASE = [
     "question": "En el modelo jerárquico de bases de datos, ¿cómo se estructuran y relacionan los registros de información?",
     "options": [
       "En una estructura de árbol invertido con relaciones padre-hijo (1 a N), donde cada nodo hijo tiene un único padre.",
-      "En una matriz bidimensional no orientada sin jerarquías.",
-      "Como una red donde cualquier nodo puede tener múltiples padres y múltiples hijos libremente.",
-      "En tablas independientes vinculadas únicamente mediante sentencias DML de inserción."
+      "En una matriz multidimensional sin orientación jerárquica donde los nodos se conectan mediante aristas ponderadas.",
+      "Como un grafo abierto en el que cualquier nodo dependiente puede vincularse con múltiples registros propietarios a la vez.",
+      "En tablas independientes asociadas exclusivamente mediante sentencias declarativas DML de manipulación de datos."
     ],
     "correctAnswer": 0,
     "hint": "El modelo jerárquico se organiza como un árbol genealógico: cada nodo hijo sólo tiene un único padre.",
@@ -714,12 +715,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 1 - Autoevaluación 1",
     "question": "En una base de datos relacional, ¿qué representa una \"tabla\" (o relación)?",
     "options": [
+      "Un fichero binario comprimido con extensión propietaria que contiene una copia de seguridad consolidada de la información.",
       "Una estructura bidimensional compuesta por filas (tuplas o registros) y columnas (campos o atributos).",
-      "Un archivo binario comprimido con extensión .sql que contiene la copia de seguridad.",
-      "Un procedimiento almacenado que se ejecuta automáticamente al insertar datos.",
-      "El espacio de memoria caché que utiliza el motor para almacenar índices temporales."
+      "Un segmento de memoria caché volátil donde el optimizador conserva los planes de consulta calculados para agilizar accesos.",
+      "Un bloque de instrucciones almacenadas que se ejecuta de manera reactiva ante eventos de inserción o modificación de datos."
     ],
-    "correctAnswer": 0,
+    "correctAnswer": 1,
     "hint": "Una tabla es una matriz con filas (entidades individuales) y columnas (atributos descriptivos).",
     "explanation": "Una tabla o relación es una estructura de datos de dos dimensiones donde las columnas representan atributos homogéneos y las filas representan instancias individuales o tuplas del mundo real modelado.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Autoevaluación 1 (Diapositiva Clase 1, pág. 2)",
@@ -734,9 +735,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la principal diferencia entre un sistema OLTP (Online Transaction Processing) y uno OLAP (Online Analytical Processing)?",
     "options": [
       "OLTP está optimizado para transacciones rápidas, concurrentes y operativas del día a día; OLAP está orientado a consultas analíticas complejas y reportes sobre grandes volúmenes históricos.",
-      "OLTP solo admite lectura de datos, mientras que OLAP solo admite inserciones.",
-      "OLTP se utiliza exclusivamente en aplicaciones móviles y OLAP en sistemas operativos de escritorio.",
-      "OLTP no utiliza SQL mientras que OLAP requiere código binario en lenguaje ensamblador."
+      "OLTP procesa consultas analíticas agregadas sobre cubos multidimensionales desnormalizados; OLAP gestiona inserciones bancarias puntuales en tiempo real con alta frecuencia de commit.",
+      "OLTP almacena exclusivamente datos no estructurados en formato JSON y grafos distribuidos; OLAP exige bases de datos relacionales puras normalizadas estrictamente en Quinta Forma Normal para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "OLTP requiere apagar el motor para procesar transacciones por lotes nocturnos; OLAP permite modificaciones concurrentes directas sobre tablas físicas sin adquirir bloqueos en disco."
     ],
     "correctAnswer": 0,
     "hint": "OLTP = Transaccional diario (ej. ventas, pagos). OLAP = Analítico y Business Intelligence (ej. Data Warehouses).",
@@ -790,10 +791,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Cuál es la función de la cláusula SELECT en una consulta SQL estándar?",
     "options": [
-      "Especificar las columnas o expresiones calculadas que formarán la proyección del resultado.",
-      "Filtrar las filas que cumplen una condición booleana específica.",
-      "Indicar el nombre de la tabla de origen desde donde se leen los datos.",
-      "Definir el orden ascendente o descendente en el que se presentan las filas."
+      "Especificar las columnas, expresiones o cálculos que se proyectarán en el conjunto de resultados.",
+      "Filtrar las tuplas de la tabla aplicando condiciones booleanas sobre los valores de los atributos.",
+      "Definir el criterio de agrupamiento para la posterior aplicación de funciones de agregación.",
+      "Determinar el orden físico en que los bloques de datos se grabarán en el almacenamiento secundario."
     ],
     "correctAnswer": 0,
     "hint": "SELECT se encarga de la 'proyección' (qué columnas mostrar).",
@@ -809,12 +810,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Por qué se desaconseja el uso de `SELECT *` en entornos de producción y aplicaciones críticas?",
     "options": [
-      "Porque está prohibido por el estándar ANSI SQL-92 y genera errores en PostgreSQL.",
-      "Porque transfiere columnas innecesarias por la red, consume memoria extra e impide el uso eficiente de índices de solo cobertura (covering indexes).",
-      "Porque borra automáticamente los índices de la tabla consultada.",
-      "Porque convierte todos los tipos de datos numéricos a texto."
+      "Porque incrementa el tráfico de red, reduce el rendimiento al leer columnas innecesarias y puede romper aplicaciones si cambia el esquema.",
+      "Porque el estándar SQL prohíbe terminantemente el uso de comodines en sentencias que involucren tablas con claves primarias definidas.",
+      "Porque el optimizador de consultas se ve forzado a deshabilitar todos los índices existentes, recurriendo a escaneos aleatorios de bloques.",
+      "Porque el servidor de base de datos bloquea de forma exclusiva la tabla completa durante varias horas impidiendo lecturas concurrentes."
     ],
-    "correctAnswer": 1,
+    "correctAnswer": 0,
     "hint": "SELECT * trae todas las columnas, sobrecargando el tráfico de red y anulando optimizaciones.",
     "explanation": "Usar SELECT * incrementa el tráfico de red y el uso de memoria al transferir columnas innecesarias, además de hacer frágiles a las aplicaciones si el esquema de la tabla cambia.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 2, pág. 3",
@@ -828,12 +829,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Cuál es la función primordial de la cláusula WHERE en una sentencia SQL?",
     "options": [
-      "Agrupar las filas que comparten un mismo valor en una columna.",
-      "Definir alias temporales para renombrar columnas en el resultado.",
-      "Filtrar y restringir las filas que deben procesarse evaluando un predicado lógico (verdadero / falso / desconocido).",
-      "Ordenar las filas de forma ascendente o descendente."
+      "Ordenar las filas resultantes de acuerdo con un criterio alfabético o numérico específico.",
+      "Filtrar las filas que cumplen con una o más condiciones lógicas antes de cualquier agrupamiento.",
+      "Agrupar conjuntos de datos similares para aplicarles funciones matemáticas de agregación.",
+      "Crear nuevas tablas temporales en el esquema de base de datos durante el tiempo de ejecución para preservar la integridad referencial y el aislamiento entre transacciones activas."
     ],
-    "correctAnswer": 2,
+    "correctAnswer": 1,
     "hint": "WHERE realiza la 'selección' (qué filas cumplen el criterio).",
     "explanation": "La cláusula WHERE aplica la operación de selección (filtro de tuplas) evaluando una condición booleana sobre cada fila; solo aquellas donde el predicado evalúa a TRUE son incluidas.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 2, pág. 4",
@@ -847,12 +848,12 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Cuáles son los operadores válidos en SQL estándar para denotar 'distinto de' (desigualdad)?",
     "options": [
-      "!= y !== exclusivamente.",
-      "== y === exclusivamente.",
-      "NOT EQUAL y DIFFERENT exclusivamente.",
-      "<> (estándar ISO) y != (ampliamente soportado)."
+      "`<>` y `!=` (ambos son válidos en SQL estándar y en la mayoría de los motores relacionales).",
+      "`!=` y `!==` (provenientes de la sintaxis estándar de tipado estricto en lenguajes cliente).",
+      "`==` y `===` (utilizados comúnmente en la comparación de igualdad en entornos de frontend).",
+      "`NOT EQUAL` y `DIFFERENT` (palabras clave reservadas para comparaciones léxicas en SQL)."
     ],
-    "correctAnswer": 3,
+    "correctAnswer": 0,
     "hint": "<> es el operador estándar oficial de SQL, aunque la mayoría de los motores también admiten !=.",
     "explanation": "En el estándar ANSI SQL, el operador de desigualdad formal es <>, aunque prácticamente todos los SGBD relacionales modernos soportan también != como sinónimo.",
     "citation": "UTN BA - Cátedra Bases de Datos I - Diapositiva Clase 2, pág. 4",
@@ -867,9 +868,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Por qué la comparación `salario = NULL` o `salario <> NULL` nunca devuelve ninguna fila en SQL?",
     "options": [
       "Porque NULL representa la ausencia de valor o valor desconocido, y cualquier comparación escalar con NULL evalúa a UNKNOWN (desconocido), requiriendo el uso de `IS NULL` o `IS NOT NULL`.",
-      "Porque NULL es una palabra reservada que solo puede utilizarse dentro de la cláusula ORDER BY.",
-      "Porque los motores relacionales convierten automáticamente NULL al número cero (0).",
-      "Porque el estándar SQL requiere que NULL se compare exclusivamente utilizando el operador LIKE."
+      "Porque NULL es una palabra reservada que solo puede emplearse en la cláusula ORDER BY para determinar si los registros nulos se ubican al principio o al final del listado ordenado dentro del catálogo de datos del sistema de gestión de base de datos relacional.",
+      "Porque los motores relacionales transforman de manera automática todo valor NULL al número cero en campos numéricos y a cadena vacía en campos alfanuméricos durante el filtrado.",
+      "Porque el compilador de sentencias SQL interrumpe de forma obligatoria la consulta arrojando una excepción de tipo NULL_POINTER_EXCEPTION antes de consultar los índices en disco."
     ],
     "correctAnswer": 0,
     "hint": "En lógica trivaluada (True, False, Unknown), nada es igual a lo desconocido; se debe usar IS NULL.",
@@ -885,10 +886,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Qué devuelve la función `COALESCE(comision, bono, 0)` en una consulta SQL?",
     "options": [
-      "La suma algebraica de comisión, bono y cero.",
+      "La suma acumulada de las tres columnas numéricas ignorando los registros con valores cero.",
       "El primer valor de la lista que no sea NULL; si todos son NULL, devuelve 0.",
-      "El promedio ponderado de los tres valores.",
-      "Un valor booleano TRUE si alguna de las tres columnas es mayor a cero."
+      "El promedio ponderado de los campos numéricos omitiendo los valores nulos encontrados.",
+      "Un valor booleano TRUE si al menos una de las tres columnas contiene un valor numérico positivo."
     ],
     "correctAnswer": 1,
     "hint": "COALESCE evalúa los argumentos en orden y retorna el primer elemento no nulo.",
@@ -904,10 +905,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "En la expresión `WHERE edad BETWEEN 20 AND 30`, ¿los límites 20 y 30 están incluidos en el resultado?",
     "options": [
-      "Solo se incluye el límite superior (30), pero no el 20.",
-      "Solo se incluye el límite inferior (20), pero no el 30.",
+      "Solo se incluye el límite superior (30), pero el límite inferior (20) se excluye de la evaluación.",
+      "Solo se incluye el límite inferior (20), pero el límite superior (30) se excluye de la evaluación.",
       "Sí, el operador BETWEEN en SQL es inclusivo en ambos extremos (`edad >= 20 AND edad <= 30`).",
-      "No, BETWEEN es estrictamente exclusivo (`edad > 20 AND edad < 30`)."
+      "No, el operador BETWEEN es estrictamente exclusivo en ambos extremos (`edad > 20 AND edad < 30`)."
     ],
     "correctAnswer": 2,
     "hint": "BETWEEN es equivalente a mayor/igual Y menor/igual (incluye los dos extremos).",
@@ -943,9 +944,9 @@ const QUESTIONS_DATABASE = [
     "question": "En una consulta con el operador `LIKE`, ¿qué representa el comodín de porcentaje (`%`)?",
     "options": [
       "Cero, uno o múltiples caracteres arbitrarios de cualquier longitud.",
-      "Exactamente un único carácter obligatorio.",
-      "Cualquier número entero del 0 al 9.",
-      "El inicio obligado de una palabra sin espacios."
+      "Exactamente un único carácter obligatorio de tipo alfanumérico.",
+      "Cualquier número entero comprendido dentro del rango del 0 al 9.",
+      "El inicio obligatorio de una palabra sin permitir espacios previos."
     ],
     "correctAnswer": 0,
     "hint": "% equivale a cualquier secuencia de caracteres (o cadena vacía).",
@@ -961,10 +962,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 2",
     "question": "¿Qué patrón `LIKE` coincide con cadenas que contengan exactamente 3 caracteres e inicien con la letra 'A'?",
     "options": [
-      "`'A%'`",
-      "`'A__'` (letra A seguida de dos guiones bajos)",
-      "`'A*2'`",
-      "`'A..'`"
+      "`'A%'` (letra A seguida de cualquier cantidad arbitraria de caracteres).",
+      "`'A__'` (letra A seguida de dos guiones bajos que representan un carácter cada uno).",
+      "`'A*2'` (letra A con operador de repetición aritmética de dos posiciones).",
+      "`'A..'` (letra A con comodines de puntos utilizados en expresiones regulares POSIX)."
     ],
     "correctAnswer": 1,
     "hint": "Cada guión bajo '_' representa exactamente un único carácter.",
@@ -1038,9 +1039,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cómo se comporta la sentencia `ORDER BY departamento ASC, salario DESC`?",
     "options": [
       "Ordena primero por departamento de la A a la Z; ante empates en el departamento, desempata ordenando el salario de mayor a menor.",
-      "Suma el código de departamento con el salario y ordena por el total resultante.",
-      "Ignora la columna departamento y ordena exclusivamente por salario.",
-      "Alterna una fila ordenada por departamento y la siguiente por salario."
+      "Calcula la suma del código de departamento con el salario y ordena el resultado de manera descendente en el conjunto final.",
+      "Descarta la columna departamento y aplica el criterio de ordenamiento exclusivamente sobre la columna salario de menor a mayor de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "Intercala alternadamente una fila ordenada por departamento y la siguiente fila ordenada por el valor de salario en disco."
     ],
     "correctAnswer": 0,
     "hint": "El ordenamiento multicriterio evalúa las columnas de izquierda a derecha.",
@@ -1057,9 +1058,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cómo se puede controlar explícitamente la posición de los valores nulos al ordenar en PostgreSQL y SQL estándar?",
     "options": [
       "Mediante las cláusulas `NULLS FIRST` o `NULLS LAST` al final del criterio de ordenamiento.",
-      "Reemplazando los NULLs por números negativos obligatoriamente en el WHERE.",
-      "Configurando una variable de entorno en el sistema operativo del servidor.",
-      "No es posible controlar la posición de los NULLs en ninguna versión de SQL."
+      "Reemplazando obligatoriamente los valores NULL por números negativos dentro del predicado WHERE.",
+      "Configurando una variable de entorno en el sistema de archivos del servidor anfitrión de datos.",
+      "No es posible alterar la posición de los NULLs en SQL por tratarse de un comportamiento estático."
     ],
     "correctAnswer": 0,
     "hint": "Se añade 'NULLS FIRST' o 'NULLS LAST' tras el nombre de la columna.",
@@ -1114,9 +1115,9 @@ const QUESTIONS_DATABASE = [
     "question": "Dada la condición `WHERE depto = 'Ventas' OR depto = 'IT' AND salario > 50000`, ¿quiénes calificarán debido a la precedencia del AND?",
     "options": [
       "Todos los empleados de Ventas (sin importar su salario) Y los empleados de IT que ganen más de $50.000.",
-      "Solo los empleados que pertenezcan a Ventas e IT al mismo tiempo y ganen más de $50.000.",
-      "Todos los empleados de la empresa sin excepción.",
-      "Únicamente los empleados de IT que ganen menos de $50.000."
+      "Únicamente los empleados que pertenezcan a Ventas e IT simultáneamente y perciban más de $50.000 de sueldo.",
+      "La totalidad de los trabajadores de la empresa independientemente del área y del salario percibido.",
+      "Exclusivamente los trabajadores del sector de IT que perciban una remuneración inferior a $50.000."
     ],
     "correctAnswer": 0,
     "hint": "Como AND se evalúa antes que OR, la condición se agrupa como: Ventas OR (IT AND salario > 50000).",
@@ -1133,9 +1134,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Para qué sirve la palabra clave `AS` en `SELECT salario * 1.20 AS salario_con_aumento FROM Empleados`?",
     "options": [
       "Para renombrar la columna o expresión en el encabezado del resultado de la consulta.",
-      "Para modificar permanentemente el nombre de la columna en el disco duro.",
-      "Para forzar que el cálculo se ejecute de manera asíncrona.",
-      "Para indicar que la columna es una clave foránea."
+      "Para modificar permanentemente el nombre de la columna física en el catálogo del sistema.",
+      "Para exigir que el cálculo aritmético se procese de manera asíncrona en memoria secundaria.",
+      "Para declarar que la expresión calculada debe comportarse como una clave foránea en la tabla."
     ],
     "correctAnswer": 0,
     "hint": "AS asigna un 'alias' (etiqueta legible) al resultado temporal de la proyección.",
@@ -1152,9 +1153,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué función de cadenas permite convertir un texto completamente a letras mayúsculas en SQL estándar?",
     "options": [
       "UPPER(texto) o UCASE(texto).",
-      "TO_CAPS(texto).",
-      "STRING_MAX(texto).",
-      "CAPITALIZE_ALL(texto)."
+      "TO_CAPS(texto) o STR_UP(texto).",
+      "STRING_MAX(texto) o TEXT_UP(texto).",
+      "CAPITALIZE_ALL(texto) o UPPER_CASE(texto)."
     ],
     "correctAnswer": 0,
     "hint": "UPPER() es la función estándar de SQL para mayúsculas.",
@@ -1171,9 +1172,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué función escalar se utiliza para concatenar dos o más cadenas de texto en SQL estándar?",
     "options": [
       "CONCAT(cad1, cad2, ...) o el operador `||`.",
-      "JOIN_TEXT(cad1, cad2).",
-      "APPEND(cad1, cad2).",
-      "MERGE_STR(cad1, cad2)."
+      "JOIN_TEXT(cad1, cad2) o el operador `&&` en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "APPEND(cad1, cad2) o el operador `++`.",
+      "MERGE_STR(cad1, cad2) o el operador `<<`."
     ],
     "correctAnswer": 0,
     "hint": "CONCAT() o el operador estándar || unen fragmentos de texto.",
@@ -1190,9 +1191,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué realiza la función `LENGTH(nombre)` (o `LEN()` en SQL Server)?",
     "options": [
       "Devuelve el número de caracteres que contiene la cadena de texto.",
-      "Devuelve el tamaño del archivo de base de datos en megabytes.",
-      "Calcula la cantidad de tuplas almacenadas en la tabla.",
-      "Mide el tiempo de respuesta del servidor en milisegundos."
+      "Devuelve el tamaño en megabytes que ocupa el archivo en el disco.",
+      "Calcula la cantidad total de registros almacenados en la tabla.",
+      "Mide el tiempo de respuesta del motor en microsegundos de CPU."
     ],
     "correctAnswer": 0,
     "hint": "Devuelve la longitud (cantidad de letras) de la cadena.",
@@ -1211,7 +1212,7 @@ const QUESTIONS_DATABASE = [
       "`EXTRACT(YEAR FROM fecha_nacimiento)`",
       "`GET_YEAR(fecha_nacimiento)`",
       "`YEAR_OF(fecha_nacimiento)`",
-      "`SPLIT_DATE(fecha_nacimiento, 1)`"
+      "`SPLIT_DATE(fecha_nacimiento, 1)` para preservar la integridad referencial y el aislamiento entre transacciones activas."
     ],
     "correctAnswer": 0,
     "hint": "La función EXTRACT(field FROM source) es la sintaxis estándar para descomponer fechas.",
@@ -1229,7 +1230,7 @@ const QUESTIONS_DATABASE = [
     "options": [
       "`CASE WHEN condicion THEN valor1 ELSE valor2 END`",
       "`IF (condicion, valor1, valor2)`",
-      "`SWITCH (condicion) { CASE valor1: break; }`",
+      "`SWITCH (condicion) { CASE valor1: break; }` de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
       "`EVALUATE condicion -> valor1 OR valor2`"
     ],
     "correctAnswer": 0,
@@ -1247,9 +1248,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué diferencia existe en PostgreSQL entre el operador `LIKE` y el operador `ILIKE`?",
     "options": [
       "`LIKE` distingue mayúsculas de minúsculas (case-sensitive), mientras que `ILIKE` es insensible a mayúsculas/minúsculas (case-insensitive).",
-      "`ILIKE` solo permite buscar números y `LIKE` solo texto.",
-      "`ILIKE` es un comando DDL y `LIKE` es un comando DML.",
-      "`ILIKE` requiere conexión a internet para conectarse a un diccionario."
+      "`LIKE` solo permite evaluar columnas numéricas y de fecha, mientras que `ILIKE` se aplica exclusivamente sobre cadenas de texto.",
+      "`LIKE` pertenece a los comandos DDL de definición, mientras que `ILIKE` forma parte de las instrucciones DML de manipulación de datos dentro del catálogo de datos del sistema de gestión de base de datos relacional.",
+      "`LIKE` requiere el uso de índices de tipo Hash en disco, mientras que `ILIKE` opera exclusivamente mediante escaneos de árbol B-Tree."
     ],
     "correctAnswer": 0,
     "hint": "La 'I' inicial en ILIKE significa 'Insensitive' (insensible a mayúsculas/minúsculas).",
@@ -1266,9 +1267,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué ocurre si una lista en `WHERE id NOT IN (1, 2, NULL)` contiene un valor NULL?",
     "options": [
       "La consulta devuelve 0 filas porque `id NOT IN (...)` se expande a `id <> 1 AND id <> 2 AND id <> NULL`, y al evaluar `id <> NULL` a UNKNOWN, toda la conjunción AND resulta en UNKNOWN.",
-      "El motor ignora silenciosamente el NULL y filtra solo por 1 y 2 con normalidad.",
-      "El servidor de base de datos se bloquea y reinicia el servicio.",
-      "La consulta devuelve todas las filas de la tabla sin aplicar ningún filtro."
+      "El motor descarta silenciosamente el valor NULL de la lista y evalúa la condición de exclusión considerando únicamente los identificadores 1 y 2 con total normalidad en el resultado en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "El servidor de base de datos interrumpe la consulta arrojando una excepción crítica de tipo NULL_POINTER_EXCEPTION en la consola de administración del motor relacional.",
+      "La consulta devuelve la totalidad de las filas de la tabla sin aplicar ningún filtro porque la presencia de un valor nulo anula por completo la evaluación del predicado WHERE."
     ],
     "correctAnswer": 0,
     "hint": "¡Peligro clásico de parcial! NOT IN con un NULL en la lista siempre anula el resultado.",
@@ -1378,7 +1379,7 @@ const QUESTIONS_DATABASE = [
     "options": [
       "Lucía Fernández | 72000",
       "Ana Gómez | 65000",
-      "Carlos Pérez | 48000",
+      "Carlos Pérez | 48000 en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
       "Sofía Romero | 59000"
     ],
     "correctAnswer": 0,
@@ -1417,9 +1418,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuántos empleados cumplen la condición de la siguiente consulta?\n`SELECT * FROM Empleados WHERE salario > 55000;`",
     "options": [
       "5 empleados (Ana Gómez: 65k, Lucía Fernández: 72k, Sofía Romero: 59k, Diego López: 81k, Valeria Díaz: 67k)",
-      "3 empleados",
-      "6 empleados",
-      "8 empleados"
+      "3 empleados (Carlos Pérez: 48k, Marcos Torres: 53k y Martín Silva: 45k que perciben un salario inferior)",
+      "6 empleados (todos los integrantes del departamento 1 y 2 que poseen registros confirmados en la tabla)",
+      "8 empleados (la nómina completa de colaboradores registrados actualmente en el sistema de recursos humanos)"
     ],
     "correctAnswer": 0,
     "hint": "Cuenta cuántos sueldos superan los 55.000: Ana (65k), Carlos (48k❌), Lucía (72k), Marcos (53k❌), Sofía (59k), Diego (81k), Valeria (67k), Martín (45k❌).",
@@ -1557,9 +1558,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué cálculo realiza la consulta `SELECT AVG(salario) FROM Empleados WHERE id_departamento = 1;`?",
     "options": [
       "Calcula el promedio salarial de los empleados del departamento 1 (Ana: 65k, Lucía: 72k, Valeria: 67k) = 68000.",
-      "Calcula el salario máximo de toda la empresa = 81000.",
-      "Suma todos los salarios de la empresa y los divide por 8.",
-      "Calcula el promedio salarial de los departamentos 2, 3 y 4."
+      "Calcula el salario máximo de toda la empresa considerando únicamente los cargos gerenciales activos = 81000.",
+      "Suma los salarios de todos los empleados de la organización y divide el resultado por el total de tuplas = 60875.",
+      "Calcula el promedio salarial excluyendo a los colaboradores de Sistemas y Ventas de los departamentos 2 y 3 = 54500."
     ],
     "correctAnswer": 0,
     "hint": "AVG() promedia solo los salarios que cumplan WHERE id_departamento = 1: (65000 + 72000 + 67000) / 3.",
@@ -1576,10 +1577,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué resultado produce un Producto Cartesiano (CROSS JOIN o `FROM TablaA, TablaB`) entre una tabla A de 5 filas y una tabla B de 10 filas sin condición de unión?",
     "options": [
-      "50 filas, donde cada fila de A se combina con todas las filas de B.",
-      "15 filas (5 + 10).",
-      "5 filas, tomando solo las filas coincidentes.",
-      "0 filas (error de sintaxis en el motor)."
+      "El conjunto de tuplas resultante de combinar cada fila de la primera tabla con todas y cada una de las filas de la segunda tabla (N x M).",
+      "La intersección exacta de registros que comparten la misma clave primaria en ambas tablas descartando las filas no coincidentes.",
+      "La unión de filas coincidentes completando con valores nulos aquellas tuplas de la izquierda que no posean referencia en la derecha en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "La diferencia simétrica entre las dos relaciones relacionales conservando únicamente los registros que no presentan correspondencia."
     ],
     "correctAnswer": 0,
     "hint": "El producto cartesiano multiplica las cardinalidades de ambas tablas (5 * 10 = 50).",
@@ -1595,10 +1596,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué tuplas devuelve una consulta con `INNER JOIN` entre dos tablas conectadas por `ON A.id = B.id_a`?",
     "options": [
-      "Únicamente aquellas tuplas de ambas tablas donde la condición de igualdad se cumple (intersección exacta de claves).",
-      "Todas las tuplas de la tabla A, contengan o no coincidencias en la tabla B.",
-      "Todas las tuplas de ambas tablas rellenando con NULL los campos sin coincidencia.",
-      "Solo las tuplas que no coinciden en ninguna de las dos tablas."
+      "Únicamente las tuplas de ambas tablas que cumplen rigurosamente la condición de combinación establecida en la cláusula ON.",
+      "La totalidad de los registros de la primera tabla, rellenando con valores NULL los atributos de la segunda ante ausencias.",
+      "Todas las filas de ambas relaciones sin importar si existen claves coincidentes en los campos de vinculación evaluados.",
+      "Exclusivamente las tuplas de la segunda tabla que no mantienen ninguna correspondencia referencial con la primera relación."
     ],
     "correctAnswer": 0,
     "hint": "INNER = interior / intersección. Solo pasan las filas con match en ambas tablas.",
@@ -1614,10 +1615,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cómo se comporta un `LEFT OUTER JOIN` (o simplemente `LEFT JOIN`) entre `Clientes c LEFT JOIN Pedidos p ON c.id = p.id_cliente`?",
     "options": [
-      "Devuelve todas las filas de la tabla izquierda (Clientes); si un cliente no tiene pedidos, sus columnas de Pedidos se completan con valores `NULL`.",
-      "Devuelve exclusivamente los clientes que tengan al menos 3 pedidos registrados.",
-      "Devuelve únicamente las filas de la tabla derecha (Pedidos).",
-      "Elimina a los clientes que no tienen pedidos de la base de datos."
+      "Preserva todos los clientes; si un cliente no tiene pedidos, sus columnas de pedidos se completan con NULL.",
+      "Descarta a los clientes que no tengan pedidos registrados para retornar exclusivamente compras efectivas y verificadas.",
+      "Genera un error de integridad referencial si existen clientes sin registros asociados en la tabla de pedidos vinculada.",
+      "Preserva todos los pedidos y elimina a los clientes que hayan registrado más de diez compras en el período analizado."
     ],
     "correctAnswer": 0,
     "hint": "La tabla de la izquierda se preserva completa. Si no hay match a la derecha, se llena con NULL.",
@@ -1633,10 +1634,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué garantiza un `RIGHT JOIN` entre `Departamentos d RIGHT JOIN Empleados e ON d.id = e.id_depto`?",
     "options": [
-      "Garantiza que todos los empleados (tabla derecha) aparezcan en el resultado, incluso si no tienen asignado un departamento.",
-      "Garantiza que todos los departamentos aparezcan aunque no tengan empleados.",
-      "Convierte la consulta en un escaneo de solo lectura sin bloqueos.",
-      "Ordena el resultado alfabéticamente de la Z a la A obligatoriamente."
+      "Conserva todos los departamentos; si un departamento no tiene empleados asociados, sus columnas de empleado se completan con NULL.",
+      "Conserva todos los empleados y descarta a los departamentos que no pertenezcan al área de Sistemas de la compañía evaluada de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "Equivale a un INNER JOIN tradicional porque la palabra clave RIGHT es ignorada por los optimizadores relacionales modernos.",
+      "Elimina físicamente los departamentos huérfanos que no cuenten con personal registrado en la base de datos de la empresa."
     ],
     "correctAnswer": 0,
     "hint": "RIGHT JOIN preserva la tabla derecha (Empleados).",
@@ -1652,10 +1653,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es el resultado de un `FULL OUTER JOIN` entre la tabla Clientes y la tabla Proveedores?",
     "options": [
-      "La combinación de todas las filas de ambas tablas: filas coincidentes unidas, y filas no coincidentes de ambos lados completadas con NULLs.",
-      "La intersección exacta de registros que sean al mismo tiempo clientes y proveedores.",
-      "El producto cartesiano de ambas tablas sin evaluar ninguna condición.",
-      "Un error fatal porque SQL no permite unir tablas con nombres distintos."
+      "Conserva todas las filas de ambas tablas, rellenando con NULL donde no haya coincidencia en la unión de registros.",
+      "Genera el producto cartesiano puro que multiplica la cantidad de filas de Clientes por la cantidad de filas de Pedidos.",
+      "Retorna únicamente los clientes con pedidos verificados y descarta cualquier fila que contenga valores nulos en el sistema.",
+      "Produce un error de sintaxis porque FULL OUTER JOIN solo está disponible en motores orientados a objetos y grafos."
     ],
     "correctAnswer": 0,
     "hint": "FULL = unión externa completa (incluye todo lo de la izquierda y todo lo de la derecha).",
@@ -1671,10 +1672,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cómo se obtienen mediante SQL los clientes que NUNCA han realizado ningún pedido?",
     "options": [
-      "`SELECT c.* FROM Clientes c LEFT JOIN Pedidos p ON c.id = p.id_cliente WHERE p.id IS NULL;`",
-      "`SELECT c.* FROM Clientes c INNER JOIN Pedidos p ON c.id = p.id_cliente WHERE p.id = 0;`",
-      "`SELECT c.* FROM Clientes c CROSS JOIN Pedidos p WHERE c.id <> p.id_cliente;`",
-      "`SELECT c.* FROM Clientes c RIGHT JOIN Pedidos p ON c.id = p.id_cliente;`"
+      "Utilizando un `LEFT JOIN` hacia pedidos y agregando la condición `WHERE p.id_pedido IS NULL` en el filtrado.",
+      "Ejecutando un `INNER JOIN` entre clientes y pedidos con la condición obligatoria `WHERE p.monto = 0`.",
+      "Aplicando un `CROSS JOIN` masivo y filtrando en el HAVING mediante la función de agregación `COUNT(*) = 0`.",
+      "Realizando un `RIGHT JOIN` hacia clientes e insertando la cláusula condicional `WHERE c.id_cliente IS NULL`."
     ],
     "correctAnswer": 0,
     "hint": "Hacer LEFT JOIN y filtrar en el WHERE aquellas filas donde la clave de la tabla derecha sea NULL.",
@@ -1690,10 +1691,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿En qué escenario es indispensable utilizar un `SELF JOIN` (auto-unión de una tabla consigo misma)?",
     "options": [
-      "Para modelar relaciones recursivas o jerarquías dentro de la misma tabla (ej. obtener el nombre del empleado y el nombre de su jefe desde la tabla `Empleados`).",
-      "Para duplicar el número de filas de una tabla antes de hacer un backup.",
-      "Para unir dos bases de datos ubicadas en servidores físicos diferentes.",
-      "Para calcular el logaritmo natural de una columna numérica."
+      "Cuando se requiere relacionar jerárquicamente una tabla consigo misma (ej. empleados con su respectivo supervisor en la misma tabla).",
+      "Cuando una consulta vincula más de cinco tablas relacionales simultáneamente dentro de una misma transacción concurrente mediante estructuras auxiliares de índices auto-balanceados de tipo árbol B+ en disco.",
+      "Cuando dos tablas del esquema poseen exactamente la misma cantidad de tuplas almacenadas físicamente en disco secundario.",
+      "Cuando se necesita combinar una tabla relacional con un documento semiestructurado en formato JSON sin clave primaria."
     ],
     "correctAnswer": 0,
     "hint": "Un SELF JOIN relaciona la tabla con sí misma usando alias diferentes (ej. e para empleado y j para jefe).",
@@ -1709,10 +1710,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuándo se puede utilizar la cláusula `USING (id_departamento)` en lugar de `ON e.id_departamento = d.id_departamento`?",
     "options": [
-      "Cuando la columna de unión tiene exactamente el mismo nombre y tipo de dato en ambas tablas.",
-      "Únicamente cuando ambas tablas tienen menos de 10 registros.",
-      "Solo si la consulta no incluye ninguna cláusula WHERE.",
-      "Siempre que se utilice una base de datos NoSQL."
+      "Únicamente cuando la columna de combinación tiene exactamente el mismo nombre en ambas tablas a vincular.",
+      "En cualquier combinación relacional sin importar si las columnas participantes poseen nombres diferentes.",
+      "Exclusivamente en combinaciones de tipo CROSS JOIN que generan el producto cartesiano de dos tablas.",
+      "Solo cuando la columna vinculada posee un índice único de tipo Hash definido previamente en el esquema."
     ],
     "correctAnswer": 0,
     "hint": "USING es un atajo sintáctico cuando la columna de enlace se llama igual en ambas tablas.",
@@ -1728,10 +1729,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es la diferencia fundamental entre `COUNT(*)` y `COUNT(comision)` en una tabla?",
     "options": [
-      "`COUNT(*)` cuenta el número total de filas (incluyendo filas con NULLs), mientras que `COUNT(comision)` cuenta únicamente las filas donde la columna `comision` no es NULL.",
-      "`COUNT(*)` solo cuenta los números pares y `COUNT(comision)` los números impares.",
-      "No existe ninguna diferencia, ambas funciones devuelven siempre el mismo número.",
-      "`COUNT(comision)` suma los valores monetarios en lugar de contar registros."
+      "`COUNT(*)` cuenta todas las filas del conjunto (incluyendo filas con nulos); `COUNT(columna)` cuenta solo filas con valor no nulo en esa columna.",
+      "`COUNT(*)` solo procesa tablas con menos de mil registros; `COUNT(columna)` se utiliza para conjuntos de datos masivos desnormalizados.",
+      "`COUNT(*)` suma los valores aritméticos de la clave primaria; `COUNT(columna)` devuelve el promedio de caracteres de la columna evaluada de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "`COUNT(*)` arroja error si la tabla contiene valores nulos; `COUNT(columna)` reemplaza los valores desconocidos por el número cero."
     ],
     "correctAnswer": 0,
     "hint": "COUNT(*) cuenta tuplas completas; COUNT(col) ignora los valores NULL.",
@@ -1747,10 +1748,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "Dada una columna con los valores `[100, 200, NULL]`, ¿qué resultado devuelve `AVG(valor)` en SQL estándar?",
     "options": [
-      "150 (calcula `(100 + 200) / 2`, ignorando el valor NULL).",
-      "100 (calcula `(100 + 200 + 0) / 3`).",
-      "NULL (porque cualquier operación con NULL da NULL).",
-      "Error de división por cero."
+      "`AVG` devuelve 150 (ignora el NULL y promedia `300 / 2`); `COUNT` devuelve 2 (cuenta solo valores no nulos).",
+      "`AVG` devuelve 100 (convierte el NULL a cero y promedia `300 / 3`); `COUNT` devuelve 3 (cuenta todas las tuplas).",
+      "`AVG` devuelve NULL (la presencia de un valor nulo invalida el cálculo); `COUNT` devuelve 0 por error aritmético.",
+      "`AVG` arroja una excepción de división por cero en el motor; `COUNT` devuelve 2 ignorando los registros duplicados."
     ],
     "correctAnswer": 0,
     "hint": "Las funciones de agregación (AVG, SUM, MIN, MAX) ignoran automáticamente los valores NULL antes de calcular.",
@@ -1767,10 +1768,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es la regla fundamental de proyección en consultas que utilizan la cláusula `GROUP BY`?",
     "options": [
-      "Cualquier columna que aparezca en el `SELECT` y no esté dentro de una función de agregación (SUM, AVG, etc.) DEBE estar incluida obligatoriamente en la cláusula `GROUP BY`.",
-      "No se puede utilizar la cláusula WHERE si la consulta ya tiene GROUP BY.",
-      "Todas las tablas deben tener exactamente la misma cantidad de filas.",
-      "El GROUP BY solo puede aplicarse sobre columnas de tipo fecha."
+      "Toda columna en la lista de `SELECT` que no esté dentro de una función agregada DEBE aparecer obligatoriamente en la cláusula `GROUP BY`.",
+      "Las columnas proyectadas en el `SELECT` deben pertenecer exclusivamente a la clave primaria para permitir el cálculo de funciones agregadas.",
+      "El número total de columnas proyectadas en el `SELECT` debe ser exactamente igual a la cantidad de filas agrupadas por la consulta.",
+      "No se permite proyectar ninguna columna no numérica cuando la cláusula `GROUP BY` incluye más de dos atributos en su definición."
     ],
     "correctAnswer": 0,
     "hint": "No puedes proyectar un valor individual junto a un grupo a menos que la columna esté en el GROUP BY.",
@@ -1786,10 +1787,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es la diferencia crucial entre las cláusulas `WHERE` y `HAVING`?",
     "options": [
-      "`WHERE` filtra filas individuales ANTES del agrupamiento y no admite funciones de agregación; `HAVING` filtra grupos de filas DESPUÉS de aplicar las funciones de agregación.",
-      "`HAVING` se ejecuta antes que el `FROM` y `WHERE` después del `ORDER BY`.",
-      "`WHERE` solo funciona con cadenas de texto y `HAVING` solo con números enteros.",
-      "No hay diferencia, son palabras sinónimas intercambiables."
+      "`WHERE` filtra filas individuales ANTES de que se formen los grupos; `HAVING` filtra grupos YA FORMADOS después de la agregación.",
+      "`WHERE` solo puede utilizarse en consultas sobre una tabla; `HAVING` es de uso obligatorio cuando intervienen operaciones JOIN mediante estructuras auxiliares de índices auto-balanceados de tipo árbol B+ en disco.",
+      "`WHERE` evalúa condiciones sobre funciones de agregación; `HAVING` filtra exclusivamente columnas numéricas sin agrupar.",
+      "`WHERE` y `HAVING` son sinónimos sintácticos intercambiables que ejecutan el mismo plan de consulta en el optimizador."
     ],
     "correctAnswer": 0,
     "hint": "WHERE filtra tuplas individuales antes de agrupar; HAVING filtra los grupos resultantes tras la agregación.",
@@ -1805,10 +1806,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Por qué la consulta `SELECT depto, COUNT(*) FROM Empleados WHERE COUNT(*) > 5 GROUP BY depto;` genera un error de sintaxis?",
     "options": [
-      "Porque las funciones de agregación como `COUNT(*)` no pueden ubicarse en la cláusula `WHERE`; la condición de grupo debe ir en la cláusula `HAVING COUNT(*) > 5`.",
-      "Porque la función COUNT(*) requiere obligatoriamente el uso de alias con AS.",
-      "Porque la cláusula GROUP BY debe escribirse antes que la cláusula WHERE.",
-      "Porque el número 5 debe escribirse en letras ('CINCO')."
+      "Porque `WHERE` se ejecuta antes de la agrupación y no puede evaluar funciones de agregación; debe filtrarse usando `HAVING COUNT(*) > 5`.",
+      "Porque la función `COUNT(*)` no está permitida en tablas que poseen columnas alfanuméricas como la columna departamento.",
+      "Porque la cláusula `GROUP BY` exige que el umbral numérico de filtrado se declare como una constante booleana en el SELECT para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "Porque el estándar SQL prohíbe el uso de operadores de comparación numérica como mayor que `>` junto a la palabra WHERE."
     ],
     "correctAnswer": 0,
     "hint": "En el momento que se evalúa el WHERE, los grupos aún no existen. El filtro sobre agregados va en HAVING.",
@@ -1824,10 +1825,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es el orden lógico de ejecución interno que sigue el motor de base de datos para procesar una consulta SQL?",
     "options": [
-      "1. FROM/JOIN -> 2. WHERE -> 3. GROUP BY -> 4. HAVING -> 5. SELECT -> 6. DISTINCT -> 7. ORDER BY -> 8. LIMIT.",
-      "1. SELECT -> 2. FROM -> 3. WHERE -> 4. ORDER BY -> 5. GROUP BY.",
-      "1. ORDER BY -> 2. LIMIT -> 3. SELECT -> 4. FROM -> 5. WHERE.",
-      "1. GROUP BY -> 2. HAVING -> 3. WHERE -> 4. FROM -> 5. SELECT."
+      "FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY -> LIMIT.",
+      "SELECT -> FROM -> WHERE -> GROUP BY -> HAVING -> ORDER BY -> LIMIT.",
+      "FROM -> SELECT -> WHERE -> HAVING -> GROUP BY -> LIMIT -> ORDER BY.",
+      "WHERE -> FROM -> GROUP BY -> SELECT -> HAVING -> ORDER BY -> LIMIT."
     ],
     "correctAnswer": 0,
     "hint": "Primero se cargan las tablas (FROM/JOIN), se filtran filas (WHERE), se agrupan (GROUP BY), se filtran grupos (HAVING) y recién ahí se proyecta (SELECT).",
@@ -1843,10 +1844,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Por qué NO es posible utilizar un alias definido en el SELECT (ej. `SELECT salario * 12 AS anual`) dentro de la cláusula `WHERE`?",
     "options": [
-      "Porque la cláusula `WHERE` se evalúa lógicamente ANTES que la cláusula `SELECT`, por lo que el alias aún no existe cuando el WHERE se ejecuta.",
-      "Porque los alias de columna solo pueden contener letras minúsculas.",
-      "Porque el estándar SQL prohíbe el uso de multiplicaciones matemáticas.",
-      "Porque los alias solo son válidos dentro de la consola del sistema operativo."
+      "Porque la cláusula `WHERE` se evalúa lógicamente antes que el `SELECT`; en ese momento el alias de columna aún no ha sido creado por el motor.",
+      "Porque los alias de columna solo son reconocidos cuando se definen sobre campos de tipo fecha o cadenas de caracteres alfanuméricas.",
+      "Porque el estándar SQL restringe el uso de alias exclusivamente a consultas que utilicen subconsultas correlacionadas en el FROM.",
+      "Porque el optimizador de consultas elimina los alias de columna durante la fase de análisis léxico para reducir el consumo de memoria dentro del catálogo de datos del sistema de gestión de base de datos relacional."
     ],
     "correctAnswer": 0,
     "hint": "Revisa el orden lógico: WHERE se procesa en el paso 2, mientras que SELECT se procesa en el paso 5.",
@@ -1862,10 +1863,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Cuál es la diferencia fundamental entre los operadores `UNION` y `UNION ALL`?",
     "options": [
-      "`UNION` elimina automáticamente las filas duplicadas del resultado final (requiere ordenar/hashear), mientras que `UNION ALL` conserva todos los duplicados y es mucho más rápido.",
-      "`UNION` solo combina tablas numéricas y `UNION ALL` solo tablas de texto.",
-      "`UNION ALL` borra los datos de la tabla física original.",
-      "`UNION` une tablas en sentido horizontal (columnas) y `UNION ALL` en sentido vertical."
+      "`UNION` elimina las tuplas duplicadas aplicando una operación interna de ordenamiento/hash; `UNION ALL` conserva todos los duplicados y es más veloz.",
+      "`UNION` solo puede combinar resultados de una misma tabla física; `UNION ALL` permite unir consultas de diferentes bases de datos remotas.",
+      "`UNION` preserva la totalidad de los registros duplicados en el conjunto final; `UNION ALL` descarta automáticamente las filas redundantes.",
+      "`UNION` requiere que ambas consultas tengan distinto tipo de datos; `UNION ALL` exige que las columnas compartan el mismo identificador."
     ],
     "correctAnswer": 0,
     "hint": "UNION ALL simplemente concatena las filas sin el costo computacional de buscar y eliminar duplicados.",
@@ -1881,10 +1882,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué requisitos deben cumplir dos consultas SELECT para combinarse mediante `UNION`, `INTERSECT` o `EXCEPT`?",
     "options": [
-      "Ambas consultas deben proyectar exactamente la misma cantidad de columnas y los tipos de datos correspondientes deben ser compatibles en orden posicional.",
-      "Ambas tablas deben tener exactamente el mismo nombre de tabla en la base de datos.",
-      "Las consultas deben ejecutarse obligatoriamente al mismo tiempo por dos usuarios diferentes.",
-      "No se requiere ninguna compatibilidad; se pueden unir consultas de 1 columna con consultas de 20 columnas libremente."
+      "Deben proyectar el mismo número de columnas y sus tipos de datos correspondientes deben ser compatibles en orden de posición.",
+      "Deben provenir obligatoriamente de la misma tabla física y compartir la misma clave primaria en sus esquemas relacionales mediante estructuras auxiliares de índices auto-balanceados de tipo árbol B+ en disco.",
+      "Deben contener exactamente la misma cantidad de filas y estar indexadas mediante árboles auto-balanceados de tipo B-Tree.",
+      "Deben incluir de manera mandatoria la cláusula `GROUP BY` con las mismas funciones de agregación en ambas sentencias."
     ],
     "correctAnswer": 0,
     "hint": "Compatibilidad de tipo y número de columnas: columna 1 con columna 1, columna 2 con columna 2, etc.",
@@ -1900,10 +1901,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué devuelve el operador `INTERSECT` entre dos consultas?",
     "options": [
-      "Únicamente las filas que están presentes en AMBOS conjuntos de resultados.",
-      "Todas las filas del primer conjunto menos las del segundo conjunto.",
-      "El producto cartesiano de ambas consultas.",
-      "La suma de los valores monetarios de ambas tablas."
+      "Únicamente las filas que están presentes simultáneamente en el resultado de ambas consultas (intersección matemática).",
+      "Todas las filas de ambas consultas combinadas sin descartar los registros duplicados existentes entre ambos conjuntos.",
+      "Las filas que aparecen en la primera consulta excluyendo estrictamente aquellas que figuren en la segunda consulta.",
+      "El producto cartesiano de los dos conjuntos de datos emparejando cada fila de la primera con la segunda consulta."
     ],
     "correctAnswer": 0,
     "hint": "INTERSECT es la intersección matemática: elementos comunes en A y B.",
@@ -1919,10 +1920,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué devuelve el operador `EXCEPT` (o `MINUS` en Oracle) entre la consulta A y la consulta B?",
     "options": [
-      "Las filas que aparecen en la consulta A pero que NO están presentes en la consulta B (diferencia de conjuntos A - B).",
-      "La suma de todas las filas de A y B sin ninguna exclusión.",
-      "Las filas que aparecen en B pero no en A exclusivamente.",
-      "Un error si las tablas tienen más de 100 registros."
+      "Las filas resultantes de la primera consulta que NO están presentes en el resultado de la segunda consulta.",
+      "Las filas coincidentes que aparecen en ambas consultas descartando los registros que presenten valores nulos.",
+      "La totalidad de las tuplas de ambas consultas reemplazando los campos no coincidentes por el número cero.",
+      "El conjunto de filas que pertenecen exclusivamente a la segunda consulta omitiendo los datos de la primera."
     ],
     "correctAnswer": 0,
     "hint": "EXCEPT = A menos B (elementos que están en A pero no en B).",
@@ -1938,10 +1939,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Qué calcula la expresión `COUNT(DISTINCT categoria)` en una tabla de Productos?",
     "options": [
-      "El número de categorías distintas y únicas existentes, sin contar duplicados ni valores nulos.",
-      "La cantidad total de productos multiplicada por las categorías.",
-      "El precio promedio de los productos de cada categoría.",
-      "La longitud en caracteres del nombre de la categoría más larga."
+      "La cantidad de valores de categoría únicos y distintos, ignorando repeticiones y excluyendo valores nulos.",
+      "El total de tuplas de la tabla multiplicadas por la cantidad de categorías registradas en el catálogo.",
+      "La categoría que posee la longitud de texto más extensa entre todos los registros de la columna analizada.",
+      "El promedio ponderado de apariciones de cada categoría dentro de la partición de almacenamiento secundario."
     ],
     "correctAnswer": 0,
     "hint": "DISTINCT dentro de COUNT elimina las repeticiones antes de hacer el conteo.",
@@ -1957,10 +1958,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3",
     "question": "¿Por qué el uso de `NATURAL JOIN` es considerado una mala práctica peligrosa en sistemas de producción?",
     "options": [
-      "Porque une automáticamente las tablas por TODAS las columnas que tengan el mismo nombre sin advertencia; si se agrega una columna de auditoría como `fecha_creacion` en ambas tablas, la condición de unión cambiará silenciosamente y romperá los resultados.",
-      "Porque NATURAL JOIN borra las tablas de la memoria RAM.",
-      "Porque no es compatible con bases de datos que utilicen codificación UTF-8.",
-      "Porque requiere reiniciar el servidor de base de datos después de cada consulta."
+      "Une tablas por todas las columnas con igual nombre; añadir columnas de auditoría altera la unión silenciosamente provocando errores graves.",
+      "Borra las tablas de la memoria RAM del servidor si la consulta tarda más de diez segundos en retornar los datos al cliente web consumidor.",
+      "Es incompatible con motores de base de datos que utilicen codificación de caracteres UTF-8 o tipos de datos numéricos en disco secundario.",
+      "Exige reiniciar el servicio del motor relacional tras cada ejecución para liberar los bloqueos de lectura adquiridos en los índices B-Tree."
     ],
     "correctAnswer": 0,
     "hint": "NATURAL JOIN hace matching implícito por nombres iguales de columnas, lo que crea un acoplamiento frágil e impredecible.",
@@ -2172,9 +2173,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué devuelve la consulta `SELECT SUM(salario) FROM Empleados WHERE depto = 'Marketing'` si no hay ningún empleado de Marketing en la tabla?",
     "options": [
       "Devuelve `NULL` (las funciones de agregación sobre un conjunto vacío retornan NULL, excepto `COUNT` que retorna 0).",
-      "Devuelve 0 obligatoriamente.",
-      "Genera un error de ejecución en el servidor.",
-      "Devuelve -1."
+      "Devuelve `0` (las funciones de suma retornan siempre cero numérico ante la ausencia de registros coincidentes en la tabla).",
+      "Arroja un error de ejecución en el servidor relacional por intentar sumar columnas numéricas sobre conjuntos inexistentes.",
+      "Devuelve `-1` como código estándar de estado para indicar que el filtro de la cláusula WHERE no encontró coincidencias."
     ],
     "correctAnswer": 0,
     "hint": "¡Pregunta capciosa de examen! SUM, AVG, MIN, MAX sobre un conjunto vacío retornan NULL. Solo COUNT() devuelve 0.",
@@ -2190,10 +2191,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "Si ejecutamos `SELECT id_departamento, COUNT(*) AS cantidad FROM Empleados GROUP BY id_departamento;`, ¿qué cantidad mostrará para el departamento 1?",
     "options": [
-      "3 (Ana Gómez, Lucía Fernández y Valeria Díaz)",
-      "2",
-      "1",
-      "5"
+      "id_departamento 1: 3 empleados (Ana, Lucía, Valeria) e id_departamento 2: 2 empleados (Carlos, Marcos).",
+      "id_departamento 1: 5 empleados e id_departamento 2: 3 empleados en el reporte consolidado de personal.",
+      "id_departamento 1: 2 empleados e id_departamento 2: 4 empleados registrados en la nómina corporativa.",
+      "id_departamento 1: 8 empleados (la totalidad de la plantilla activa asignada al sector de administración)."
     ],
     "correctAnswer": 0,
     "hint": "Cuenta cuántos empleados tienen id_departamento = 1 en la tabla.",
@@ -2210,10 +2211,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "¿Qué departamento encabeza la lista al ejecutar:\n`SELECT id_departamento, SUM(salario) AS total_masa_salarial FROM Empleados GROUP BY id_departamento ORDER BY total_masa_salarial DESC;`?",
     "options": [
-      "Departamento 1 con una masa salarial de $204.000",
-      "Departamento 2 con $107.000",
-      "Departamento 3 con $98.000",
-      "Departamento 4 con $81.000"
+      "El departamento 1 con un salario promedio de 68.000 (seguido por el departamento 2 con 50.500).",
+      "El departamento 2 con un salario promedio de 75.000 (seguido por el departamento 1 con 62.000).",
+      "El departamento 3 con un salario promedio de 81.000 (seguido por el departamento 2 con 58.000).",
+      "El departamento 4 con un salario promedio de 90.000 (seguido por el departamento 1 con 70.000)."
     ],
     "correctAnswer": 0,
     "hint": "Suma los salarios de cada departamento: Depto 1 = 65k+72k+67k = 204k.",
@@ -2230,10 +2231,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "Dada la consulta:\n`SELECT e.nombre, d.nombre_departamento FROM Empleados e INNER JOIN Departamentos d ON e.id_departamento = d.id WHERE e.salario > 60000;`\n¿Qué empleados formarán parte del resultado?",
     "options": [
-      "Ana Gómez (Ventas), Lucía Fernández (Ventas), Diego López (Sistemas) y Valeria Díaz (Ventas)",
-      "Carlos Pérez, Marcos Torres y Martín Silva",
-      "Sofía Romero y Diego López únicamente",
-      "Todos los 8 empleados de la empresa"
+      "Martín Silva | NULL (aparece con NULL en departamento porque su id_departamento es nulo).",
+      "Martín Silva | Sin Departamento (el motor reemplaza automáticamente el valor por defecto).",
+      "No aparece Martín Silva porque los LEFT JOIN descartan filas con claves externas nulas.",
+      "Martín Silva | Sistemas (se le asigna el departamento con mayor cantidad de colaboradores)."
     ],
     "correctAnswer": 0,
     "hint": "Filtra a quienes ganan más de 60.000 y combínalos con el nombre de su departamento.",
@@ -2250,10 +2251,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "Si ejecutamos:\n`SELECT d.nombre_departamento, COUNT(e.id) AS total FROM Departamentos d LEFT JOIN Empleados e ON d.id = e.id_departamento GROUP BY d.nombre_departamento;`\n¿Qué valor mostrará para 'Recursos Humanos' (id = 5)?",
     "options": [
-      "0 (ya que ningún empleado tiene asignado id_departamento = 5)",
-      "1",
-      "NULL",
-      "Error de ejecución"
+      "Marketing: 0 empleados (aparece con 0 gracias a que `COUNT(e.id)` no contabiliza valores nulos en la tabla izquierda).",
+      "Marketing: 1 empleado (porque el RIGHT JOIN genera una fila obligatoria y COUNT(*) la contabiliza como válida).",
+      "Marketing no aparece en el resultado porque no cuenta con empleados asociados en la tabla de personal de la empresa.",
+      "Marketing: NULL (porque las funciones de agregación retornan nulo ante la ausencia de registros en combinaciones externas)."
     ],
     "correctAnswer": 0,
     "hint": "COUNT(columna) ignora los valores NULL generados por la ausencia de filas en la tabla derecha.",
@@ -2290,10 +2291,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "¿Qué departamentos arrojará la consulta:\n`SELECT id_departamento, COUNT(*) FROM Empleados GROUP BY id_departamento HAVING COUNT(*) > 2;`?",
     "options": [
-      "Únicamente el id_departamento = 1 (con 3 empleados).",
-      "Los id_departamento 1, 2 y 3.",
-      "Todos los departamentos de la base de datos.",
-      "Ninguno, produce un error de compilación."
+      "Solo el departamento 1, ya que es el único que cuenta con 3 empleados (el departamento 2 tiene 2).",
+      "Los departamentos 1 y 2, dado que ambos superan el umbral mínimo de dos empleados registrados.",
+      "Los departamentos 1, 2 y 3, incluyendo las áreas que poseen asignación de presupuesto operativo en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "Ningún departamento califica porque la cláusula HAVING requiere un mínimo de cinco empleados."
     ],
     "correctAnswer": 0,
     "hint": "HAVING filtra grupos calculados: sólo el departamento 1 posee más de 2 empleados (tiene 3).",
@@ -2310,10 +2311,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 3 - Autoevaluación 3",
     "question": "¿Qué valores devuelve la consulta `SELECT DISTINCT id_departamento FROM Empleados ORDER BY id_departamento ASC;`?",
     "options": [
-      "1, 2, 3, 4 (eliminando las repeticiones de los 8 empleados)",
-      "1, 2, 3, 4, 5",
-      "1, 1, 1, 2, 2, 3, 3, 4",
-      "8"
+      "1, 2 y NULL (DISTINCT incluye los valores únicos y preserva una única ocurrencia del valor NULL).",
+      "Únicamente los valores 1 y 2, porque la palabra clave DISTINCT descarta siempre los valores nulos.",
+      "1, 1, 1, 2, 2 y NULL (mantiene la cantidad original de filas proyectadas en la consulta relacional).",
+      "El valor 0 como reemplazo estandarizado de los registros que no poseen departamento asignado."
     ],
     "correctAnswer": 0,
     "hint": "DISTINCT remueve los valores repetidos de la columna listada.",
@@ -2370,10 +2371,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Cuál es la sintaxis correcta del comando DML `INSERT INTO` para agregar una nueva fila especificando columnas y valores?",
     "options": [
-      "`INSERT INTO Clientes (id, nombre, email) VALUES (1, 'Juan Pérez', 'juan@mail.com');`",
-      "`INSERT INTO Clientes SET id = 1, nombre = 'Juan Pérez';`",
-      "`ADD ROW TO Clientes (1, 'Juan Pérez', 'juan@mail.com');`",
-      "`CREATE ROW IN Clientes VALUES (1, 'Juan Pérez');`"
+      "`INSERT INTO nombre_tabla (col1, col2, ...) VALUES (val1, val2, ...);`",
+      "`ADD INTO nombre_tabla (col1, col2, ...) VALUES (val1, val2, ...);` en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "`INSERT ROW TO nombre_tabla SET col1 = val1, col2 = val2;`",
+      "`CREATE RECORD IN nombre_tabla WITH (col1 = val1, col2 = val2);`"
     ],
     "correctAnswer": 0,
     "hint": "La sintaxis estándar es INSERT INTO tabla (columnas) VALUES (valores).",
@@ -2389,10 +2390,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Cómo se insertan de forma masiva en una tabla los resultados producidos por una consulta SELECT?",
     "options": [
-      "`INSERT INTO Empleados_Historico (id, nombre) SELECT id, nombre FROM Empleados WHERE activo = false;`",
-      "`INSERT INTO Empleados_Historico VALUES (SELECT * FROM Empleados);`",
-      "`COPY SELECT * FROM Empleados TO Empleados_Historico;`",
-      "`UPDATE Empleados_Historico FROM SELECT * FROM Empleados;`"
+      "`INSERT INTO tabla_destino (col1, col2) SELECT c1, c2 FROM tabla_origen WHERE condicion;`",
+      "`COPY DATA FROM tabla_origen TO tabla_destino WHERE condicion APPLY ALL;`",
+      "`MERGE INTO tabla_destino USING tabla_origen ON ALWAYS TRUE INSERT ALL;`",
+      "`APPEND ROWS tabla_destino SELECT c1, c2 FROM tabla_origen COMMIT BATCH;`"
     ],
     "correctAnswer": 0,
     "hint": "Se utiliza la combinación `INSERT INTO tabla (cols) SELECT ...` sin la palabra VALUES.",
@@ -2408,10 +2409,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Cuál es la estructura sintáctica estándar del comando `UPDATE` en SQL?",
     "options": [
-      "`UPDATE tabla SET columna1 = valor1, columna2 = valor2 WHERE condicion;`",
-      "`MODIFY tabla (columna1 = valor1) WHERE condicion;`",
-      "`UPDATE COLUMNS OF tabla SET valor1 WHERE condicion;`",
-      "`ALTER tabla UPDATE columna1 = valor1;`"
+      "`UPDATE nombre_tabla SET col1 = val1, col2 = val2 WHERE condicion;`",
+      "`MODIFY nombre_tabla VALUES (col1 = val1, col2 = val2) WHERE condicion;`",
+      "`ALTER TABLE nombre_tabla SET DATA col1 = val1 WHERE condicion;`",
+      "`CHANGE nombre_tabla ASSIGN col1 = val1 WHERE condicion IS TRUE;`"
     ],
     "correctAnswer": 0,
     "hint": "UPDATE tabla SET col = val WHERE ...",
@@ -2427,10 +2428,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Qué consecuencia catastrófica ocurre si se ejecuta una sentencia `UPDATE Empleados SET salario = 50000;` sin incluir la cláusula `WHERE`?",
     "options": [
-      "TODOS los empleados de la tabla pasarán a tener un salario de $50.000, modificando la totalidad de las filas de la tabla.",
-      "El motor SQL rechaza la consulta arrojando un error de sintaxis.",
-      "Solo se actualiza el primer registro de la tabla física.",
-      "Se crea una nueva tabla vacía llamada Empleados_50000."
+      "Se actualizan o modifican absolutamente todas las filas de la tabla sin excepción.",
+      "El servidor de base de datos interrumpe la ejecución arrojando un error de sintaxis.",
+      "La sentencia solo modifica la primera fila de la tabla y descarta las restantes.",
+      "El motor de base de datos revierte automáticamente la transacción por precaución."
     ],
     "correctAnswer": 0,
     "hint": "¡Peligro crítico! Sin WHERE, UPDATE afecta a cada una de las filas de la tabla.",
@@ -2446,10 +2447,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Qué acción realiza la instrucción `DELETE FROM Clientes WHERE id = 100;`?",
     "options": [
-      "Elimina la tupla correspondiente al cliente con id = 100 de la tabla Clientes.",
-      "Borra la columna llamada 'id' de la definición de la tabla.",
-      "Elimina la tabla Clientes completa junto con sus índices del disco.",
-      "Pone el saldo del cliente 100 en cero sin borrar la fila."
+      "Elimina permanentemente de la tabla a los clientes que residen en la ciudad de Rosario.",
+      "Actualiza el campo ciudad de los clientes asignándoles el valor nulo por defecto.",
+      "Crea una copia de seguridad de los clientes de Rosario en el almacenamiento secundario.",
+      "Deshabilita temporalmente la cuenta de usuario de los clientes que viven en Rosario."
     ],
     "correctAnswer": 0,
     "hint": "DELETE elimina filas específicas según la condición del WHERE.",
@@ -2465,10 +2466,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4",
     "question": "¿Cuáles son las diferencias fundamentales entre `DELETE FROM tabla`, `TRUNCATE TABLE tabla` y `DROP TABLE tabla`?",
     "options": [
-      "`DELETE` es DML (borra fila por fila, genera log transaccional, permite WHERE y ROLLBACK); `TRUNCATE` es DDL (desasigna páginas de datos rápido, no admite WHERE); `DROP TABLE` es DDL y elimina la estructura y metadatos del catálogo.",
-      "`DELETE` borra la base de datos, `TRUNCATE` borra usuarios y `DROP` borra contraseñas.",
-      "`TRUNCATE` solo funciona en tablas temporales y `DELETE` solo en vistas.",
-      "No hay diferencias; los tres comandos son idénticos y sinónimos exactos."
+      "DELETE es una sentencia DML fila por fila que activa triggers y genera logs en el WAL; TRUNCATE es DDL que desasigna páginas de datos completas, es mucho más veloz, resetea secuencias y no activa triggers row-level.",
+      "DELETE es un comando DDL que elimina la estructura física de la tabla en el catálogo; TRUNCATE es una operación DML transaccional que solo vacía las memorias intermedias del búfer sin alterar el almacenamiento en disco.",
+      "DELETE desasigna de forma masiva los bloques del sistema de ficheros eludiendo los registros de transacciones; TRUNCATE lee y valida cada tupla individualmente ejecutando los triggers definidos en el esquema.",
+      "DELETE y TRUNCATE comparten exactamente el mismo algoritmo de ejecución física en disco, diferenciándose únicamente en los privilegios administrativos requeridos por el rol del usuario que los ejecuta en el servidor."
     ],
     "correctAnswer": 0,
     "hint": "DELETE opera fila por fila (DML), TRUNCATE vacía el almacenamiento masivamente (DDL) y DROP borra la tabla del diccionario (DDL).",
@@ -2485,9 +2486,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Para qué se utiliza la cláusula `RETURNING` (en PostgreSQL y SQLite) en sentencias `INSERT`, `UPDATE` o `DELETE`?",
     "options": [
       "Para obtener inmediatamente valores generados (como el `id` autoincremental asignado o columnas actualizadas) en la misma ejecución sin hacer un SELECT adicional.",
-      "Para devolver la conexión al pool de conexiones del servidor.",
-      "Para hacer un rollback forzado de la transacción.",
-      "Para retornar el código fuente en C del motor de base de datos."
+      "Para liberar de inmediato la conexión cliente devolviéndola al pool de conexiones activas del servidor relacional para evitar bloqueos en transacciones concurrentes.",
+      "Para forzar la cancelación inmediata de la transacción activa revirtiendo las escrituras en disco secundario mediante un rollback forzado de nivel de aislamiento.",
+      "Para retornar el código fuente compilado del procedimiento almacenado ejecutado por el motor relacional en la consola de depuración de la aplicación cliente."
     ],
     "correctAnswer": 0,
     "hint": "RETURNING permite recuperar el id generado o datos modificados en una única operación.",
@@ -2504,9 +2505,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué es una Subconsulta (Subquery o Consulta Anidada) en SQL?",
     "options": [
       "Una sentencia SELECT anidada dentro de otra sentencia SQL principal (en cláusulas como SELECT, FROM, WHERE o HAVING).",
-      "Un usuario de base de datos con permisos limitados de lectura.",
-      "Una consulta que se envía por correo electrónico a los administradores.",
-      "Un script en Bash que crea copias de seguridad cada noche."
+      "Una cuenta de usuario con privilegios restringidos que solo puede ejecutar lecturas sobre vistas precalculadas.",
+      "Una solicitud de datos enviada de manera asíncrona a través de colas de mensajes del sistema operativo anfitrión para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "Un script de mantenimiento nocturno que desfragmenta los índices de disco en horarios de bajo consumo."
     ],
     "correctAnswer": 0,
     "hint": "Es una consulta interna entre paréntesis dentro de una consulta exterior.",
@@ -2523,9 +2524,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué define a una Subconsulta Escalar (Scalar Subquery) y dónde puede utilizarse?",
     "options": [
       "Retorna exactamente un único valor (1 fila y 1 columna); puede utilizarse en cualquier lugar donde sea válida una constante o expresión escalar (SELECT, WHERE con operadores `=`, `>`, etc.).",
-      "Retorna una tabla de 100 columnas y 100 filas obligatoriamente.",
-      "Solo puede utilizarse dentro de procedimientos almacenados en Java.",
-      "Es una subconsulta que no puede tener cláusula WHERE."
+      "Retorna una estructura bidimensional de múltiples filas y columnas que solo puede ser leída mediante cursores declarados en procedimientos almacenados dentro de la base de datos de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "Es una subconsulta no transaccional que solo puede invocarse dentro de funciones definidas por el usuario escritas en C o ensamblador en el servidor de base de datos.",
+      "Es una consulta recursiva que itera indefinidamente sobre árboles jerárquicos hasta alcanzar una condición de parada fijada en el almacenamiento secundario del motor relacional."
     ],
     "correctAnswer": 0,
     "hint": "Escalar = un único valor atómico (1x1).",
@@ -2542,9 +2543,9 @@ const QUESTIONS_DATABASE = [
     "question": "Si una subconsulta devuelve múltiples filas de una sola columna, ¿qué operador debe utilizarse en la consulta externa para comparar un valor?",
     "options": [
       "Operadores de conjunto como `IN`, `NOT IN`, `ANY` (o `SOME`) y `ALL`.",
-      "El operador de igualdad simple `=`.",
-      "El operador de concatenación `||`.",
-      "La función trigonométrica `SIN()`."
+      "Operadores de comparación escalar estricta como `=`, `<>` y `!=`.",
+      "Operadores de concatenación de cadenas como `||` y `CONCAT()`.",
+      "Funciones trigonométricas escalares como `SIN()`, `COS()` y `TAN()` dentro del catálogo de datos del sistema de gestión de base de datos relacional."
     ],
     "correctAnswer": 0,
     "hint": "No puedes usar '=' frente a múltiples valores; debes usar IN, ANY o ALL.",
@@ -2561,9 +2562,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué requisito es estrictamente obligatorio al utilizar una subconsulta en la cláusula `FROM` (Tabla Derivada / Inline View)?",
     "options": [
       "Asignarle obligatoriamente un Alias de tabla (ej. `FROM (SELECT id, AVG(monto) FROM Ventas GROUP BY id) AS resumen`).",
-      "Limitar el resultado a un máximo de 3 filas con LIMIT.",
-      "No incluir ningún tipo de función de agregación en la subconsulta.",
-      "Crear un índice en memoria antes de ejecutarla."
+      "Limitar el conjunto resultante a un número máximo de tres tuplas mediante el uso mandatorio de la cláusula LIMIT en el almacenamiento secundario durante el procesamiento concurrente de transacciones.",
+      "Omitir el uso de cualquier función de agregación matemática dentro de la lista de proyección de la subconsulta.",
+      "Crear previamente un índice compuesto en memoria sobre las columnas involucradas en la sentencia secundaria."
     ],
     "correctAnswer": 0,
     "hint": "Toda tabla derivada en el FROM debe tener un alias para que la consulta externa pueda referenciar sus columnas.",
@@ -2580,9 +2581,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cómo se ejecuta una Subconsulta No Correlacionada (Self-Contained Subquery)?",
     "options": [
       "Se evalúa una única vez de manera independiente antes de que comience la ejecución de la consulta externa, y su resultado se reutiliza.",
-      "Se evalúa una y otra vez por cada fila procesada en la consulta externa.",
-      "Se ejecuta únicamente cuando el usuario presiona Ctrl + C en la terminal.",
-      "Requiere compilar la base de datos en un archivo binario ejecutable."
+      "Se ejecuta de forma iterativa y repetitiva una vez por cada fila procesada por la consulta externa en el escaneo de datos.",
+      "Se ejecuta exclusivamente cuando el usuario interrumpe la sesión activa mediante una señal de terminación de procesos.",
+      "Requiere compilar la base de datos completa en un archivo binario ejecutable antes de ser procesada por el optimizador."
     ],
     "correctAnswer": 0,
     "hint": "No depende de las columnas externas: se resuelve una sola vez al principio.",
@@ -2599,9 +2600,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué caracteriza a una Subconsulta Correlacionada (Correlated Subquery)?",
     "options": [
       "Hace referencia a una o más columnas de la consulta externa, ejecutándose y evaluándose una vez por cada fila candidata de la consulta principal.",
-      "Solo puede escribirse utilizando lenguaje Python embebido.",
-      "No permite el uso de la cláusula WHERE.",
-      "Se guarda automáticamente como una vista materializada en disco."
+      "Es una consulta aislada que se resuelve de manera preliminar en memoria sin compartir ningún contexto con la sentencia externa para preservar la integridad referencial y el aislamiento entre transacciones activas.",
+      "Solo puede ejecutarse sobre tablas particionadas que residan en servidores distribuidos con replicación transaccional activa.",
+      "Se persiste automáticamente en disco secundario bajo la forma de una vista materializada de solo lectura tras completarse."
     ],
     "correctAnswer": 0,
     "hint": "La subconsulta interna depende del valor de la fila actual de la consulta externa.",
@@ -2618,9 +2619,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cómo evalúa el operador `EXISTS (SELECT 1 FROM ...)` y por qué es altamente eficiente?",
     "options": [
       "Devuelve TRUE tan pronto como la subconsulta encuentra la primera fila coincidente (evaluación en cortocircuito), sin necesidad de recuperar ni contar todas las filas.",
-      "Calcula la suma de todos los números primos de la tabla.",
-      "Carga la tabla entera en memoria RAM y cuenta cuántos caracteres tiene.",
-      "Requiere que la subconsulta devuelva obligatoriamente la columna 'id'."
+      "Calcula la suma acumulada de todos los valores numéricos de la tabla secundaria antes de determinar si existe alguna coincidencia válida en los registros de almacenamiento.",
+      "Carga la totalidad de la relación en el búfer de memoria volátil y cuenta la cantidad exacta de caracteres almacenados en sus columnas para validar la existencia de tuplas.",
+      "Exige de forma obligatoria que la subconsulta proyecte la clave primaria de la tabla hija para validar la correspondencia referencial en el catálogo del sistema relacional."
     ],
     "correctAnswer": 0,
     "hint": "EXISTS solo evalúa si hay al menos una fila (True/False); al encontrar la primera coincidencia se detiene inmediatamente.",
@@ -2637,9 +2638,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué consulta obtiene los clientes que no poseen ningún pedido utilizando `NOT EXISTS`?",
     "options": [
       "`SELECT c.* FROM Clientes c WHERE NOT EXISTS (SELECT 1 FROM Pedidos p WHERE p.id_cliente = c.id);`",
-      "`SELECT c.* FROM Clientes c WHERE EXISTS (SELECT * FROM Pedidos p WHERE p.id = NULL);`",
-      "`SELECT c.* FROM Clientes c WHERE NOT EXISTS p.id_cliente;`",
-      "`SELECT c.* FROM Clientes c JOIN NOT EXISTS Pedidos;`"
+      "`SELECT c.* FROM Clientes c WHERE EXISTS (SELECT * FROM Pedidos p WHERE p.id = NULL);` dentro del catálogo de datos del sistema de gestión de base de datos relacional.",
+      "`SELECT c.* FROM Clientes c WHERE NOT EXISTS p.id_cliente FROM Pedidos p;`",
+      "`SELECT c.* FROM Clientes c JOIN NOT EXISTS Pedidos p ON c.id = p.id_cliente;`"
     ],
     "correctAnswer": 0,
     "hint": "NOT EXISTS con subconsulta correlacionada filtrando por id_cliente.",
@@ -2656,9 +2657,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué evalúa la condición `WHERE salario > ANY (SELECT salario FROM Empleados WHERE depto = 'Ventas')`?",
     "options": [
       "Devuelve TRUE si el salario es mayor que al menos uno de los salarios de Ventas (es decir, mayor que el salario mínimo de Ventas).",
-      "Devuelve TRUE solo si el salario es mayor que todos los salarios de Ventas simultáneamente.",
-      "Devuelve TRUE si el salario es igual a la suma total de salarios de Ventas.",
-      "Devuelve un error porque ANY no se puede combinar con el signo mayor `>`."
+      "Devuelve TRUE solo si el salario es estrictamente mayor que todos y cada uno de los salarios de Ventas simultáneamente.",
+      "Devuelve TRUE si el salario es igual a la suma aritmética consolidada de la totalidad de sueldos pagados en Ventas.",
+      "Arroja un error de sintaxis en el motor relacional porque el operador ANY no puede combinarse con el signo mayor `>`."
     ],
     "correctAnswer": 0,
     "hint": "> ANY significa 'mayor que el mínimo de la lista'.",
@@ -2675,9 +2676,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué evalúa la condición `WHERE salario > ALL (SELECT salario FROM Empleados WHERE depto = 'Ventas')`?",
     "options": [
       "Devuelve TRUE solo si el salario es estrictamente superior a TODOS los salarios de Ventas (es decir, mayor que el salario máximo de Ventas).",
-      "Devuelve TRUE si el salario es mayor que el promedio de salarios de Ventas.",
-      "Devuelve TRUE si el empleado trabaja en todas las sucursales de Ventas.",
-      "Devuelve FALSE siempre que la tabla Ventas tenga más de una fila."
+      "Devuelve TRUE si el salario es superior al promedio aritmético de los salarios correspondientes al departamento de Ventas mediante estructuras auxiliares de índices auto-balanceados de tipo árbol B+ en disco.",
+      "Devuelve TRUE si el empleado presta servicios en la totalidad de las sucursales asignadas al área comercial de Ventas.",
+      "Devuelve FALSE de manera incondicional siempre que la tabla Departamentos contenga más de un registro confirmado en disco."
     ],
     "correctAnswer": 0,
     "hint": "> ALL significa 'mayor que el máximo de toda la lista'.",
@@ -2694,9 +2695,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cómo impactan las operaciones DML frecuentes (INSERT, UPDATE, DELETE) sobre los índices definidos en una tabla?",
     "options": [
       "Penalizan el rendimiento de escritura porque cada modificación en los datos exige que el motor actualice y rebalancee inmediatamente las estructuras de los árboles de índices (B-Tree).",
-      "Aceleran las inserciones al comprimir los datos en memoria.",
-      "No tienen ningún impacto porque los índices solo se actualizan una vez al año.",
-      "Eliminan automáticamente los registros duplicados de la tabla física."
+      "Aceleran sustancialmente la velocidad de las sentencias INSERT al compactar y comprimir los registros en la memoria caché del procesador antes de sincronizarlos con el disco secundario.",
+      "No generan ningún impacto medible en los tiempos de respuesta porque los índices relacionales se reconstruyen de forma asíncrona una vez al mes por tareas programadas del servidor.",
+      "Eliminan automáticamente las tuplas duplicadas de la tabla física cada vez que se ejecuta una sentencia de actualización masiva mediante algoritmos de hash en memoria volátil."
     ],
     "correctAnswer": 0,
     "hint": "Las lecturas se aceleran con índices, pero las escrituras pagan el costo de mantenerlos al día.",
@@ -2770,9 +2771,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Por qué los motores modernos optimizan muchas subconsultas convirtiéndolas internamente a operaciones `JOIN` (decorrelación / subquery unnesting)?",
     "options": [
       "Porque las operaciones JOIN permiten al optimizador elegir algoritmos eficientes de combinación (Hash Join, Merge Join) y paralelizar el escaneo de datos.",
-      "Porque las subconsultas consumen el doble de electricidad en el procesador.",
-      "Porque el lenguaje SQL va a eliminar las subconsultas en futuras versiones.",
-      "Porque los JOINs solo funcionan en modo oscuro."
+      "Porque las subconsultas generan un consumo eléctrico excesivo en las unidades de procesamiento gráfico del centro de cómputos al evaluar cada fila de datos.",
+      "Porque el consorcio ANSI SQL declaró obsoletas las subconsultas anidadas y serán eliminadas por completo en las próximas especificaciones del lenguaje estándar.",
+      "Porque las operaciones de combinación relacional son las únicas capaces de ejecutarse sin adquirir bloqueos compartidos en memoria volátil durante consultas concurrentes."
     ],
     "correctAnswer": 0,
     "hint": "El unnesting transforma subconsultas en JOINs para aprovechar Hash Joins y Merge Joins.",
@@ -3030,10 +3031,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 4 - Autoevaluación 4",
     "question": "¿Cuál es la sintaxis SQL estándar correcta para insertar un nuevo departamento llamado 'Finanzas' con id = 6?",
     "options": [
-      "INSERT INTO Departamentos (id, nombre_departamento) VALUES (6, 'Finanzas');",
-      "ADD ROW TO Departamentos VALUES (6, 'Finanzas');",
-      "INSERT RECORD (6, 'Finanzas') INTO Departamentos;",
-      "UPDATE Departamentos ADD (6, 'Finanzas');"
+      "`INSERT INTO Departamentos (id, nombre_departamento) VALUES (6, 'Finanzas');`",
+      "`ADD ROW TO Departamentos VALUES (6, 'Finanzas') SET PRIMARY KEY;`",
+      "`INSERT RECORD (6, 'Finanzas') INTO TABLE Departamentos CONFIRM;`",
+      "`UPDATE Departamentos ADD ENTRY (6, 'Finanzas') COMMIT TRANSACTION;` de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL."
     ],
     "correctAnswer": 0,
     "hint": "Estructura: INSERT INTO nombre_tabla (campos) VALUES (datos).",
@@ -3090,9 +3091,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué devuelve la siguiente subconsulta en la cláusula WHERE?\n`SELECT nombre, salario FROM Empleados WHERE salario > (SELECT AVG(salario) FROM Empleados);`",
     "options": [
       "Todos los empleados cuyo salario es estrictamente superior al salario promedio de toda la compañía.",
-      "El empleado que posee el salario más alto de la tabla.",
-      "El promedio salarial de cada departamento por separado.",
-      "Una lista de errores porque no se pueden anidar consultas en el WHERE."
+      "El empleado específico que percibe la remuneración más elevada registrada en la tabla de personal.",
+      "El promedio salarial calculado de forma independiente para cada uno de los departamentos de la firma.",
+      "Una lista de excepciones de sintaxis porque el motor no admite anidamiento de consultas en el WHERE."
     ],
     "correctAnswer": 0,
     "hint": "La consulta interna calcula el promedio general (AVG) y la externa compara cada salario contra ese número escalar.",
@@ -3130,9 +3131,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la principal ventaja de utilizar subconsultas (consultas anidadas) en SQL?",
     "options": [
       "Permiten resolver problemas en varios pasos lógicos dinámicos utilizando el resultado de una consulta como filtro o tabla derivada en otra.",
-      "Reemplazan completamente la necesidad de crear índices en la base de datos.",
-      "Impiden que ocurran bloqueos de concurrencia en transacciones concurrentes.",
-      "Convierten automáticamente bases de datos relacionales en bases de datos NoSQL."
+      "Eliminan por completo la necesidad de estructurar índices B-Tree o Hash en las tablas de almacenamiento secundario del servidor.",
+      "Garantizan que no se produzcan bloqueos de concurrencia ni anomalías transaccionales al actualizar datos de forma simultánea.",
+      "Transforman automáticamente los esquemas de bases de datos relacionales en repositorios orientados a documentos semiestructurados de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL."
     ],
     "correctAnswer": 0,
     "hint": "Permiten calcular valores intermedios dinámicamente sin hardcodear datos fijos.",
@@ -3167,10 +3168,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Cuál es la diferencia entre el 'Grado' y la 'Cardinalidad' de una relación en el modelo relacional?",
     "options": [
-      "El Grado es el número total de Atributos (columnas), mientras que la Cardinalidad es el número total de Tuplas (filas).",
-      "El Grado es el número de filas y la Cardinalidad es el número de columnas.",
-      "El Grado mide el tamaño en megabytes y la Cardinalidad el número de índices.",
-      "El Grado representa la velocidad de lectura y la Cardinalidad la velocidad de escritura."
+      "El Grado es el número total de atributos (columnas); la Cardinalidad es el número total de tuplas (filas) de la relación.",
+      "El Grado representa la cantidad de índices B-Tree en disco; la Cardinalidad indica el número de páginas de almacenamiento.",
+      "El Grado mide la latencia de respuesta en milisegundos; la Cardinalidad define el nivel de aislamiento de las transacciones.",
+      "El Grado es la cantidad de conexiones concurrentes; la Cardinalidad es el tamaño en megabytes del archivo de datos."
     ],
     "correctAnswer": 0,
     "hint": "Grado = número de columnas; Cardinalidad = cantidad de filas.",
@@ -3186,10 +3187,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es un 'Dominio' en el modelo relacional?",
     "options": [
-      "El conjunto de todos los valores atómicos válidos y permitidos que puede tomar un determinado atributo.",
-      "El nombre del servidor web donde corre la aplicación.",
-      "La dirección IP pública del cluster de base de datos.",
-      "El listado de contraseñas de los usuarios administradores."
+      "El conjunto de todos los valores atómicos válidos y homogéneos que puede asumir un determinado atributo.",
+      "La dirección IP y el nombre de red que identifica al servidor principal donde se hospeda el motor relacional.",
+      "El grupo de usuarios y roles que disponen de permisos de lectura y escritura sobre el esquema de la base.",
+      "La cantidad máxima de bloques contiguos que el sistema operativo puede asignar a una tabla en el disco."
     ],
     "correctAnswer": 0,
     "hint": "El dominio define el tipo de dato, rango y formato permitido para los valores de un atributo.",
@@ -3205,10 +3206,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es una 'Superclave' en una relación relacional?",
     "options": [
-      "Cualquier conjunto de uno o más atributos que permite identificar de forma unívoca y sin ambigüedad a cada tupla de la relación.",
-      "Una clave que permite saltarse todas las restricciones de seguridad.",
-      "Una contraseña maestra de recuperación en caso de olvido.",
-      "Una clave que almacena exclusivamente números binarios."
+      "Un subconjunto de uno o más atributos que permite identificar de manera unívoca a cada tupla dentro de una relación.",
+      "Un índice compuesto en disco que almacena exclusivamente columnas numéricas con valores pares autoincrementales de acuerdo con las especificaciones y normativas formales del estándar ANSI SQL.",
+      "Una restricción de integridad que impide la inserción de valores nulos en tablas que carecen de clave primaria.",
+      "Una función de agregación del motor que comprueba si dos relaciones contienen exactamente la misma cardinalidad."
     ],
     "correctAnswer": 0,
     "hint": "Superclave = cualquier conjunto de atributos que garantice unicidad (puede incluir columnas redundantes).",
@@ -3224,10 +3225,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es una 'Clave Candidata' (Candidate Key)?",
     "options": [
-      "Una Superclave mínima, es decir, un conjunto unívoco de atributos del cual no se puede eliminar ningún atributo sin perder la propiedad de unicidad.",
-      "Un usuario que aspira a ser administrador de la base de datos.",
-      "Una tabla que todavía no ha sido guardada en disco.",
-      "Una columna que contiene únicamente valores NULL."
+      "Una superclave mínima; es decir, un conjunto de atributos que identifica unívocamente a cada tupla sin contener atributos superfluos.",
+      "Cualquier atributo que contenga valores numéricos continuos y permita ordenar el resultado mediante escaneos de índice B-Tree dentro del catálogo de datos del sistema de gestión de base de datos relacional.",
+      "Un campo de texto que almacena contraseñas cifradas para autenticar las conexiones remotas que acceden al servidor relacional.",
+      "Una columna secundaria que puede aceptar valores repetidos siempre que la tabla se encuentre particionada en múltiples discos."
     ],
     "correctAnswer": 0,
     "hint": "Clave Candidata = Superclave minimal (sin atributos sobrantes).",
@@ -3243,10 +3244,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es una Clave Primaria (Primary Key / PK) y qué propiedades estrictas debe cumplir?",
     "options": [
-      "La clave candidata elegida por el diseñador para identificar unívocamente las tuplas; no admite valores duplicados ni valores NULL (Integridad de Entidad).",
-      "Cualquier columna numérica que admita números negativos y valores nulos.",
-      "Una vista de sólo lectura creada por el administrador del sistema.",
-      "Un archivo temporal generado automáticamente por el sistema operativo."
+      "La clave candidata seleccionada por el diseñador para identificar unívocamente las tuplas de una relación; no admite valores NULL.",
+      "Un identificador temporal asignado por el optimizador en memoria RAM que se destruye al reiniciar el servicio de base de datos.",
+      "Una clave generada por el sistema operativo que cifra los ficheros de datos en el sistema de almacenamiento secundario del host.",
+      "Una columna de tipo fecha que registra automáticamente el instante exacto en que se confirmó la última transacción en el sistema en el almacenamiento secundario durante el procesamiento concurrente de transacciones."
     ],
     "correctAnswer": 0,
     "hint": "La PK identifica a la fila y NUNCA puede ser nula ni repetirse.",
@@ -3262,10 +3263,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es una 'Clave Alternativa' (Alternate Key) en una tabla relacional?",
     "options": [
-      "Cualquier clave candidata que NO fue seleccionada como la Clave Primaria de la tabla (ej. el DNI o Email si la PK elegida es `id_usuario`).",
-      "Una clave que se utiliza únicamente cuando el servidor principal se apaga.",
-      "Una columna que cambia de nombre aleatoriamente.",
-      "Un índice que solo funciona en días festivos."
+      "Toda clave candidata que no fue seleccionada como la clave primaria de la relación, manteniendo su propiedad de unicidad.",
+      "Una clave foránea que referencia a una tabla externa pero permite valores nulos en todas sus columnas participantes en disco.",
+      "Un valor sustituto temporal utilizado por el motor relacional cuando se detecta un fallo en el árbol del índice primario.",
+      "Una columna calculada dinámicamente mediante funciones escalares que solo existe en el encabezado de las vistas de usuario."
     ],
     "correctAnswer": 0,
     "hint": "Las claves candidatas no elegidas como PK pasan a ser Claves Alternativas (con restricción UNIQUE).",
@@ -3281,10 +3282,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es una Clave Foránea (Foreign Key / FK) y qué principio garantiza en el modelo relacional?",
     "options": [
-      "Un atributo en una relación que hace referencia a la Clave Primaria de otra relación (o de sí misma), garantizando el principio de Integridad Referencial.",
-      "Una contraseña que permite conectarse a servidores ubicados en el extranjero.",
-      "Una columna que contiene únicamente texto en idioma inglés.",
-      "Un identificador que solo se almacena en la memoria caché del navegador."
+      "Un atributo (o conjunto) en una relación cuyos valores deben coincidir con la clave primaria de otra relación (o ser NULL).",
+      "Una contraseña de acceso de solo lectura utilizada por las aplicaciones externas para conectarse al motor de base de datos.",
+      "Un puntero físico en el disco que conecta directamente dos sectores de datos contiguos para acelerar escaneos secuenciales.",
+      "Una variable de sesión volátil que resguarda los resultados intermedios de consultas complejas con múltiples agregaciones."
     ],
     "correctAnswer": 0,
     "hint": "La FK vincula una tabla hija con la PK de la tabla padre, evitando datos huérfanos.",
@@ -3300,10 +3301,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué establece formalmente la regla de Integridad Referencial?",
     "options": [
-      "Que la base de datos no debe contener valores de clave foránea huérfanos sin correspondencia en la clave primaria de la tabla padre referenciada.",
-      "Que todas las tablas deben tener exactamente 10 columnas obligatorias.",
-      "Que no se pueden utilizar números decimales en las claves primarias.",
-      "Que los backups deben realizarse exclusivamente en cintas magnéticas."
+      "Ningún atributo que forme parte de la clave primaria de una relación puede aceptar valores nulos (NULL).",
+      "Todas las columnas de tipo texto deben tener una longitud fija de caracteres y prescindir de codificación UTF-8.",
+      "Toda tabla relacional debe contener obligatoriamente al menos cien tuplas persistidas en almacenamiento secundario.",
+      "El nombre de cada entidad debe coincidir exactamente con el nombre del usuario administrador del sistema operativo."
     ],
     "correctAnswer": 0,
     "hint": "Integridad referencial = no puede existir un hijo que apunte a un padre inexistente.",
@@ -3319,10 +3320,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "Si una clave foránea se define con la cláusula `ON DELETE CASCADE`, ¿qué ocurre cuando se elimina un registro padre?",
     "options": [
-      "Se eliminan automáticamente todos los registros hijos asociados en la tabla referenciante.",
-      "El motor SQL bloquea la operación y emite un error de violación de integridad.",
-      "Las claves foráneas de los registros hijos se ponen en NULL.",
-      "Se apaga el servidor de base de datos de inmediato."
+      "Se eliminan automáticamente en cascada todas las tuplas de la tabla hija que referenciaban a esa fila padre.",
+      "El motor bloquea la operación de borrado arrojando un error de integridad referencial en la consola del servidor.",
+      "Las columnas de la clave foránea en la tabla hija se actualizan con el valor numérico cero de forma obligatoria.",
+      "La tabla padre se marca como de solo lectura impidiendo que cualquier usuario realice modificaciones posteriores."
     ],
     "correctAnswer": 0,
     "hint": "CASCADE propaga la eliminación en cascada a todos los hijos.",
@@ -3338,10 +3339,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "Si una clave foránea tiene configurada la regla `ON DELETE RESTRICT` (o `NO ACTION`), ¿qué ocurre si intentamos borrar un registro padre que tiene hijos asociados?",
     "options": [
-      "El motor impide y rechaza la eliminación arrojando un error de violación de clave foránea, protegiendo a los registros hijos.",
-      "Se borra el padre y todos los hijos automáticamente.",
-      "Se borran los hijos pero el padre se conserva en una tabla de auditoría.",
-      "El registro padre se renombra con la palabra 'ELIMINADO'."
+      "El motor rechaza la operación de borrado y genera un error de violación de restricción de integridad referencial.",
+      "El motor borra silenciosamente las filas de la tabla hija sin registrar las operaciones en los ficheros del WAL.",
+      "El motor transforma las filas de la tabla hija en tablas temporales independientes dentro del esquema del usuario.",
+      "El motor asigna automáticamente una nueva clave foránea aleatoria a las filas huérfanas de la tabla secundaria."
     ],
     "correctAnswer": 0,
     "hint": "RESTRICT restringe y bloquea el borrado si existen hijos dependientes.",
@@ -3357,10 +3358,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "Si una clave foránea se define con `ON DELETE SET NULL`, ¿qué comportamiento se produce al borrar el registro padre?",
     "options": [
-      "El valor de la clave foránea en todos los registros hijos asociados se actualiza automáticamente a `NULL` (la columna FK debe admitir nulos).",
-      "Los registros hijos se borran completamente del disco duro.",
-      "La tabla entera se llena de ceros.",
-      "El motor convierte la tabla hija en un archivo de texto plano."
+      "Las tuplas hijas conservan su existencia, pero el valor de sus columnas de clave foránea se actualiza a NULL.",
+      "Las tuplas hijas se transfieren automáticamente a un archivo de volcado binario en el almacenamiento secundario.",
+      "El motor de base de datos interrumpe la transacción y reinicia el servicio del servidor para evitar anomalías.",
+      "La clave primaria de la tabla hija se renumera de manera secuencial para eliminar los huecos dejados por el borrado."
     ],
     "correctAnswer": 0,
     "hint": "SET NULL desacopla a los hijos poniendo su FK en NULL.",
@@ -3376,10 +3377,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "Al transformar una relación de cardinalidad `1 a N` entre Clientes (1) y Pedidos (N) a tablas relacionales, ¿dónde debe alojarse obligatoriamente la Clave Foránea (FK)?",
     "options": [
-      "En la tabla del lado 'Muchos' (Pedidos), referenciando a la Clave Primaria de Clientes.",
-      "En la tabla del lado 'Uno' (Clientes).",
-      "Obligatoriamente en una tabla intermedia adicional con 5 columnas.",
-      "En ninguna tabla, porque las relaciones 1:N no utilizan claves foráneas."
+      "La clave primaria de la entidad con cardinalidad 1 se propaga como clave foránea en la entidad con cardinalidad N.",
+      "Se crea obligatoriamente una tabla intermedia independiente que almacena los identificadores de ambas relaciones.",
+      "La clave primaria de la entidad N se transfiere como atributo compuesto dentro de la entidad con cardinalidad 1.",
+      "Se duplican todos los atributos descriptivos de la relación N dentro de la tabla de la relación 1 en el esquema."
     ],
     "correctAnswer": 0,
     "hint": "Regla de oro: En una relación 1:N, la FK SIEMPRE va en el lado 'N' (Muchos).",
@@ -3395,10 +3396,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Cómo se resuelve OBLIGATORIAMENTE en el modelo relacional una relación de cardinalidad Muchos a Muchos (`N a M`) entre Estudiantes y Cursos?",
     "options": [
-      "Creando una Tabla Intermedia (o asociativa, ej. `Inscripciones`) cuya Clave Primaria compuesta estará formada por las Claves Foráneas de ambas tablas relacionadas.",
-      "Colocando un array de IDs de cursos en una columna de texto en Estudiantes.",
-      "Duplicando la tabla Estudiantes 10 veces en el disco.",
-      "Fusionando ambas entidades en una sola tabla sin claves primarias."
+      "Creando una tabla intermedia (asociativa) cuya clave primaria está compuesta por las claves foráneas de ambas tablas relacionadas.",
+      "Almacenando una lista de identificadores separados por comas dentro de un único atributo de texto en la tabla principal.",
+      "Duplicando físicamente la totalidad de las filas de la primera tabla dentro de cada tupla registrada en la segunda tabla.",
+      "Definiendo un índice de tipo Hash invertido que enlaza dinámicamente los punteros de ambas relaciones en memoria RAM."
     ],
     "correctAnswer": 0,
     "hint": "N:M se resuelve SIEMPRE creando una tabla intermedia asociativa con PK compuesta por las dos FKs.",
@@ -3414,10 +3415,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "En la notación Crow's Foot (Patas de Gallo), ¿qué significa una cardinalidad mínima y máxima de `1..1` (uno sin cero / obligatorio)?",
     "options": [
-      "Que cada ocurrencia de la entidad debe participar OBLIGATORIAMENTE en la relación y con un MÁXIMO de una sola asociación.",
-      "Que la entidad puede tener entre 0 y 100 relaciones opcionales.",
-      "Que la entidad no tiene ninguna clave primaria.",
-      "Que la tabla se encuentra desnormalizada."
+      "Una cardinalidad de Muchos opcional (cero o más ocurrencias de la entidad relacionada en la asociación).",
+      "Una cardinalidad de Uno obligatorio (exactamente una y solo una ocurrencia de la entidad en la relación).",
+      "Una restricción de integridad de dominio que restringe los valores de la columna a números enteros positivos.",
+      "La existencia de una clave foránea que solo puede admitir valores no nulos en el modelo relacional físico."
     ],
     "correctAnswer": 0,
     "hint": "1..1 = exactamente uno (obligatorio, no admite 0 ni más de 1).",
@@ -3433,10 +3434,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "En la notación Crow's Foot, ¿qué representa la condición `0..1` (uno con cero / opcional)?",
     "options": [
-      "Participación opcional (mínimo 0) con un límite máximo de una sola asociación (máximo 1).",
-      "Participación obligatoria con infinitas asociaciones.",
-      "Una relación de muchos a muchos sin resolver.",
-      "Un error en el diagrama entidad-relación."
+      "Una cardinalidad de 'Uno y solo uno' (participación obligatoria con límite máximo de una ocurrencia).",
+      "Una cardinalidad de 'Cero o muchos' (asociación totalmente opcional sin límite de ocurrencias en disco).",
+      "Una dependencia funcional transitiva entre atributos no primos dentro de la estructura de la relación.",
+      "La presencia de un índice compuesto auto-balanceado de tipo árbol B+ sobre las columnas primarias."
     ],
     "correctAnswer": 0,
     "hint": "0..1 = puede no existir (cero) o estar asociada como máximo a una sola tupla.",
@@ -3452,10 +3453,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué condición exige la Primera Forma Normal (1NF) en el diseño relacional?",
     "options": [
-      "Que todos los atributos contengan exclusivamente valores atómicos (indivisibles), sin grupos repetitivos, listas ni arrays dentro de una misma celda.",
-      "Que todas las tablas tengan al menos un índice B-Tree creado.",
-      "Que no existan claves foráneas en la base de datos.",
-      "Que todos los nombres de columnas tengan menos de 5 letras."
+      "Que todos los atributos contengan valores atómicos (indivisibles) y que no existan grupos repetitivos ni atributos multivaluados.",
+      "Que la tabla carezca de claves primarias compuestas y utilice únicamente identificadores autoincrementales de tipo entero.",
+      "Que todos los atributos no clave dependan funcionalmente de forma transitiva de la clave primaria principal de la tabla.",
+      "Que la relación se encuentre indexada mediante árboles B-Tree en todas sus columnas alfanuméricas de almacenamiento."
     ],
     "correctAnswer": 0,
     "hint": "1NF = atomicidad de datos; cada celda de la tabla contiene un único valor atómico.",
@@ -3471,10 +3472,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué condición debe cumplirse para que una tabla esté en Segunda Forma Normal (2NF)?",
     "options": [
-      "Debe estar en 1NF y ningún atributo no clave debe tener dependencias funcionales parciales (todo atributo no clave debe depender de la Clave Primaria COMPLETA).",
-      "Debe tener exactamente dos claves primarias numéricas.",
-      "Debe almacenar menos de 1000 registros por partición.",
-      "No debe contener ninguna columna de tipo fecha."
+      "Estar en 1NF y que ningún atributo no clave dependa parcialmente de una clave primaria compuesta (dependencia funcional total).",
+      "Estar en 3NF y no contener columnas de tipo fecha ni atributos que admitan valores nulos en el esquema relacional.",
+      "Contener exactamente dos claves candidatas numéricas y menos de mil tuplas persistidas en el almacenamiento físico.",
+      "Poseer un esquema desnormalizado con vistas materializadas para acelerar las consultas analíticas de agregación."
     ],
     "correctAnswer": 0,
     "hint": "2NF elimina dependencias parciales: aplica a tablas con claves primarias compuestas.",
@@ -3490,10 +3491,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué requisito es indispensable para que una tabla se encuentre en Tercera Forma Normal (3NF)?",
     "options": [
-      "Debe estar en 2NF y no deben existir dependencias funcionales transitivas (ningún atributo no clave debe depender de otro atributo no clave).",
-      "Debe tener exactamente 3 tablas relacionadas mediante INNER JOIN.",
-      "Debe ser ejecutada en un cluster de 3 servidores réplica.",
-      "Debe almacenar datos en formato XML comprimido."
+      "Estar en 2NF y que ningún atributo no clave dependa transitivamente de la clave primaria (es decir, a través de otro atributo no clave).",
+      "Contener exclusivamente atributos numéricos enteros y prescindir por completo de campos de tipo texto variable en la relación.",
+      "Estar descompuesta en al menos cinco tablas hijas vinculadas mediante claves foráneas con reglas de acción restrictivas.",
+      "Disponer de un procedimiento almacenado que verifique la ausencia de dependencias funcionales cíclicas en cada inserción."
     ],
     "correctAnswer": 0,
     "hint": "3NF elimina dependencias transitivas: si A -> B y B -> C, C no debe estar en la misma tabla que A.",
@@ -3547,10 +3548,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Qué es un Índice en una base de datos relacional y cuál es su objetivo primordial?",
     "options": [
-      "Una estructura de datos auxiliar en disco que permite localizar y acceder a filas específicas a gran velocidad sin necesidad de realizar un escaneo secuencial completo de la tabla.",
-      "Un registro de los nombres de usuario que iniciaron sesión.",
-      "Una copia comprimida de la base de datos guardada en la nube.",
-      "Un programa antivirus instalado en el servidor."
+      "Una estructura de datos auxiliar (ej. árbol B-Tree) que optimiza la velocidad de recuperación de datos a costa de espacio y costo en escritura.",
+      "Un fichero comprimido de respaldo que el motor genera en disco secundario para resguardar las tablas ante cortes de suministro.",
+      "Un segmento de memoria volátil compartido donde el optimizador ejecuta algoritmos de ordenamiento externo para uniones hash.",
+      "Una restricción de integridad de dominio que restringe los tipos de datos válidos a cadenas alfanuméricas de longitud fija."
     ],
     "correctAnswer": 0,
     "hint": "Funciona como el índice temático al final de un libro: permite ir directo a la página sin leer todo.",
@@ -3566,10 +3567,10 @@ const QUESTIONS_DATABASE = [
     "unit": "Clase 5",
     "question": "¿Por qué el índice de tipo B-Tree (Balanced Tree) es el método de indexación por defecto en la mayoría de los SGBD relacionales?",
     "options": [
-      "Porque mantiene los datos ordenados en un árbol auto-balanceado con complejidad O(log N), siendo extraordinariamente eficiente tanto para búsquedas de igualdad (`=`) como para consultas de rango (`<`, `<=`, `>`, `>=`, `BETWEEN`).",
-      "Porque no ocupa ningún espacio en disco duro.",
-      "Porque solo permite almacenar números del 1 al 10.",
-      "Porque se ejecuta exclusivamente en la tarjeta gráfica del servidor."
+      "Mantiene los datos ordenados en un árbol auto-balanceado con complejidad logarítmica O(log N) para búsquedas puntuales, de rango y ordenamiento.",
+      "Almacena la totalidad de las filas de la tabla directamente en la memoria caché del procesador sin requerir espacio en disco secundario.",
+      "Admite únicamente columnas numéricas cuyos valores estén comprendidos entre el uno y el diez, descartando campos de texto y fechas.",
+      "Ejecuta las consultas relacionales exclusivamente en la unidad de procesamiento gráfico (GPU) para paralelizar lecturas secuenciales."
     ],
     "correctAnswer": 0,
     "hint": "B-Tree = árbol balanceado; soporta igualdades y rangos con costo logarítmico O(log N).",
@@ -3586,9 +3587,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿En qué escenario es altamente recomendable utilizar un índice de tipo GIN (Generalized Inverted Index) en PostgreSQL?",
     "options": [
       "En columnas que contienen valores compuestos o multi-elemento, como documentos JSONB, arrays o búsqueda de texto completo (Full-Text Search).",
-      "Exclusivamente en columnas que contienen la clave primaria entera autoincremental.",
-      "En tablas que solo tienen una única fila.",
-      "Para acelerar la conexión SSH al servidor."
+      "Exclusivamente en columnas que contienen la clave primaria entera autoincremental de una tabla relacional normalizada en 3FN.",
+      "En tablas que poseen menos de diez filas registradas y son consultadas de manera esporádica mediante escaneos de tabla completa.",
+      "Para encriptar las credenciales de conexión y asegurar el canal de comunicaciones SSL entre el cliente web y el servidor."
     ],
     "correctAnswer": 0,
     "hint": "GIN es un índice invertido: mapea cada elemento/palabra a las filas que lo contienen (ideal para JSONB y Arrays).",
@@ -3605,9 +3606,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la aplicación principal de un índice de tipo GiST (Generalized Search Tree)?",
     "options": [
       "Búsquedas geométricas, datos espaciales (GIS/PostGIS), rangos continuos y operadores de superposición / contención.",
-      "Encriptación de contraseñas bancarias.",
-      "Formateo automático de código SQL.",
-      "Compresión de imágenes en formato PNG."
+      "El cifrado asimétrico de contraseñas de usuarios y la gestión de firmas digitales en transacciones de comercio.",
+      "El formateo automático y embellecimiento sintáctico de sentencias SQL emitidas desde aplicaciones cliente ligeras.",
+      "La compresión sin pérdida de imágenes satelitales y archivos multimedia almacenados en columnas de tipo BLOB."
     ],
     "correctAnswer": 0,
     "hint": "GiST es ideal para datos espaciales, geometrías y rangos que se superponen.",
@@ -3624,9 +3625,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿En qué consiste un 'Escaneo Secuencial' (Sequential Scan / Full Table Scan)?",
     "options": [
       "En recorrer y leer bloque a bloque todas las páginas de la tabla desde el principio hasta el fin del archivo en disco.",
-      "En consultar únicamente el índice en memoria sin tocar el disco.",
-      "En apagar los discos duros para ahorrar energía eléctrica.",
-      "En leer únicamente las primeras 5 filas de la tabla."
+      "En consultar exclusivamente la estructura del índice en memoria volátil sin acceder a los bloques de datos en disco.",
+      "En apagar temporalmente los sectores del almacenamiento secundario para reducir el consumo energético del servidor.",
+      "En examinar únicamente las primeras diez tuplas de la relación asumiendo que el resto comparte los mismos valores."
     ],
     "correctAnswer": 0,
     "hint": "Sequential Scan = lectura completa de la tabla de punta a punta.",
@@ -3643,9 +3644,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Por qué es una mala práctica definir índices indiscriminadamente en todas las columnas de una tabla?",
     "options": [
       "Porque consumen espacio sustancial en disco y degradan notablemente el rendimiento de las operaciones de escritura (INSERT, UPDATE, DELETE), que deben mantener sincronizados todos los índices.",
-      "Porque los índices borran automáticamente los datos históricos de la empresa.",
-      "Porque el estándar SQL limita a un máximo de 2 índices por servidor.",
-      "Porque los índices provocan que las consultas SELECT se vuelvan 100 veces más lentas."
+      "Porque el estándar ANSI SQL prohíbe terminantemente la creación de más de dos índices por tabla en cualquier motor relacional que implemente control de concurrencia multiversión.",
+      "Porque los índices provocan la pérdida irreversible de tuplas históricas al compactar los bloques de almacenamiento secundario durante el mantenimiento automático del servidor.",
+      "Porque la presencia de múltiples índices obliga al optimizador de consultas a deshabilitar los planes de ejecución paralelos y forzar lecturas secuenciales lentas en memoria."
     ],
     "correctAnswer": 0,
     "hint": "Trade-off: los índices mejoran la lectura pero encarecen el costo de escritura y espacio.",
@@ -3809,9 +3810,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Por qué en una relación del modelo relacional no pueden existir dos tuplas idénticas?",
     "options": [
       "Porque una relación es matemáticamente un conjunto de tuplas, y por definición de la teoría de conjuntos no pueden existir elementos duplicados en un conjunto.",
-      "Porque el disco duro solo permite guardar números pares.",
-      "Porque la memoria RAM rechaza las filas duplicadas.",
-      "Porque está prohibido por los navegadores web modernos."
+      "Porque los sectores físicos de los discos duros magnéticos impiden técnicamente almacenar dos secuencias de bytes que compartan el mismo patrón binario.",
+      "Porque los controladores de memoria RAM del servidor descartan de manera automática cualquier registro que presente los mismos atributos que una tupla previa.",
+      "Porque el protocolo de comunicación de las aplicaciones web consumidoras prohíbe el procesamiento de respuestas que contengan filas con valores repetidos."
     ],
     "correctAnswer": 0,
     "hint": "En matemáticas, un conjunto no admite duplicados; cada tupla debe ser identificable unívocamente.",
@@ -3828,9 +3829,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué establece formalmente la regla de Integridad de Entidad en el modelo relacional?",
     "options": [
       "Ningún atributo que forme parte de la Clave Primaria de una relación puede tomar valores nulos (NULL).",
-      "Todas las tablas deben contener al menos 100 registros.",
-      "Los nombres de las tablas deben escribirse obligatoriamente en mayúsculas.",
-      "No se pueden utilizar claves foráneas en bases de datos relacionales."
+      "La totalidad de las tablas del esquema deben almacenar obligatoriamente al menos cincuenta tuplas registradas.",
+      "Los nombres de los atributos de una tabla deben escribirse de forma obligatoria utilizando letras mayúsculas.",
+      "Las tablas relacionales no pueden definir más de una clave foránea dirigida hacia una misma relación padre."
     ],
     "correctAnswer": 0,
     "hint": "Integridad de Entidad = la PK no puede ser NULL.",
@@ -3847,9 +3848,9 @@ const QUESTIONS_DATABASE = [
     "question": "En el modelo relacional, ¿qué representa cada fila en una tabla de base de datos?",
     "options": [
       "Un registro (o tupla) que representa una instancia individual de la entidad modelada con valores para cada atributo.",
-      "Un tipo de dato de dominio como INTEGER o VARCHAR.",
-      "Una restricción de integridad referencial.",
-      "Un índice de árbol B+ para optimizar búsquedas en disco."
+      "Un tipo de dato elemental de dominio como INTEGER, VARCHAR o TIMESTAMP definido en el catálogo del sistema relacional.",
+      "Una restricción de integridad referencial que vincula dos relaciones mediante reglas de acción en cascada o restricción.",
+      "Una estructura de almacenamiento auxiliar de tipo árbol B+ diseñada para acelerar la localización de registros en disco."
     ],
     "correctAnswer": 0,
     "hint": "Fila = Registro = Tupla (una instancia específica). Columna = Atributo = Campo.",
@@ -3866,9 +3867,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué características obligatorias definen a una Clave Primaria (PRIMARY KEY) en una tabla relacional?",
     "options": [
       "Identifica unívocamente a cada registro en la tabla y no puede contener valores nulos (NOT NULL).",
-      "Debe ser de tipo numérico secuencial autoincremental de forma obligatoria.",
-      "Puede repetirse siempre que pertenezca a diferentes transacciones concurrentes.",
-      "Solo puede aplicarse sobre una única columna, nunca sobre múltiples columnas compuestas."
+      "Debe ser obligatoriamente un número entero autoincremental generado por una secuencia del catálogo.",
+      "Puede contener valores repetidos siempre que los registros pertenezcan a transacciones concurrentes distintas.",
+      "Solo puede aplicarse sobre una única columna individual, prohibiendo la definición de claves primarias compuestas."
     ],
     "correctAnswer": 0,
     "hint": "La Clave Primaria debe ser única (no duplicada) y nunca nula (Integridad de Entidad).",
@@ -3885,9 +3886,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿En qué se diferencia principalmente una restricción UNIQUE de una PRIMARY KEY?",
     "options": [
       "Una tabla puede tener múltiples restricciones UNIQUE y éstas permiten valores NULL (según el motor), mientras que solo puede existir una única PRIMARY KEY y no permite NULLs.",
-      "UNIQUE solo funciona en cadenas de texto y PRIMARY KEY solo en números enteros.",
-      "PRIMARY KEY no crea índices automáticos mientras que UNIQUE sí lo hace.",
-      "No existe ninguna diferencia técnica ni sintáctica entre ambas."
+      "UNIQUE solo es aplicable sobre columnas de cadenas de texto alfanuméricas, mientras que PRIMARY KEY se restringe a campos numéricos enteros en todos los motores.",
+      "PRIMARY KEY no crea índices automáticos en almacenamiento físico, mientras que UNIQUE genera obligatoriamente un índice espacial GiST en memoria volátil.",
+      "No existe ninguna diferencia conceptual ni práctica entre ambas restricciones, siendo palabras clave intercambiables en cualquier sentencia DDL del esquema."
     ],
     "correctAnswer": 0,
     "hint": "Una tabla sólo puede tener UNA PK principal, pero puede tener múltiples columnas con restricción UNIQUE.",
@@ -3923,9 +3924,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es el propósito principal de una Clave Foránea (FOREIGN KEY) en una tabla hija?",
     "options": [
       "Establecer una relación referencial hacia la clave primaria o candidata de una tabla padre, asegurando que no existan referencias a datos inexistentes.",
-      "Aumentar automáticamente el tamaño del disco cuando la base de datos se llena.",
-      "Encriptar las contraseñas de los usuarios en la base de datos.",
-      "Evitar que los usuarios realicen consultas de tipo SELECT en la tabla."
+      "Expandir automáticamente la capacidad física de almacenamiento asignada al archivo de la base de datos cuando se alcanza el límite del volumen en disco.",
+      "Cifrar mediante algoritmos de clave asimétrica las columnas confidenciales para impedir lecturas directas por usuarios no autorizados en el sistema.",
+      "Inhabilitar de manera selectiva la ejecución de consultas de lectura sobre la tabla secundaria durante los períodos de alta concurrencia transaccional."
     ],
     "correctAnswer": 0,
     "hint": "La FK vincula una columna de la tabla hija con la PK de la tabla padre para mantener la integridad.",
@@ -3942,9 +3943,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué previene la regla de Integridad Referencial en una base de datos relacional?",
     "options": [
       "La existencia de 'registros huérfanos' (filas hijas que apunten a claves de tablas padre que no existen o fueron eliminadas sin cascada).",
-      "Que se ejecuten más de dos consultas al mismo tiempo en el servidor.",
-      "Que los nombres de las columnas contengan caracteres en minúscula.",
-      "Que se utilicen tipos de datos de fecha en las tablas."
+      "La ejecución simultánea de más de dos consultas analíticas que compitan por los mismos canales de entrada/salida en el servidor.",
+      "La utilización de caracteres alfanuméricos en minúscula dentro de los identificadores de tablas y columnas del catálogo de datos.",
+      "La inserción de atributos con tipos de datos de fecha y hora que no se ajusten al estándar horario UTC en las transacciones activas."
     ],
     "correctAnswer": 0,
     "hint": "Garantiza que ningún hijo apunte a un padre inexistente (registros huérfanos).",
@@ -3961,9 +3962,9 @@ const QUESTIONS_DATABASE = [
     "question": "Si una columna tiene las restricciones UNIQUE y NOT NULL combinadas, ¿por qué igualmente se define explícitamente una PRIMARY KEY?",
     "options": [
       "Porque la PRIMARY KEY representa la identidad semántica principal elegida para la tabla y es el destino por defecto de las claves foráneas de otras tablas.",
-      "Porque UNIQUE y NOT NULL no impiden que se inserten valores duplicados.",
-      "Porque los motores relacionales prohíben crear tablas sin la cláusula UNIQUE.",
-      "Porque sin PRIMARY KEY no se pueden ejecutar sentencias SELECT."
+      "Porque la combinación de UNIQUE y NOT NULL no previene la inserción de registros duplicados en motores relacionales con control de concurrencia.",
+      "Porque los estándares del consorcio SQL penalizan con bloqueos de tabla completos a aquellas relaciones que omiten la palabra clave PRIMARY KEY.",
+      "Porque sin una PRIMARY KEY declarada el motor relacional no puede ejecutar operaciones de proyección mediante la cláusula SELECT sobre la tabla."
     ],
     "correctAnswer": 0,
     "hint": "La PK es el identificador primordial del modelo de datos sobre el que se estructuran las relaciones.",
@@ -3980,9 +3981,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la diferencia fundamental entre el comando ALTER TABLE y el comando INSERT INTO?",
     "options": [
       "ALTER TABLE es DDL (modifica la estructura/esquema de la tabla) mientras que INSERT INTO es DML (manipula las filas/datos dentro de la tabla).",
-      "ALTER TABLE inserta datos y INSERT INTO modifica las columnas.",
-      "ALTER TABLE solo puede ser ejecutado por el sistema operativo y no por el usuario administrador.",
-      "Ambos comandos hacen exactamente lo mismo en cualquier motor SQL estándar."
+      "ALTER TABLE inserta nuevas filas de datos transaccionales mientras que INSERT INTO redefine los tipos de datos de las columnas en el catálogo.",
+      "ALTER TABLE solo puede ser invocado directamente por el núcleo del sistema operativo anfitrión, mientras que INSERT INTO lo ejecuta el usuario.",
+      "Ambos comandos son sinónimos declarativos que aplican exactamente las mismas modificaciones sobre los bloques físicos de almacenamiento en disco."
     ],
     "correctAnswer": 0,
     "hint": "DDL (Data Definition) modifica estructuras; DML (Data Manipulation) modifica datos dentro de estructuras.",
@@ -3999,9 +4000,9 @@ const QUESTIONS_DATABASE = [
     "question": "En el modelo relacional, ¿cómo se implementa correctamente una relación de cardinalidad Muchos a Muchos (N:M) entre dos tablas (por ejemplo Estudiantes y Cursos)?",
     "options": [
       "Creando una tabla intermedia (tabla asociativa o de unión) que contenga como claves foráneas las claves primarias de ambas tablas.",
-      "Colocando una lista separada por comas de IDs de cursos dentro de un campo de texto en Estudiantes.",
-      "Duplicando la tabla de Cursos dentro de cada registro de Estudiantes.",
-      "No es posible representar relaciones Muchos a Muchos en bases de datos relacionales."
+      "Colocando una lista separada por comas de identificadores de cursos dentro de un campo de texto variable en la tabla de Estudiantes.",
+      "Duplicando físicamente la totalidad de las filas de la tabla Cursos dentro de cada tupla registrada en la tabla de Estudiantes en disco.",
+      "Declarando un índice de tipo árbol B-Tree invertido que conecte los registros de ambas entidades sin crear nuevas estructuras en el esquema."
     ],
     "correctAnswer": 0,
     "hint": "Se crea una tabla de unión (junction table) con dos claves foráneas que la conectan con las tablas principales.",
@@ -4018,9 +4019,9 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué función cumplen las cláusulas LIMIT y OFFSET en consultas SQL para paginación de resultados?",
     "options": [
       "LIMIT restringe la cantidad máxima de filas retornadas, y OFFSET especifica cuántas filas saltar antes de comenzar a retornar registros.",
-      "LIMIT define la cantidad máxima de columnas y OFFSET filtra los registros nulos.",
-      "LIMIT ordena ascendentemente y OFFSET ordena descendentemente.",
-      "LIMIT borra registros antiguos y OFFSET crea nuevas tablas temporales."
+      "LIMIT define el número máximo de columnas proyectadas en el encabezado, y OFFSET filtra las tuplas que contienen valores nulos en el conjunto.",
+      "LIMIT establece el criterio de ordenamiento ascendente en memoria, y OFFSET aplica un ordenamiento descendente sobre los bloques de datos.",
+      "LIMIT elimina permanentemente los registros más antiguos de la tabla, y OFFSET genera nuevas tablas temporales para almacenar los resultados."
     ],
     "correctAnswer": 0,
     "hint": "LIMIT fija el tamaño de la página y OFFSET el desplazamiento o salto de registros.",
@@ -4038,20 +4039,20 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Atomicidad",
-        "right": "Componente del sistema de base de datos especializado en la gestión de transacciones."
+        "key": "Atomicidad",
+        "value": "Componente del sistema de base de datos especializado en la gestión de transacciones."
       },
       {
-        "left": "Aislamiento",
-        "right": "Componente del sistema de base de datos denominado control de concurrencia."
+        "key": "Aislamiento",
+        "value": "Componente del sistema de base de datos denominado control de concurrencia."
       },
       {
-        "left": "Consistencia",
-        "right": "Programador de la aplicación que codifica la transacción."
+        "key": "Consistencia",
+        "value": "Programador de la aplicación que codifica la transacción."
       },
       {
-        "left": "Durabilidad",
-        "right": "Gestor de recuperaciones o componente encargado de la integridad del sistema."
+        "key": "Durabilidad",
+        "value": "Gestor de recuperaciones o componente encargado de la integridad del sistema."
       }
     ],
     "hint": "La consistencia depende de la lógica de negocio del programador; el aislamiento del control de concurrencia.",
@@ -4102,10 +4103,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el Control de Concurrencia de Múltiples Versiones (MVCC) es un esquema donde cada operación de escritura crea una nueva versión del dato?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Cada modificación crea una nueva tupla versionada con marcas temporales (xmin/xmax), preservando las anteriores.",
-      "Falso: MVCC sobrescribe físicamente el bloque de datos en disco sin generar ninguna versión intermedia.",
-      "Falso: MVCC requiere bloquear toda la tabla en modo exclusivo durante cualquier actualización.",
-      "Verdadero: Pero las versiones solo se almacenan en la memoria RAM del cliente que ejecuta la consulta."
+      "Falso: Su objetivo principal es asegurar la consistencia y el aislamiento ante accesos simultáneos a los datos.",
+      "Verdadero: El control de concurrencia está diseñado exclusivamente para evitar que ocurran fallos físicos de hardware.",
+      "Falso: La concurrencia solo es necesaria cuando el motor ejecuta transacciones bancarias en horario nocturno por lotes.",
+      "Verdadero: Garantiza que ninguna transacción pueda ejecutarse si existe otra conexión activa en el servidor relacional."
     ],
     "correctAnswer": 0,
     "hint": "Multi-Version Concurrency Control: escribir genera versiones en vez de bloquear lecturas.",
@@ -4138,10 +4139,10 @@ const QUESTIONS_DATABASE = [
     "question": "Si un proceso de reporte mensual (`Transacción A`) lee un cliente y, mientras tanto, otra transacción (`Transacción B`) actualiza el descuento de ese cliente y hace COMMIT, haciendo que al releer el registro el valor sea distinto, ¿qué anomalía ocurrió?",
     "type": "single_choice",
     "options": [
-      "Lectura no repetible (Non-repeatable Read)",
-      "Lectura sucia (Dirty Read)",
-      "Lectura fantasma (Phantom Read)",
-      "Deadlock de memoria compartida"
+      "Falso: Gracias a MVCC, las lecturas no bloquean escrituras y las escrituras no bloquean lecturas en PostgreSQL.",
+      "Verdadero: Toda transacción de lectura adquiere bloqueos exclusivos de tabla que impiden cualquier escritura.",
+      "Falso: Pero únicamente si la transacción de reporte se ejecuta con el rol de superusuario administrador.",
+      "Verdadero: Porque el estándar ANSI SQL prohíbe modificaciones concurrentes durante la generación de reportes."
     ],
     "correctAnswer": 0,
     "hint": "El mismo registro puntual cambió su valor entre dos lecturas de la misma transacción.",
@@ -4156,10 +4157,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la principal ventaja del modelo MVCC de PostgreSQL en comparación con los sistemas tradicionales basados en bloqueos pesados de dos fases (2PL estricto)?",
     "type": "single_choice",
     "options": [
-      "Los bloqueos para leer datos no entran en conflicto con los bloqueos para escribir, permitiendo que la lectura nunca bloquee la escritura y viceversa.",
-      "Reduce a cero el espacio ocupado en disco físico eliminando la necesidad de índices relacionales.",
-      "Garantiza que todas las transacciones se ejecuten obligatoriamente en un único hilo de CPU.",
-      "Elimina para siempre la necesidad de definir claves primarias y foráneas en el esquema."
+      "Los lectores nunca bloquean a los escritores y los escritores nunca bloquean a los lectores, maximizando el rendimiento concurrente.",
+      "Elimina completamente la necesidad de escribir registros en el log de transacciones WAL antes de confirmar los cambios en disco.",
+      "Permite que múltiples transacciones actualicen exactamente la misma columna física al mismo tiempo sin ningún tipo de control.",
+      "Garantiza que la base de datos no consuma espacio de almacenamiento secundario al guardar únicamente las diferencias en RAM."
     ],
     "correctAnswer": 0,
     "hint": "'Readers never block writers, and writers never block readers'.",
@@ -4174,10 +4175,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el nivel de aislamiento `Repeatable Read` en PostgreSQL es más fuerte que el estándar ANSI SQL, ya que evita también las lecturas fantasma?",
     "type": "single_choice",
     "options": [
-      "Verdadero: La implementación MVCC de PostgreSQL en Repeatable Read toma una foto al inicio de la transacción y previene las lecturas fantasma.",
-      "Falso: El estándar ANSI SQL prohíbe terminantemente evitar las lecturas fantasma en este nivel.",
-      "Falso: Repeatable Read en PostgreSQL permite lecturas sucias y lecturas fantasma.",
-      "Verdadero: Pero únicamente si la tabla no tiene ninguna clave primaria definida."
+      "Falso: En PostgreSQL, el nivel Repeatable Read implementa MVCC estricto y previene lecturas sucias, no repetibles y fantasmas.",
+      "Verdadero: El estándar SQL 92 define que Repeatable Read tolera siempre la aparición de registros fantasma en el resultado.",
+      "Falso: Las lecturas fantasma solo pueden manifestarse cuando las consultas se ejecutan sobre índices espaciales de tipo GiST.",
+      "Verdadero: Porque para eliminar lecturas fantasma se requiere obligatoriamente reiniciar la conexión cliente al servidor."
     ],
     "correctAnswer": 0,
     "hint": "En el estándar ANSI Repeatable Read puede permitir Phantom Reads, pero PostgreSQL MVCC las previene.",
@@ -4192,10 +4193,10 @@ const QUESTIONS_DATABASE = [
     "question": "Dentro de las propiedades ACID, ¿en quién recae principalmente la responsabilidad de asegurar la Consistencia (Consistency)?",
     "type": "single_choice",
     "options": [
-      "En el programador de la aplicación que codifica la lógica de la transacción.",
-      "Exclusivamente en el hardware de la memoria RAM del servidor.",
-      "En el gestor de almacenamiento secundario y el buffer pool.",
-      "En el protocolo de red TCP/IP que transporta los paquetes SQL."
+      "En el desarrollador de la aplicación que diseña y programa las operaciones de la transacción.",
+      "En el subsistema de almacenamiento físico que asigna bloques contiguos en disco secundario.",
+      "En el optimizador de consultas que genera los planes de ejecución paralelos en memoria volátil.",
+      "En el administrador de red corporativa que configura los puertos y protocolos de comunicación."
     ],
     "correctAnswer": 0,
     "hint": "El DBMS garantiza atomicidad y aislamiento, pero que el saldo no quede negativo o las reglas de negocio se cumplan es lógica de código.",
@@ -4210,10 +4211,10 @@ const QUESTIONS_DATABASE = [
     "question": "En PostgreSQL, ¿qué datos permite ver una consulta `SELECT` bajo el nivel de aislamiento predeterminado (`Read Committed`)?",
     "type": "single_choice",
     "options": [
-      "Los datos confirmados (COMMIT) antes de que la consulta específica comenzara, más los cambios previos hechos dentro de su propia transacción.",
-      "Todos los datos no confirmados por transacciones concurrentes (lecturas sucias).",
-      "Únicamente los datos que existían al momento en que se encendió el servidor de base de datos.",
-      "Modificaciones de transacciones concurrentes incluso si terminaron con un ROLLBACK."
+      "Una instantánea (snapshot) de los datos confirmados tomada al momento exacto en que dicha consulta SELECT específica comienza a ejecutarse.",
+      "El estado más reciente de la base de datos incluyendo todas las modificaciones no confirmadas realizadas por conexiones concurrentes.",
+      "Una copia estática e inmutable de los datos congelada al momento exacto en que se inició la primera transacción del día laboral.",
+      "Únicamente los registros que hayan sido modificados por la misma sesión dentro de los últimos cinco minutos de actividad de red."
     ],
     "correctAnswer": 0,
     "hint": "Ve una snapshot del momento en que arranca el SELECT particular, más sus propios cambios locales no confirmados.",
@@ -4229,16 +4230,16 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Repeatable Read",
-        "right": "Asegura que los datos leídos al comienzo de la transacción permanecerán sin cambios durante toda su ejecución, sin importar las actualizaciones concurrentes (en PostgreSQL impide las lecturas fantasma)."
+        "key": "Repeatable Read",
+        "value": "Asegura que los datos leídos al comienzo de la transacción permanecerán sin cambios durante toda su ejecución, sin importar las actualizaciones concurrentes (en PostgreSQL impide las lecturas fantasma)."
       },
       {
-        "left": "Read Committed",
-        "right": "Garantiza que la consulta verá una versión estable de los datos al momento de su inicio, previniendo la lectura de datos no confirmados (dirty reads)."
+        "key": "Read Committed",
+        "value": "Garantiza que la consulta verá una versión estable de los datos al momento de su inicio, previniendo la lectura de datos no confirmados (dirty reads)."
       },
       {
-        "left": "Serializable",
-        "right": "Nivel más riguroso, que tiene como objetivo emular la ejecución secuencial de las transacciones, garantizando que no se manifieste ninguna anomalía de concurrencia."
+        "key": "Serializable",
+        "value": "Nivel más riguroso, que tiene como objetivo emular la ejecución secuencial de las transacciones, garantizando que no se manifieste ninguna anomalía de concurrencia."
       }
     ],
     "hint": "Serializable emula la ejecución secuencial estricta; Read Committed evita dirty reads; Repeatable Read congela la instantánea.",
@@ -4254,20 +4255,20 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Lectura no confirmada (Dirty read)",
-        "right": "Lectura de datos temporales que fueron escritos por otra transacción que aún no ha confirmado sus cambios."
+        "key": "Lectura no confirmada (Dirty read)",
+        "value": "Lectura de datos temporales que fueron escritos por otra transacción que aún no ha confirmado sus cambios."
       },
       {
-        "left": "Lectura no repetible (Non repeatable read)",
-        "right": "Al intentar leer un dato por segunda vez dentro de la misma transacción, se encuentra que otra transacción ya confirmada lo ha modificado."
+        "key": "Lectura no repetible (Non repeatable read)",
+        "value": "Al intentar leer un dato por segunda vez dentro de la misma transacción, se encuentra que otra transacción ya confirmada lo ha modificado."
       },
       {
-        "left": "Lectura fantasma (Phantom read)",
-        "right": "Reejecución de una consulta de rango que devuelve un conjunto de filas diferente, debido a la inserción o eliminación confirmada por otra transacción."
+        "key": "Lectura fantasma (Phantom read)",
+        "value": "Reejecución de una consulta de rango que devuelve un conjunto de filas diferente, debido a la inserción o eliminación confirmada por otra transacción."
       },
       {
-        "left": "Anomalía de serialización",
-        "right": "Ocurre cuando dos conexiones modifican los mismos datos secuencialmente, lo que puede resultar en la pérdida de algunas modificaciones (condición de carrera)."
+        "key": "Anomalía de serialización",
+        "value": "Ocurre cuando dos conexiones modifican los mismos datos secuencialmente, lo que puede resultar en la pérdida de algunas modificaciones (condición de carrera)."
       }
     ],
     "hint": "Dirty read = leer sin commit ajeno; Non-repeatable = valor de una fila cambia; Phantom = cantidad de filas en un rango cambia.",
@@ -4283,9 +4284,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Es un conjunto de operaciones que deben ser tratadas como una unidad lógica e indivisible (atómica), garantizando que o bien se completen todas sus acciones, o ninguna de ellas.",
-      "Es una porción del código de la aplicación cuya responsabilidad principal es asegurar la durabilidad de los datos en disco magnético.",
-      "Es un proceso que se encarga de verificar las restricciones de integridad antes de que los datos sean modificados permanentemente.",
-      "Es una secuencia de comandos SQL que solo involucran operaciones de lectura sobre la base de datos."
+      "Es un procedimiento almacenado compilado en memoria intermedia que gestiona la asignación de memoria volátil y optimiza los planes de ejecución para consultas analíticas pesadas.",
+      "Es una directiva de seguridad del motor relacional que cifra los canales de transmisión TCP/IP para autenticar las credenciales de los usuarios durante el intercambio de paquetes.",
+      "Es una secuencia de sentencias declarativas de solo lectura que evalúa las restricciones de clave primaria antes de que los bloques físicos se sincronicen en el almacenamiento."
     ],
     "correctAnswer": 0,
     "hint": "Unidad lógica e indivisible: todo o nada (All-or-Nothing).",
@@ -4319,20 +4320,20 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Atomicidad",
-        "right": "Conjunto de operaciones tratadas como una unidad lógica, donde todas se ejecutan o ninguna de ellas."
+        "key": "Atomicidad",
+        "value": "Conjunto de operaciones tratadas como una unidad lógica, donde todas se ejecutan o ninguna de ellas."
       },
       {
-        "left": "Consistencia",
-        "right": "La ejecución aislada de la transacción conserva la integridad de la base de datos."
+        "key": "Consistencia",
+        "value": "La ejecución aislada de la transacción conserva la integridad de la base de datos."
       },
       {
-        "left": "Aislamiento",
-        "right": "Garantiza que el resultado de la ejecución concurrente de transacciones sea equivalente a la ejecución secuencial de las mismas."
+        "key": "Aislamiento",
+        "value": "Garantiza que el resultado de la ejecución concurrente de transacciones sea equivalente a la ejecución secuencial de las mismas."
       },
       {
-        "left": "Durabilidad",
-        "right": "Los cambios exitosos realizados en la base de datos persisten, incluso si hay fallos en el sistema posteriores."
+        "key": "Durabilidad",
+        "value": "Los cambios exitosos realizados en la base de datos persisten, incluso si hay fallos en el sistema posteriores."
       }
     ],
     "hint": "A = Todo o nada, C = Estado válido a estado válido, I = Sin interferencias, D = Persistencia garantizada.",
@@ -4365,10 +4366,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué efecto produce la ejecución de un comando `ROLLBACK;` durante una transacción activa?",
     "type": "single_choice",
     "options": [
-      "Cancela y deshace todas las operaciones realizadas dentro de la transacción, restaurando el estado previo al BEGIN.",
-      "Confirma los cambios en el disco y cierra la conexión del cliente con el servidor.",
-      "Elimina físicamente los archivos del catálogo de la base de datos.",
-      "Pone en pausa la transacción hasta que el administrador del sistema la autorice manualmente."
+      "Cancela la transacción activa, revirtiendo y descartando todas las modificaciones realizadas desde el inicio de la misma.",
+      "Confirma inmediatamente todas las operaciones pendientes en el motor forzando la escritura de páginas sucias en el disco.",
+      "Elimina permanentemente la definición lógica de la tabla en el catálogo del sistema junto con todos sus índices asociados.",
+      "Cierra de forma abrupta la conexión de red del cliente liberando los hilos de ejecución en el pool del servidor relacional."
     ],
     "correctAnswer": 0,
     "hint": "Deshacer todas las modificaciones desde el BEGIN.",
@@ -4383,10 +4384,10 @@ const QUESTIONS_DATABASE = [
     "question": "En el mecanismo MVCC de PostgreSQL, ¿qué representan los campos de sistema ocultos `xmin` y `xmax` presentes en cada tupla?",
     "type": "single_choice",
     "options": [
-      "`xmin` almacena el identificador de la transacción que insertó la tupla; `xmax` almacena el ID de la transacción que la actualizó o eliminó.",
-      "`xmin` y `xmax` indican las coordenadas geográficas mínimas y máximas de un índice espacial GiST.",
-      "`xmin` almacena el valor numérico más bajo de la clave primaria; `xmax` el valor más alto.",
-      "`xmin` define la cuota mínima de memoria RAM asignada al proceso; `xmax` el límite de tiempo de espera."
+      "El identificador de la transacción que insertó la tupla (`xmin`) y el identificador de la transacción que la eliminó o actualizó (`xmax`).",
+      "La dirección física de cilindro, cabezal y sector donde el bloque magnético se almacena dentro de los platos del disco duro del servidor.",
+      "El código hash de verificación criptográfica SHA-256 generado para validar que los datos no hayan sido corrompidos en memoria volátil.",
+      "El número de veces consecutivas que una consulta de lectura ha accedido a la fila mediante escaneos de índices auto-balanceados B-Tree."
     ],
     "correctAnswer": 0,
     "hint": "xmin = transaction id de creación; xmax = transaction id de borrado/modificación.",
@@ -4401,10 +4402,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la función del comando `SAVEPOINT nombre;` dentro de una transacción activa en SQL?",
     "type": "single_choice",
     "options": [
-      "Establecer un punto de control intermedio que permite realizar un `ROLLBACK TO SAVEPOINT` parcial sin anular toda la transacción.",
-      "Guardar una copia de seguridad comprimida de toda la base de datos en almacenamiento secundario.",
-      "Forzar un commit definitivo de las operaciones anteriores cerrando la transacción actual.",
-      "Crear un nuevo usuario con permisos temporales de lectura."
+      "Establecer un punto intermedio de control dentro de la transacción al cual es posible revertir cambios de forma parcial (`ROLLBACK TO`).",
+      "Forzar la persistencia inmediata de los datos en el almacenamiento secundario sin necesidad de emitir la sentencia `COMMIT` final.",
+      "Bloquear la totalidad de las tablas del esquema en modo exclusivo para impedir lecturas concurrentes de otros usuarios activos.",
+      "Crear una copia de seguridad comprimida de la base de datos en una partición externa del sistema de archivos del servidor anfitrión."
     ],
     "correctAnswer": 0,
     "hint": "Permite retroceder parcialmente a un punto de guardado sin perder todo el trabajo previo.",
@@ -4419,10 +4420,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿En qué consiste la anomalía de concurrencia conocida como 'Actualización Perdida' (Lost Update)?",
     "type": "single_choice",
     "options": [
-      "Dos transacciones leen concurrentemente el mismo registro y luego ambas lo modifican, sobrescribiendo la segunda transacción los cambios de la primera sin considerarlos.",
-      "El servidor de base de datos pierde la conexión de red antes de ejecutar el comando BEGIN.",
-      "Una consulta SELECT no encuentra registros porque la tabla está vacía.",
-      "El motor elimina automáticamente registros antiguos para liberar espacio en disco."
+      "Una transacción lee datos no confirmados por otra transacción concurrente; si la segunda hace ROLLBACK, los datos leídos habrán sido ficticios.",
+      "Una transacción reejecuta una consulta agregada y obtiene un valor de suma distinto porque otra transacción confirmó pagos en el intervalo.",
+      "Dos conexiones cliente intentan insertar la misma clave primaria en una tabla y el motor interrumpe una de ellas arrojando un error de unicidad.",
+      "El optimizador de consultas selecciona un escaneo secuencial en lugar de un índice B-Tree debido a estadísticas desactualizadas en el catálogo."
     ],
     "correctAnswer": 0,
     "hint": "Sobrescritura ciega donde el cambio de la primera transacción queda pisado y olvidado.",
@@ -4453,10 +4454,10 @@ const QUESTIONS_DATABASE = [
     "question": "En los esquemas de concurrencia multiversión, ¿cuál es una desventaja notable de la ordenación por marcas temporales frente al bloqueo de dos fases?",
     "type": "single_choice",
     "options": [
-      "Los conflictos se resuelven abortando y reiniciando transacciones en lugar de hacerlas esperar, y cada lectura actualiza marcas temporales generando más escrituras en disco.",
-      "No permite la ejecución de transacciones de solo lectura bajo ninguna circunstancia.",
-      "Exige que el servidor de base de datos tenga un reloj atómico sincronizado por satélite.",
-      "Impide por completo el uso de índices B-Tree en las tablas consultadas."
+      "Múltiples versiones físicas simultáneas de una misma tupla generadas por actualizaciones (tuplas muertas pendientes de limpieza por VACUUM).",
+      "Fragmentos de memoria RAM asignados por el sistema operativo que quedan inaccesibles tras un fallo intempestivo en el controlador de red.",
+      "Punteros de índices B-Tree corruptos que dirigen a bloques de datos desasignados tras un reinicio forzado del servidor de base de datos.",
+      "Copias de respaldo temporales que se replican en nodos secundarios y se descartan automáticamente al completar la ventana nocturna."
     ],
     "correctAnswer": 0,
     "hint": "Marcas temporales generan abortos frecuentes en alta contención en vez de colas de espera.",
@@ -4471,10 +4472,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que la normalización es un proceso que busca la desorganización de los datos para optimizar la velocidad de acceso en entornos OLAP?",
     "type": "single_choice",
     "options": [
-      "Falso: La normalización busca estructurar y organizar el modelo relacional para eliminar redundancias y evitar anomalías.",
-      "Verdadero: La normalización desorganiza intencionalmente las tablas para acelerar consultas analíticas.",
-      "Verdadero: Es una técnica exclusiva de data warehouses que descarta las claves primarias.",
-      "Falso: La normalización solo se aplica al código compilado de los triggers."
+      "Verdadero: Busca descomponer relaciones para reducir la redundancia y evitar anomalías sin perder información válida.",
+      "Falso: La normalización es un mecanismo opcional que solo se aplica para reducir el consumo de memoria volátil RAM.",
+      "Falso: Su única función es convertir modelos relacionales tradicionales en bases de datos distribuidas NoSQL en la nube.",
+      "Verdadero: Pero únicamente se aplica cuando el sistema de gestión de base de datos no soporta índices de tipo árbol B+."
     ],
     "correctAnswer": 0,
     "hint": "Normalizar = organizar metódicamente para evitar redundancia e inconsistencias.",
@@ -4489,10 +4490,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que la Segunda Forma Normal (2FN) se enfoca principalmente en eliminar las dependencias transitivas?",
     "type": "single_choice",
     "options": [
-      "Falso: La 2FN elimina dependencias funcionales parciales (sobre claves compuestas); la 3FN elimina las transitivas.",
-      "Verdadero: La 2FN se encarga exclusivamente de las dependencias transitivas entre atributos no clave.",
-      "Verdadero: La 2FN y la 3FN son exactamente la misma forma normal con distinto nombre.",
-      "Falso: La 2FN solo se aplica si la tabla tiene más de 10 columnas numéricas."
+      "Verdadero: Si la clave primaria es simple (un solo atributo), automáticamente no pueden existir dependencias parciales de la clave.",
+      "Falso: Toda tabla con clave simple debe descomponerse obligatoriamente para cumplir con la Segunda Forma Normal en el esquema.",
+      "Falso: La 2FN solo puede alcanzarse si la tabla contiene al menos dos claves foráneas que referencien a esquemas externos.",
+      "Verdadero: Pero solo si todos los atributos descriptivos de la relación son de tipo numérico entero autoincremental."
     ],
     "correctAnswer": 0,
     "hint": "2FN = Dependencias parciales; 3FN = Dependencias transitivas.",
@@ -4507,10 +4508,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que si una tabla tiene campos como 'Editorial' y 'Dirección' que no dependen de la clave completa del 'Libro', estos campos deberían ser extraídos a nuevas tablas para cumplir con la 2FN?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Los atributos que no dependen de la clave primaria deben separarse en una entidad independiente relacionada.",
-      "Falso: En 2FN todos los atributos deben mantenerse en la misma tabla sin excepción.",
-      "Falso: Solo deben extraerse si contienen números negativos o valores booleanos.",
-      "Verdadero: Pero la tabla resultante no puede tener clave primaria."
+      "Falso: La 3FN exige que no existan dependencias transitivas entre atributos no clave, independientemente de que no haya cálculos.",
+      "Verdadero: Si una tabla no incluye fórmulas aritméticas ni campos calculados, se considera normalizada en 3FN de forma automática.",
+      "Falso: La Tercera Forma Normal solo es aplicable cuando la base de datos se implementa sobre motores no relacionales en memoria.",
+      "Verdadero: Porque los atributos no calculados siempre dependen de manera directa y funcional de la clave primaria principal."
     ],
     "correctAnswer": 0,
     "hint": "Separar atributos que dependen parcialmente de la clave para que dependan de su propia entidad.",
@@ -4543,10 +4544,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que en la 3FN, las relaciones de Muchos a Muchos (N-M) se resuelven generando una tabla intermedia para evitar la repetición de registros y atributos particulares?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Se descompone la relación N:M creando una tabla asociativa/intermedia que contiene las claves foráneas de ambas tablas.",
-      "Falso: En el modelo relacional está prohibido crear tablas intermedias.",
-      "Falso: Las relaciones N-M se resuelven agregando arrays de cadenas de texto en una sola columna.",
-      "Verdadero: Pero la tabla intermedia no puede almacenar ningún atributo propio."
+      "Falso: La 3FN solo requiere que los atributos no clave no dependan transitivamente de la PK; BCNF exige que todo determinante sea superclave.",
+      "Verdadero: Toda relación que alcanza el estado de Tercera Forma Normal cumple de manera obligatoria con los requisitos de BCNF.",
+      "Falso: La 3FN es un concepto del modelo jerárquico mientras que la Forma Normal de Boyce-Codd pertenece al modelo orientado a grafos.",
+      "Verdadero: Porque en la teoría relacional no existen diferencias formales entre los postulados de 3FN y las reglas de Boyce-Codd."
     ],
     "correctAnswer": 0,
     "hint": "Las relaciones N:M requieren una tabla intermedia con las PKs de ambos lados.",
@@ -4561,10 +4562,10 @@ const QUESTIONS_DATABASE = [
     "question": "Una 'dependencia cíclica' en el contexto de bases de datos, que la Quinta Forma Normal (5FN) busca eliminar, sucede cuando:",
     "type": "single_choice",
     "options": [
-      "La clave primaria de una tabla está compuesta por 3 o más campos, y esos campos están relacionados de a pares entre sí.",
-      "Un campo depende parcialmente de la clave primaria.",
-      "Un campo tiene una dependencia funcional con otro campo no clave.",
-      "Una transacción entra en un bucle infinito de bloqueos consigo misma."
+      "Una situación donde una clave compuesta de 3 o más atributos se relaciona de a pares, requiriendo descomposición en Quinta Forma Normal (5FN).",
+      "Un bloqueo mutuo (deadlock) que paraliza la ejecución de transacciones concurrentes al competir por los mismos recursos en disco.",
+      "Una clave foránea que apunta recursivamente a la clave primaria de la misma tabla relacional para representar jerarquías internas.",
+      "Un bucle infinito generado en un procedimiento almacenado recursivo que desborda la pila de ejecución del motor de base de datos."
     ],
     "correctAnswer": 0,
     "hint": "Clave compuesta por 3 o más campos con relaciones binarias simétricas de a pares.",
@@ -4579,10 +4580,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que la Sexta Forma Normal / Forma Normal Dominio-Clave (DKNF) es principalmente un proceso de transformación paso a paso algorítmico?",
     "type": "single_choice",
     "options": [
-      "Falso: DKNF es un estado conceptual ideal donde todas las restricciones se derivan de dominios y claves, no un algoritmo paso a paso.",
-      "Verdadero: Es un procedimiento matemático de 6 pasos obligatorios en todo motor relacional.",
-      "Verdadero: Reemplaza a la 1FN en sistemas modernos.",
-      "Falso: DKNF solo existe en bases de datos orientadas a grafos."
+      "Verdadero: 6FN/DKNF representa un estado teórico donde todas las restricciones derivan directamente de dominios y claves, sin anomalías.",
+      "Falso: La Sexta Forma Normal es un formato obsoleto que ya no es reconocido por los comités de estandarización relacional modernos.",
+      "Falso: 6FN exige que todas las tablas del esquema corporativo contengan una única columna de tipo texto sin clave primaria.",
+      "Verdadero: Pero únicamente si la totalidad de las relaciones del esquema se almacenan en particiones de estado sólido de solo lectura."
     ],
     "correctAnswer": 0,
     "hint": "Domain Key Normal Form es un ideal conceptual, no un algoritmo secuencial estándar.",
@@ -4615,10 +4616,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que un modelo de base de datos relacional de producción generalmente implementa en su totalidad hasta la 6FN / DKNF?",
     "type": "single_choice",
     "options": [
-      "Falso: En la práctica, casi todos los sistemas OLTP se normalizan hasta 3FN o BCNF para balancear integridad y rendimiento de JOINs.",
-      "Verdadero: La norma ISO SQL exige implementar obligatoriamente las 6 formas normales.",
-      "Verdadero: Llegar a DKNF siempre triplica la velocidad de todas las consultas SELECT.",
-      "Falso: Solo se normaliza hasta 1FN en sistemas corporativos."
+      "Verdadero: La desnormalización controlada reduce las operaciones JOIN en consultas frecuentes a costa de mayor redundancia física.",
+      "Falso: La desnormalización está estrictamente prohibida por el estándar ANSI SQL y bloquea la creación de tablas en el motor.",
+      "Falso: Normalizar hasta la 5ta Forma Normal garantiza de forma universal los mejores tiempos de respuesta en todas las consultas.",
+      "Verdadero: Pero solo en sistemas operacionales bancarios OLTP con alta frecuencia de transacciones unitarias concurrentes."
     ],
     "correctAnswer": 0,
     "hint": "Normalizar en exceso multiplica los JOINs y perjudica el rendimiento de lectura.",
@@ -4633,10 +4634,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que el objetivo principal de la normalización es maximizar la duplicación de datos para mejorar la velocidad de lectura?",
     "type": "single_choice",
     "options": [
-      "Falso: El objetivo de la normalización es exactamente lo opuesto: minimizar la redundancia y evitar anomalías e inconsistencias.",
-      "Verdadero: Cuantas más copias repetidas existan de un campo, mejor normalizada está la base de datos.",
-      "Verdadero: Duplicar datos garantiza la integridad referencial automática.",
-      "Falso: La normalización solo busca comprimir imágenes binarias en formato BLOB."
+      "Falso: La desnormalización controlada sacrifica espacio y pureza teórica para reducir operaciones JOIN costosas y agilizar lecturas analíticas.",
+      "Verdadero: El objetivo primordial de desnormalizar es alcanzar la perfección teórica del modelo mediante descomposiciones sucesivas.",
+      "Falso: La desnormalización se utiliza exclusivamente para convertir bases de datos relacionales en sistemas de ficheros planos binarios.",
+      "Verdadero: Porque al desnormalizar se eliminan por completo las claves foráneas y las restricciones de dominio del catálogo corporativo."
     ],
     "correctAnswer": 0,
     "hint": "Normalizar busca erradicar la duplicación.",
@@ -4652,20 +4653,20 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Boyce-Codd (BCNF)",
-        "right": "Su objetivo es la separación de todas las claves candidatas que pudieran existir en nuevas tablas para refinar la 3FN, aunque esto puede impactar el rendimiento de las consultas."
+        "key": "Boyce-Codd (BCNF)",
+        "value": "Su objetivo es la separación de todas las claves candidatas que pudieran existir en nuevas tablas para refinar la 3FN, aunque esto puede impactar el rendimiento de las consultas."
       },
       {
-        "left": "Cuarta Forma Normal (4FN)",
-        "right": "Transforma los atributos que contienen conjuntos de valores múltiples (no relacionados) en dependencias funcionales, creando múltiples relaciones 1-N o N-M."
+        "key": "Cuarta Forma Normal (4FN)",
+        "value": "Transforma los atributos que contienen conjuntos de valores múltiples (no relacionados) en dependencias funcionales, creando múltiples relaciones 1-N o N-M."
       },
       {
-        "left": "Quinta Forma Normal (5FN)",
-        "right": "Busca reducir la redundancia y eliminar las dependencias cíclicas que se generan cuando una clave principal compuesta por tres o más campos se relaciona de a pares."
+        "key": "Quinta Forma Normal (5FN)",
+        "value": "Busca reducir la redundancia y eliminar las dependencias cíclicas que se generan cuando una clave principal compuesta por tres o más campos se relaciona de a pares."
       },
       {
-        "left": "Domain Key Normal Form (DKNF)",
-        "right": "Estado conceptual final que describe un modelo totalmente normalizado donde intrínsecamente no se permiten anomalías de inserción, modificación o eliminación de datos."
+        "key": "Domain Key Normal Form (DKNF)",
+        "value": "Estado conceptual final que describe un modelo totalmente normalizado donde intrínsecamente no se permiten anomalías de inserción, modificación o eliminación de datos."
       }
     ],
     "hint": "BCNF refina 3FN con claves candidatas; 4FN trata dependencias multivaluadas; 5FN dependencias cíclicas; DKNF estado ideal dominio-clave.",
@@ -4681,16 +4682,16 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Anomalía de Inserción",
-        "right": "Imposibilidad de agregar un registro dependiente (hija) si aún no existe el registro de referencia en su tabla principal (padre)."
+        "key": "Anomalía de Inserción",
+        "value": "Imposibilidad de agregar un registro dependiente (hija) si aún no existe el registro de referencia en su tabla principal (padre)."
       },
       {
-        "left": "Anomalía de Eliminación",
-        "right": "Pérdida involuntaria de información válida al remover el registro principal, dejando registros subordinados sin su referencia correspondiente."
+        "key": "Anomalía de Eliminación",
+        "value": "Pérdida involuntaria de información válida al remover el registro principal, dejando registros subordinados sin su referencia correspondiente."
       },
       {
-        "left": "Anomalía de Actualización",
-        "right": "Riesgo de inconsistencia de datos que obliga a considerar y modificar registros relacionados en múltiples tablas al mismo tiempo."
+        "key": "Anomalía de Actualización",
+        "value": "Riesgo de inconsistencia de datos que obliga a considerar y modificar registros relacionados en múltiples tablas al mismo tiempo."
       }
     ],
     "hint": "Inserción = no poder agregar sin datos extra; Eliminación = borrar un dato y perder otro; Actualización = inconsistencia al modificar.",
@@ -4705,10 +4706,10 @@ const QUESTIONS_DATABASE = [
     "question": "Indique la secuencia correcta de problemas de dependencia que deben resolverse para llevar una tabla desde la Forma Normal Cero (0FN) hasta la Tercera Forma Normal (3FN):",
     "type": "single_choice",
     "options": [
-      "Primero se eliminan los campos que contienen múltiples valores repetidos (1FN); luego se eliminan las dependencias parciales donde los campos no clave dependen solo de una parte de la clave compuesta (2FN); y finalmente se eliminan las dependencias transitivas entre campos que no son clave (3FN).",
-      "Se asegura la unicidad de los registros (1FN); se eliminan las dependencias funcionales (2FN); y se eliminan las dependencias cíclicas (3FN).",
-      "Se eliminan las dependencias funcionales entre campos no clave (1FN); se separan los datos que dependen de una clave compuesta (2FN); y se eliminan los campos calculados (3FN).",
-      "Primero se eliminan dependencias parciales donde los campos no clave dependen solo de una parte de la clave compuesta (1FN); luego grupos repetidos (2FN); y finalmente se separan claves candidatas (3FN)."
+      "1FN (Valores atómicos y grupos repetitivos) -> 2FN (Dependencia funcional parcial) -> 3FN (Dependencia funcional transitiva) -> BCNF (Determinantes no superclave).",
+      "1FN (Dependencias transitivas) -> 2FN (Dependencias multivaluadas) -> 3FN (Dependencias parciales de clave) -> BCNF (Valores no atómicos en tuplas).",
+      "1FN (Eliminación de claves candidatas) -> 2FN (Descomposición en 5FN) -> 3FN (Uniones hash en memoria) -> BCNF (Creación de vistas materializadas).",
+      "1FN (Restricción de dominios numéricos) -> 2FN (Normalización cíclica de a pares) -> 3FN (Atributos primos compuestos) -> BCNF (Escaneos secuenciales)."
     ],
     "correctAnswer": 0,
     "hint": "1FN: grupos repetidos; 2FN: dependencias parciales; 3FN: dependencias transitivas.",
@@ -4741,10 +4742,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué requisito exige formalmente la Primera Forma Normal (1FN) sobre los atributos de una relación?",
     "type": "single_choice",
     "options": [
-      "Que todos los dominios de los atributos sean atómicos (valores indivisibles) y que no existan grupos repetitivos de columnas ni arrays.",
-      "Que la tabla posea obligatoriamente al menos dos claves foráneas que apunten a esquemas externos.",
-      "Que todos los atributos de texto se almacenen en mayúsculas sin espacios.",
-      "Que la tabla se encuentre particionada físicamente en múltiples discos rígidos."
+      "Que todos los atributos contengan valores atómicos e indivisibles, y que no existan grupos repetitivos ni atributos multivaluados.",
+      "Que la tabla cuente con un índice de tipo árbol B+ en cada columna y que el motor relacional ejecute en modo estricto de concurrencia.",
+      "Que todos los atributos no clave dependan funcionalmente de forma total de una clave primaria compuesta definida en el catálogo.",
+      "Que no existan dependencias funcionales transitivas entre columnas no pertenecientes a ninguna clave candidata de la relación."
     ],
     "correctAnswer": 0,
     "hint": "Valores atómicos indivisibles, sin listas ni campos repetidos.",
@@ -4759,10 +4760,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la diferencia sutil pero fundamental entre la Tercera Forma Normal (3FN) y la Forma Normal de Boyce-Codd (BCNF)?",
     "type": "single_choice",
     "options": [
-      "En 3FN, en una dependencia X -> Y, Y puede ser un atributo primo (parte de alguna clave candidata); en BCNF, X debe ser estrictamente una superclave.",
-      "3FN solo se aplica a bases de datos relacionales, mientras que BCNF se aplica exclusivamente a archivos XML.",
-      "3FN permite atributos multivaluados pero BCNF exige campos atómicos.",
-      "BCNF no requiere estar en 1FN ni 2FN, mientras que 3FN sí lo exige."
+      "3FN permite que en `X -> Y`, si `Y` es un atributo primo (parte de una clave candidata), `X` no necesita ser superclave; BCNF exige que `X` SEA SIEMPRE superclave.",
+      "3FN solo se aplica a tablas con claves primarias simples de un solo atributo; BCNF se aplica exclusivamente a tablas con claves compuestas en disco.",
+      "3FN prohíbe el uso de tipos de datos alfanuméricos en atributos no clave; BCNF permite cualquier tipo de dato siempre que se indexe con árboles B-Tree.",
+      "No existe ninguna diferencia formal entre ambas definiciones; son denominaciones alternativas para el mismo teorema matemático del modelo relacional."
     ],
     "correctAnswer": 0,
     "hint": "En BCNF, TODO determinante X debe ser superclave sin excepciones para atributos primos.",
@@ -4777,10 +4778,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué tipo de anomalía o dependencia busca erradicar la Cuarta Forma Normal (4FN)?",
     "type": "single_choice",
     "options": [
-      "Dependencias multivaluadas no triviales (X ->-> Y), donde un atributo determina múltiples valores independientes de otro atributo en la misma tabla.",
-      "Dependencias transitivas entre claves primarias y claves foráneas.",
-      "Errores de redondeo numérico en columnas de tipo FLOAT.",
-      "Inconsistencias causadas por consultas SELECT sin cláusula ORDER BY."
+      "Las dependencias multivaluadas no triviales (MVD: `X ->> Y`), donde dos o más atributos independientes tienen valores múltiples para una misma clave.",
+      "Las dependencias funcionales transitivas entre atributos descriptivos secundarios que no forman parte de la clave primaria principal.",
+      "Las anomalías de desbordamiento de búfer provocadas por operaciones de unión masiva sobre tablas desprovistas de índices primarios.",
+      "Los bloqueos de concurrencia causados por transacciones que actualizan simultáneamente filas pertenecientes a particiones distintas."
     ],
     "correctAnswer": 0,
     "hint": "4FN trata dependencias multivaluadas (representadas con doble flecha ->->).",
@@ -4795,10 +4796,10 @@ const QUESTIONS_DATABASE = [
     "question": "Al normalizar y descomponer una tabla R en dos relaciones R1 y R2, ¿qué propiedad matemática garantiza que al hacer un NATURAL JOIN entre R1 y R2 se reconstruya exactamente la tabla original sin tuplas espurias?",
     "type": "single_choice",
     "options": [
-      "Descomposición de reunión sin pérdida (Lossless-Join Decomposition).",
-      "Replicación asíncrona de almacenamiento secundario.",
-      "Serializabilidad estricta de dos fases.",
-      "Aislamiento de lectura no repetible."
+      "Que la descomposición sea Sin Pérdida de Información (Lossless Join Decomposition).",
+      "Que ambas tablas resultantes mantengan exactamente la misma cantidad de atributos en disco.",
+      "Que ninguna de las dos relaciones descompuestas pueda contener claves foráneas hacia esquemas externos.",
+      "Que el proceso de descomposición duplique físicamente todas las filas de la tabla original en memoria."
     ],
     "correctAnswer": 0,
     "hint": "Lossless-Join: la intersección de atributos debe ser clave en al menos una de las tablas.",
@@ -4813,10 +4814,10 @@ const QUESTIONS_DATABASE = [
     "question": "En una relación R, ¿cuándo se dice formalmente que el conjunto de atributos Y depende funcionalmente de X (X -> Y)?",
     "type": "single_choice",
     "options": [
-      "Cuando para cualesquiera dos tuplas t1 y t2 en R, si t1[X] = t2[X], entonces obligatoriamente t1[Y] = t2[Y].",
-      "Cuando el número de columnas de X es exactamente igual al número de filas de Y.",
-      "Cuando X contiene valores numéricos e Y contiene cadenas de texto alfanuméricas.",
-      "Cuando Y es una clave foránea que apunta a una tabla temporal en memoria RAM."
+      "Cuando para cada valor de X en la relación, existe un único valor bien determinado de Y asociado (X determina a Y).",
+      "Cuando el atributo Y contiene una cantidad de caracteres alfanuméricos superior a la longitud del atributo X.",
+      "Cuando ambos atributos se encuentran indexados mediante la misma estructura de árbol auto-balanceado de tipo B-Tree.",
+      "Cuando el atributo X se actualiza automáticamente mediante un trigger reactivo cada vez que se modifica el atributo Y."
     ],
     "correctAnswer": 0,
     "hint": "A cada valor de X le corresponde un único valor de Y.",
@@ -4831,10 +4832,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que los triggers en PostgreSQL pueden ser definidos para ejecutarse antes (`BEFORE`) o inmediatamente después (`AFTER`) de un evento de manipulación de datos?",
     "type": "single_choice",
     "options": [
-      "Verdadero: PostgreSQL soporta triggers BEFORE (para validaciones o modificaciones previas) y AFTER (para auditoría o efectos secundarios).",
-      "Falso: PostgreSQL solo admite triggers AFTER; los BEFORE están prohibidos por el estándar.",
-      "Falso: Solo pueden ejecutarse a medianoche mediante una tarea cron del sistema operativo.",
-      "Verdadero: Pero únicamente si la tabla posee menos de 1000 filas registradas."
+      "Falso: Un trigger ejecuta automáticamente una función de trigger asociada previamente definida con `CREATE FUNCTION ... RETURNS trigger`.",
+      "Verdadero: En PostgreSQL las sentencias SQL del trigger se escriben directamente dentro de la cláusula EXECUTE sin requerir funciones.",
+      "Falso: Los triggers en PostgreSQL solo pueden programarse utilizando el lenguaje de programación compilado C o ensamblador.",
+      "Verdadero: Porque el estándar SQL prohíbe desacoplar el disparador de la función ejecutada en operaciones DML de modificación."
     ],
     "correctAnswer": 0,
     "hint": "BEFORE para interceptar/validar antes de escribir; AFTER para registrar/auditar.",
@@ -4849,10 +4850,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Qué nivel de severidad de la instrucción `RAISE` es el único que, por defecto, interrumpe y cancela la ejecución de una función abortando la transacción actual?",
     "type": "single_choice",
     "options": [
-      "EXCEPTION",
-      "WARNING",
-      "NOTICE",
-      "LOG"
+      "`RAISE EXCEPTION` (aborta la transacción actual y revierte todos los cambios no confirmados).",
+      "`RAISE WARNING` (emite un mensaje de advertencia en consola y continúa la ejecución normal).",
+      "`RAISE NOTICE` (notifica al cliente sin interrumpir el procesamiento de las instrucciones SQL).",
+      "`RAISE INFO` (escribe una entrada descriptiva en el registro de depuración del servidor)."
     ],
     "correctAnswer": 0,
     "hint": "DEBUG, LOG, INFO, NOTICE y WARNING solo emiten mensajes; EXCEPTION detiene y hace rollback.",
@@ -4867,10 +4868,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que un trigger en PostgreSQL puede ejecutar una función que a su vez dispare otro trigger, creando recursividad, y que es responsabilidad del programador evitar bucles infinitos?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Las operaciones DML dentro de un trigger pueden disparar triggers en cascada, siendo vital controlar la condición de parada.",
-      "Falso: El motor de base de datos desactiva permanentemente todos los triggers del servidor ante el primer trigger ejecutado.",
-      "Falso: En SQL está matemáticamente prohibido que un trigger invoque sentencias DML.",
-      "Verdadero: Pero los bucles infinitos no consumen recursos del servidor de datos."
+      "Verdadero: Los triggers BEFORE pueden evaluar y modificar los valores del registro NEW antes de que se escriban definitivamente en la tabla.",
+      "Falso: Los triggers BEFORE son estrictamente de solo lectura y el motor arroja una excepción si intentan asignar valores a NEW.",
+      "Falso: En PostgreSQL los triggers solo pueden configurarse para ejecutarse después (AFTER) de completada la sentencia DML en disco.",
+      "Verdadero: Pero únicamente si la tabla sobre la cual operan se encuentra particionada en esquemas de almacenamiento secundarios."
     ],
     "correctAnswer": 0,
     "hint": "Cascadas de triggers: si un trigger hace UPDATE sobre otra tabla, dispara sus triggers.",
@@ -4885,10 +4886,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que las funciones en PostgreSQL contribuyen a la reutilización al permitir que múltiples aplicaciones clientes interactúen directamente con ellas garantizando un comportamiento homogéneo?",
     "type": "single_choice",
     "options": [
-      "Verdadero: Encapsulan reglas de negocio complejas en el servidor de base de datos, garantizando consistencia sin duplicar código en el backend.",
-      "Falso: Cada lenguaje de frontend debe reescribir la función de forma nativa en su propio código.",
-      "Falso: Las funciones solo pueden invocarse desde la consola de comandos psql de Linux.",
-      "Verdadero: Pero ralentizan 100 veces el motor de base de datos en todos los casos."
+      "Falso: En PostgreSQL, las funciones pueden ser de solo lectura o ejecutar sentencias de modificación (INSERT, UPDATE, DELETE) y retornar datos.",
+      "Verdadero: Las funciones de base de datos tienen estrictamente prohibido alterar registros para preservar el principio de idempotencia.",
+      "Falso: En PostgreSQL las funciones solo pueden retornar números enteros o valores booleanos, prohibiendo el uso de tipos compuestos.",
+      "Verdadero: Porque para modificar datos se requiere de manera mandatoria la invocación de un procedimiento almacenado con `CALL`."
     ],
     "correctAnswer": 0,
     "hint": "Encapsular lógica en el motor garantiza que todos los clientes apliquen la misma regla.",
@@ -4939,10 +4940,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que una función en PostgreSQL siempre debe devolver un tipo de dato escalar primitivo (int, text) y no puede devolver un conjunto de registros o una tabla?",
     "type": "single_choice",
     "options": [
-      "Falso: PostgreSQL permite que las funciones retornen `TABLE(...)`, `SETOF tipo` o registros compuestos (`RECORD`).",
-      "Verdadero: Solo los procedimientos almacenados pueden retornar tablas completas.",
-      "Verdadero: SQL estándar prohíbe que las funciones devuelvan más de un número entero.",
-      "Falso: Pero solo si la tabla devuelta contiene una única columna alfanumérica."
+      "Falso: Puede retornar un tipo escalar (int, text), un tipo compuesto, `TABLE(...)` o un conjunto de filas usando `SETOF tipo_dato`.",
+      "Verdadero: Toda función en PL/pgSQL está limitada por el compilador del motor a devolver un único valor escalar primitivo.",
+      "Falso: Las funciones en PostgreSQL nunca pueden retornar valores y solo se utilizan para registrar eventos en el log del servidor.",
+      "Verdadero: Pero solo cuando la función se define con la opción de optimización de ejecución determinista de tipo `IMMUTABLE`."
     ],
     "correctAnswer": 0,
     "hint": "PostgreSQL admite funciones tabulares con RETURNS TABLE o RETURNS SETOF.",
@@ -4993,10 +4994,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Es verdadero o falso que en un trigger a nivel de sentencia (`FOR EACH STATEMENT`), el registro `OLD` contendrá los datos eliminados cuando el evento sea `DELETE`?",
     "type": "single_choice",
     "options": [
-      "Falso: Las variables de registro `OLD` y `NEW` solo están pobladas en triggers a nivel de fila (`FOR EACH ROW`); en statement-level son NULL.",
-      "Verdadero: En statement-level `OLD` contiene un array con todas las tuplas borradas por la consulta.",
-      "Verdadero: `OLD` siempre está disponible independientemente de la granularidad del trigger.",
-      "Falso: `OLD` solo existe en operaciones de tipo INSERT."
+      "Falso: En triggers de sentencia (`FOR EACH STATEMENT`), NEW y OLD son NULL; solo están disponibles en triggers de fila (`FOR EACH ROW`).",
+      "Verdadero: Las variables NEW y OLD contienen siempre los registros modificados sin importar si el trigger es de fila o de sentencia.",
+      "Falso: NEW y OLD solo existen dentro de procedimientos almacenados autónomos invocados manualmente por el administrador del sistema.",
+      "Verdadero: Pero únicamente si la instrucción DML que disparó el evento afectó a más de cien tuplas en el almacenamiento físico."
     ],
     "correctAnswer": 0,
     "hint": "OLD y NEW solo tienen datos en triggers a nivel de fila (FOR EACH ROW).",
@@ -5151,10 +5152,10 @@ const QUESTIONS_DATABASE = [
     "question": "Dentro del cuerpo de una función de trigger en PostgreSQL (PL/pgSQL), ¿qué valor contiene la variable especial del sistema `TG_OP`?",
     "type": "single_choice",
     "options": [
-      "Una cadena de texto con el tipo de operación DML que disparó el trigger: 'INSERT', 'UPDATE', 'DELETE' o 'TRUNCATE'.",
-      "El número entero de filas afectadas por la última consulta SELECT.",
-      "El nombre del usuario del sistema operativo que inició la sesión.",
-      "El tiempo en microsegundos que demoró la compilación de la función."
+      "El registro `NEW` representa la fila con los nuevos valores que se van a insertar o actualizar; `OLD` representa la fila con los valores previos a la modificación o borrado.",
+      "El registro `NEW` resguarda las copias de seguridad de la tabla en disco; `OLD` representa los datos desasignados pendientes de purga por el proceso de limpieza VACUUM.",
+      "El registro `NEW` almacena los identificadores de sesión de los clientes de red; `OLD` contiene los privilegios de usuario asignados en el catálogo de seguridad corporativo.",
+      "El registro `NEW` es una variable booleana que indica si ocurrió un error en la transacción; `OLD` es el código numérico de retorno de la última consulta analítica ejecutada."
     ],
     "correctAnswer": 0,
     "hint": "TG_OP = Trigger Operation ('INSERT', 'UPDATE', 'DELETE', etc.).",
@@ -5169,10 +5170,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Cuál es la función del modo de parámetro `INOUT` en una función de PostgreSQL?",
     "type": "single_choice",
     "options": [
-      "Permite recibir un valor de entrada del llamador, procesarlo dentro de la función y devolver el valor modificado como parte del resultado.",
-      "Indica que el parámetro solo puede recibir valores NULL de solo lectura.",
-      "Exige que el parámetro sea obligatoriamente una clave foránea de tipo UUID.",
-      "Bloquea la tabla asociada en modo exclusivo mientras la función se ejecuta."
+      "Permite que el parámetro reciba un valor de entrada del llamador y retorne un valor modificado de salida al finalizar la función.",
+      "Garantiza que el argumento permanezca inmutable impidiendo cualquier tipo de reasignación dentro del cuerpo del procedimiento.",
+      "Convierte el parámetro en un puntero físico de almacenamiento secundario que actualiza directamente los sectores magnéticos del disco.",
+      "Exige que el parámetro sea obligatoriamente una columna de clave primaria perteneciente a una tabla registrada en el catálogo."
     ],
     "correctAnswer": 0,
     "hint": "INOUT = entrada y salida al mismo tiempo.",
@@ -5187,10 +5188,10 @@ const QUESTIONS_DATABASE = [
     "question": "¿Sobre qué tipo de objetos de base de datos se definen típicamente los triggers `INSTEAD OF` en PostgreSQL para permitir que admitan sentencias INSERT, UPDATE o DELETE?",
     "type": "single_choice",
     "options": [
-      "Sobre Vistas (Views) complejas que de otro modo no serían actualizables directamente.",
-      "Sobre índices B-Tree fragmentados en disco secundario.",
-      "Sobre secuencias numéricas creadas con CREATE SEQUENCE.",
-      "Sobre esquemas de catálogos internos del sistema (pg_catalog)."
+      "Tablas relacionales físicas, Vistas tradicionales (utilizando triggers de tipo `INSTEAD OF`) y Vistas Materializadas.",
+      "Procedimientos almacenados en memoria volátil, funciones escalares deterministas e índices auto-balanceados B-Tree.",
+      "Ficheros de configuración del sistema operativo anfitrión, puertos de conexión TCP/IP y sockets de red corporativos.",
+      "Comandos declarativos del lenguaje de definición de datos DDL emitidos desde sesiones cliente anónimas sin privilegios."
     ],
     "correctAnswer": 0,
     "hint": "INSTEAD OF se dispara 'en lugar de' la operación sobre una Vista no actualizable.",
@@ -5205,10 +5206,10 @@ const QUESTIONS_DATABASE = [
     "question": "En una función escrita en PL/pgSQL, ¿dónde se deben declarar formalmente las variables locales y qué sección encabeza?",
     "type": "single_choice",
     "options": [
-      "En la sección `DECLARE`, ubicada antes del bloque principal `BEGIN ... END;`.",
-      "En cualquier lugar del código mediante la palabra clave `var` de JavaScript.",
-      "Únicamente al final de la función después de la instrucción `$$ LANGUAGE`.",
-      "Dentro de los comentarios de la cabecera entre corchetes angulares."
+      "En la sección `DECLARE`, ubicada inmediatamente antes del bloque principal delimitado por las palabras clave `BEGIN ... END;`.",
+      "En la lista de parámetros formales del encabezado de la función mediante la palabra reservada obligatoria `VARIABLE_DEF`.",
+      "Dentro de cualquier parte del cuerpo de la función asignándoles valores directamente con el operador de igualdad `=`.",
+      "En un fichero de texto plano independiente en el almacenamiento secundario que se compila junto con el motor relacional."
     ],
     "correctAnswer": 0,
     "hint": "DECLARE precede a BEGIN ... END;",
@@ -5224,9 +5225,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Verdadero: Es una estructura auxiliar que indexa los valores de las columnas para acelerar las búsquedas sin recorrer toda la tabla.",
-      "Falso: Un índice reemplaza completamente la tabla física y borra las columnas originales.",
-      "Falso: Los índices solo sirven para almacenar respaldos de seguridad en la nube.",
-      "Verdadero: Pero solo funciona si la consulta no incluye cláusula WHERE."
+      "Falso: Un índice reemplaza completamente la tabla física en el catálogo y elimina de forma permanente las columnas originales del esquema.",
+      "Falso: Los índices relacionales solo sirven para resguardar copias de respaldo comprimidas en repositorios de almacenamiento en la nube.",
+      "Verdadero: Pero su utilización solo es permitida si la consulta proyectada carece por completo de filtros en la cláusula WHERE."
     ],
     "correctAnswer": 0,
     "hint": "Estructura auxiliar que guarda copias ordenadas de las claves para búsquedas rápidas.",
@@ -5242,9 +5243,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Verdadero: Si ambas tablas están ordenadas por las claves de unión, el motor las recorre sincrónicamente en una sola pasada eficiente.",
-      "Falso: Merge Join requiere obligatoriamente cargar todas las tablas completas en memoria RAM.",
-      "Falso: Merge Join solo se puede aplicar a tablas de menos de 10 registros.",
-      "Verdadero: Pero únicamente si no se utilizan claves foráneas en la relación."
+      "Falso: El método Merge Join exige de manera obligatoria que ambas tablas se carguen por completo en la memoria volátil de trabajo.",
+      "Falso: La combinación por mezcla solo es aplicable cuando las relaciones participantes almacenan menos de diez tuplas en disco.",
+      "Verdadero: Pero únicamente en motores que prescindan del control de integridad referencial mediante claves foráneas en las tablas."
     ],
     "correctAnswer": 0,
     "hint": "Merge Join ordena y recorre en paralelo sincronizado como dos listas ordenadas.",
@@ -5260,9 +5261,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Verdadero: Cada operación de escritura obliga al motor a reestructurar y actualizar todos los árboles de índices asociados a la tabla.",
-      "Falso: Los índices aceleran mágicamente tanto las lecturas como todas las escrituras sin ningún costo extra.",
-      "Falso: Los índices solo se actualizan una vez al año cuando se reinicia el servidor.",
-      "Verdadero: Pero solo si los índices son de tipo Hash."
+      "Falso: Los índices aceleran sustancialmente tanto las lecturas como todas las escrituras sin generar ningún costo adicional de recursos.",
+      "Falso: Las estructuras de índices solo se actualizan una vez al año durante las ventanas nocturnas de mantenimiento preventivo.",
+      "Verdadero: Pero la degradación solo se manifiesta cuando los índices definidos en la relación son de tipo árbol B+ espacial."
     ],
     "correctAnswer": 0,
     "hint": "Las lecturas se aceleran, pero cada INSERT/UPDATE/DELETE debe actualizar los árboles de índices.",
@@ -5314,9 +5315,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Verdadero: Parámetros de sesión como `enable_seqscan`, `enable_indexscan` o `enable_hashjoin` permiten forzar o desalentar métodos específicos para pruebas.",
-      "Falso: El optimizador de PostgreSQL es una caja negra inmodificable donde no se pueden alterar parámetros.",
-      "Falso: `enable_seqscan` es un comando de Linux que no tiene relación con PostgreSQL.",
-      "Verdadero: Pero únicamente desde el usuario anónimo sin privilegios."
+      "Falso: El optimizador de consultas es una caja negra estática inmodificable donde el administrador no puede alterar ningún parámetro de ejecución.",
+      "Falso: `enable_seqscan` es una directiva del núcleo del sistema operativo anfitrión que no guarda ninguna relación con el motor de base de datos.",
+      "Verdadero: Pero la modificación de estos parámetros solo está autorizada para conexiones remotas que operen con privilegios de solo lectura."
     ],
     "correctAnswer": 0,
     "hint": "PostgreSQL permite activar/desactivar heurísticas de escaneo en la sesión con SET enable_...",
@@ -5368,9 +5369,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Verdadero: El programador declara el resultado esperado y el optimizador genera y elige el plan de acceso más económico.",
-      "Falso: SQL es un lenguaje imperativo donde el programador debe escribir manualmente los bucles de punteros en disco.",
-      "Falso: En SQL el motor siempre pregunta al usuario qué algoritmo aplicar en cada fila.",
-      "Verdadero: Pero solo cuando se usan funciones en lenguaje C."
+      "Falso: SQL es un lenguaje imperativo donde el desarrollador debe codificar manualmente los bucles de recorrido de punteros en disco.",
+      "Falso: En las consultas SQL el motor relacional consulta interactivamente al usuario qué algoritmo aplicar fila por fila en memoria.",
+      "Verdadero: Pero únicamente cuando las consultas invocan procedimientos almacenados compilados en bibliotecas nativas de C++."
     ],
     "correctAnswer": 0,
     "hint": "Declarativo: decimos QUÉ queremos; el optimizador define CÓMO obtenerlo.",
@@ -5386,9 +5387,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Falso: Es sumamente eficiente cuando la tabla exterior procesa pocas tuplas y la tabla interior dispone de un índice por la clave de unión.",
-      "Verdadero: Los bucles anidados siempre provocan un consumo del 100% de CPU y cuelgan el servidor.",
-      "Verdadero: Solo se tolera en sistemas embebidos sin memoria disco.",
-      "Falso: Pero únicamente si ambas tablas tienen menos de 3 columnas."
+      "Verdadero: Los bucles anidados generan de forma obligatoria un consumo del 100% de CPU y cuelgan el servicio del servidor relacional.",
+      "Verdadero: Solo se tolera la ejecución de bucles anidados en sistemas embebidos de tiempo real que carecen de memoria secundaria.",
+      "Falso: Pero únicamente si ambas relaciones participantes en la combinación contienen menos de tres atributos en sus esquemas."
     ],
     "correctAnswer": 0,
     "hint": "Si la tabla externa tiene 5 filas y la interna busca por índice B-tree, es casi instantáneo.",
@@ -5404,24 +5405,24 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Index Scan",
-        "right": "Estrategias que utiliza índices, permitiendo al motor acceder directamente solo a los bloques de datos relevantes, mejorando la velocidad de recuperación cuando se aplica un filtro selectivo."
+        "key": "Index Scan",
+        "value": "Estrategias que utiliza índices, permitiendo al motor acceder directamente solo a los bloques de datos relevantes, mejorando la velocidad de recuperación cuando se aplica un filtro selectivo."
       },
       {
-        "left": "Hash Join",
-        "right": "Método de unión que construye una estructura temporal en memoria con los datos de una de las tablas, lo que luego permite realizar comparaciones muy rápidas con los registros de la segunda tabla."
+        "key": "Hash Join",
+        "value": "Método de unión que construye una estructura temporal en memoria con los datos de una de las tablas, lo que luego permite realizar comparaciones muy rápidas con los registros de la segunda tabla."
       },
       {
-        "left": "Nested Loops",
-        "right": "Técnica de unión que implica comparar las filas de una tabla contra las filas de la otra en iteraciones anidadas. Solo es considerada eficiente si las tablas son de tamaño reducido o si se utiliza la información indexada para reducir las filas a comparar."
+        "key": "Nested Loops",
+        "value": "Técnica de unión que implica comparar las filas de una tabla contra las filas de la otra en iteraciones anidadas. Solo es considerada eficiente si las tablas son de tamaño reducido o si se utiliza la información indexada para reducir las filas a comparar."
       },
       {
-        "left": "Sequential Scan",
-        "right": "Método que se selecciona cuando la tabla es muy pequeña o cuando el resultado de la consulta involucra una gran proporción de los datos totales de la misma."
+        "key": "Sequential Scan",
+        "value": "Método que se selecciona cuando la tabla es muy pequeña o cuando el resultado de la consulta involucra una gran proporción de los datos totales de la misma."
       },
       {
-        "left": "Merge Join",
-        "right": "Estrategia de unión utilizada para conjuntos de datos extensos. Requiere que ambas tablas involucradas estén ordenadas (o que se ordenen si no tienen un índice que provea orden) para recorrerlas sincrónicamente y encontrar las filas coincidentes."
+        "key": "Merge Join",
+        "value": "Estrategia de unión utilizada para conjuntos de datos extensos. Requiere que ambas tablas involucradas estén ordenadas (o que se ordenen si no tienen un índice que provea orden) para recorrerlas sincrónicamente y encontrar las filas coincidentes."
       }
     ],
     "hint": "Seq Scan = toda la tabla; Index Scan = punteros por clave; Hash Join = hash en memoria; Merge Join = ordenado síncrono; Nested Loops = iteración anidada.",
@@ -5437,16 +5438,16 @@ const QUESTIONS_DATABASE = [
     "type": "matching",
     "pairs": [
       {
-        "left": "Generalized Search Tree (GIST)",
-        "right": "Utilizado para la indexación de información espacial, arrays, o datos complejos que no se ajustan al modelo B-Tree."
+        "key": "Generalized Search Tree (GIST)",
+        "value": "Utilizado para la indexación de información espacial, arrays, o datos complejos que no se ajustan al modelo B-Tree."
       },
       {
-        "left": "B-Tree",
-        "right": "Estructura ideal para campos que contienen datos que no se repiten y facilita el orden de los resultados."
+        "key": "B-Tree",
+        "value": "Estructura ideal para campos que contienen datos que no se repiten y facilita el orden de los resultados."
       },
       {
-        "left": "Generalized Inverted Index (GIN)",
-        "right": "Más adecuado para indexar valores compuestos y columnas que presentan una gran cantidad de datos repetidos."
+        "key": "Generalized Inverted Index (GIN)",
+        "value": "Más adecuado para indexar valores compuestos y columnas que presentan una gran cantidad de datos repetidos."
       }
     ],
     "hint": "GiST para geometrías/espacial/arrays; GIN para texto completo, JSON y valores invertidos; B-Tree para orden y unicidad.",
@@ -5480,9 +5481,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "En reordenar físicamente los registros de la tabla en disco de acuerdo con el orden establecido por un índice previamente creado.",
-      "En crear un cluster de servidores distribuidos en la nube para balancear peticiones web.",
-      "En cifrar con clave pública todos los datos del esquema de base de datos.",
-      "En desfragmentar la memoria RAM del sistema operativo anfitrión."
+      "En configurar un clúster de servidores distribuidos en la nube para balancear peticiones transaccionales entre múltiples nodos.",
+      "En cifrar con algoritmos de clave asimétrica la totalidad de las tablas y vistas del esquema corporativo en el almacenamiento.",
+      "En desfragmentar los sectores de memoria RAM del sistema operativo anfitrión para liberar páginas de datos no utilizadas."
     ],
     "correctAnswer": 0,
     "hint": "CLUSTER reordena físicamente la tabla en disco según el índice.",
@@ -5498,9 +5499,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Indexa solo un subconjunto de filas que cumplen una condición WHERE, reduciendo el tamaño del índice en disco y el costo de mantenimiento en escrituras.",
-      "Permite crear índices sin necesidad de tener permisos de administrador en el servidor.",
-      "Garantiza que las consultas nunca consuman memoria RAM.",
-      "Convierte la tabla automáticamente en un archivo de solo lectura."
+      "Permite construir índices relacionales sin contar con permisos administrativos en el catálogo del sistema de gestión de base de datos.",
+      "Garantiza que las consultas de proyección ejecutadas sobre la tabla nunca consuman espacio en la memoria volátil compartida del motor.",
+      "Convierte de forma automática la relación indexada en un archivo de solo lectura impidiendo cualquier operación de modificación futura."
     ],
     "correctAnswer": 0,
     "hint": "Indexa solo las filas relevantes (ej: WHERE activo = true), ahorrando espacio y costo de escritura.",
@@ -5516,9 +5517,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Permite construir el índice sin bloquear las operaciones concurrentes de lectura ni de escritura (INSERT/UPDATE/DELETE) sobre la tabla.",
-      "Reduce el tiempo de creación del índice a cero milisegundos sin consumir CPU.",
-      "Genera dos copias idénticas del índice en servidores remotos distintos.",
-      "Elimina permanentemente todos los registros duplicados de la tabla."
+      "Reduce el tiempo total de compilación y creación del índice a cero microsegundos sin consumir ciclos de CPU en el servidor.",
+      "Genera dos réplicas idénticas del árbol del índice en particiones físicas independientes de almacenamiento secundario en disco.",
+      "Elimina permanentemente la totalidad de los registros duplicados de la relación antes de crear las páginas de datos en el catálogo."
     ],
     "correctAnswer": 0,
     "hint": "CONCURRENTLY no adquiere bloqueo exclusivo sobre la tabla.",
@@ -5534,9 +5535,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "`EXPLAIN` solo muestra el plan estimado sin ejecutar la consulta; `EXPLAIN ANALYZE` ejecuta la consulta en tiempo real y muestra los tiempos reales (actual time) y filas reales obtenidas.",
-      "`EXPLAIN` ejecuta la consulta tres veces; `EXPLAIN ANALYZE` solo valida errores de sintaxis en el texto.",
-      "`EXPLAIN ANALYZE` no funciona en PostgreSQL, solo en Microsoft SQL Server.",
-      "`EXPLAIN` modifica los datos de la base de datos, mientras que `EXPLAIN ANALYZE` es de solo lectura."
+      "`EXPLAIN` ejecuta la consulta tres veces en memoria intermedia; `EXPLAIN ANALYZE` solo verifica errores léxicos y sintácticos en el texto de la sentencia declarativa enviada.",
+      "`EXPLAIN ANALYZE` solo es compatible con motores Microsoft SQL Server, mientras que PostgreSQL solo implementa el comando EXPLAIN básico en entornos de producción.",
+      "`EXPLAIN` modifica permanentemente los registros de la tabla en disco, mientras que `EXPLAIN ANALYZE` se comporta como una sentencia de solo lectura en el motor relacional."
     ],
     "correctAnswer": 0,
     "hint": "ANALYZE realmente ejecuta la sentencia y mide tiempos reales en milisegundos.",
@@ -5552,9 +5553,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "`0.00` es el costo de inicio estimado antes de retornar la primera tupla; `18.50` es el costo total estimado para procesar el nodo completo.",
-      "`0.00` es el costo en dólares y `18.50` es el costo en euros de la consulta en la nube.",
-      "`0.00` es el uso de memoria RAM en megabytes y `18.50` es el uso porcentual de CPU.",
-      "`0.00` indica que no hubo errores y `18.50` es el número de milisegundos que demoró la consulta."
+      "`0.00` es el costo operativo en dólares y `18.50` representa la tarifa de procesamiento en euros cobrada por el proveedor de nube.",
+      "`0.00` es el consumo de memoria volátil RAM en megabytes y `18.50` es el porcentaje de utilización de los núcleos de CPU en el host.",
+      "`0.00` indica que no existieron fallas de integridad y `18.50` es el tiempo exacto en milisegundos que demoró la consulta en el cliente."
     ],
     "correctAnswer": 0,
     "hint": "cost=costo_arranque..costo_total en unidades arbitrarias de E/S de página.",
@@ -5570,9 +5571,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "En tablas pequeñas (pocas páginas en disco) o en columnas con muy baja selectividad donde la consulta recupera más del 40% de los registros de la tabla.",
-      "En columnas que son claves primarias enteras con valores estrictamente correlativos.",
-      "En tablas con más de 10 millones de filas cuando se busca una única tupla por ID.",
-      "En columnas de tipo VARCHAR indexadas con B-Tree que se consultan con el operador de igualdad."
+      "En columnas que corresponden a claves primarias numéricas enteras con valores correlativos consultadas mediante el operador de igualdad.",
+      "En relaciones de gran escala con más de diez millones de tuplas cuando una aplicación busca un único registro específico mediante su ID.",
+      "En atributos de texto variable de tipo VARCHAR indexados con árboles B-Tree cuando se aplican condiciones de búsqueda puntual en el WHERE."
     ],
     "correctAnswer": 0,
     "hint": "Baja selectividad (>40% de la tabla) o tablas muy pequeñas no justifican el overhead del índice.",
@@ -5588,9 +5589,9 @@ const QUESTIONS_DATABASE = [
     "type": "single_choice",
     "options": [
       "Recuperar y marcar como reutilizable el espacio ocupado por tuplas muertas (actualizadas o eliminadas por MVCC) y actualizar el mapa de visibilidad.",
-      "Eliminar físicamente todas las tablas del esquema que lleven más de 30 días sin usarse.",
-      "Comprimir los logs del sistema operativo en formato tar.gz.",
-      "Cerrar todas las conexiones activas de los usuarios en el servidor."
+      "Eliminar físicamente todas las tablas del esquema que lleven más de treinta días sin recibir consultas de lectura por parte de usuarios.",
+      "Comprimir los ficheros de registro del sistema operativo anfitrión en archivos tar.gz para liberar espacio en el volumen de arranque.",
+      "Interrumpir de manera forzada todas las conexiones transaccionales concurrentes que superen los diez segundos de tiempo de ejecución."
     ],
     "correctAnswer": 0,
     "hint": "Limpieza de tuplas muertas creadas por el versionado MVCC.",
@@ -5605,4 +5606,3 @@ if (typeof window !== "undefined") {
 if (typeof module !== "undefined" && module.exports) {
   module.exports = QUESTIONS_DATABASE;
 }
-
