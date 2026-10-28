@@ -13,13 +13,13 @@
   <link rel="apple-touch-icon" href="assets/favicon_192.png">
 
   <!-- Retro Stylesheets -->
-  <link rel="stylesheet" href="css/retro-core.css?v=4.3">
-  <link rel="stylesheet" href="css/time-attack.css?v=4.3">
-  <link rel="stylesheet" href="css/sql-lab.css?v=4.3">
-  <link rel="stylesheet" href="css/der-engine.css?v=4.3">
-  <link rel="stylesheet" href="css/grimoire.css?v=4.3">
-  <link rel="stylesheet" href="css/analytics.css?v=4.3">
-  <link rel="stylesheet" href="css/michi-companion.css?v=4.3">
+  <link rel="stylesheet" href="css/retro-core.css?v=4.4">
+  <link rel="stylesheet" href="css/time-attack.css?v=4.4">
+  <link rel="stylesheet" href="css/sql-lab.css?v=4.4">
+  <link rel="stylesheet" href="css/der-engine.css?v=4.4">
+  <link rel="stylesheet" href="css/grimoire.css?v=4.4">
+  <link rel="stylesheet" href="css/analytics.css?v=4.4">
+  <link rel="stylesheet" href="css/michi-companion.css?v=4.4">
 
   <!-- External Libraries (Local Vendor & CDN) -->
   <!-- sql.js (SQLite WebAssembly in-memory database) -->
@@ -443,7 +443,14 @@
 
         <!-- Presets Toolbar -->
         <div class="presets-toolbar">
-          <span class="presets-label">🎯 EJERCICIOS DEL TEMARIO:</span>
+          <div class="presets-toolbar-top">
+            <span class="presets-label">🎯 EJERCICIOS DEL TEMARIO:</span>
+            <div class="presets-filter-badges" id="presets-filter-badges">
+              <button type="button" class="preset-filter-btn active" data-filter="all">TODOS (20)</button>
+              <button type="button" class="preset-filter-btn" data-filter="p1">📘 1ER PARCIAL (11)</button>
+              <button type="button" class="preset-filter-btn" data-filter="p2">⚔️ 2DO PARCIAL (9)</button>
+            </div>
+          </div>
           <select id="sql-preset-select" class="presets-select"></select>
         </div>
 
@@ -723,17 +730,17 @@
   </div>
 
   <!-- Application Logic Scripts -->
-  <script src="js/audio.js?v=4.3"></script>
-  <script src="js/questions-data.js?v=4.3"></script>
-  <script src="js/analytics.js?v=4.3"></script>
-  <script src="js/time-attack.js?v=4.3"></script>
-  <script src="js/boss-fight.js?v=4.3"></script>
-  <script src="js/sql-engine.js?v=4.3"></script>
-  <script src="js/spells-data.js?v=4.3"></script>
-  <script src="js/spells.js?v=4.3"></script>
-  <script src="js/der-engine.js?v=4.3"></script>
-  <script src="js/grimoire.js?v=4.3"></script>
-  <script src="js/michi-companion.js?v=4.3"></script>
-  <script src="js/app.js?v=4.3"></script>
+  <script src="js/audio.js?v=4.4"></script>
+  <script src="js/questions-data.js?v=4.4"></script>
+  <script src="js/analytics.js?v=4.4"></script>
+  <script src="js/time-attack.js?v=4.4"></script>
+  <script src="js/boss-fight.js?v=4.4"></script>
+  <script src="js/sql-engine.js?v=4.4"></script>
+  <script src="js/spells-data.js?v=4.4"></script>
+  <script src="js/spells.js?v=4.4"></script>
+  <script src="js/der-engine.js?v=4.4"></script>
+  <script src="js/grimoire.js?v=4.4"></script>
+  <script src="js/michi-companion.js?v=4.4"></script>
+  <script src="js/app.js?v=4.4"></script>
 </body>
 </html>
